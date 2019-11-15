@@ -31,3 +31,5 @@ for (i in 1:length(plot_id)){
     sitetreetemp[rows,"avg_soil_n_pct"]<-Nitrogenavg
   }
 }
+
+df<-read.csv("CompleteSoilSitetree.csv")
