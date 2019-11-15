@@ -1,4 +1,4 @@
-setwd("C:/Users/Alicia/Desktop/FL")
+#setwd("C:/Users/Alicia/Desktop/FL")
 
 sitetreetemp<-read.csv("temperature_new_FL_SITETREE.csv", header=T, sep=",", stringsAsFactors = F)
 soils<-read.csv("FL_SOILS_LAB.csv", header=T, sep=",", stringsAsFactors = F)
