@@ -6,7 +6,7 @@ soils<-read.csv("FL_SOILS_LAB.csv", header=T, sep=",", stringsAsFactors = F)
 
 
 
-plot_id<-unique(soils$PLT_CN)
+plot_id<-unique(sitetreetemp$PLT_CN)
 
 
 for (i in 1:length(plot_id)){
