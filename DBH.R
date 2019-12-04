@@ -1,44 +1,46 @@
-sitetree<-read.csv("sitetree11.26.19.csv", header=T, sep=",", stringsAsFactors = F)
+sitetree<-read.csv("soilCNcomparison.csv", header=T, sep=",", stringsAsFactors = F)
 
-interaction.plot(sitetree$TEMP,sitetree$SOIL_MOIS,sitetree$DIA,type="b")
+sitetree$CN_RATIO_USA48<-as.numeric(sitetree$CN_RATIO_USA48)
+sitetree$SPCD<-as.factor(sitetree$SPCD)
+
+attach(sitetree)
+
+pairs(DIA~AVG_TEMP_bioclim+CN_RATIO_ORNL+AGEDIA+HT+SPCD+SOIL_MOIS)
 
 
-model1<-lm(sitetree$DIA~sitetree$TEMP+sitetree$CN_RATIO+sitetree$AGEDIA+sitetree$SPCD+sitetree$SOIL_MOIS)
+model1<-lm(sitetree$DIA~sitetree$AVG_TEMP_bioclim+sitetree$CN_RATIO_ORNL+sitetree$AGEDIA+sitetree$SPCD+sitetree$SOIL_MOIS)
 summary(model1)
 plot(model1)
 
+sitetree<-mutate(sitetree, logDIA=log10(sitetree$DIA))
 
-model2<-lm(sitetree$DIA~sitetree$TEMP+sitetree$CN_RATIO+sitetree$AGEDIA+sitetree$SOIL_MOIS)
-summary(model2)
-plot(model2)
-
-plot(sitetree$CN_RATIO~sitetree$TEMP)
-
-model3<-lm(sitetree$DIA~sitetree$TEMP+sitetree$CN_RATIO+sitetree$AGEDIA+sitetree$SPCD+sitetree$SOIL_MOIS+sitetree$HT)
-summary(model3)
-plot(model3)
-
-model4<-lm(sitetree$DIA~sitetree$TEMP+sitetree$CN_RATIO+sitetree$SPCD+sitetree$SOIL_MOIS+sitetree$AGEDIA*sitetree$HT)
-summary(model4)
-
-model5<-lm(sitetree$DIA~sitetree$TEMP+sitetree$AGEDIA+sitetree$SPCD+sitetree$CN_RATIO*sitetree$SOIL_MOIS+sitetree$HT)
-
-model6<-lm(sitetree$DIA~sitetree$AGEDIA+sitetree$SPCD+sitetree$CN_RATIO+sitetree$TEMP*sitetree$SOIL_MOIS+sitetree$HT)
-
-model7<-lm(sitetree$DIA~sitetree$AGEDIA+sitetree$SPCD+sitetree$CN_RATIO*sitetree$TEMP*sitetree$SOIL_MOIS+sitetree$HT)
-
-AICctab(model1, model2, model3, model4, model5, model6, model7,  base=T, delta=T, weights=T)
-
-logmodel1<-lm(sitetree$logDIA~sitetree$TEMP+sitetree$CN_RATIO+sitetree$AGEDIA+sitetree$SPCD+sitetree$SOIL_MOIS)
+logmodel1<-lm(sitetree$logDIA~sitetree$AVG_TEMP_bioclim+sitetree$CN_RATIO_ORNL+sitetree$AGEDIA+sitetree$SPCD+sitetree$SOIL_MOIS)
 plot(logmodel1)
 summary(logmodel1)
 
-sqrtmodel1<-lm(sitetree$sqrtDIA~sitetree$TEMP+sitetree$CN_RATIO+sitetree$AGEDIA+sitetree$SPCD+sitetree$SOIL_MOIS)
-plot(sqrtmodel1)
-summary(sqrtmodel1)
+model2<-lm(sitetree$logDIA~sitetree$AVG_TEMP_bioclim+sitetree$CN_RATIO_ORNL+sitetree$AGEDIA+sitetree$SPCD+sitetree$HT)
 
-sitetree$CN_RATIO<-as.numeric(sitetree$CN_RATIO)
-sitetree$SPCD<-as.factor(sitetree$SPCD)
+
+model3<-lm(sitetree$logDIA~sitetree$AVG_TEMP_bioclim+sitetree$CN_RATIO_ORNL+sitetree$AGEDIA+sitetree$SPCD+sitetree$SOIL_MOIS+sitetree$HT)
+summary(model3)
+plot(model3)
+
+model4<-lm(sitetree$logDIA~sitetree$AVG_TEMP_bioclim+sitetree$CN_RATIO_ORNL+sitetree$SPCD+sitetree$SOIL_MOIS+sitetree$AGEDIA*sitetree$HT)
+summary(model4)
+
+model5<-lm(sitetree$logDIA~sitetree$AVG_TEMP_bioclim+sitetree$AGEDIA+sitetree$SPCD+sitetree$CN_RATIO_ORNL*sitetree$SOIL_MOIS+sitetree$HT)
+
+model6<-lm(sitetree$logDIA~sitetree$AGEDIA+sitetree$SPCD+sitetree$CN_RATIO_ORNL+sitetree$AVG_TEMP_bioclim*sitetree$SOIL_MOIS+sitetree$HT)
+
+model7<-lm(sitetree$logDIA~sitetree$AGEDIA+sitetree$SPCD+sitetree$CN_RATIO_ORNL*sitetree$AVG_TEMP_bioclim+sitetree$AVG_TEMP_bioclim*sitetree$SOIL_MOIS+sitetree$HT)
+
+model8<-lm(sitetree$logDIA~sitetree$AVG_TEMP_bioclim+sitetree$CN_RATIO_ORNL+sitetree$SPCD+sitetree$AGEDIA*sitetree$HT)
+summary(model8)
+
+AICctab(logmodel1, model2, model3, model4, model5, model6, model7, model8,  base=T, delta=T, weights=T)
+
+scalemodel8<-lm(sitetree$logDIA~scale(sitetree$AVG_TEMP_bioclim)+scale(sitetree$CN_RATIO_ORNL)+sitetree$SPCD+scale(sitetree$AGEDIA)*scale(sitetree$HT))
+summary(scalemodel8)
 
 normali1 <- function (x)
 {mnT <- mean(x)
@@ -63,21 +65,13 @@ normali1(sitetree$logDIA[sitetree$SPCD=="111"])
 normali1(sitetree$logDIA[sitetree$SPCD=="121"])
 normali1(sitetree$logDIA[sitetree$SPCD=="128"])
 
-sitetree<-mutate(sitetree, logDIA=log10(sitetree$DIA))
-sitetree<-mutate(sitetree, sqrtDIA=sqrt(sitetree$DIA))
-
-plot(sitetree$CN_RATIO~sitetree$TEMP)
-plot(sitetree$DIA~sitetree$SPCD)
-
-pairs(sitetree$DIA~sitetree$TEMP+sitetree$CN_RATIO+sitetree$AGEDIA+sitetree$SPCD+sitetree$SOIL_MOIS)
-
 shortleaf<-subset(sitetree, sitetree$SPCD=="110")
 slashpine<-subset(sitetree, sitetree$SPCD=="111")
 longleaf<-subset(sitetree, sitetree$SPCD=="121")
 pondpine<-subset(sitetree, sitetree$SPCD=="128")
 loblolly<-subset(sitetree, sitetree$SPCD=="131")
 
-slashmodel<-lm(slashpine$DIA~slashpine$TEMP+slashpine$CN_RATIO+slashpine$AGEDIA+slashpine$SOIL_MOIS)
+slashmodel<-lm(slashpine$logDIA~slashpine$AVG_TEMP_bioclim+slashpine$CN_RATIO_ORNL+slashpine$AGEDIA*slashpine$HT)
 summary(slashmodel)
 plot(slashmodel)
 
