@@ -1,0 +1,3010 @@
+<!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
+<qgis projectname="" version="3.10.1-A Coruña">
+  <homePath path=""/>
+  <title></title>
+  <autotransaction active="0"/>
+  <evaluateDefaultValues active="0"/>
+  <trust active="0"/>
+  <projectCrs>
+    <spatialrefsys>
+      <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
+      <srsid>3452</srsid>
+      <srid>4326</srid>
+      <authid>EPSG:4326</authid>
+      <description>WGS 84</description>
+      <projectionacronym>longlat</projectionacronym>
+      <ellipsoidacronym>WGS84</ellipsoidacronym>
+      <geographicflag>true</geographicflag>
+    </spatialrefsys>
+  </projectCrs>
+  <layer-tree-group>
+    <customproperties/>
+    <layer-tree-layer providerKey="gdal" source="./Tiff Soilgrids Nitrogen 0-5cm/tileSG-012-025_3-1.tif" id="tileSG_012_025_3_1_dd0adda6_e5fd_47d1_85b4_fd89e1bb9500" expanded="1" name="tileSG-012-025_3-1" checked="Qt::Checked">
+      <customproperties/>
+    </layer-tree-layer>
+    <layer-tree-layer providerKey="gdal" source="./Tiff Soilgrids Nitrogen 0-5cm/tileSG-012-024_3-3.tif" id="tileSG_012_024_3_3_dcde59ad_cdfa_49af_ad51_9df312532cf3" expanded="1" name="tileSG-012-024_3-3" checked="Qt::Checked">
+      <customproperties/>
+    </layer-tree-layer>
+    <layer-tree-layer providerKey="gdal" source="./Tiff Soilgrids Nitrogen 0-5cm/tileSG-012-024_3-2.tif" id="tileSG_012_024_3_2_8ddea55b_6c33_4b93_a42d_689fb3598eaf" expanded="1" name="tileSG-012-024_3-2" checked="Qt::Checked">
+      <customproperties/>
+    </layer-tree-layer>
+    <layer-tree-layer providerKey="gdal" source="./Tiff Soilgrids Nitrogen 0-5cm/tileSG-012-024_3-1.tif" id="tileSG_012_024_3_1_a1c84889_ebdb_44de_aa69_54d92f75e66e" expanded="1" name="tileSG-012-024_3-1" checked="Qt::Checked">
+      <customproperties/>
+    </layer-tree-layer>
+    <layer-tree-layer providerKey="gdal" source="./Tiff Soilgrids Nitrogen 0-5cm/tileSG-012-024_2-3.tif" id="tileSG_012_024_2_3_c780d5f7_dc56_4e8d_adbf_35b5bb54dd80" expanded="1" name="tileSG-012-024_2-3" checked="Qt::Checked">
+      <customproperties/>
+    </layer-tree-layer>
+    <layer-tree-layer providerKey="gdal" source="./Tiff Soilgrids Nitrogen 0-5cm/tileSG-012-024_2-2.tif" id="tileSG_012_024_2_2_0ed51ee2_ea61_47b3_9f65_a394b1d45b27" expanded="1" name="tileSG-012-024_2-2" checked="Qt::Checked">
+      <customproperties/>
+    </layer-tree-layer>
+    <layer-tree-layer providerKey="gdal" source="./Tiff Soilgrids Nitrogen 0-5cm/tileSG-012-024_2-1.tif" id="tileSG_012_024_2_1_43dc8f53_bde3_4477_b1cc_02ce8b161a8e" expanded="1" name="tileSG-012-024_2-1" checked="Qt::Checked">
+      <customproperties/>
+    </layer-tree-layer>
+    <layer-tree-layer providerKey="gdal" source="./Tiff Soilgrids Nitrogen 0-5cm/tileSG-012-024_1-1.tif" id="tileSG_012_024_1_1_2a938f1f_2f22_4a26_a338_b221f0065b9d" expanded="1" name="tileSG-012-024_1-1" checked="Qt::Checked">
+      <customproperties/>
+    </layer-tree-layer>
+    <layer-tree-layer providerKey="gdal" source="./Tiff Soilgrids Nitrogen 0-5cm/tileSG-012-023_3-3.tif" id="tileSG_012_023_3_3_87c7dad5_b5b3_4661_9618_c06c0bbbd142" expanded="1" name="tileSG-012-023_3-3" checked="Qt::Checked">
+      <customproperties/>
+    </layer-tree-layer>
+    <layer-tree-layer providerKey="gdal" source="./Tiff Soilgrids Nitrogen 0-5cm/tileSG-012-023_2-3.tif" id="tileSG_012_023_2_3_d5658214_a9ab_48b5_aeb6_f3b57a9ef0e6" expanded="1" name="tileSG-012-023_2-3" checked="Qt::Checked">
+      <customproperties/>
+    </layer-tree-layer>
+    <layer-tree-layer providerKey="gdal" source="./Tiff Soilgrids Nitrogen 0-5cm/tileSG-012-023_2-2.tif" id="tileSG_012_023_2_2_dcc49cc6_c0ba_45dd_868b_0f3593ed0d48" expanded="1" name="tileSG-012-023_2-2" checked="Qt::Checked">
+      <customproperties/>
+    </layer-tree-layer>
+    <layer-tree-layer providerKey="gdal" source="./Tiff Soilgrids Nitrogen 0-5cm/tileSG-012-023_1-3.tif" id="tileSG_012_023_1_3_ecf2701d_0010_40bc_8f58_b9c8b146f4cc" expanded="1" name="tileSG-012-023_1-3" checked="Qt::Checked">
+      <customproperties/>
+    </layer-tree-layer>
+    <layer-tree-layer providerKey="gdal" source="./Tiff Soilgrids Nitrogen 0-5cm/tileSG-012-023_1-2.tif" id="tileSG_012_023_1_2_aee098ac_b230_4700_92d2_397f1bfb8fba" expanded="1" name="tileSG-012-023_1-2" checked="Qt::Checked">
+      <customproperties/>
+    </layer-tree-layer>
+    <layer-tree-layer providerKey="gdal" source="./Tiff Soilgrids Nitrogen 0-5cm/tileSG-011-023_3-3.tif" id="tileSG_011_023_3_3_66757fd0_c9b9_459e_9e10_9bc3ae10e487" expanded="1" name="tileSG-011-023_3-3" checked="Qt::Checked">
+      <customproperties/>
+    </layer-tree-layer>
+    <layer-tree-layer providerKey="gdal" source="./Tiff Soilgrids Nitrogen 0-5cm/tileSG-011-023_3-2.tif" id="tileSG_011_023_3_2_466f5cb4_f8e2_425b_8e43_efaf788cda76" expanded="1" name="tileSG-011-023_3-2" checked="Qt::Checked">
+      <customproperties/>
+    </layer-tree-layer>
+    <layer-tree-layer providerKey="gdal" source="./Tiff Soilgrids Nitrogen 0-5cm/tileSG-011-023_3-1.tif" id="tileSG_011_023_3_1_0b74d4cf_6c44_41b4_a1cb_d1ae6ac50ce2" expanded="1" name="tileSG-011-023_3-1" checked="Qt::Checked">
+      <customproperties/>
+    </layer-tree-layer>
+    <layer-tree-layer providerKey="gdal" source="./Tiff Soilgrids Nitrogen 0-5cm/tileSG-011-023_2-3.tif" id="tileSG_011_023_2_3_6a737d2b_1b68_4fd1_ae25_1c242e8489a1" expanded="1" name="tileSG-011-023_2-3" checked="Qt::Checked">
+      <customproperties/>
+    </layer-tree-layer>
+    <layer-tree-layer providerKey="gdal" source="./Tiff Soilgrids Nitrogen 0-5cm/tileSG-011-023_2-2.tif" id="tileSG_011_023_2_2_a82f5095_2336_435d_8c0f_2d344d0e2bbe" expanded="1" name="tileSG-011-023_2-2" checked="Qt::Checked">
+      <customproperties/>
+    </layer-tree-layer>
+    <layer-tree-layer providerKey="gdal" source="./Tiff Soilgrids Nitrogen 0-5cm/tileSG-011-023_2-1.tif" id="tileSG_011_023_2_1_d6ce6260_e0e4_41f8_bd4a_f029d456393e" expanded="1" name="tileSG-011-023_2-1" checked="Qt::Checked">
+      <customproperties/>
+    </layer-tree-layer>
+    <layer-tree-layer providerKey="gdal" source="./Tiff Soilgrids Nitrogen 0-5cm/tileSG-011-023_1-3.tif" id="tileSG_011_023_1_3_2d650c5d_3f37_4f96_94f0_046e188a4645" expanded="1" name="tileSG-011-023_1-3" checked="Qt::Checked">
+      <customproperties/>
+    </layer-tree-layer>
+    <layer-tree-layer providerKey="gdal" source="./Tiff Soilgrids Nitrogen 0-5cm/tileSG-011-023_1-2.tif" id="tileSG_011_023_1_2_a6a6b680_e60a_4f65_8b7b_5040275d5ebb" expanded="1" name="tileSG-011-023_1-2" checked="Qt::Checked">
+      <customproperties/>
+    </layer-tree-layer>
+    <layer-tree-layer providerKey="gdal" source="./Tiff Soilgrids Nitrogen 0-5cm/tileSG-011-023_1-1.tif" id="tileSG_011_023_1_1_18dd90e0_ad38_4922_b5fa_cc941c27d562" expanded="1" name="tileSG-011-023_1-1" checked="Qt::Checked">
+      <customproperties/>
+    </layer-tree-layer>
+    <layer-tree-layer providerKey="gdal" source="./Tiff Soilgrids Nitrogen 0-5cm/tileSG-011-022_3-3.tif" id="tileSG_011_022_3_3_3e5010e1_c6bb_43bb_a2f6_7e6ada0404f5" expanded="1" name="tileSG-011-022_3-3" checked="Qt::Checked">
+      <customproperties/>
+    </layer-tree-layer>
+    <layer-tree-layer providerKey="gdal" source="./Tiff Soilgrids Nitrogen 0-5cm/tileSG-011-022_3-1.tif" id="tileSG_011_022_3_1_0ba3e07c_623f_4531_9bde_7f6fd43b4239" expanded="1" name="tileSG-011-022_3-1" checked="Qt::Checked">
+      <customproperties/>
+    </layer-tree-layer>
+    <layer-tree-layer providerKey="gdal" source="./Tiff Soilgrids Nitrogen 0-5cm/tileSG-011-022_2-3.tif" id="tileSG_011_022_2_3_8d4e7745_e661_4ab0_aa74_1ae4f87d1706" expanded="1" name="tileSG-011-022_2-3" checked="Qt::Checked">
+      <customproperties/>
+    </layer-tree-layer>
+    <layer-tree-layer providerKey="gdal" source="./Tiff Soilgrids Nitrogen 0-5cm/tileSG-011-022_2-2.tif" id="tileSG_011_022_2_2_ac9cee07_bc08_4d66_bf76_20aed5d8975e" expanded="1" name="tileSG-011-022_2-2" checked="Qt::Checked">
+      <customproperties/>
+    </layer-tree-layer>
+    <layer-tree-layer providerKey="gdal" source="./Tiff Soilgrids Nitrogen 0-5cm/tileSG-011-022_2-1.tif" id="tileSG_011_022_2_1_0303c2e1_c05f_4d1a_920a_57a68540d998" expanded="1" name="tileSG-011-022_2-1" checked="Qt::Checked">
+      <customproperties/>
+    </layer-tree-layer>
+    <layer-tree-layer providerKey="gdal" source="./Tiff Soilgrids Nitrogen 0-5cm/tileSG-011-022_1-3.tif" id="tileSG_011_022_1_3_39e7f660_fb0d_456e_9c62_601c8fcac384" expanded="1" name="tileSG-011-022_1-3" checked="Qt::Checked">
+      <customproperties/>
+    </layer-tree-layer>
+    <layer-tree-layer providerKey="gdal" source="./Tiff Soilgrids Nitrogen 0-5cm/tileSG-011-022_1-2.tif" id="tileSG_011_022_1_2_ec60c3a1_11b0_43c7_a860_992b9c9b75f2" expanded="1" name="tileSG-011-022_1-2" checked="Qt::Checked">
+      <customproperties/>
+    </layer-tree-layer>
+    <custom-order enabled="0">
+      <item>tileSG_011_022_1_2_ec60c3a1_11b0_43c7_a860_992b9c9b75f2</item>
+      <item>tileSG_011_022_1_3_39e7f660_fb0d_456e_9c62_601c8fcac384</item>
+      <item>tileSG_011_022_2_1_0303c2e1_c05f_4d1a_920a_57a68540d998</item>
+      <item>tileSG_011_022_2_2_ac9cee07_bc08_4d66_bf76_20aed5d8975e</item>
+      <item>tileSG_011_022_2_3_8d4e7745_e661_4ab0_aa74_1ae4f87d1706</item>
+      <item>tileSG_011_022_3_1_0ba3e07c_623f_4531_9bde_7f6fd43b4239</item>
+      <item>tileSG_011_022_3_3_3e5010e1_c6bb_43bb_a2f6_7e6ada0404f5</item>
+      <item>tileSG_011_023_1_1_18dd90e0_ad38_4922_b5fa_cc941c27d562</item>
+      <item>tileSG_011_023_1_2_a6a6b680_e60a_4f65_8b7b_5040275d5ebb</item>
+      <item>tileSG_011_023_1_3_2d650c5d_3f37_4f96_94f0_046e188a4645</item>
+      <item>tileSG_011_023_2_1_d6ce6260_e0e4_41f8_bd4a_f029d456393e</item>
+      <item>tileSG_011_023_2_2_a82f5095_2336_435d_8c0f_2d344d0e2bbe</item>
+      <item>tileSG_011_023_2_3_6a737d2b_1b68_4fd1_ae25_1c242e8489a1</item>
+      <item>tileSG_011_023_3_1_0b74d4cf_6c44_41b4_a1cb_d1ae6ac50ce2</item>
+      <item>tileSG_011_023_3_2_466f5cb4_f8e2_425b_8e43_efaf788cda76</item>
+      <item>tileSG_011_023_3_3_66757fd0_c9b9_459e_9e10_9bc3ae10e487</item>
+      <item>tileSG_012_023_1_2_aee098ac_b230_4700_92d2_397f1bfb8fba</item>
+      <item>tileSG_012_023_1_3_ecf2701d_0010_40bc_8f58_b9c8b146f4cc</item>
+      <item>tileSG_012_023_2_2_dcc49cc6_c0ba_45dd_868b_0f3593ed0d48</item>
+      <item>tileSG_012_023_2_3_d5658214_a9ab_48b5_aeb6_f3b57a9ef0e6</item>
+      <item>tileSG_012_023_3_3_87c7dad5_b5b3_4661_9618_c06c0bbbd142</item>
+      <item>tileSG_012_024_1_1_2a938f1f_2f22_4a26_a338_b221f0065b9d</item>
+      <item>tileSG_012_024_2_1_43dc8f53_bde3_4477_b1cc_02ce8b161a8e</item>
+      <item>tileSG_012_024_2_2_0ed51ee2_ea61_47b3_9f65_a394b1d45b27</item>
+      <item>tileSG_012_024_2_3_c780d5f7_dc56_4e8d_adbf_35b5bb54dd80</item>
+      <item>tileSG_012_024_3_1_a1c84889_ebdb_44de_aa69_54d92f75e66e</item>
+      <item>tileSG_012_024_3_2_8ddea55b_6c33_4b93_a42d_689fb3598eaf</item>
+      <item>tileSG_012_024_3_3_dcde59ad_cdfa_49af_ad51_9df312532cf3</item>
+      <item>tileSG_012_025_3_1_dd0adda6_e5fd_47d1_85b4_fd89e1bb9500</item>
+    </custom-order>
+  </layer-tree-group>
+  <snapping-settings type="1" unit="1" tolerance="12" intersection-snapping="0" enabled="0" mode="2">
+    <individual-layer-settings/>
+  </snapping-settings>
+  <relations/>
+  <mapcanvas annotationsVisible="1" name="theMapCanvas">
+    <units>degrees</units>
+    <extent>
+      <xmin>-10172900</xmin>
+      <ymin>2728250</ymin>
+      <xmax>-8686100</xmax>
+      <ymax>3673250</ymax>
+    </extent>
+    <rotation>0</rotation>
+    <destinationsrs>
+      <spatialrefsys>
+        <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
+        <srsid>3452</srsid>
+        <srid>4326</srid>
+        <authid>EPSG:4326</authid>
+        <description>WGS 84</description>
+        <projectionacronym>longlat</projectionacronym>
+        <ellipsoidacronym>WGS84</ellipsoidacronym>
+        <geographicflag>true</geographicflag>
+      </spatialrefsys>
+    </destinationsrs>
+    <rendermaptile>0</rendermaptile>
+    <expressionContextScope/>
+  </mapcanvas>
+  <projectModels/>
+  <legend updateDrawingOrder="true">
+    <legendlayer showFeatureCount="0" open="true" checked="Qt::Checked" name="tileSG-012-025_3-1" drawingOrder="-1">
+      <filegroup open="true" hidden="false">
+        <legendlayerfile visible="1" layerid="tileSG_012_025_3_1_dd0adda6_e5fd_47d1_85b4_fd89e1bb9500" isInOverview="0"/>
+      </filegroup>
+    </legendlayer>
+    <legendlayer showFeatureCount="0" open="true" checked="Qt::Checked" name="tileSG-012-024_3-3" drawingOrder="-1">
+      <filegroup open="true" hidden="false">
+        <legendlayerfile visible="1" layerid="tileSG_012_024_3_3_dcde59ad_cdfa_49af_ad51_9df312532cf3" isInOverview="0"/>
+      </filegroup>
+    </legendlayer>
+    <legendlayer showFeatureCount="0" open="true" checked="Qt::Checked" name="tileSG-012-024_3-2" drawingOrder="-1">
+      <filegroup open="true" hidden="false">
+        <legendlayerfile visible="1" layerid="tileSG_012_024_3_2_8ddea55b_6c33_4b93_a42d_689fb3598eaf" isInOverview="0"/>
+      </filegroup>
+    </legendlayer>
+    <legendlayer showFeatureCount="0" open="true" checked="Qt::Checked" name="tileSG-012-024_3-1" drawingOrder="-1">
+      <filegroup open="true" hidden="false">
+        <legendlayerfile visible="1" layerid="tileSG_012_024_3_1_a1c84889_ebdb_44de_aa69_54d92f75e66e" isInOverview="0"/>
+      </filegroup>
+    </legendlayer>
+    <legendlayer showFeatureCount="0" open="true" checked="Qt::Checked" name="tileSG-012-024_2-3" drawingOrder="-1">
+      <filegroup open="true" hidden="false">
+        <legendlayerfile visible="1" layerid="tileSG_012_024_2_3_c780d5f7_dc56_4e8d_adbf_35b5bb54dd80" isInOverview="0"/>
+      </filegroup>
+    </legendlayer>
+    <legendlayer showFeatureCount="0" open="true" checked="Qt::Checked" name="tileSG-012-024_2-2" drawingOrder="-1">
+      <filegroup open="true" hidden="false">
+        <legendlayerfile visible="1" layerid="tileSG_012_024_2_2_0ed51ee2_ea61_47b3_9f65_a394b1d45b27" isInOverview="0"/>
+      </filegroup>
+    </legendlayer>
+    <legendlayer showFeatureCount="0" open="true" checked="Qt::Checked" name="tileSG-012-024_2-1" drawingOrder="-1">
+      <filegroup open="true" hidden="false">
+        <legendlayerfile visible="1" layerid="tileSG_012_024_2_1_43dc8f53_bde3_4477_b1cc_02ce8b161a8e" isInOverview="0"/>
+      </filegroup>
+    </legendlayer>
+    <legendlayer showFeatureCount="0" open="true" checked="Qt::Checked" name="tileSG-012-024_1-1" drawingOrder="-1">
+      <filegroup open="true" hidden="false">
+        <legendlayerfile visible="1" layerid="tileSG_012_024_1_1_2a938f1f_2f22_4a26_a338_b221f0065b9d" isInOverview="0"/>
+      </filegroup>
+    </legendlayer>
+    <legendlayer showFeatureCount="0" open="true" checked="Qt::Checked" name="tileSG-012-023_3-3" drawingOrder="-1">
+      <filegroup open="true" hidden="false">
+        <legendlayerfile visible="1" layerid="tileSG_012_023_3_3_87c7dad5_b5b3_4661_9618_c06c0bbbd142" isInOverview="0"/>
+      </filegroup>
+    </legendlayer>
+    <legendlayer showFeatureCount="0" open="true" checked="Qt::Checked" name="tileSG-012-023_2-3" drawingOrder="-1">
+      <filegroup open="true" hidden="false">
+        <legendlayerfile visible="1" layerid="tileSG_012_023_2_3_d5658214_a9ab_48b5_aeb6_f3b57a9ef0e6" isInOverview="0"/>
+      </filegroup>
+    </legendlayer>
+    <legendlayer showFeatureCount="0" open="true" checked="Qt::Checked" name="tileSG-012-023_2-2" drawingOrder="-1">
+      <filegroup open="true" hidden="false">
+        <legendlayerfile visible="1" layerid="tileSG_012_023_2_2_dcc49cc6_c0ba_45dd_868b_0f3593ed0d48" isInOverview="0"/>
+      </filegroup>
+    </legendlayer>
+    <legendlayer showFeatureCount="0" open="true" checked="Qt::Checked" name="tileSG-012-023_1-3" drawingOrder="-1">
+      <filegroup open="true" hidden="false">
+        <legendlayerfile visible="1" layerid="tileSG_012_023_1_3_ecf2701d_0010_40bc_8f58_b9c8b146f4cc" isInOverview="0"/>
+      </filegroup>
+    </legendlayer>
+    <legendlayer showFeatureCount="0" open="true" checked="Qt::Checked" name="tileSG-012-023_1-2" drawingOrder="-1">
+      <filegroup open="true" hidden="false">
+        <legendlayerfile visible="1" layerid="tileSG_012_023_1_2_aee098ac_b230_4700_92d2_397f1bfb8fba" isInOverview="0"/>
+      </filegroup>
+    </legendlayer>
+    <legendlayer showFeatureCount="0" open="true" checked="Qt::Checked" name="tileSG-011-023_3-3" drawingOrder="-1">
+      <filegroup open="true" hidden="false">
+        <legendlayerfile visible="1" layerid="tileSG_011_023_3_3_66757fd0_c9b9_459e_9e10_9bc3ae10e487" isInOverview="0"/>
+      </filegroup>
+    </legendlayer>
+    <legendlayer showFeatureCount="0" open="true" checked="Qt::Checked" name="tileSG-011-023_3-2" drawingOrder="-1">
+      <filegroup open="true" hidden="false">
+        <legendlayerfile visible="1" layerid="tileSG_011_023_3_2_466f5cb4_f8e2_425b_8e43_efaf788cda76" isInOverview="0"/>
+      </filegroup>
+    </legendlayer>
+    <legendlayer showFeatureCount="0" open="true" checked="Qt::Checked" name="tileSG-011-023_3-1" drawingOrder="-1">
+      <filegroup open="true" hidden="false">
+        <legendlayerfile visible="1" layerid="tileSG_011_023_3_1_0b74d4cf_6c44_41b4_a1cb_d1ae6ac50ce2" isInOverview="0"/>
+      </filegroup>
+    </legendlayer>
+    <legendlayer showFeatureCount="0" open="true" checked="Qt::Checked" name="tileSG-011-023_2-3" drawingOrder="-1">
+      <filegroup open="true" hidden="false">
+        <legendlayerfile visible="1" layerid="tileSG_011_023_2_3_6a737d2b_1b68_4fd1_ae25_1c242e8489a1" isInOverview="0"/>
+      </filegroup>
+    </legendlayer>
+    <legendlayer showFeatureCount="0" open="true" checked="Qt::Checked" name="tileSG-011-023_2-2" drawingOrder="-1">
+      <filegroup open="true" hidden="false">
+        <legendlayerfile visible="1" layerid="tileSG_011_023_2_2_a82f5095_2336_435d_8c0f_2d344d0e2bbe" isInOverview="0"/>
+      </filegroup>
+    </legendlayer>
+    <legendlayer showFeatureCount="0" open="true" checked="Qt::Checked" name="tileSG-011-023_2-1" drawingOrder="-1">
+      <filegroup open="true" hidden="false">
+        <legendlayerfile visible="1" layerid="tileSG_011_023_2_1_d6ce6260_e0e4_41f8_bd4a_f029d456393e" isInOverview="0"/>
+      </filegroup>
+    </legendlayer>
+    <legendlayer showFeatureCount="0" open="true" checked="Qt::Checked" name="tileSG-011-023_1-3" drawingOrder="-1">
+      <filegroup open="true" hidden="false">
+        <legendlayerfile visible="1" layerid="tileSG_011_023_1_3_2d650c5d_3f37_4f96_94f0_046e188a4645" isInOverview="0"/>
+      </filegroup>
+    </legendlayer>
+    <legendlayer showFeatureCount="0" open="true" checked="Qt::Checked" name="tileSG-011-023_1-2" drawingOrder="-1">
+      <filegroup open="true" hidden="false">
+        <legendlayerfile visible="1" layerid="tileSG_011_023_1_2_a6a6b680_e60a_4f65_8b7b_5040275d5ebb" isInOverview="0"/>
+      </filegroup>
+    </legendlayer>
+    <legendlayer showFeatureCount="0" open="true" checked="Qt::Checked" name="tileSG-011-023_1-1" drawingOrder="-1">
+      <filegroup open="true" hidden="false">
+        <legendlayerfile visible="1" layerid="tileSG_011_023_1_1_18dd90e0_ad38_4922_b5fa_cc941c27d562" isInOverview="0"/>
+      </filegroup>
+    </legendlayer>
+    <legendlayer showFeatureCount="0" open="true" checked="Qt::Checked" name="tileSG-011-022_3-3" drawingOrder="-1">
+      <filegroup open="true" hidden="false">
+        <legendlayerfile visible="1" layerid="tileSG_011_022_3_3_3e5010e1_c6bb_43bb_a2f6_7e6ada0404f5" isInOverview="0"/>
+      </filegroup>
+    </legendlayer>
+    <legendlayer showFeatureCount="0" open="true" checked="Qt::Checked" name="tileSG-011-022_3-1" drawingOrder="-1">
+      <filegroup open="true" hidden="false">
+        <legendlayerfile visible="1" layerid="tileSG_011_022_3_1_0ba3e07c_623f_4531_9bde_7f6fd43b4239" isInOverview="0"/>
+      </filegroup>
+    </legendlayer>
+    <legendlayer showFeatureCount="0" open="true" checked="Qt::Checked" name="tileSG-011-022_2-3" drawingOrder="-1">
+      <filegroup open="true" hidden="false">
+        <legendlayerfile visible="1" layerid="tileSG_011_022_2_3_8d4e7745_e661_4ab0_aa74_1ae4f87d1706" isInOverview="0"/>
+      </filegroup>
+    </legendlayer>
+    <legendlayer showFeatureCount="0" open="true" checked="Qt::Checked" name="tileSG-011-022_2-2" drawingOrder="-1">
+      <filegroup open="true" hidden="false">
+        <legendlayerfile visible="1" layerid="tileSG_011_022_2_2_ac9cee07_bc08_4d66_bf76_20aed5d8975e" isInOverview="0"/>
+      </filegroup>
+    </legendlayer>
+    <legendlayer showFeatureCount="0" open="true" checked="Qt::Checked" name="tileSG-011-022_2-1" drawingOrder="-1">
+      <filegroup open="true" hidden="false">
+        <legendlayerfile visible="1" layerid="tileSG_011_022_2_1_0303c2e1_c05f_4d1a_920a_57a68540d998" isInOverview="0"/>
+      </filegroup>
+    </legendlayer>
+    <legendlayer showFeatureCount="0" open="true" checked="Qt::Checked" name="tileSG-011-022_1-3" drawingOrder="-1">
+      <filegroup open="true" hidden="false">
+        <legendlayerfile visible="1" layerid="tileSG_011_022_1_3_39e7f660_fb0d_456e_9c62_601c8fcac384" isInOverview="0"/>
+      </filegroup>
+    </legendlayer>
+    <legendlayer showFeatureCount="0" open="true" checked="Qt::Checked" name="tileSG-011-022_1-2" drawingOrder="-1">
+      <filegroup open="true" hidden="false">
+        <legendlayerfile visible="1" layerid="tileSG_011_022_1_2_ec60c3a1_11b0_43c7_a860_992b9c9b75f2" isInOverview="0"/>
+      </filegroup>
+    </legendlayer>
+  </legend>
+  <mapViewDocks/>
+  <mapViewDocks3D/>
+  <mapcanvas annotationsVisible="1" name="mAreaCanvas">
+    <units>degrees</units>
+    <extent>
+      <xmin>0</xmin>
+      <ymin>0</ymin>
+      <xmax>0</xmax>
+      <ymax>0</ymax>
+    </extent>
+    <rotation>0</rotation>
+    <destinationsrs>
+      <spatialrefsys>
+        <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
+        <srsid>3452</srsid>
+        <srid>4326</srid>
+        <authid>EPSG:4326</authid>
+        <description>WGS 84</description>
+        <projectionacronym>longlat</projectionacronym>
+        <ellipsoidacronym>WGS84</ellipsoidacronym>
+        <geographicflag>true</geographicflag>
+      </spatialrefsys>
+    </destinationsrs>
+    <rendermaptile>0</rendermaptile>
+    <expressionContextScope/>
+  </mapcanvas>
+  <mapcanvas annotationsVisible="1" name="mAreaCanvas">
+    <units>degrees</units>
+    <extent>
+      <xmin>0</xmin>
+      <ymin>0</ymin>
+      <xmax>0</xmax>
+      <ymax>0</ymax>
+    </extent>
+    <rotation>0</rotation>
+    <destinationsrs>
+      <spatialrefsys>
+        <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
+        <srsid>3452</srsid>
+        <srid>4326</srid>
+        <authid>EPSG:4326</authid>
+        <description>WGS 84</description>
+        <projectionacronym>longlat</projectionacronym>
+        <ellipsoidacronym>WGS84</ellipsoidacronym>
+        <geographicflag>true</geographicflag>
+      </spatialrefsys>
+    </destinationsrs>
+    <rendermaptile>0</rendermaptile>
+    <expressionContextScope/>
+  </mapcanvas>
+  <mapcanvas annotationsVisible="1" name="mAreaCanvas">
+    <units>degrees</units>
+    <extent>
+      <xmin>0</xmin>
+      <ymin>0</ymin>
+      <xmax>0</xmax>
+      <ymax>0</ymax>
+    </extent>
+    <rotation>0</rotation>
+    <destinationsrs>
+      <spatialrefsys>
+        <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
+        <srsid>3452</srsid>
+        <srid>4326</srid>
+        <authid>EPSG:4326</authid>
+        <description>WGS 84</description>
+        <projectionacronym>longlat</projectionacronym>
+        <ellipsoidacronym>WGS84</ellipsoidacronym>
+        <geographicflag>true</geographicflag>
+      </spatialrefsys>
+    </destinationsrs>
+    <rendermaptile>0</rendermaptile>
+    <expressionContextScope/>
+  </mapcanvas>
+  <projectlayers>
+    <maplayer refreshOnNotifyMessage="" type="raster" autoRefreshTime="0" styleCategories="AllStyleCategories" refreshOnNotifyEnabled="0" maxScale="0" hasScaleBasedVisibilityFlag="0" autoRefreshEnabled="0" minScale="1e+08">
+      <extent>
+        <xmin>-9987500</xmin>
+        <ymin>3500750</ymin>
+        <xmax>-9837500</xmax>
+        <ymax>3650750</ymax>
+      </extent>
+      <id>tileSG_011_022_1_2_ec60c3a1_11b0_43c7_a860_992b9c9b75f2</id>
+      <datasource>./Tiff Soilgrids Nitrogen 0-5cm/tileSG-011-022_1-2.tif</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>tileSG-011-022_1-2</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4></proj4>
+          <srsid>0</srsid>
+          <srid>0</srid>
+          <authid></authid>
+          <description></description>
+          <projectionacronym></projectionacronym>
+          <ellipsoidacronym></ellipsoidacronym>
+          <geographicflag>false</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <resourceMetadata>
+        <identifier></identifier>
+        <parentidentifier></parentidentifier>
+        <language></language>
+        <type></type>
+        <title></title>
+        <abstract></abstract>
+        <links/>
+        <fees></fees>
+        <encoding></encoding>
+        <crs>
+          <spatialrefsys>
+            <proj4></proj4>
+            <srsid>0</srsid>
+            <srid>0</srid>
+            <authid></authid>
+            <description></description>
+            <projectionacronym></projectionacronym>
+            <ellipsoidacronym></ellipsoidacronym>
+            <geographicflag>false</geographicflag>
+          </spatialrefsys>
+        </crs>
+        <extent/>
+      </resourceMetadata>
+      <provider>gdal</provider>
+      <noData>
+        <noDataList useSrcNoData="1" bandNo="1"/>
+      </noData>
+      <map-layer-style-manager current="default">
+        <map-layer-style name="default"/>
+      </map-layer-style-manager>
+      <flags>
+        <Identifiable>1</Identifiable>
+        <Removable>1</Removable>
+        <Searchable>1</Searchable>
+      </flags>
+      <customproperties>
+        <property key="identify/format" value="Value"/>
+      </customproperties>
+      <pipe>
+        <rasterrenderer gradient="BlackToWhite" type="singlebandgray" grayBand="1" opacity="1" alphaBand="-1">
+          <rasterTransparency/>
+          <minMaxOrigin>
+            <limits>MinMax</limits>
+            <extent>WholeRaster</extent>
+            <statAccuracy>Estimated</statAccuracy>
+            <cumulativeCutLower>0.02</cumulativeCutLower>
+            <cumulativeCutUpper>0.98</cumulativeCutUpper>
+            <stdDevFactor>2</stdDevFactor>
+          </minMaxOrigin>
+          <contrastEnhancement>
+            <minValue>159</minValue>
+            <maxValue>741</maxValue>
+            <algorithm>StretchToMinimumMaximum</algorithm>
+          </contrastEnhancement>
+        </rasterrenderer>
+        <brightnesscontrast brightness="0" contrast="0"/>
+        <huesaturation colorizeOn="0" colorizeRed="255" saturation="0" grayscaleMode="0" colorizeGreen="128" colorizeBlue="128" colorizeStrength="100"/>
+        <rasterresampler maxOversampling="2"/>
+      </pipe>
+      <blendMode>0</blendMode>
+    </maplayer>
+    <maplayer refreshOnNotifyMessage="" type="raster" autoRefreshTime="0" styleCategories="AllStyleCategories" refreshOnNotifyEnabled="0" maxScale="0" hasScaleBasedVisibilityFlag="0" autoRefreshEnabled="0" minScale="1e+08">
+      <extent>
+        <xmin>-9837500</xmin>
+        <ymin>3500750</ymin>
+        <xmax>-9687500</xmax>
+        <ymax>3650750</ymax>
+      </extent>
+      <id>tileSG_011_022_1_3_39e7f660_fb0d_456e_9c62_601c8fcac384</id>
+      <datasource>./Tiff Soilgrids Nitrogen 0-5cm/tileSG-011-022_1-3.tif</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>tileSG-011-022_1-3</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4></proj4>
+          <srsid>0</srsid>
+          <srid>0</srid>
+          <authid></authid>
+          <description></description>
+          <projectionacronym></projectionacronym>
+          <ellipsoidacronym></ellipsoidacronym>
+          <geographicflag>false</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <resourceMetadata>
+        <identifier></identifier>
+        <parentidentifier></parentidentifier>
+        <language></language>
+        <type></type>
+        <title></title>
+        <abstract></abstract>
+        <links/>
+        <fees></fees>
+        <encoding></encoding>
+        <crs>
+          <spatialrefsys>
+            <proj4></proj4>
+            <srsid>0</srsid>
+            <srid>0</srid>
+            <authid></authid>
+            <description></description>
+            <projectionacronym></projectionacronym>
+            <ellipsoidacronym></ellipsoidacronym>
+            <geographicflag>false</geographicflag>
+          </spatialrefsys>
+        </crs>
+        <extent/>
+      </resourceMetadata>
+      <provider>gdal</provider>
+      <noData>
+        <noDataList useSrcNoData="1" bandNo="1"/>
+      </noData>
+      <map-layer-style-manager current="default">
+        <map-layer-style name="default"/>
+      </map-layer-style-manager>
+      <flags>
+        <Identifiable>1</Identifiable>
+        <Removable>1</Removable>
+        <Searchable>1</Searchable>
+      </flags>
+      <customproperties>
+        <property key="identify/format" value="Value"/>
+      </customproperties>
+      <pipe>
+        <rasterrenderer gradient="BlackToWhite" type="singlebandgray" grayBand="1" opacity="1" alphaBand="-1">
+          <rasterTransparency/>
+          <minMaxOrigin>
+            <limits>MinMax</limits>
+            <extent>WholeRaster</extent>
+            <statAccuracy>Estimated</statAccuracy>
+            <cumulativeCutLower>0.02</cumulativeCutLower>
+            <cumulativeCutUpper>0.98</cumulativeCutUpper>
+            <stdDevFactor>2</stdDevFactor>
+          </minMaxOrigin>
+          <contrastEnhancement>
+            <minValue>196</minValue>
+            <maxValue>577</maxValue>
+            <algorithm>StretchToMinimumMaximum</algorithm>
+          </contrastEnhancement>
+        </rasterrenderer>
+        <brightnesscontrast brightness="0" contrast="0"/>
+        <huesaturation colorizeOn="0" colorizeRed="255" saturation="0" grayscaleMode="0" colorizeGreen="128" colorizeBlue="128" colorizeStrength="100"/>
+        <rasterresampler maxOversampling="2"/>
+      </pipe>
+      <blendMode>0</blendMode>
+    </maplayer>
+    <maplayer refreshOnNotifyMessage="" type="raster" autoRefreshTime="0" styleCategories="AllStyleCategories" refreshOnNotifyEnabled="0" maxScale="0" hasScaleBasedVisibilityFlag="0" autoRefreshEnabled="0" minScale="1e+08">
+      <extent>
+        <xmin>-10137500</xmin>
+        <ymin>3350750</ymin>
+        <xmax>-9987500</xmax>
+        <ymax>3500750</ymax>
+      </extent>
+      <id>tileSG_011_022_2_1_0303c2e1_c05f_4d1a_920a_57a68540d998</id>
+      <datasource>./Tiff Soilgrids Nitrogen 0-5cm/tileSG-011-022_2-1.tif</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>tileSG-011-022_2-1</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4></proj4>
+          <srsid>0</srsid>
+          <srid>0</srid>
+          <authid></authid>
+          <description></description>
+          <projectionacronym></projectionacronym>
+          <ellipsoidacronym></ellipsoidacronym>
+          <geographicflag>false</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <resourceMetadata>
+        <identifier></identifier>
+        <parentidentifier></parentidentifier>
+        <language></language>
+        <type></type>
+        <title></title>
+        <abstract></abstract>
+        <links/>
+        <fees></fees>
+        <encoding></encoding>
+        <crs>
+          <spatialrefsys>
+            <proj4></proj4>
+            <srsid>0</srsid>
+            <srid>0</srid>
+            <authid></authid>
+            <description></description>
+            <projectionacronym></projectionacronym>
+            <ellipsoidacronym></ellipsoidacronym>
+            <geographicflag>false</geographicflag>
+          </spatialrefsys>
+        </crs>
+        <extent/>
+      </resourceMetadata>
+      <provider>gdal</provider>
+      <noData>
+        <noDataList useSrcNoData="1" bandNo="1"/>
+      </noData>
+      <map-layer-style-manager current="default">
+        <map-layer-style name="default"/>
+      </map-layer-style-manager>
+      <flags>
+        <Identifiable>1</Identifiable>
+        <Removable>1</Removable>
+        <Searchable>1</Searchable>
+      </flags>
+      <customproperties>
+        <property key="identify/format" value="Value"/>
+      </customproperties>
+      <pipe>
+        <rasterrenderer gradient="BlackToWhite" type="singlebandgray" grayBand="1" opacity="1" alphaBand="-1">
+          <rasterTransparency/>
+          <minMaxOrigin>
+            <limits>MinMax</limits>
+            <extent>WholeRaster</extent>
+            <statAccuracy>Estimated</statAccuracy>
+            <cumulativeCutLower>0.02</cumulativeCutLower>
+            <cumulativeCutUpper>0.98</cumulativeCutUpper>
+            <stdDevFactor>2</stdDevFactor>
+          </minMaxOrigin>
+          <contrastEnhancement>
+            <minValue>178</minValue>
+            <maxValue>1457</maxValue>
+            <algorithm>StretchToMinimumMaximum</algorithm>
+          </contrastEnhancement>
+        </rasterrenderer>
+        <brightnesscontrast brightness="0" contrast="0"/>
+        <huesaturation colorizeOn="0" colorizeRed="255" saturation="0" grayscaleMode="0" colorizeGreen="128" colorizeBlue="128" colorizeStrength="100"/>
+        <rasterresampler maxOversampling="2"/>
+      </pipe>
+      <blendMode>0</blendMode>
+    </maplayer>
+    <maplayer refreshOnNotifyMessage="" type="raster" autoRefreshTime="0" styleCategories="AllStyleCategories" refreshOnNotifyEnabled="0" maxScale="0" hasScaleBasedVisibilityFlag="0" autoRefreshEnabled="0" minScale="1e+08">
+      <extent>
+        <xmin>-9987500</xmin>
+        <ymin>3365000</ymin>
+        <xmax>-9837500</xmax>
+        <ymax>3500750</ymax>
+      </extent>
+      <id>tileSG_011_022_2_2_ac9cee07_bc08_4d66_bf76_20aed5d8975e</id>
+      <datasource>./Tiff Soilgrids Nitrogen 0-5cm/tileSG-011-022_2-2.tif</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>tileSG-011-022_2-2</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4></proj4>
+          <srsid>0</srsid>
+          <srid>0</srid>
+          <authid></authid>
+          <description></description>
+          <projectionacronym></projectionacronym>
+          <ellipsoidacronym></ellipsoidacronym>
+          <geographicflag>false</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <resourceMetadata>
+        <identifier></identifier>
+        <parentidentifier></parentidentifier>
+        <language></language>
+        <type></type>
+        <title></title>
+        <abstract></abstract>
+        <links/>
+        <fees></fees>
+        <encoding></encoding>
+        <crs>
+          <spatialrefsys>
+            <proj4></proj4>
+            <srsid>0</srsid>
+            <srid>0</srid>
+            <authid></authid>
+            <description></description>
+            <projectionacronym></projectionacronym>
+            <ellipsoidacronym></ellipsoidacronym>
+            <geographicflag>false</geographicflag>
+          </spatialrefsys>
+        </crs>
+        <extent/>
+      </resourceMetadata>
+      <provider>gdal</provider>
+      <noData>
+        <noDataList useSrcNoData="1" bandNo="1"/>
+      </noData>
+      <map-layer-style-manager current="default">
+        <map-layer-style name="default"/>
+      </map-layer-style-manager>
+      <flags>
+        <Identifiable>1</Identifiable>
+        <Removable>1</Removable>
+        <Searchable>1</Searchable>
+      </flags>
+      <customproperties>
+        <property key="identify/format" value="Value"/>
+      </customproperties>
+      <pipe>
+        <rasterrenderer gradient="BlackToWhite" type="singlebandgray" grayBand="1" opacity="1" alphaBand="-1">
+          <rasterTransparency/>
+          <minMaxOrigin>
+            <limits>MinMax</limits>
+            <extent>WholeRaster</extent>
+            <statAccuracy>Estimated</statAccuracy>
+            <cumulativeCutLower>0.02</cumulativeCutLower>
+            <cumulativeCutUpper>0.98</cumulativeCutUpper>
+            <stdDevFactor>2</stdDevFactor>
+          </minMaxOrigin>
+          <contrastEnhancement>
+            <minValue>216</minValue>
+            <maxValue>1511</maxValue>
+            <algorithm>StretchToMinimumMaximum</algorithm>
+          </contrastEnhancement>
+        </rasterrenderer>
+        <brightnesscontrast brightness="0" contrast="0"/>
+        <huesaturation colorizeOn="0" colorizeRed="255" saturation="0" grayscaleMode="0" colorizeGreen="128" colorizeBlue="128" colorizeStrength="100"/>
+        <rasterresampler maxOversampling="2"/>
+      </pipe>
+      <blendMode>0</blendMode>
+    </maplayer>
+    <maplayer refreshOnNotifyMessage="" type="raster" autoRefreshTime="0" styleCategories="AllStyleCategories" refreshOnNotifyEnabled="0" maxScale="0" hasScaleBasedVisibilityFlag="0" autoRefreshEnabled="0" minScale="1e+08">
+      <extent>
+        <xmin>-9837500</xmin>
+        <ymin>3350750</ymin>
+        <xmax>-9687500</xmax>
+        <ymax>3500750</ymax>
+      </extent>
+      <id>tileSG_011_022_2_3_8d4e7745_e661_4ab0_aa74_1ae4f87d1706</id>
+      <datasource>./Tiff Soilgrids Nitrogen 0-5cm/tileSG-011-022_2-3.tif</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>tileSG-011-022_2-3</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4></proj4>
+          <srsid>0</srsid>
+          <srid>0</srid>
+          <authid></authid>
+          <description></description>
+          <projectionacronym></projectionacronym>
+          <ellipsoidacronym></ellipsoidacronym>
+          <geographicflag>false</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <resourceMetadata>
+        <identifier></identifier>
+        <parentidentifier></parentidentifier>
+        <language></language>
+        <type></type>
+        <title></title>
+        <abstract></abstract>
+        <links/>
+        <fees></fees>
+        <encoding></encoding>
+        <crs>
+          <spatialrefsys>
+            <proj4></proj4>
+            <srsid>0</srsid>
+            <srid>0</srid>
+            <authid></authid>
+            <description></description>
+            <projectionacronym></projectionacronym>
+            <ellipsoidacronym></ellipsoidacronym>
+            <geographicflag>false</geographicflag>
+          </spatialrefsys>
+        </crs>
+        <extent/>
+      </resourceMetadata>
+      <provider>gdal</provider>
+      <noData>
+        <noDataList useSrcNoData="1" bandNo="1"/>
+      </noData>
+      <map-layer-style-manager current="default">
+        <map-layer-style name="default"/>
+      </map-layer-style-manager>
+      <flags>
+        <Identifiable>1</Identifiable>
+        <Removable>1</Removable>
+        <Searchable>1</Searchable>
+      </flags>
+      <customproperties>
+        <property key="identify/format" value="Value"/>
+      </customproperties>
+      <pipe>
+        <rasterrenderer gradient="BlackToWhite" type="singlebandgray" grayBand="1" opacity="1" alphaBand="-1">
+          <rasterTransparency/>
+          <minMaxOrigin>
+            <limits>MinMax</limits>
+            <extent>WholeRaster</extent>
+            <statAccuracy>Estimated</statAccuracy>
+            <cumulativeCutLower>0.02</cumulativeCutLower>
+            <cumulativeCutUpper>0.98</cumulativeCutUpper>
+            <stdDevFactor>2</stdDevFactor>
+          </minMaxOrigin>
+          <contrastEnhancement>
+            <minValue>211</minValue>
+            <maxValue>2219</maxValue>
+            <algorithm>StretchToMinimumMaximum</algorithm>
+          </contrastEnhancement>
+        </rasterrenderer>
+        <brightnesscontrast brightness="0" contrast="0"/>
+        <huesaturation colorizeOn="0" colorizeRed="255" saturation="0" grayscaleMode="0" colorizeGreen="128" colorizeBlue="128" colorizeStrength="100"/>
+        <rasterresampler maxOversampling="2"/>
+      </pipe>
+      <blendMode>0</blendMode>
+    </maplayer>
+    <maplayer refreshOnNotifyMessage="" type="raster" autoRefreshTime="0" styleCategories="AllStyleCategories" refreshOnNotifyEnabled="0" maxScale="0" hasScaleBasedVisibilityFlag="0" autoRefreshEnabled="0" minScale="1e+08">
+      <extent>
+        <xmin>-10137500</xmin>
+        <ymin>3221000</ymin>
+        <xmax>-10066000</xmax>
+        <ymax>3350750</ymax>
+      </extent>
+      <id>tileSG_011_022_3_1_0ba3e07c_623f_4531_9bde_7f6fd43b4239</id>
+      <datasource>./Tiff Soilgrids Nitrogen 0-5cm/tileSG-011-022_3-1.tif</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>tileSG-011-022_3-1</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4></proj4>
+          <srsid>0</srsid>
+          <srid>0</srid>
+          <authid></authid>
+          <description></description>
+          <projectionacronym></projectionacronym>
+          <ellipsoidacronym></ellipsoidacronym>
+          <geographicflag>false</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <resourceMetadata>
+        <identifier></identifier>
+        <parentidentifier></parentidentifier>
+        <language></language>
+        <type></type>
+        <title></title>
+        <abstract></abstract>
+        <links/>
+        <fees></fees>
+        <encoding></encoding>
+        <crs>
+          <spatialrefsys>
+            <proj4></proj4>
+            <srsid>0</srsid>
+            <srid>0</srid>
+            <authid></authid>
+            <description></description>
+            <projectionacronym></projectionacronym>
+            <ellipsoidacronym></ellipsoidacronym>
+            <geographicflag>false</geographicflag>
+          </spatialrefsys>
+        </crs>
+        <extent/>
+      </resourceMetadata>
+      <provider>gdal</provider>
+      <noData>
+        <noDataList useSrcNoData="1" bandNo="1"/>
+      </noData>
+      <map-layer-style-manager current="default">
+        <map-layer-style name="default"/>
+      </map-layer-style-manager>
+      <flags>
+        <Identifiable>1</Identifiable>
+        <Removable>1</Removable>
+        <Searchable>1</Searchable>
+      </flags>
+      <customproperties>
+        <property key="identify/format" value="Value"/>
+      </customproperties>
+      <pipe>
+        <rasterrenderer gradient="BlackToWhite" type="singlebandgray" grayBand="1" opacity="1" alphaBand="-1">
+          <rasterTransparency/>
+          <minMaxOrigin>
+            <limits>MinMax</limits>
+            <extent>WholeRaster</extent>
+            <statAccuracy>Estimated</statAccuracy>
+            <cumulativeCutLower>0.02</cumulativeCutLower>
+            <cumulativeCutUpper>0.98</cumulativeCutUpper>
+            <stdDevFactor>2</stdDevFactor>
+          </minMaxOrigin>
+          <contrastEnhancement>
+            <minValue>580</minValue>
+            <maxValue>1402</maxValue>
+            <algorithm>StretchToMinimumMaximum</algorithm>
+          </contrastEnhancement>
+        </rasterrenderer>
+        <brightnesscontrast brightness="0" contrast="0"/>
+        <huesaturation colorizeOn="0" colorizeRed="255" saturation="0" grayscaleMode="0" colorizeGreen="128" colorizeBlue="128" colorizeStrength="100"/>
+        <rasterresampler maxOversampling="2"/>
+      </pipe>
+      <blendMode>0</blendMode>
+    </maplayer>
+    <maplayer refreshOnNotifyMessage="" type="raster" autoRefreshTime="0" styleCategories="AllStyleCategories" refreshOnNotifyEnabled="0" maxScale="0" hasScaleBasedVisibilityFlag="0" autoRefreshEnabled="0" minScale="1e+08">
+      <extent>
+        <xmin>-9752000</xmin>
+        <ymin>3297000</ymin>
+        <xmax>-9687500</xmax>
+        <ymax>3350750</ymax>
+      </extent>
+      <id>tileSG_011_022_3_3_3e5010e1_c6bb_43bb_a2f6_7e6ada0404f5</id>
+      <datasource>./Tiff Soilgrids Nitrogen 0-5cm/tileSG-011-022_3-3.tif</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>tileSG-011-022_3-3</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4></proj4>
+          <srsid>0</srsid>
+          <srid>0</srid>
+          <authid></authid>
+          <description></description>
+          <projectionacronym></projectionacronym>
+          <ellipsoidacronym></ellipsoidacronym>
+          <geographicflag>false</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <resourceMetadata>
+        <identifier></identifier>
+        <parentidentifier></parentidentifier>
+        <language></language>
+        <type></type>
+        <title></title>
+        <abstract></abstract>
+        <links/>
+        <fees></fees>
+        <encoding></encoding>
+        <crs>
+          <spatialrefsys>
+            <proj4></proj4>
+            <srsid>0</srsid>
+            <srid>0</srid>
+            <authid></authid>
+            <description></description>
+            <projectionacronym></projectionacronym>
+            <ellipsoidacronym></ellipsoidacronym>
+            <geographicflag>false</geographicflag>
+          </spatialrefsys>
+        </crs>
+        <extent/>
+      </resourceMetadata>
+      <provider>gdal</provider>
+      <noData>
+        <noDataList useSrcNoData="1" bandNo="1"/>
+      </noData>
+      <map-layer-style-manager current="default">
+        <map-layer-style name="default"/>
+      </map-layer-style-manager>
+      <flags>
+        <Identifiable>1</Identifiable>
+        <Removable>1</Removable>
+        <Searchable>1</Searchable>
+      </flags>
+      <customproperties>
+        <property key="identify/format" value="Value"/>
+      </customproperties>
+      <pipe>
+        <rasterrenderer gradient="BlackToWhite" type="singlebandgray" grayBand="1" opacity="1" alphaBand="-1">
+          <rasterTransparency/>
+          <minMaxOrigin>
+            <limits>MinMax</limits>
+            <extent>WholeRaster</extent>
+            <statAccuracy>Estimated</statAccuracy>
+            <cumulativeCutLower>0.02</cumulativeCutLower>
+            <cumulativeCutUpper>0.98</cumulativeCutUpper>
+            <stdDevFactor>2</stdDevFactor>
+          </minMaxOrigin>
+          <contrastEnhancement>
+            <minValue>808</minValue>
+            <maxValue>1709</maxValue>
+            <algorithm>StretchToMinimumMaximum</algorithm>
+          </contrastEnhancement>
+        </rasterrenderer>
+        <brightnesscontrast brightness="0" contrast="0"/>
+        <huesaturation colorizeOn="0" colorizeRed="255" saturation="0" grayscaleMode="0" colorizeGreen="128" colorizeBlue="128" colorizeStrength="100"/>
+        <rasterresampler maxOversampling="2"/>
+      </pipe>
+      <blendMode>0</blendMode>
+    </maplayer>
+    <maplayer refreshOnNotifyMessage="" type="raster" autoRefreshTime="0" styleCategories="AllStyleCategories" refreshOnNotifyEnabled="0" maxScale="0" hasScaleBasedVisibilityFlag="0" autoRefreshEnabled="0" minScale="1e+08">
+      <extent>
+        <xmin>-9687500</xmin>
+        <ymin>3500750</ymin>
+        <xmax>-9537500</xmax>
+        <ymax>3650750</ymax>
+      </extent>
+      <id>tileSG_011_023_1_1_18dd90e0_ad38_4922_b5fa_cc941c27d562</id>
+      <datasource>./Tiff Soilgrids Nitrogen 0-5cm/tileSG-011-023_1-1.tif</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>tileSG-011-023_1-1</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4></proj4>
+          <srsid>0</srsid>
+          <srid>0</srid>
+          <authid></authid>
+          <description></description>
+          <projectionacronym></projectionacronym>
+          <ellipsoidacronym></ellipsoidacronym>
+          <geographicflag>false</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <resourceMetadata>
+        <identifier></identifier>
+        <parentidentifier></parentidentifier>
+        <language></language>
+        <type></type>
+        <title></title>
+        <abstract></abstract>
+        <links/>
+        <fees></fees>
+        <encoding></encoding>
+        <crs>
+          <spatialrefsys>
+            <proj4></proj4>
+            <srsid>0</srsid>
+            <srid>0</srid>
+            <authid></authid>
+            <description></description>
+            <projectionacronym></projectionacronym>
+            <ellipsoidacronym></ellipsoidacronym>
+            <geographicflag>false</geographicflag>
+          </spatialrefsys>
+        </crs>
+        <extent/>
+      </resourceMetadata>
+      <provider>gdal</provider>
+      <noData>
+        <noDataList useSrcNoData="1" bandNo="1"/>
+      </noData>
+      <map-layer-style-manager current="default">
+        <map-layer-style name="default"/>
+      </map-layer-style-manager>
+      <flags>
+        <Identifiable>1</Identifiable>
+        <Removable>1</Removable>
+        <Searchable>1</Searchable>
+      </flags>
+      <customproperties>
+        <property key="identify/format" value="Value"/>
+      </customproperties>
+      <pipe>
+        <rasterrenderer gradient="BlackToWhite" type="singlebandgray" grayBand="1" opacity="1" alphaBand="-1">
+          <rasterTransparency/>
+          <minMaxOrigin>
+            <limits>MinMax</limits>
+            <extent>WholeRaster</extent>
+            <statAccuracy>Estimated</statAccuracy>
+            <cumulativeCutLower>0.02</cumulativeCutLower>
+            <cumulativeCutUpper>0.98</cumulativeCutUpper>
+            <stdDevFactor>2</stdDevFactor>
+          </minMaxOrigin>
+          <contrastEnhancement>
+            <minValue>178</minValue>
+            <maxValue>567</maxValue>
+            <algorithm>StretchToMinimumMaximum</algorithm>
+          </contrastEnhancement>
+        </rasterrenderer>
+        <brightnesscontrast brightness="0" contrast="0"/>
+        <huesaturation colorizeOn="0" colorizeRed="255" saturation="0" grayscaleMode="0" colorizeGreen="128" colorizeBlue="128" colorizeStrength="100"/>
+        <rasterresampler maxOversampling="2"/>
+      </pipe>
+      <blendMode>0</blendMode>
+    </maplayer>
+    <maplayer refreshOnNotifyMessage="" type="raster" autoRefreshTime="0" styleCategories="AllStyleCategories" refreshOnNotifyEnabled="0" maxScale="0" hasScaleBasedVisibilityFlag="0" autoRefreshEnabled="0" minScale="1e+08">
+      <extent>
+        <xmin>-9537500</xmin>
+        <ymin>3500750</ymin>
+        <xmax>-9387500</xmax>
+        <ymax>3650750</ymax>
+      </extent>
+      <id>tileSG_011_023_1_2_a6a6b680_e60a_4f65_8b7b_5040275d5ebb</id>
+      <datasource>./Tiff Soilgrids Nitrogen 0-5cm/tileSG-011-023_1-2.tif</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>tileSG-011-023_1-2</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4></proj4>
+          <srsid>0</srsid>
+          <srid>0</srid>
+          <authid></authid>
+          <description></description>
+          <projectionacronym></projectionacronym>
+          <ellipsoidacronym></ellipsoidacronym>
+          <geographicflag>false</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <resourceMetadata>
+        <identifier></identifier>
+        <parentidentifier></parentidentifier>
+        <language></language>
+        <type></type>
+        <title></title>
+        <abstract></abstract>
+        <links/>
+        <fees></fees>
+        <encoding></encoding>
+        <crs>
+          <spatialrefsys>
+            <proj4></proj4>
+            <srsid>0</srsid>
+            <srid>0</srid>
+            <authid></authid>
+            <description></description>
+            <projectionacronym></projectionacronym>
+            <ellipsoidacronym></ellipsoidacronym>
+            <geographicflag>false</geographicflag>
+          </spatialrefsys>
+        </crs>
+        <extent/>
+      </resourceMetadata>
+      <provider>gdal</provider>
+      <noData>
+        <noDataList useSrcNoData="1" bandNo="1"/>
+      </noData>
+      <map-layer-style-manager current="default">
+        <map-layer-style name="default"/>
+      </map-layer-style-manager>
+      <flags>
+        <Identifiable>1</Identifiable>
+        <Removable>1</Removable>
+        <Searchable>1</Searchable>
+      </flags>
+      <customproperties>
+        <property key="identify/format" value="Value"/>
+      </customproperties>
+      <pipe>
+        <rasterrenderer gradient="BlackToWhite" type="singlebandgray" grayBand="1" opacity="1" alphaBand="-1">
+          <rasterTransparency/>
+          <minMaxOrigin>
+            <limits>MinMax</limits>
+            <extent>WholeRaster</extent>
+            <statAccuracy>Estimated</statAccuracy>
+            <cumulativeCutLower>0.02</cumulativeCutLower>
+            <cumulativeCutUpper>0.98</cumulativeCutUpper>
+            <stdDevFactor>2</stdDevFactor>
+          </minMaxOrigin>
+          <contrastEnhancement>
+            <minValue>185</minValue>
+            <maxValue>1282</maxValue>
+            <algorithm>StretchToMinimumMaximum</algorithm>
+          </contrastEnhancement>
+        </rasterrenderer>
+        <brightnesscontrast brightness="0" contrast="0"/>
+        <huesaturation colorizeOn="0" colorizeRed="255" saturation="0" grayscaleMode="0" colorizeGreen="128" colorizeBlue="128" colorizeStrength="100"/>
+        <rasterresampler maxOversampling="2"/>
+      </pipe>
+      <blendMode>0</blendMode>
+    </maplayer>
+    <maplayer refreshOnNotifyMessage="" type="raster" autoRefreshTime="0" styleCategories="AllStyleCategories" refreshOnNotifyEnabled="0" maxScale="0" hasScaleBasedVisibilityFlag="0" autoRefreshEnabled="0" minScale="1e+08">
+      <extent>
+        <xmin>-9387500</xmin>
+        <ymin>3500750</ymin>
+        <xmax>-9241000</xmax>
+        <ymax>3650750</ymax>
+      </extent>
+      <id>tileSG_011_023_1_3_2d650c5d_3f37_4f96_94f0_046e188a4645</id>
+      <datasource>./Tiff Soilgrids Nitrogen 0-5cm/tileSG-011-023_1-3.tif</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>tileSG-011-023_1-3</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4></proj4>
+          <srsid>0</srsid>
+          <srid>0</srid>
+          <authid></authid>
+          <description></description>
+          <projectionacronym></projectionacronym>
+          <ellipsoidacronym></ellipsoidacronym>
+          <geographicflag>false</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <resourceMetadata>
+        <identifier></identifier>
+        <parentidentifier></parentidentifier>
+        <language></language>
+        <type></type>
+        <title></title>
+        <abstract></abstract>
+        <links/>
+        <fees></fees>
+        <encoding></encoding>
+        <crs>
+          <spatialrefsys>
+            <proj4></proj4>
+            <srsid>0</srsid>
+            <srid>0</srid>
+            <authid></authid>
+            <description></description>
+            <projectionacronym></projectionacronym>
+            <ellipsoidacronym></ellipsoidacronym>
+            <geographicflag>false</geographicflag>
+          </spatialrefsys>
+        </crs>
+        <extent/>
+      </resourceMetadata>
+      <provider>gdal</provider>
+      <noData>
+        <noDataList useSrcNoData="1" bandNo="1"/>
+      </noData>
+      <map-layer-style-manager current="default">
+        <map-layer-style name="default"/>
+      </map-layer-style-manager>
+      <flags>
+        <Identifiable>1</Identifiable>
+        <Removable>1</Removable>
+        <Searchable>1</Searchable>
+      </flags>
+      <customproperties>
+        <property key="identify/format" value="Value"/>
+      </customproperties>
+      <pipe>
+        <rasterrenderer gradient="BlackToWhite" type="singlebandgray" grayBand="1" opacity="1" alphaBand="-1">
+          <rasterTransparency/>
+          <minMaxOrigin>
+            <limits>MinMax</limits>
+            <extent>WholeRaster</extent>
+            <statAccuracy>Estimated</statAccuracy>
+            <cumulativeCutLower>0.02</cumulativeCutLower>
+            <cumulativeCutUpper>0.98</cumulativeCutUpper>
+            <stdDevFactor>2</stdDevFactor>
+          </minMaxOrigin>
+          <contrastEnhancement>
+            <minValue>347</minValue>
+            <maxValue>1611</maxValue>
+            <algorithm>StretchToMinimumMaximum</algorithm>
+          </contrastEnhancement>
+        </rasterrenderer>
+        <brightnesscontrast brightness="0" contrast="0"/>
+        <huesaturation colorizeOn="0" colorizeRed="255" saturation="0" grayscaleMode="0" colorizeGreen="128" colorizeBlue="128" colorizeStrength="100"/>
+        <rasterresampler maxOversampling="2"/>
+      </pipe>
+      <blendMode>0</blendMode>
+    </maplayer>
+    <maplayer refreshOnNotifyMessage="" type="raster" autoRefreshTime="0" styleCategories="AllStyleCategories" refreshOnNotifyEnabled="0" maxScale="0" hasScaleBasedVisibilityFlag="0" autoRefreshEnabled="0" minScale="1e+08">
+      <extent>
+        <xmin>-9687500</xmin>
+        <ymin>3350750</ymin>
+        <xmax>-9537500</xmax>
+        <ymax>3500750</ymax>
+      </extent>
+      <id>tileSG_011_023_2_1_d6ce6260_e0e4_41f8_bd4a_f029d456393e</id>
+      <datasource>./Tiff Soilgrids Nitrogen 0-5cm/tileSG-011-023_2-1.tif</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>tileSG-011-023_2-1</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4></proj4>
+          <srsid>0</srsid>
+          <srid>0</srid>
+          <authid></authid>
+          <description></description>
+          <projectionacronym></projectionacronym>
+          <ellipsoidacronym></ellipsoidacronym>
+          <geographicflag>false</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <resourceMetadata>
+        <identifier></identifier>
+        <parentidentifier></parentidentifier>
+        <language></language>
+        <type></type>
+        <title></title>
+        <abstract></abstract>
+        <links/>
+        <fees></fees>
+        <encoding></encoding>
+        <crs>
+          <spatialrefsys>
+            <proj4></proj4>
+            <srsid>0</srsid>
+            <srid>0</srid>
+            <authid></authid>
+            <description></description>
+            <projectionacronym></projectionacronym>
+            <ellipsoidacronym></ellipsoidacronym>
+            <geographicflag>false</geographicflag>
+          </spatialrefsys>
+        </crs>
+        <extent/>
+      </resourceMetadata>
+      <provider>gdal</provider>
+      <noData>
+        <noDataList useSrcNoData="1" bandNo="1"/>
+      </noData>
+      <map-layer-style-manager current="default">
+        <map-layer-style name="default"/>
+      </map-layer-style-manager>
+      <flags>
+        <Identifiable>1</Identifiable>
+        <Removable>1</Removable>
+        <Searchable>1</Searchable>
+      </flags>
+      <customproperties>
+        <property key="identify/format" value="Value"/>
+      </customproperties>
+      <pipe>
+        <rasterrenderer gradient="BlackToWhite" type="singlebandgray" grayBand="1" opacity="1" alphaBand="-1">
+          <rasterTransparency/>
+          <minMaxOrigin>
+            <limits>MinMax</limits>
+            <extent>WholeRaster</extent>
+            <statAccuracy>Estimated</statAccuracy>
+            <cumulativeCutLower>0.02</cumulativeCutLower>
+            <cumulativeCutUpper>0.98</cumulativeCutUpper>
+            <stdDevFactor>2</stdDevFactor>
+          </minMaxOrigin>
+          <contrastEnhancement>
+            <minValue>137</minValue>
+            <maxValue>3009</maxValue>
+            <algorithm>StretchToMinimumMaximum</algorithm>
+          </contrastEnhancement>
+        </rasterrenderer>
+        <brightnesscontrast brightness="0" contrast="0"/>
+        <huesaturation colorizeOn="0" colorizeRed="255" saturation="0" grayscaleMode="0" colorizeGreen="128" colorizeBlue="128" colorizeStrength="100"/>
+        <rasterresampler maxOversampling="2"/>
+      </pipe>
+      <blendMode>0</blendMode>
+    </maplayer>
+    <maplayer refreshOnNotifyMessage="" type="raster" autoRefreshTime="0" styleCategories="AllStyleCategories" refreshOnNotifyEnabled="0" maxScale="0" hasScaleBasedVisibilityFlag="0" autoRefreshEnabled="0" minScale="1e+08">
+      <extent>
+        <xmin>-9537500</xmin>
+        <ymin>3350750</ymin>
+        <xmax>-9387500</xmax>
+        <ymax>3500750</ymax>
+      </extent>
+      <id>tileSG_011_023_2_2_a82f5095_2336_435d_8c0f_2d344d0e2bbe</id>
+      <datasource>./Tiff Soilgrids Nitrogen 0-5cm/tileSG-011-023_2-2.tif</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>tileSG-011-023_2-2</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4></proj4>
+          <srsid>0</srsid>
+          <srid>0</srid>
+          <authid></authid>
+          <description></description>
+          <projectionacronym></projectionacronym>
+          <ellipsoidacronym></ellipsoidacronym>
+          <geographicflag>false</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <resourceMetadata>
+        <identifier></identifier>
+        <parentidentifier></parentidentifier>
+        <language></language>
+        <type></type>
+        <title></title>
+        <abstract></abstract>
+        <links/>
+        <fees></fees>
+        <encoding></encoding>
+        <crs>
+          <spatialrefsys>
+            <proj4></proj4>
+            <srsid>0</srsid>
+            <srid>0</srid>
+            <authid></authid>
+            <description></description>
+            <projectionacronym></projectionacronym>
+            <ellipsoidacronym></ellipsoidacronym>
+            <geographicflag>false</geographicflag>
+          </spatialrefsys>
+        </crs>
+        <extent/>
+      </resourceMetadata>
+      <provider>gdal</provider>
+      <noData>
+        <noDataList useSrcNoData="1" bandNo="1"/>
+      </noData>
+      <map-layer-style-manager current="default">
+        <map-layer-style name="default"/>
+      </map-layer-style-manager>
+      <flags>
+        <Identifiable>1</Identifiable>
+        <Removable>1</Removable>
+        <Searchable>1</Searchable>
+      </flags>
+      <customproperties>
+        <property key="identify/format" value="Value"/>
+      </customproperties>
+      <pipe>
+        <rasterrenderer gradient="BlackToWhite" type="singlebandgray" grayBand="1" opacity="1" alphaBand="-1">
+          <rasterTransparency/>
+          <minMaxOrigin>
+            <limits>MinMax</limits>
+            <extent>WholeRaster</extent>
+            <statAccuracy>Estimated</statAccuracy>
+            <cumulativeCutLower>0.02</cumulativeCutLower>
+            <cumulativeCutUpper>0.98</cumulativeCutUpper>
+            <stdDevFactor>2</stdDevFactor>
+          </minMaxOrigin>
+          <contrastEnhancement>
+            <minValue>176</minValue>
+            <maxValue>2421</maxValue>
+            <algorithm>StretchToMinimumMaximum</algorithm>
+          </contrastEnhancement>
+        </rasterrenderer>
+        <brightnesscontrast brightness="0" contrast="0"/>
+        <huesaturation colorizeOn="0" colorizeRed="255" saturation="0" grayscaleMode="0" colorizeGreen="128" colorizeBlue="128" colorizeStrength="100"/>
+        <rasterresampler maxOversampling="2"/>
+      </pipe>
+      <blendMode>0</blendMode>
+    </maplayer>
+    <maplayer refreshOnNotifyMessage="" type="raster" autoRefreshTime="0" styleCategories="AllStyleCategories" refreshOnNotifyEnabled="0" maxScale="0" hasScaleBasedVisibilityFlag="0" autoRefreshEnabled="0" minScale="1e+08">
+      <extent>
+        <xmin>-9387500</xmin>
+        <ymin>3350750</ymin>
+        <xmax>-9335000</xmax>
+        <ymax>3500750</ymax>
+      </extent>
+      <id>tileSG_011_023_2_3_6a737d2b_1b68_4fd1_ae25_1c242e8489a1</id>
+      <datasource>./Tiff Soilgrids Nitrogen 0-5cm/tileSG-011-023_2-3.tif</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>tileSG-011-023_2-3</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4></proj4>
+          <srsid>0</srsid>
+          <srid>0</srid>
+          <authid></authid>
+          <description></description>
+          <projectionacronym></projectionacronym>
+          <ellipsoidacronym></ellipsoidacronym>
+          <geographicflag>false</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <resourceMetadata>
+        <identifier></identifier>
+        <parentidentifier></parentidentifier>
+        <language></language>
+        <type></type>
+        <title></title>
+        <abstract></abstract>
+        <links/>
+        <fees></fees>
+        <encoding></encoding>
+        <crs>
+          <spatialrefsys>
+            <proj4></proj4>
+            <srsid>0</srsid>
+            <srid>0</srid>
+            <authid></authid>
+            <description></description>
+            <projectionacronym></projectionacronym>
+            <ellipsoidacronym></ellipsoidacronym>
+            <geographicflag>false</geographicflag>
+          </spatialrefsys>
+        </crs>
+        <extent/>
+      </resourceMetadata>
+      <provider>gdal</provider>
+      <noData>
+        <noDataList useSrcNoData="1" bandNo="1"/>
+      </noData>
+      <map-layer-style-manager current="default">
+        <map-layer-style name="default"/>
+      </map-layer-style-manager>
+      <flags>
+        <Identifiable>1</Identifiable>
+        <Removable>1</Removable>
+        <Searchable>1</Searchable>
+      </flags>
+      <customproperties>
+        <property key="identify/format" value="Value"/>
+      </customproperties>
+      <pipe>
+        <rasterrenderer gradient="BlackToWhite" type="singlebandgray" grayBand="1" opacity="1" alphaBand="-1">
+          <rasterTransparency/>
+          <minMaxOrigin>
+            <limits>MinMax</limits>
+            <extent>WholeRaster</extent>
+            <statAccuracy>Estimated</statAccuracy>
+            <cumulativeCutLower>0.02</cumulativeCutLower>
+            <cumulativeCutUpper>0.98</cumulativeCutUpper>
+            <stdDevFactor>2</stdDevFactor>
+          </minMaxOrigin>
+          <contrastEnhancement>
+            <minValue>763</minValue>
+            <maxValue>1788</maxValue>
+            <algorithm>StretchToMinimumMaximum</algorithm>
+          </contrastEnhancement>
+        </rasterrenderer>
+        <brightnesscontrast brightness="0" contrast="0"/>
+        <huesaturation colorizeOn="0" colorizeRed="255" saturation="0" grayscaleMode="0" colorizeGreen="128" colorizeBlue="128" colorizeStrength="100"/>
+        <rasterresampler maxOversampling="2"/>
+      </pipe>
+      <blendMode>0</blendMode>
+    </maplayer>
+    <maplayer refreshOnNotifyMessage="" type="raster" autoRefreshTime="0" styleCategories="AllStyleCategories" refreshOnNotifyEnabled="0" maxScale="0" hasScaleBasedVisibilityFlag="0" autoRefreshEnabled="0" minScale="1e+08">
+      <extent>
+        <xmin>-9687500</xmin>
+        <ymin>3294000</ymin>
+        <xmax>-9537500</xmax>
+        <ymax>3350750</ymax>
+      </extent>
+      <id>tileSG_011_023_3_1_0b74d4cf_6c44_41b4_a1cb_d1ae6ac50ce2</id>
+      <datasource>./Tiff Soilgrids Nitrogen 0-5cm/tileSG-011-023_3-1.tif</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>tileSG-011-023_3-1</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4></proj4>
+          <srsid>0</srsid>
+          <srid>0</srid>
+          <authid></authid>
+          <description></description>
+          <projectionacronym></projectionacronym>
+          <ellipsoidacronym></ellipsoidacronym>
+          <geographicflag>false</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <resourceMetadata>
+        <identifier></identifier>
+        <parentidentifier></parentidentifier>
+        <language></language>
+        <type></type>
+        <title></title>
+        <abstract></abstract>
+        <links/>
+        <fees></fees>
+        <encoding></encoding>
+        <crs>
+          <spatialrefsys>
+            <proj4></proj4>
+            <srsid>0</srsid>
+            <srid>0</srid>
+            <authid></authid>
+            <description></description>
+            <projectionacronym></projectionacronym>
+            <ellipsoidacronym></ellipsoidacronym>
+            <geographicflag>false</geographicflag>
+          </spatialrefsys>
+        </crs>
+        <extent/>
+      </resourceMetadata>
+      <provider>gdal</provider>
+      <noData>
+        <noDataList useSrcNoData="1" bandNo="1"/>
+      </noData>
+      <map-layer-style-manager current="default">
+        <map-layer-style name="default"/>
+      </map-layer-style-manager>
+      <flags>
+        <Identifiable>1</Identifiable>
+        <Removable>1</Removable>
+        <Searchable>1</Searchable>
+      </flags>
+      <customproperties>
+        <property key="identify/format" value="Value"/>
+      </customproperties>
+      <pipe>
+        <rasterrenderer gradient="BlackToWhite" type="singlebandgray" grayBand="1" opacity="1" alphaBand="-1">
+          <rasterTransparency/>
+          <minMaxOrigin>
+            <limits>MinMax</limits>
+            <extent>WholeRaster</extent>
+            <statAccuracy>Estimated</statAccuracy>
+            <cumulativeCutLower>0.02</cumulativeCutLower>
+            <cumulativeCutUpper>0.98</cumulativeCutUpper>
+            <stdDevFactor>2</stdDevFactor>
+          </minMaxOrigin>
+          <contrastEnhancement>
+            <minValue>821</minValue>
+            <maxValue>1835</maxValue>
+            <algorithm>StretchToMinimumMaximum</algorithm>
+          </contrastEnhancement>
+        </rasterrenderer>
+        <brightnesscontrast brightness="0" contrast="0"/>
+        <huesaturation colorizeOn="0" colorizeRed="255" saturation="0" grayscaleMode="0" colorizeGreen="128" colorizeBlue="128" colorizeStrength="100"/>
+        <rasterresampler maxOversampling="2"/>
+      </pipe>
+      <blendMode>0</blendMode>
+    </maplayer>
+    <maplayer refreshOnNotifyMessage="" type="raster" autoRefreshTime="0" styleCategories="AllStyleCategories" refreshOnNotifyEnabled="0" maxScale="0" hasScaleBasedVisibilityFlag="0" autoRefreshEnabled="0" minScale="1e+08">
+      <extent>
+        <xmin>-9537500</xmin>
+        <ymin>3200750</ymin>
+        <xmax>-9387500</xmax>
+        <ymax>3350750</ymax>
+      </extent>
+      <id>tileSG_011_023_3_2_466f5cb4_f8e2_425b_8e43_efaf788cda76</id>
+      <datasource>./Tiff Soilgrids Nitrogen 0-5cm/tileSG-011-023_3-2.tif</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>tileSG-011-023_3-2</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4></proj4>
+          <srsid>0</srsid>
+          <srid>0</srid>
+          <authid></authid>
+          <description></description>
+          <projectionacronym></projectionacronym>
+          <ellipsoidacronym></ellipsoidacronym>
+          <geographicflag>false</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <resourceMetadata>
+        <identifier></identifier>
+        <parentidentifier></parentidentifier>
+        <language></language>
+        <type></type>
+        <title></title>
+        <abstract></abstract>
+        <links/>
+        <fees></fees>
+        <encoding></encoding>
+        <crs>
+          <spatialrefsys>
+            <proj4></proj4>
+            <srsid>0</srsid>
+            <srid>0</srid>
+            <authid></authid>
+            <description></description>
+            <projectionacronym></projectionacronym>
+            <ellipsoidacronym></ellipsoidacronym>
+            <geographicflag>false</geographicflag>
+          </spatialrefsys>
+        </crs>
+        <extent/>
+      </resourceMetadata>
+      <provider>gdal</provider>
+      <noData>
+        <noDataList useSrcNoData="1" bandNo="1"/>
+      </noData>
+      <map-layer-style-manager current="default">
+        <map-layer-style name="default"/>
+      </map-layer-style-manager>
+      <flags>
+        <Identifiable>1</Identifiable>
+        <Removable>1</Removable>
+        <Searchable>1</Searchable>
+      </flags>
+      <customproperties>
+        <property key="identify/format" value="Value"/>
+      </customproperties>
+      <pipe>
+        <rasterrenderer gradient="BlackToWhite" type="singlebandgray" grayBand="1" opacity="1" alphaBand="-1">
+          <rasterTransparency/>
+          <minMaxOrigin>
+            <limits>MinMax</limits>
+            <extent>WholeRaster</extent>
+            <statAccuracy>Estimated</statAccuracy>
+            <cumulativeCutLower>0.02</cumulativeCutLower>
+            <cumulativeCutUpper>0.98</cumulativeCutUpper>
+            <stdDevFactor>2</stdDevFactor>
+          </minMaxOrigin>
+          <contrastEnhancement>
+            <minValue>472</minValue>
+            <maxValue>3135</maxValue>
+            <algorithm>StretchToMinimumMaximum</algorithm>
+          </contrastEnhancement>
+        </rasterrenderer>
+        <brightnesscontrast brightness="0" contrast="0"/>
+        <huesaturation colorizeOn="0" colorizeRed="255" saturation="0" grayscaleMode="0" colorizeGreen="128" colorizeBlue="128" colorizeStrength="100"/>
+        <rasterresampler maxOversampling="2"/>
+      </pipe>
+      <blendMode>0</blendMode>
+    </maplayer>
+    <maplayer refreshOnNotifyMessage="" type="raster" autoRefreshTime="0" styleCategories="AllStyleCategories" refreshOnNotifyEnabled="0" maxScale="0" hasScaleBasedVisibilityFlag="0" autoRefreshEnabled="0" minScale="1e+08">
+      <extent>
+        <xmin>-9387500</xmin>
+        <ymin>3200750</ymin>
+        <xmax>-9250000</xmax>
+        <ymax>3350750</ymax>
+      </extent>
+      <id>tileSG_011_023_3_3_66757fd0_c9b9_459e_9e10_9bc3ae10e487</id>
+      <datasource>./Tiff Soilgrids Nitrogen 0-5cm/tileSG-011-023_3-3.tif</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>tileSG-011-023_3-3</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4></proj4>
+          <srsid>0</srsid>
+          <srid>0</srid>
+          <authid></authid>
+          <description></description>
+          <projectionacronym></projectionacronym>
+          <ellipsoidacronym></ellipsoidacronym>
+          <geographicflag>false</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <resourceMetadata>
+        <identifier></identifier>
+        <parentidentifier></parentidentifier>
+        <language></language>
+        <type></type>
+        <title></title>
+        <abstract></abstract>
+        <links/>
+        <fees></fees>
+        <encoding></encoding>
+        <crs>
+          <spatialrefsys>
+            <proj4></proj4>
+            <srsid>0</srsid>
+            <srid>0</srid>
+            <authid></authid>
+            <description></description>
+            <projectionacronym></projectionacronym>
+            <ellipsoidacronym></ellipsoidacronym>
+            <geographicflag>false</geographicflag>
+          </spatialrefsys>
+        </crs>
+        <extent/>
+      </resourceMetadata>
+      <provider>gdal</provider>
+      <noData>
+        <noDataList useSrcNoData="1" bandNo="1"/>
+      </noData>
+      <map-layer-style-manager current="default">
+        <map-layer-style name="default"/>
+      </map-layer-style-manager>
+      <flags>
+        <Identifiable>1</Identifiable>
+        <Removable>1</Removable>
+        <Searchable>1</Searchable>
+      </flags>
+      <customproperties>
+        <property key="identify/format" value="Value"/>
+      </customproperties>
+      <pipe>
+        <rasterrenderer gradient="BlackToWhite" type="singlebandgray" grayBand="1" opacity="1" alphaBand="-1">
+          <rasterTransparency/>
+          <minMaxOrigin>
+            <limits>MinMax</limits>
+            <extent>WholeRaster</extent>
+            <statAccuracy>Estimated</statAccuracy>
+            <cumulativeCutLower>0.02</cumulativeCutLower>
+            <cumulativeCutUpper>0.98</cumulativeCutUpper>
+            <stdDevFactor>2</stdDevFactor>
+          </minMaxOrigin>
+          <contrastEnhancement>
+            <minValue>465</minValue>
+            <maxValue>2609</maxValue>
+            <algorithm>StretchToMinimumMaximum</algorithm>
+          </contrastEnhancement>
+        </rasterrenderer>
+        <brightnesscontrast brightness="0" contrast="0"/>
+        <huesaturation colorizeOn="0" colorizeRed="255" saturation="0" grayscaleMode="0" colorizeGreen="128" colorizeBlue="128" colorizeStrength="100"/>
+        <rasterresampler maxOversampling="2"/>
+      </pipe>
+      <blendMode>0</blendMode>
+    </maplayer>
+    <maplayer refreshOnNotifyMessage="" type="raster" autoRefreshTime="0" styleCategories="AllStyleCategories" refreshOnNotifyEnabled="0" maxScale="0" hasScaleBasedVisibilityFlag="0" autoRefreshEnabled="0" minScale="1e+08">
+      <extent>
+        <xmin>-9446000</xmin>
+        <ymin>3050750</ymin>
+        <xmax>-9387500</xmax>
+        <ymax>3200750</ymax>
+      </extent>
+      <id>tileSG_012_023_1_2_aee098ac_b230_4700_92d2_397f1bfb8fba</id>
+      <datasource>./Tiff Soilgrids Nitrogen 0-5cm/tileSG-012-023_1-2.tif</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>tileSG-012-023_1-2</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4></proj4>
+          <srsid>0</srsid>
+          <srid>0</srid>
+          <authid></authid>
+          <description></description>
+          <projectionacronym></projectionacronym>
+          <ellipsoidacronym></ellipsoidacronym>
+          <geographicflag>false</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <resourceMetadata>
+        <identifier></identifier>
+        <parentidentifier></parentidentifier>
+        <language></language>
+        <type></type>
+        <title></title>
+        <abstract></abstract>
+        <links/>
+        <fees></fees>
+        <encoding></encoding>
+        <crs>
+          <spatialrefsys>
+            <proj4></proj4>
+            <srsid>0</srsid>
+            <srid>0</srid>
+            <authid></authid>
+            <description></description>
+            <projectionacronym></projectionacronym>
+            <ellipsoidacronym></ellipsoidacronym>
+            <geographicflag>false</geographicflag>
+          </spatialrefsys>
+        </crs>
+        <extent/>
+      </resourceMetadata>
+      <provider>gdal</provider>
+      <noData>
+        <noDataList useSrcNoData="1" bandNo="1"/>
+      </noData>
+      <map-layer-style-manager current="default">
+        <map-layer-style name="default"/>
+      </map-layer-style-manager>
+      <flags>
+        <Identifiable>1</Identifiable>
+        <Removable>1</Removable>
+        <Searchable>1</Searchable>
+      </flags>
+      <customproperties>
+        <property key="identify/format" value="Value"/>
+      </customproperties>
+      <pipe>
+        <rasterrenderer gradient="BlackToWhite" type="singlebandgray" grayBand="1" opacity="1" alphaBand="-1">
+          <rasterTransparency/>
+          <minMaxOrigin>
+            <limits>MinMax</limits>
+            <extent>WholeRaster</extent>
+            <statAccuracy>Estimated</statAccuracy>
+            <cumulativeCutLower>0.02</cumulativeCutLower>
+            <cumulativeCutUpper>0.98</cumulativeCutUpper>
+            <stdDevFactor>2</stdDevFactor>
+          </minMaxOrigin>
+          <contrastEnhancement>
+            <minValue>526</minValue>
+            <maxValue>3044</maxValue>
+            <algorithm>StretchToMinimumMaximum</algorithm>
+          </contrastEnhancement>
+        </rasterrenderer>
+        <brightnesscontrast brightness="0" contrast="0"/>
+        <huesaturation colorizeOn="0" colorizeRed="255" saturation="0" grayscaleMode="0" colorizeGreen="128" colorizeBlue="128" colorizeStrength="100"/>
+        <rasterresampler maxOversampling="2"/>
+      </pipe>
+      <blendMode>0</blendMode>
+    </maplayer>
+    <maplayer refreshOnNotifyMessage="" type="raster" autoRefreshTime="0" styleCategories="AllStyleCategories" refreshOnNotifyEnabled="0" maxScale="0" hasScaleBasedVisibilityFlag="0" autoRefreshEnabled="0" minScale="1e+08">
+      <extent>
+        <xmin>-9387500</xmin>
+        <ymin>3050750</ymin>
+        <xmax>-9237500</xmax>
+        <ymax>3200750</ymax>
+      </extent>
+      <id>tileSG_012_023_1_3_ecf2701d_0010_40bc_8f58_b9c8b146f4cc</id>
+      <datasource>./Tiff Soilgrids Nitrogen 0-5cm/tileSG-012-023_1-3.tif</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>tileSG-012-023_1-3</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4></proj4>
+          <srsid>0</srsid>
+          <srid>0</srid>
+          <authid></authid>
+          <description></description>
+          <projectionacronym></projectionacronym>
+          <ellipsoidacronym></ellipsoidacronym>
+          <geographicflag>false</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <resourceMetadata>
+        <identifier></identifier>
+        <parentidentifier></parentidentifier>
+        <language></language>
+        <type></type>
+        <title></title>
+        <abstract></abstract>
+        <links/>
+        <fees></fees>
+        <encoding></encoding>
+        <crs>
+          <spatialrefsys>
+            <proj4></proj4>
+            <srsid>0</srsid>
+            <srid>0</srid>
+            <authid></authid>
+            <description></description>
+            <projectionacronym></projectionacronym>
+            <ellipsoidacronym></ellipsoidacronym>
+            <geographicflag>false</geographicflag>
+          </spatialrefsys>
+        </crs>
+        <extent/>
+      </resourceMetadata>
+      <provider>gdal</provider>
+      <noData>
+        <noDataList useSrcNoData="1" bandNo="1"/>
+      </noData>
+      <map-layer-style-manager current="default">
+        <map-layer-style name="default"/>
+      </map-layer-style-manager>
+      <flags>
+        <Identifiable>1</Identifiable>
+        <Removable>1</Removable>
+        <Searchable>1</Searchable>
+      </flags>
+      <customproperties>
+        <property key="identify/format" value="Value"/>
+      </customproperties>
+      <pipe>
+        <rasterrenderer gradient="BlackToWhite" type="singlebandgray" grayBand="1" opacity="1" alphaBand="-1">
+          <rasterTransparency/>
+          <minMaxOrigin>
+            <limits>MinMax</limits>
+            <extent>WholeRaster</extent>
+            <statAccuracy>Estimated</statAccuracy>
+            <cumulativeCutLower>0.02</cumulativeCutLower>
+            <cumulativeCutUpper>0.98</cumulativeCutUpper>
+            <stdDevFactor>2</stdDevFactor>
+          </minMaxOrigin>
+          <contrastEnhancement>
+            <minValue>331</minValue>
+            <maxValue>3007</maxValue>
+            <algorithm>StretchToMinimumMaximum</algorithm>
+          </contrastEnhancement>
+        </rasterrenderer>
+        <brightnesscontrast brightness="0" contrast="0"/>
+        <huesaturation colorizeOn="0" colorizeRed="255" saturation="0" grayscaleMode="0" colorizeGreen="128" colorizeBlue="128" colorizeStrength="100"/>
+        <rasterresampler maxOversampling="2"/>
+      </pipe>
+      <blendMode>0</blendMode>
+    </maplayer>
+    <maplayer refreshOnNotifyMessage="" type="raster" autoRefreshTime="0" styleCategories="AllStyleCategories" refreshOnNotifyEnabled="0" maxScale="0" hasScaleBasedVisibilityFlag="0" autoRefreshEnabled="0" minScale="1e+08">
+      <extent>
+        <xmin>-9408750</xmin>
+        <ymin>3008000</ymin>
+        <xmax>-9387500</xmax>
+        <ymax>3050750</ymax>
+      </extent>
+      <id>tileSG_012_023_2_2_dcc49cc6_c0ba_45dd_868b_0f3593ed0d48</id>
+      <datasource>./Tiff Soilgrids Nitrogen 0-5cm/tileSG-012-023_2-2.tif</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>tileSG-012-023_2-2</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4></proj4>
+          <srsid>0</srsid>
+          <srid>0</srid>
+          <authid></authid>
+          <description></description>
+          <projectionacronym></projectionacronym>
+          <ellipsoidacronym></ellipsoidacronym>
+          <geographicflag>false</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <resourceMetadata>
+        <identifier></identifier>
+        <parentidentifier></parentidentifier>
+        <language></language>
+        <type></type>
+        <title></title>
+        <abstract></abstract>
+        <links/>
+        <fees></fees>
+        <encoding></encoding>
+        <crs>
+          <spatialrefsys>
+            <proj4></proj4>
+            <srsid>0</srsid>
+            <srid>0</srid>
+            <authid></authid>
+            <description></description>
+            <projectionacronym></projectionacronym>
+            <ellipsoidacronym></ellipsoidacronym>
+            <geographicflag>false</geographicflag>
+          </spatialrefsys>
+        </crs>
+        <extent/>
+      </resourceMetadata>
+      <provider>gdal</provider>
+      <noData>
+        <noDataList useSrcNoData="1" bandNo="1"/>
+      </noData>
+      <map-layer-style-manager current="default">
+        <map-layer-style name="default"/>
+      </map-layer-style-manager>
+      <flags>
+        <Identifiable>1</Identifiable>
+        <Removable>1</Removable>
+        <Searchable>1</Searchable>
+      </flags>
+      <customproperties>
+        <property key="identify/format" value="Value"/>
+      </customproperties>
+      <pipe>
+        <rasterrenderer gradient="BlackToWhite" type="singlebandgray" grayBand="1" opacity="1" alphaBand="-1">
+          <rasterTransparency/>
+          <minMaxOrigin>
+            <limits>MinMax</limits>
+            <extent>WholeRaster</extent>
+            <statAccuracy>Estimated</statAccuracy>
+            <cumulativeCutLower>0.02</cumulativeCutLower>
+            <cumulativeCutUpper>0.98</cumulativeCutUpper>
+            <stdDevFactor>2</stdDevFactor>
+          </minMaxOrigin>
+          <contrastEnhancement>
+            <minValue>1065</minValue>
+            <maxValue>2063</maxValue>
+            <algorithm>StretchToMinimumMaximum</algorithm>
+          </contrastEnhancement>
+        </rasterrenderer>
+        <brightnesscontrast brightness="0" contrast="0"/>
+        <huesaturation colorizeOn="0" colorizeRed="255" saturation="0" grayscaleMode="0" colorizeGreen="128" colorizeBlue="128" colorizeStrength="100"/>
+        <rasterresampler maxOversampling="2"/>
+      </pipe>
+      <blendMode>0</blendMode>
+    </maplayer>
+    <maplayer refreshOnNotifyMessage="" type="raster" autoRefreshTime="0" styleCategories="AllStyleCategories" refreshOnNotifyEnabled="0" maxScale="0" hasScaleBasedVisibilityFlag="0" autoRefreshEnabled="0" minScale="1e+08">
+      <extent>
+        <xmin>-9387500</xmin>
+        <ymin>2900750</ymin>
+        <xmax>-9237500</xmax>
+        <ymax>3050750</ymax>
+      </extent>
+      <id>tileSG_012_023_2_3_d5658214_a9ab_48b5_aeb6_f3b57a9ef0e6</id>
+      <datasource>./Tiff Soilgrids Nitrogen 0-5cm/tileSG-012-023_2-3.tif</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>tileSG-012-023_2-3</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4></proj4>
+          <srsid>0</srsid>
+          <srid>0</srid>
+          <authid></authid>
+          <description></description>
+          <projectionacronym></projectionacronym>
+          <ellipsoidacronym></ellipsoidacronym>
+          <geographicflag>false</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <resourceMetadata>
+        <identifier></identifier>
+        <parentidentifier></parentidentifier>
+        <language></language>
+        <type></type>
+        <title></title>
+        <abstract></abstract>
+        <links/>
+        <fees></fees>
+        <encoding></encoding>
+        <crs>
+          <spatialrefsys>
+            <proj4></proj4>
+            <srsid>0</srsid>
+            <srid>0</srid>
+            <authid></authid>
+            <description></description>
+            <projectionacronym></projectionacronym>
+            <ellipsoidacronym></ellipsoidacronym>
+            <geographicflag>false</geographicflag>
+          </spatialrefsys>
+        </crs>
+        <extent/>
+      </resourceMetadata>
+      <provider>gdal</provider>
+      <noData>
+        <noDataList useSrcNoData="1" bandNo="1"/>
+      </noData>
+      <map-layer-style-manager current="default">
+        <map-layer-style name="default"/>
+      </map-layer-style-manager>
+      <flags>
+        <Identifiable>1</Identifiable>
+        <Removable>1</Removable>
+        <Searchable>1</Searchable>
+      </flags>
+      <customproperties>
+        <property key="identify/format" value="Value"/>
+      </customproperties>
+      <pipe>
+        <rasterrenderer gradient="BlackToWhite" type="singlebandgray" grayBand="1" opacity="1" alphaBand="-1">
+          <rasterTransparency/>
+          <minMaxOrigin>
+            <limits>MinMax</limits>
+            <extent>WholeRaster</extent>
+            <statAccuracy>Estimated</statAccuracy>
+            <cumulativeCutLower>0.02</cumulativeCutLower>
+            <cumulativeCutUpper>0.98</cumulativeCutUpper>
+            <stdDevFactor>2</stdDevFactor>
+          </minMaxOrigin>
+          <contrastEnhancement>
+            <minValue>518</minValue>
+            <maxValue>2278</maxValue>
+            <algorithm>StretchToMinimumMaximum</algorithm>
+          </contrastEnhancement>
+        </rasterrenderer>
+        <brightnesscontrast brightness="0" contrast="0"/>
+        <huesaturation colorizeOn="0" colorizeRed="255" saturation="0" grayscaleMode="0" colorizeGreen="128" colorizeBlue="128" colorizeStrength="100"/>
+        <rasterresampler maxOversampling="2"/>
+      </pipe>
+      <blendMode>0</blendMode>
+    </maplayer>
+    <maplayer refreshOnNotifyMessage="" type="raster" autoRefreshTime="0" styleCategories="AllStyleCategories" refreshOnNotifyEnabled="0" maxScale="0" hasScaleBasedVisibilityFlag="0" autoRefreshEnabled="0" minScale="1e+08">
+      <extent>
+        <xmin>-9310000</xmin>
+        <ymin>2750750</ymin>
+        <xmax>-9237500</xmax>
+        <ymax>2900750</ymax>
+      </extent>
+      <id>tileSG_012_023_3_3_87c7dad5_b5b3_4661_9618_c06c0bbbd142</id>
+      <datasource>./Tiff Soilgrids Nitrogen 0-5cm/tileSG-012-023_3-3.tif</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>tileSG-012-023_3-3</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4></proj4>
+          <srsid>0</srsid>
+          <srid>0</srid>
+          <authid></authid>
+          <description></description>
+          <projectionacronym></projectionacronym>
+          <ellipsoidacronym></ellipsoidacronym>
+          <geographicflag>false</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <resourceMetadata>
+        <identifier></identifier>
+        <parentidentifier></parentidentifier>
+        <language></language>
+        <type></type>
+        <title></title>
+        <abstract></abstract>
+        <links/>
+        <fees></fees>
+        <encoding></encoding>
+        <crs>
+          <spatialrefsys>
+            <proj4></proj4>
+            <srsid>0</srsid>
+            <srid>0</srid>
+            <authid></authid>
+            <description></description>
+            <projectionacronym></projectionacronym>
+            <ellipsoidacronym></ellipsoidacronym>
+            <geographicflag>false</geographicflag>
+          </spatialrefsys>
+        </crs>
+        <extent/>
+      </resourceMetadata>
+      <provider>gdal</provider>
+      <noData>
+        <noDataList useSrcNoData="1" bandNo="1"/>
+      </noData>
+      <map-layer-style-manager current="default">
+        <map-layer-style name="default"/>
+      </map-layer-style-manager>
+      <flags>
+        <Identifiable>1</Identifiable>
+        <Removable>1</Removable>
+        <Searchable>1</Searchable>
+      </flags>
+      <customproperties>
+        <property key="identify/format" value="Value"/>
+      </customproperties>
+      <pipe>
+        <rasterrenderer gradient="BlackToWhite" type="singlebandgray" grayBand="1" opacity="1" alphaBand="-1">
+          <rasterTransparency/>
+          <minMaxOrigin>
+            <limits>MinMax</limits>
+            <extent>WholeRaster</extent>
+            <statAccuracy>Estimated</statAccuracy>
+            <cumulativeCutLower>0.02</cumulativeCutLower>
+            <cumulativeCutUpper>0.98</cumulativeCutUpper>
+            <stdDevFactor>2</stdDevFactor>
+          </minMaxOrigin>
+          <contrastEnhancement>
+            <minValue>731</minValue>
+            <maxValue>2867</maxValue>
+            <algorithm>StretchToMinimumMaximum</algorithm>
+          </contrastEnhancement>
+        </rasterrenderer>
+        <brightnesscontrast brightness="0" contrast="0"/>
+        <huesaturation colorizeOn="0" colorizeRed="255" saturation="0" grayscaleMode="0" colorizeGreen="128" colorizeBlue="128" colorizeStrength="100"/>
+        <rasterresampler maxOversampling="2"/>
+      </pipe>
+      <blendMode>0</blendMode>
+    </maplayer>
+    <maplayer refreshOnNotifyMessage="" type="raster" autoRefreshTime="0" styleCategories="AllStyleCategories" refreshOnNotifyEnabled="0" maxScale="0" hasScaleBasedVisibilityFlag="0" autoRefreshEnabled="0" minScale="1e+08">
+      <extent>
+        <xmin>-9237500</xmin>
+        <ymin>3050750</ymin>
+        <xmax>-9182000</xmax>
+        <ymax>3186500</ymax>
+      </extent>
+      <id>tileSG_012_024_1_1_2a938f1f_2f22_4a26_a338_b221f0065b9d</id>
+      <datasource>./Tiff Soilgrids Nitrogen 0-5cm/tileSG-012-024_1-1.tif</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>tileSG-012-024_1-1</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4></proj4>
+          <srsid>0</srsid>
+          <srid>0</srid>
+          <authid></authid>
+          <description></description>
+          <projectionacronym></projectionacronym>
+          <ellipsoidacronym></ellipsoidacronym>
+          <geographicflag>false</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <resourceMetadata>
+        <identifier></identifier>
+        <parentidentifier></parentidentifier>
+        <language></language>
+        <type></type>
+        <title></title>
+        <abstract></abstract>
+        <links/>
+        <fees></fees>
+        <encoding></encoding>
+        <crs>
+          <spatialrefsys>
+            <proj4></proj4>
+            <srsid>0</srsid>
+            <srid>0</srid>
+            <authid></authid>
+            <description></description>
+            <projectionacronym></projectionacronym>
+            <ellipsoidacronym></ellipsoidacronym>
+            <geographicflag>false</geographicflag>
+          </spatialrefsys>
+        </crs>
+        <extent/>
+      </resourceMetadata>
+      <provider>gdal</provider>
+      <noData>
+        <noDataList useSrcNoData="1" bandNo="1"/>
+      </noData>
+      <map-layer-style-manager current="default">
+        <map-layer-style name="default"/>
+      </map-layer-style-manager>
+      <flags>
+        <Identifiable>1</Identifiable>
+        <Removable>1</Removable>
+        <Searchable>1</Searchable>
+      </flags>
+      <customproperties>
+        <property key="identify/format" value="Value"/>
+      </customproperties>
+      <pipe>
+        <rasterrenderer gradient="BlackToWhite" type="singlebandgray" grayBand="1" opacity="1" alphaBand="-1">
+          <rasterTransparency/>
+          <minMaxOrigin>
+            <limits>MinMax</limits>
+            <extent>WholeRaster</extent>
+            <statAccuracy>Estimated</statAccuracy>
+            <cumulativeCutLower>0.02</cumulativeCutLower>
+            <cumulativeCutUpper>0.98</cumulativeCutUpper>
+            <stdDevFactor>2</stdDevFactor>
+          </minMaxOrigin>
+          <contrastEnhancement>
+            <minValue>721</minValue>
+            <maxValue>1823</maxValue>
+            <algorithm>StretchToMinimumMaximum</algorithm>
+          </contrastEnhancement>
+        </rasterrenderer>
+        <brightnesscontrast brightness="0" contrast="0"/>
+        <huesaturation colorizeOn="0" colorizeRed="255" saturation="0" grayscaleMode="0" colorizeGreen="128" colorizeBlue="128" colorizeStrength="100"/>
+        <rasterresampler maxOversampling="2"/>
+      </pipe>
+      <blendMode>0</blendMode>
+    </maplayer>
+    <maplayer refreshOnNotifyMessage="" type="raster" autoRefreshTime="0" styleCategories="AllStyleCategories" refreshOnNotifyEnabled="0" maxScale="0" hasScaleBasedVisibilityFlag="0" autoRefreshEnabled="0" minScale="1e+08">
+      <extent>
+        <xmin>-9237500</xmin>
+        <ymin>2900750</ymin>
+        <xmax>-9143250</xmax>
+        <ymax>3050750</ymax>
+      </extent>
+      <id>tileSG_012_024_2_1_43dc8f53_bde3_4477_b1cc_02ce8b161a8e</id>
+      <datasource>./Tiff Soilgrids Nitrogen 0-5cm/tileSG-012-024_2-1.tif</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>tileSG-012-024_2-1</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4></proj4>
+          <srsid>0</srsid>
+          <srid>0</srid>
+          <authid></authid>
+          <description></description>
+          <projectionacronym></projectionacronym>
+          <ellipsoidacronym></ellipsoidacronym>
+          <geographicflag>false</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <resourceMetadata>
+        <identifier></identifier>
+        <parentidentifier></parentidentifier>
+        <language></language>
+        <type></type>
+        <title></title>
+        <abstract></abstract>
+        <links/>
+        <fees></fees>
+        <encoding></encoding>
+        <crs>
+          <spatialrefsys>
+            <proj4></proj4>
+            <srsid>0</srsid>
+            <srid>0</srid>
+            <authid></authid>
+            <description></description>
+            <projectionacronym></projectionacronym>
+            <ellipsoidacronym></ellipsoidacronym>
+            <geographicflag>false</geographicflag>
+          </spatialrefsys>
+        </crs>
+        <extent/>
+      </resourceMetadata>
+      <provider>gdal</provider>
+      <noData>
+        <noDataList useSrcNoData="1" bandNo="1"/>
+      </noData>
+      <map-layer-style-manager current="default">
+        <map-layer-style name="default"/>
+      </map-layer-style-manager>
+      <flags>
+        <Identifiable>1</Identifiable>
+        <Removable>1</Removable>
+        <Searchable>1</Searchable>
+      </flags>
+      <customproperties>
+        <property key="identify/format" value="Value"/>
+      </customproperties>
+      <pipe>
+        <rasterrenderer gradient="BlackToWhite" type="singlebandgray" grayBand="1" opacity="1" alphaBand="-1">
+          <rasterTransparency/>
+          <minMaxOrigin>
+            <limits>MinMax</limits>
+            <extent>WholeRaster</extent>
+            <statAccuracy>Estimated</statAccuracy>
+            <cumulativeCutLower>0.02</cumulativeCutLower>
+            <cumulativeCutUpper>0.98</cumulativeCutUpper>
+            <stdDevFactor>2</stdDevFactor>
+          </minMaxOrigin>
+          <contrastEnhancement>
+            <minValue>772</minValue>
+            <maxValue>3140</maxValue>
+            <algorithm>StretchToMinimumMaximum</algorithm>
+          </contrastEnhancement>
+        </rasterrenderer>
+        <brightnesscontrast brightness="0" contrast="0"/>
+        <huesaturation colorizeOn="0" colorizeRed="255" saturation="0" grayscaleMode="0" colorizeGreen="128" colorizeBlue="128" colorizeStrength="100"/>
+        <rasterresampler maxOversampling="2"/>
+      </pipe>
+      <blendMode>0</blendMode>
+    </maplayer>
+    <maplayer refreshOnNotifyMessage="" type="raster" autoRefreshTime="0" styleCategories="AllStyleCategories" refreshOnNotifyEnabled="0" maxScale="0" hasScaleBasedVisibilityFlag="0" autoRefreshEnabled="0" minScale="1e+08">
+      <extent>
+        <xmin>-9043000</xmin>
+        <ymin>2949000</ymin>
+        <xmax>-8937500</xmax>
+        <ymax>3032000</ymax>
+      </extent>
+      <id>tileSG_012_024_2_2_0ed51ee2_ea61_47b3_9f65_a394b1d45b27</id>
+      <datasource>./Tiff Soilgrids Nitrogen 0-5cm/tileSG-012-024_2-2.tif</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>tileSG-012-024_2-2</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4></proj4>
+          <srsid>0</srsid>
+          <srid>0</srid>
+          <authid></authid>
+          <description></description>
+          <projectionacronym></projectionacronym>
+          <ellipsoidacronym></ellipsoidacronym>
+          <geographicflag>false</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <resourceMetadata>
+        <identifier></identifier>
+        <parentidentifier></parentidentifier>
+        <language></language>
+        <type></type>
+        <title></title>
+        <abstract></abstract>
+        <links/>
+        <fees></fees>
+        <encoding></encoding>
+        <crs>
+          <spatialrefsys>
+            <proj4></proj4>
+            <srsid>0</srsid>
+            <srid>0</srid>
+            <authid></authid>
+            <description></description>
+            <projectionacronym></projectionacronym>
+            <ellipsoidacronym></ellipsoidacronym>
+            <geographicflag>false</geographicflag>
+          </spatialrefsys>
+        </crs>
+        <extent/>
+      </resourceMetadata>
+      <provider>gdal</provider>
+      <noData>
+        <noDataList useSrcNoData="1" bandNo="1"/>
+      </noData>
+      <map-layer-style-manager current="default">
+        <map-layer-style name="default"/>
+      </map-layer-style-manager>
+      <flags>
+        <Identifiable>1</Identifiable>
+        <Removable>1</Removable>
+        <Searchable>1</Searchable>
+      </flags>
+      <customproperties>
+        <property key="identify/format" value="Value"/>
+      </customproperties>
+      <pipe>
+        <rasterrenderer gradient="BlackToWhite" type="singlebandgray" grayBand="1" opacity="1" alphaBand="-1">
+          <rasterTransparency/>
+          <minMaxOrigin>
+            <limits>MinMax</limits>
+            <extent>WholeRaster</extent>
+            <statAccuracy>Estimated</statAccuracy>
+            <cumulativeCutLower>0.02</cumulativeCutLower>
+            <cumulativeCutUpper>0.98</cumulativeCutUpper>
+            <stdDevFactor>2</stdDevFactor>
+          </minMaxOrigin>
+          <contrastEnhancement>
+            <minValue>925</minValue>
+            <maxValue>2142</maxValue>
+            <algorithm>StretchToMinimumMaximum</algorithm>
+          </contrastEnhancement>
+        </rasterrenderer>
+        <brightnesscontrast brightness="0" contrast="0"/>
+        <huesaturation colorizeOn="0" colorizeRed="255" saturation="0" grayscaleMode="0" colorizeGreen="128" colorizeBlue="128" colorizeStrength="100"/>
+        <rasterresampler maxOversampling="2"/>
+      </pipe>
+      <blendMode>0</blendMode>
+    </maplayer>
+    <maplayer refreshOnNotifyMessage="" type="raster" autoRefreshTime="0" styleCategories="AllStyleCategories" refreshOnNotifyEnabled="0" maxScale="0" hasScaleBasedVisibilityFlag="0" autoRefreshEnabled="0" minScale="1e+08">
+      <extent>
+        <xmin>-8937500</xmin>
+        <ymin>2900750</ymin>
+        <xmax>-8837000</xmax>
+        <ymax>2998750</ymax>
+      </extent>
+      <id>tileSG_012_024_2_3_c780d5f7_dc56_4e8d_adbf_35b5bb54dd80</id>
+      <datasource>./Tiff Soilgrids Nitrogen 0-5cm/tileSG-012-024_2-3.tif</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>tileSG-012-024_2-3</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4></proj4>
+          <srsid>0</srsid>
+          <srid>0</srid>
+          <authid></authid>
+          <description></description>
+          <projectionacronym></projectionacronym>
+          <ellipsoidacronym></ellipsoidacronym>
+          <geographicflag>false</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <resourceMetadata>
+        <identifier></identifier>
+        <parentidentifier></parentidentifier>
+        <language></language>
+        <type></type>
+        <title></title>
+        <abstract></abstract>
+        <links/>
+        <fees></fees>
+        <encoding></encoding>
+        <crs>
+          <spatialrefsys>
+            <proj4></proj4>
+            <srsid>0</srsid>
+            <srid>0</srid>
+            <authid></authid>
+            <description></description>
+            <projectionacronym></projectionacronym>
+            <ellipsoidacronym></ellipsoidacronym>
+            <geographicflag>false</geographicflag>
+          </spatialrefsys>
+        </crs>
+        <extent/>
+      </resourceMetadata>
+      <provider>gdal</provider>
+      <noData>
+        <noDataList useSrcNoData="1" bandNo="1"/>
+      </noData>
+      <map-layer-style-manager current="default">
+        <map-layer-style name="default"/>
+      </map-layer-style-manager>
+      <flags>
+        <Identifiable>1</Identifiable>
+        <Removable>1</Removable>
+        <Searchable>1</Searchable>
+      </flags>
+      <customproperties>
+        <property key="identify/format" value="Value"/>
+      </customproperties>
+      <pipe>
+        <rasterrenderer gradient="BlackToWhite" type="singlebandgray" grayBand="1" opacity="1" alphaBand="-1">
+          <rasterTransparency/>
+          <minMaxOrigin>
+            <limits>MinMax</limits>
+            <extent>WholeRaster</extent>
+            <statAccuracy>Estimated</statAccuracy>
+            <cumulativeCutLower>0.02</cumulativeCutLower>
+            <cumulativeCutUpper>0.98</cumulativeCutUpper>
+            <stdDevFactor>2</stdDevFactor>
+          </minMaxOrigin>
+          <contrastEnhancement>
+            <minValue>723</minValue>
+            <maxValue>1421</maxValue>
+            <algorithm>StretchToMinimumMaximum</algorithm>
+          </contrastEnhancement>
+        </rasterrenderer>
+        <brightnesscontrast brightness="0" contrast="0"/>
+        <huesaturation colorizeOn="0" colorizeRed="255" saturation="0" grayscaleMode="0" colorizeGreen="128" colorizeBlue="128" colorizeStrength="100"/>
+        <rasterresampler maxOversampling="2"/>
+      </pipe>
+      <blendMode>0</blendMode>
+    </maplayer>
+    <maplayer refreshOnNotifyMessage="" type="raster" autoRefreshTime="0" styleCategories="AllStyleCategories" refreshOnNotifyEnabled="0" maxScale="0" hasScaleBasedVisibilityFlag="0" autoRefreshEnabled="0" minScale="1e+08">
+      <extent>
+        <xmin>-9237500</xmin>
+        <ymin>2750750</ymin>
+        <xmax>-9140000</xmax>
+        <ymax>2900750</ymax>
+      </extent>
+      <id>tileSG_012_024_3_1_a1c84889_ebdb_44de_aa69_54d92f75e66e</id>
+      <datasource>./Tiff Soilgrids Nitrogen 0-5cm/tileSG-012-024_3-1.tif</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>tileSG-012-024_3-1</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4></proj4>
+          <srsid>0</srsid>
+          <srid>0</srid>
+          <authid></authid>
+          <description></description>
+          <projectionacronym></projectionacronym>
+          <ellipsoidacronym></ellipsoidacronym>
+          <geographicflag>false</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <resourceMetadata>
+        <identifier></identifier>
+        <parentidentifier></parentidentifier>
+        <language></language>
+        <type></type>
+        <title></title>
+        <abstract></abstract>
+        <links/>
+        <fees></fees>
+        <encoding></encoding>
+        <crs>
+          <spatialrefsys>
+            <proj4></proj4>
+            <srsid>0</srsid>
+            <srid>0</srid>
+            <authid></authid>
+            <description></description>
+            <projectionacronym></projectionacronym>
+            <ellipsoidacronym></ellipsoidacronym>
+            <geographicflag>false</geographicflag>
+          </spatialrefsys>
+        </crs>
+        <extent/>
+      </resourceMetadata>
+      <provider>gdal</provider>
+      <noData>
+        <noDataList useSrcNoData="1" bandNo="1"/>
+      </noData>
+      <map-layer-style-manager current="default">
+        <map-layer-style name="default"/>
+      </map-layer-style-manager>
+      <flags>
+        <Identifiable>1</Identifiable>
+        <Removable>1</Removable>
+        <Searchable>1</Searchable>
+      </flags>
+      <customproperties>
+        <property key="identify/format" value="Value"/>
+      </customproperties>
+      <pipe>
+        <rasterrenderer gradient="BlackToWhite" type="singlebandgray" grayBand="1" opacity="1" alphaBand="-1">
+          <rasterTransparency/>
+          <minMaxOrigin>
+            <limits>MinMax</limits>
+            <extent>WholeRaster</extent>
+            <statAccuracy>Estimated</statAccuracy>
+            <cumulativeCutLower>0.02</cumulativeCutLower>
+            <cumulativeCutUpper>0.98</cumulativeCutUpper>
+            <stdDevFactor>2</stdDevFactor>
+          </minMaxOrigin>
+          <contrastEnhancement>
+            <minValue>633</minValue>
+            <maxValue>2850</maxValue>
+            <algorithm>StretchToMinimumMaximum</algorithm>
+          </contrastEnhancement>
+        </rasterrenderer>
+        <brightnesscontrast brightness="0" contrast="0"/>
+        <huesaturation colorizeOn="0" colorizeRed="255" saturation="0" grayscaleMode="0" colorizeGreen="128" colorizeBlue="128" colorizeStrength="100"/>
+        <rasterresampler maxOversampling="2"/>
+      </pipe>
+      <blendMode>0</blendMode>
+    </maplayer>
+    <maplayer refreshOnNotifyMessage="" type="raster" autoRefreshTime="0" styleCategories="AllStyleCategories" refreshOnNotifyEnabled="0" maxScale="0" hasScaleBasedVisibilityFlag="0" autoRefreshEnabled="0" minScale="1e+08">
+      <extent>
+        <xmin>-9056000</xmin>
+        <ymin>2750750</ymin>
+        <xmax>-8937500</xmax>
+        <ymax>2869000</ymax>
+      </extent>
+      <id>tileSG_012_024_3_2_8ddea55b_6c33_4b93_a42d_689fb3598eaf</id>
+      <datasource>./Tiff Soilgrids Nitrogen 0-5cm/tileSG-012-024_3-2.tif</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>tileSG-012-024_3-2</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4></proj4>
+          <srsid>0</srsid>
+          <srid>0</srid>
+          <authid></authid>
+          <description></description>
+          <projectionacronym></projectionacronym>
+          <ellipsoidacronym></ellipsoidacronym>
+          <geographicflag>false</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <resourceMetadata>
+        <identifier></identifier>
+        <parentidentifier></parentidentifier>
+        <language></language>
+        <type></type>
+        <title></title>
+        <abstract></abstract>
+        <links/>
+        <fees></fees>
+        <encoding></encoding>
+        <crs>
+          <spatialrefsys>
+            <proj4></proj4>
+            <srsid>0</srsid>
+            <srid>0</srid>
+            <authid></authid>
+            <description></description>
+            <projectionacronym></projectionacronym>
+            <ellipsoidacronym></ellipsoidacronym>
+            <geographicflag>false</geographicflag>
+          </spatialrefsys>
+        </crs>
+        <extent/>
+      </resourceMetadata>
+      <provider>gdal</provider>
+      <noData>
+        <noDataList useSrcNoData="1" bandNo="1"/>
+      </noData>
+      <map-layer-style-manager current="default">
+        <map-layer-style name="default"/>
+      </map-layer-style-manager>
+      <flags>
+        <Identifiable>1</Identifiable>
+        <Removable>1</Removable>
+        <Searchable>1</Searchable>
+      </flags>
+      <customproperties>
+        <property key="identify/format" value="Value"/>
+      </customproperties>
+      <pipe>
+        <rasterrenderer gradient="BlackToWhite" type="singlebandgray" grayBand="1" opacity="1" alphaBand="-1">
+          <rasterTransparency/>
+          <minMaxOrigin>
+            <limits>MinMax</limits>
+            <extent>WholeRaster</extent>
+            <statAccuracy>Estimated</statAccuracy>
+            <cumulativeCutLower>0.02</cumulativeCutLower>
+            <cumulativeCutUpper>0.98</cumulativeCutUpper>
+            <stdDevFactor>2</stdDevFactor>
+          </minMaxOrigin>
+          <contrastEnhancement>
+            <minValue>646</minValue>
+            <maxValue>987</maxValue>
+            <algorithm>StretchToMinimumMaximum</algorithm>
+          </contrastEnhancement>
+        </rasterrenderer>
+        <brightnesscontrast brightness="0" contrast="0"/>
+        <huesaturation colorizeOn="0" colorizeRed="255" saturation="0" grayscaleMode="0" colorizeGreen="128" colorizeBlue="128" colorizeStrength="100"/>
+        <rasterresampler maxOversampling="2"/>
+      </pipe>
+      <blendMode>0</blendMode>
+    </maplayer>
+    <maplayer refreshOnNotifyMessage="" type="raster" autoRefreshTime="0" styleCategories="AllStyleCategories" refreshOnNotifyEnabled="0" maxScale="0" hasScaleBasedVisibilityFlag="0" autoRefreshEnabled="0" minScale="1e+08">
+      <extent>
+        <xmin>-8937500</xmin>
+        <ymin>2750750</ymin>
+        <xmax>-8787500</xmax>
+        <ymax>2900750</ymax>
+      </extent>
+      <id>tileSG_012_024_3_3_dcde59ad_cdfa_49af_ad51_9df312532cf3</id>
+      <datasource>./Tiff Soilgrids Nitrogen 0-5cm/tileSG-012-024_3-3.tif</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>tileSG-012-024_3-3</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4></proj4>
+          <srsid>0</srsid>
+          <srid>0</srid>
+          <authid></authid>
+          <description></description>
+          <projectionacronym></projectionacronym>
+          <ellipsoidacronym></ellipsoidacronym>
+          <geographicflag>false</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <resourceMetadata>
+        <identifier></identifier>
+        <parentidentifier></parentidentifier>
+        <language></language>
+        <type></type>
+        <title></title>
+        <abstract></abstract>
+        <links/>
+        <fees></fees>
+        <encoding></encoding>
+        <crs>
+          <spatialrefsys>
+            <proj4></proj4>
+            <srsid>0</srsid>
+            <srid>0</srid>
+            <authid></authid>
+            <description></description>
+            <projectionacronym></projectionacronym>
+            <ellipsoidacronym></ellipsoidacronym>
+            <geographicflag>false</geographicflag>
+          </spatialrefsys>
+        </crs>
+        <extent/>
+      </resourceMetadata>
+      <provider>gdal</provider>
+      <noData>
+        <noDataList useSrcNoData="1" bandNo="1"/>
+      </noData>
+      <map-layer-style-manager current="default">
+        <map-layer-style name="default"/>
+      </map-layer-style-manager>
+      <flags>
+        <Identifiable>1</Identifiable>
+        <Removable>1</Removable>
+        <Searchable>1</Searchable>
+      </flags>
+      <customproperties>
+        <property key="identify/format" value="Value"/>
+      </customproperties>
+      <pipe>
+        <rasterrenderer gradient="BlackToWhite" type="singlebandgray" grayBand="1" opacity="1" alphaBand="-1">
+          <rasterTransparency/>
+          <minMaxOrigin>
+            <limits>MinMax</limits>
+            <extent>WholeRaster</extent>
+            <statAccuracy>Estimated</statAccuracy>
+            <cumulativeCutLower>0.02</cumulativeCutLower>
+            <cumulativeCutUpper>0.98</cumulativeCutUpper>
+            <stdDevFactor>2</stdDevFactor>
+          </minMaxOrigin>
+          <contrastEnhancement>
+            <minValue>558</minValue>
+            <maxValue>1320</maxValue>
+            <algorithm>StretchToMinimumMaximum</algorithm>
+          </contrastEnhancement>
+        </rasterrenderer>
+        <brightnesscontrast brightness="0" contrast="0"/>
+        <huesaturation colorizeOn="0" colorizeRed="255" saturation="0" grayscaleMode="0" colorizeGreen="128" colorizeBlue="128" colorizeStrength="100"/>
+        <rasterresampler maxOversampling="2"/>
+      </pipe>
+      <blendMode>0</blendMode>
+    </maplayer>
+    <maplayer refreshOnNotifyMessage="" type="raster" autoRefreshTime="0" styleCategories="AllStyleCategories" refreshOnNotifyEnabled="0" maxScale="0" hasScaleBasedVisibilityFlag="0" autoRefreshEnabled="0" minScale="1e+08">
+      <extent>
+        <xmin>-8787500</xmin>
+        <ymin>2750750</ymin>
+        <xmax>-8721500</xmax>
+        <ymax>2840000</ymax>
+      </extent>
+      <id>tileSG_012_025_3_1_dd0adda6_e5fd_47d1_85b4_fd89e1bb9500</id>
+      <datasource>./Tiff Soilgrids Nitrogen 0-5cm/tileSG-012-025_3-1.tif</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>tileSG-012-025_3-1</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4></proj4>
+          <srsid>0</srsid>
+          <srid>0</srid>
+          <authid></authid>
+          <description></description>
+          <projectionacronym></projectionacronym>
+          <ellipsoidacronym></ellipsoidacronym>
+          <geographicflag>false</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <resourceMetadata>
+        <identifier></identifier>
+        <parentidentifier></parentidentifier>
+        <language></language>
+        <type></type>
+        <title></title>
+        <abstract></abstract>
+        <links/>
+        <fees></fees>
+        <encoding></encoding>
+        <crs>
+          <spatialrefsys>
+            <proj4></proj4>
+            <srsid>0</srsid>
+            <srid>0</srid>
+            <authid></authid>
+            <description></description>
+            <projectionacronym></projectionacronym>
+            <ellipsoidacronym></ellipsoidacronym>
+            <geographicflag>false</geographicflag>
+          </spatialrefsys>
+        </crs>
+        <extent/>
+      </resourceMetadata>
+      <provider>gdal</provider>
+      <noData>
+        <noDataList useSrcNoData="1" bandNo="1"/>
+      </noData>
+      <map-layer-style-manager current="default">
+        <map-layer-style name="default"/>
+      </map-layer-style-manager>
+      <flags>
+        <Identifiable>1</Identifiable>
+        <Removable>1</Removable>
+        <Searchable>1</Searchable>
+      </flags>
+      <customproperties>
+        <property key="identify/format" value="Value"/>
+      </customproperties>
+      <pipe>
+        <rasterrenderer gradient="BlackToWhite" type="singlebandgray" grayBand="1" opacity="1" alphaBand="-1">
+          <rasterTransparency/>
+          <minMaxOrigin>
+            <limits>MinMax</limits>
+            <extent>WholeRaster</extent>
+            <statAccuracy>Estimated</statAccuracy>
+            <cumulativeCutLower>0.02</cumulativeCutLower>
+            <cumulativeCutUpper>0.98</cumulativeCutUpper>
+            <stdDevFactor>2</stdDevFactor>
+          </minMaxOrigin>
+          <contrastEnhancement>
+            <minValue>461</minValue>
+            <maxValue>895</maxValue>
+            <algorithm>StretchToMinimumMaximum</algorithm>
+          </contrastEnhancement>
+        </rasterrenderer>
+        <brightnesscontrast brightness="0" contrast="0"/>
+        <huesaturation colorizeOn="0" colorizeRed="255" saturation="0" grayscaleMode="0" colorizeGreen="128" colorizeBlue="128" colorizeStrength="100"/>
+        <rasterresampler maxOversampling="2"/>
+      </pipe>
+      <blendMode>0</blendMode>
+    </maplayer>
+  </projectlayers>
+  <layerorder>
+    <layer id="tileSG_011_022_1_2_ec60c3a1_11b0_43c7_a860_992b9c9b75f2"/>
+    <layer id="tileSG_011_022_1_3_39e7f660_fb0d_456e_9c62_601c8fcac384"/>
+    <layer id="tileSG_011_022_2_1_0303c2e1_c05f_4d1a_920a_57a68540d998"/>
+    <layer id="tileSG_011_022_2_2_ac9cee07_bc08_4d66_bf76_20aed5d8975e"/>
+    <layer id="tileSG_011_022_2_3_8d4e7745_e661_4ab0_aa74_1ae4f87d1706"/>
+    <layer id="tileSG_011_022_3_1_0ba3e07c_623f_4531_9bde_7f6fd43b4239"/>
+    <layer id="tileSG_011_022_3_3_3e5010e1_c6bb_43bb_a2f6_7e6ada0404f5"/>
+    <layer id="tileSG_011_023_1_1_18dd90e0_ad38_4922_b5fa_cc941c27d562"/>
+    <layer id="tileSG_011_023_1_2_a6a6b680_e60a_4f65_8b7b_5040275d5ebb"/>
+    <layer id="tileSG_011_023_1_3_2d650c5d_3f37_4f96_94f0_046e188a4645"/>
+    <layer id="tileSG_011_023_2_1_d6ce6260_e0e4_41f8_bd4a_f029d456393e"/>
+    <layer id="tileSG_011_023_2_2_a82f5095_2336_435d_8c0f_2d344d0e2bbe"/>
+    <layer id="tileSG_011_023_2_3_6a737d2b_1b68_4fd1_ae25_1c242e8489a1"/>
+    <layer id="tileSG_011_023_3_1_0b74d4cf_6c44_41b4_a1cb_d1ae6ac50ce2"/>
+    <layer id="tileSG_011_023_3_2_466f5cb4_f8e2_425b_8e43_efaf788cda76"/>
+    <layer id="tileSG_011_023_3_3_66757fd0_c9b9_459e_9e10_9bc3ae10e487"/>
+    <layer id="tileSG_012_023_1_2_aee098ac_b230_4700_92d2_397f1bfb8fba"/>
+    <layer id="tileSG_012_023_1_3_ecf2701d_0010_40bc_8f58_b9c8b146f4cc"/>
+    <layer id="tileSG_012_023_2_2_dcc49cc6_c0ba_45dd_868b_0f3593ed0d48"/>
+    <layer id="tileSG_012_023_2_3_d5658214_a9ab_48b5_aeb6_f3b57a9ef0e6"/>
+    <layer id="tileSG_012_023_3_3_87c7dad5_b5b3_4661_9618_c06c0bbbd142"/>
+    <layer id="tileSG_012_024_1_1_2a938f1f_2f22_4a26_a338_b221f0065b9d"/>
+    <layer id="tileSG_012_024_2_1_43dc8f53_bde3_4477_b1cc_02ce8b161a8e"/>
+    <layer id="tileSG_012_024_2_2_0ed51ee2_ea61_47b3_9f65_a394b1d45b27"/>
+    <layer id="tileSG_012_024_2_3_c780d5f7_dc56_4e8d_adbf_35b5bb54dd80"/>
+    <layer id="tileSG_012_024_3_1_a1c84889_ebdb_44de_aa69_54d92f75e66e"/>
+    <layer id="tileSG_012_024_3_2_8ddea55b_6c33_4b93_a42d_689fb3598eaf"/>
+    <layer id="tileSG_012_024_3_3_dcde59ad_cdfa_49af_ad51_9df312532cf3"/>
+    <layer id="tileSG_012_025_3_1_dd0adda6_e5fd_47d1_85b4_fd89e1bb9500"/>
+  </layerorder>
+  <properties>
+    <Gui>
+      <CanvasColorBluePart type="int">255</CanvasColorBluePart>
+      <CanvasColorGreenPart type="int">255</CanvasColorGreenPart>
+      <CanvasColorRedPart type="int">255</CanvasColorRedPart>
+      <SelectionColorAlphaPart type="int">255</SelectionColorAlphaPart>
+      <SelectionColorBluePart type="int">0</SelectionColorBluePart>
+      <SelectionColorGreenPart type="int">255</SelectionColorGreenPart>
+      <SelectionColorRedPart type="int">255</SelectionColorRedPart>
+    </Gui>
+    <Legend>
+      <filterByMap type="bool">false</filterByMap>
+    </Legend>
+    <Measure>
+      <Ellipsoid type="QString">WGS84</Ellipsoid>
+    </Measure>
+    <Measurement>
+      <AreaUnits type="QString"></AreaUnits>
+      <DistanceUnits type="QString"></DistanceUnits>
+    </Measurement>
+    <PAL>
+      <CandidatesLine type="int">50</CandidatesLine>
+      <CandidatesPoint type="int">16</CandidatesPoint>
+      <CandidatesPolygon type="int">30</CandidatesPolygon>
+      <DrawRectOnly type="bool">false</DrawRectOnly>
+      <DrawUnplaced type="bool">false</DrawUnplaced>
+      <SearchMethod type="int">0</SearchMethod>
+      <ShowingAllLabels type="bool">false</ShowingAllLabels>
+      <ShowingCandidates type="bool">false</ShowingCandidates>
+      <ShowingPartialsLabels type="bool">true</ShowingPartialsLabels>
+      <TextFormat type="int">0</TextFormat>
+      <UnplacedColor type="QString">255,0,0,255</UnplacedColor>
+    </PAL>
+    <Paths>
+      <Absolute type="bool">false</Absolute>
+    </Paths>
+    <PositionPrecision>
+      <Automatic type="bool">true</Automatic>
+      <DecimalPlaces type="int">2</DecimalPlaces>
+    </PositionPrecision>
+    <SpatialRefSys>
+      <ProjectionsEnabled type="int">1</ProjectionsEnabled>
+    </SpatialRefSys>
+  </properties>
+  <visibility-presets/>
+  <transformContext/>
+  <projectMetadata>
+    <identifier></identifier>
+    <parentidentifier></parentidentifier>
+    <language></language>
+    <type></type>
+    <title></title>
+    <abstract></abstract>
+    <links/>
+    <author>Alicia</author>
+    <creation>2019-12-16T12:51:23</creation>
+  </projectMetadata>
+  <Annotations/>
+  <Layouts/>
+  <Bookmarks/>
+  <ProjectViewSettings UseProjectScales="0">
+    <Scales/>
+  </ProjectViewSettings>
+</qgis>
