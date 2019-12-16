@@ -1,0 +1,426 @@
+<VRTDataset rasterXSize="5664" rasterYSize="3600">
+  <SRS>PROJCS["Interrupted_Goode_Homolosine",GEOGCS["GCS_unnamed ellipse",DATUM["D_unknown",SPHEROID["Unknown",6378137,298.257223563]],PRIMEM["Greenwich",0],UNIT["Degree",0.017453292519943295]],PROJECTION["Interrupted_Goode_Homolosine"],UNIT["Meter",1]]</SRS>
+  <GeoTransform> -1.0137500000000000e+07,  2.5000000000000000e+02,  0.0000000000000000e+00,  3.6507500000000000e+06,  0.0000000000000000e+00, -2.5000000000000000e+02</GeoTransform>
+  <VRTRasterBand dataType="Int16" band="1">
+    <Metadata>
+      <MDI key="STATISTICS_APPROXIMATE">YES</MDI>
+      <MDI key="STATISTICS_MAXIMUM">2193</MDI>
+      <MDI key="STATISTICS_MEAN">260.55215266525</MDI>
+      <MDI key="STATISTICS_MINIMUM">79</MDI>
+      <MDI key="STATISTICS_STDDEV">224.39330262858</MDI>
+      <MDI key="STATISTICS_VALID_PERCENT">26.82</MDI>
+    </Metadata>
+    <NoDataValue>-32768</NoDataValue>
+    <ColorInterp>Gray</ColorInterp>
+    <Histograms>
+      <HistItem>
+        <HistMin>77.943</HistMin>
+        <HistMax>2194.057</HistMax>
+        <BucketCount>1000</BucketCount>
+        <IncludeOutOfRange>0</IncludeOutOfRange>
+        <Approximate>1</Approximate>
+        <HistCounts>3|15|60|120|207|331|404|483|531|951|652|773|883|1104|1380|1744|2134|4234|3565|4009|4476|4551|4677|4557|4525|4322|5773|3497|3133|2760|2361|2143|1790|1725|2290|1370|1336|1234|1170|1206|1093|1099|948|1435|918|826|790|784|712|760|633|649|992|595|649|599|568|580|535|504|801|497|445|413|425|400|394|401|320|526|324|330|296|362|286|306|290|243|437|253|253|244|263|240|249|228|364|243|236|236|244|207|221|232|266|363|235|231|251|228|223|214|255|351|213|239|258|242|241|269|235|243|389|242|240|255|244|268|260|260|242|372|249|243|284|260|280|247|246|370|257|265|269|252|264|253|246|263|391|253|244|250|248|252|288|236|367|224|229|226|259|215|230|239|234|347|237|222|227|211|211|215|227|240|323|184|231|185|222|214|218|200|351|217|199|216|216|189|171|209|190|288|197|219|187|187|192|199|187|275|183|176|198|162|170|187|200|178|240|183|166|170|182|181|164|159|150|225|138|150|159|146|152|166|181|212|157|154|148|134|131|149|154|166|201|129|151|133|141|152|136|133|110|193|156|119|121|127|135|123|129|186|128|136|112|129|126|107|120|121|176|128|127|135|116|119|138|105|146|119|108|110|100|110|105|123|108|178|94|109|104|89|109|108|90|99|126|80|98|104|89|110|85|82|152|79|106|87|86|83|88|93|85|114|82|77|72|75|82|73|72|130|78|69|59|68|80|69|81|66|99|75|65|66|75|77|65|73|60|80|70|60|62|75|56|66|60|94|41|52|65|56|60|54|49|74|74|52|48|43|45|47|41|37|71|49|41|56|44|32|31|39|48|55|32|47|52|35|43|35|34|38|54|37|38|40|34|51|38|44|46|42|40|42|47|25|34|37|35|44|28|28|41|22|27|31|23|22|45|28|30|28|21|27|27|25|33|22|23|13|28|20|25|24|27|29|22|22|20|19|19|15|14|28|23|11|8|16|25|16|13|19|22|14|16|16|17|21|15|14|20|23|11|10|10|14|7|10|8|21|5|22|11|11|13|7|12|8|14|13|7|11|9|9|6|12|17|13|9|9|5|6|8|6|11|8|10|4|10|10|5|8|5|6|11|8|4|11|6|7|3|6|7|9|2|3|1|8|2|3|3|4|7|6|6|3|6|3|4|6|8|7|6|5|6|3|3|6|4|6|3|2|2|3|3|2|2|2|2|2|0|1|4|2|2|0|3|2|3|3|2|2|2|3|3|2|2|5|0|3|3|0|0|1|1|3|1|0|0|2|2|6|1|1|5|2|3|1|2|3|2|0|1|1|1|0|2|3|2|2|4|2|2|1|2|2|0|3|3|1|1|1|2|4|3|2|1|0|5|0|0|1|1|0|2|0|3|0|0|2|2|1|5|3|2|5|3|1|1|1|0|0|0|3|0|0|0|0|1|2|2|2|2|1|1|1|1|2|5|1|0|0|1|0|2|2|0|0|2|1|2|0|0|0|2|0|1|1|1|0|0|1|3|2|3|4|0|1|2|2|0|1|2|1|2|1|2|1|1|0|2|0|1|3|0|1|1|1|2|2|3|2|0|0|1|1|0|1|0|0|1|2|1|2|1|0|3|0|3|0|1|0|1|0|1|1|1|0|0|1|4|0|2|4|3|5|0|0|1|2|2|1|1|1|0|1|1|2|3|1|3|3|2|1|0|2|1|2|0|2|3|0|1|1|2|0|4|4|5|5|4|1|5|4|2|1|2|3|6|0|1|2|2|2|4|4|5|3|0|5|4|6|1|2|2|6|4|5|9|5|1|1|3|4|9|3|3|4|1|5|2|0|4|6|4|8|3|6|5|3|3|3|2|3|3|3|5|4|2|4|9|3|5|2|5|6|2|6|7|3|3|3|3|2|8|6|4|6|4|5|3|4|3|2|7|7|6|3|3|5|6|2|3|6|6|2|4|7|6|2|1|5|5|12|3|3|4|7|5|5|3|4|0|3|4|3|6|2|5|7|3|0|2|0|4|3|1|5|3|2|1|4|1|3|2|5|0|5|3|0|6|2|2|5|3|4|2|3|2|0|3|2|2|4|2|1|3|3|2|3|2|2|4|2|2|6|2|3|2|3|1|1|5|3|2|4|0|0|0|0|2|1|1|4|1|0|0|1|1|1|2|2|4|0|1|2|0|0|0|3|0|0|0|1|1|0|1|0|1|0|0|0|1|0|0|0|0|0|0|0|1|0|0|0|0|1|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|1|0|0|0|0|0|1</HistCounts>
+      </HistItem>
+    </Histograms>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0" shared="0">//net.ucf.edu/COS/Profiles/ol732169/Documents/GitHub/FL_Carbon/FL_Carbon/Tiffs Soilgrids SOC 5-15cm/tileSG-011-023_2-3.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="450" RasterYSize="450" DataType="Int16" BlockXSize="450" BlockYSize="9" />
+      <SrcRect xOff="0" yOff="0" xSize="450" ySize="450" />
+      <DstRect xOff="2700" yOff="450" xSize="450" ySize="450" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0" shared="0">//net.ucf.edu/COS/Profiles/ol732169/Documents/GitHub/FL_Carbon/FL_Carbon/Tiffs Soilgrids SOC 5-15cm/tileSG-011-023_4-1.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="122" RasterYSize="77" DataType="Int16" BlockXSize="122" BlockYSize="33" />
+      <SrcRect xOff="0" yOff="0" xSize="122" ySize="77" />
+      <DstRect xOff="1800" yOff="1350" xSize="122" ySize="77" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0" shared="0">//net.ucf.edu/COS/Profiles/ol732169/Documents/GitHub/FL_Carbon/FL_Carbon/Tiffs Soilgrids SOC 5-15cm/tileSG-011-022_4-1.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="286" RasterYSize="369" DataType="Int16" BlockXSize="286" BlockYSize="14" />
+      <SrcRect xOff="0" yOff="0" xSize="286" ySize="369" />
+      <DstRect xOff="0" yOff="1350" xSize="286" ySize="369" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0" shared="0">//net.ucf.edu/COS/Profiles/ol732169/Documents/GitHub/FL_Carbon/FL_Carbon/Tiffs Soilgrids SOC 5-15cm/tileSG-012-024_4-4.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="450" RasterYSize="409" DataType="Int16" BlockXSize="450" BlockYSize="9" />
+      <SrcRect xOff="0" yOff="0" xSize="450" ySize="409" />
+      <DstRect xOff="4950" yOff="3191" xSize="450" ySize="409" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0" shared="0">//net.ucf.edu/COS/Profiles/ol732169/Documents/GitHub/FL_Carbon/FL_Carbon/Tiffs Soilgrids SOC 5-15cm/tileSG-012-023_1-3.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="384" RasterYSize="450" DataType="Int16" BlockXSize="384" BlockYSize="10" />
+      <SrcRect xOff="0" yOff="0" xSize="384" ySize="450" />
+      <DstRect xOff="2766" yOff="1800" xSize="384" ySize="450" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0" shared="0">//net.ucf.edu/COS/Profiles/ol732169/Documents/GitHub/FL_Carbon/FL_Carbon/Tiffs Soilgrids SOC 5-15cm/tileSG-011-022_1-2.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="450" RasterYSize="450" DataType="Int16" BlockXSize="450" BlockYSize="9" />
+      <SrcRect xOff="0" yOff="0" xSize="450" ySize="450" />
+      <DstRect xOff="450" yOff="0" xSize="450" ySize="450" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0" shared="0">//net.ucf.edu/COS/Profiles/ol732169/Documents/GitHub/FL_Carbon/FL_Carbon/Tiffs Soilgrids SOC 5-15cm/tileSG-012-024_4-3.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="163" RasterYSize="450" DataType="Int16" BlockXSize="163" BlockYSize="25" />
+      <SrcRect xOff="0" yOff="0" xSize="163" ySize="450" />
+      <DstRect xOff="4787" yOff="3150" xSize="163" ySize="450" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0" shared="0">//net.ucf.edu/COS/Profiles/ol732169/Documents/GitHub/FL_Carbon/FL_Carbon/Tiffs Soilgrids SOC 5-15cm/tileSG-011-022_2-4.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="450" RasterYSize="450" DataType="Int16" BlockXSize="450" BlockYSize="9" />
+      <SrcRect xOff="0" yOff="0" xSize="450" ySize="450" />
+      <DstRect xOff="1350" yOff="450" xSize="450" ySize="450" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0" shared="0">//net.ucf.edu/COS/Profiles/ol732169/Documents/GitHub/FL_Carbon/FL_Carbon/Tiffs Soilgrids SOC 5-15cm/tileSG-012-023_1-4.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="450" RasterYSize="450" DataType="Int16" BlockXSize="450" BlockYSize="9" />
+      <SrcRect xOff="0" yOff="0" xSize="450" ySize="450" />
+      <DstRect xOff="3150" yOff="1800" xSize="450" ySize="450" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0" shared="0">//net.ucf.edu/COS/Profiles/ol732169/Documents/GitHub/FL_Carbon/FL_Carbon/Tiffs Soilgrids SOC 5-15cm/tileSG-011-022_1-1.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="450" RasterYSize="450" DataType="Int16" BlockXSize="450" BlockYSize="9" />
+      <SrcRect xOff="0" yOff="0" xSize="450" ySize="450" />
+      <DstRect xOff="0" yOff="0" xSize="450" ySize="450" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0" shared="0">//net.ucf.edu/COS/Profiles/ol732169/Documents/GitHub/FL_Carbon/FL_Carbon/Tiffs Soilgrids SOC 5-15cm/tileSG-011-022_3-4.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="450" RasterYSize="450" DataType="Int16" BlockXSize="450" BlockYSize="9" />
+      <SrcRect xOff="0" yOff="0" xSize="450" ySize="450" />
+      <DstRect xOff="1350" yOff="900" xSize="450" ySize="450" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0" shared="0">//net.ucf.edu/COS/Profiles/ol732169/Documents/GitHub/FL_Carbon/FL_Carbon/Tiffs Soilgrids SOC 5-15cm/tileSG-011-023_4-2.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="332" RasterYSize="278" DataType="Int16" BlockXSize="332" BlockYSize="12" />
+      <SrcRect xOff="0" yOff="0" xSize="332" ySize="278" />
+      <DstRect xOff="2368" yOff="1350" xSize="332" ySize="278" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0" shared="0">//net.ucf.edu/COS/Profiles/ol732169/Documents/GitHub/FL_Carbon/FL_Carbon/Tiffs Soilgrids SOC 5-15cm/tileSG-011-022_3-2.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="450" RasterYSize="255" DataType="Int16" BlockXSize="450" BlockYSize="9" />
+      <SrcRect xOff="0" yOff="0" xSize="450" ySize="255" />
+      <DstRect xOff="450" yOff="900" xSize="450" ySize="255" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0" shared="0">//net.ucf.edu/COS/Profiles/ol732169/Documents/GitHub/FL_Carbon/FL_Carbon/Tiffs Soilgrids SOC 5-15cm/tileSG-011-023_2-2.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="450" RasterYSize="450" DataType="Int16" BlockXSize="450" BlockYSize="9" />
+      <SrcRect xOff="0" yOff="0" xSize="450" ySize="450" />
+      <DstRect xOff="2250" yOff="450" xSize="450" ySize="450" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0" shared="0">//net.ucf.edu/COS/Profiles/ol732169/Documents/GitHub/FL_Carbon/FL_Carbon/Tiffs Soilgrids SOC 5-15cm/tileSG-011-023_3-1.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="450" RasterYSize="450" DataType="Int16" BlockXSize="450" BlockYSize="9" />
+      <SrcRect xOff="0" yOff="0" xSize="450" ySize="450" />
+      <DstRect xOff="1800" yOff="900" xSize="450" ySize="450" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0" shared="0">//net.ucf.edu/COS/Profiles/ol732169/Documents/GitHub/FL_Carbon/FL_Carbon/Tiffs Soilgrids SOC 5-15cm/tileSG-012-024_3-3.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="420" RasterYSize="450" DataType="Int16" BlockXSize="420" BlockYSize="9" />
+      <SrcRect xOff="0" yOff="0" xSize="420" ySize="450" />
+      <DstRect xOff="4500" yOff="2700" xSize="420" ySize="450" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0" shared="0">//net.ucf.edu/COS/Profiles/ol732169/Documents/GitHub/FL_Carbon/FL_Carbon/Tiffs Soilgrids SOC 5-15cm/tileSG-011-023_3-4.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="116" RasterYSize="319" DataType="Int16" BlockXSize="116" BlockYSize="35" />
+      <SrcRect xOff="0" yOff="0" xSize="116" ySize="319" />
+      <DstRect xOff="3150" yOff="1031" xSize="116" ySize="319" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0" shared="0">//net.ucf.edu/COS/Profiles/ol732169/Documents/GitHub/FL_Carbon/FL_Carbon/Tiffs Soilgrids SOC 5-15cm/tileSG-012-024_3-4.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="232" RasterYSize="391" DataType="Int16" BlockXSize="232" BlockYSize="17" />
+      <SrcRect xOff="0" yOff="0" xSize="232" ySize="391" />
+      <DstRect xOff="4970" yOff="2700" xSize="232" ySize="391" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0" shared="0">//net.ucf.edu/COS/Profiles/ol732169/Documents/GitHub/FL_Carbon/FL_Carbon/Tiffs Soilgrids SOC 5-15cm/tileSG-012-023_4-4.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="130" RasterYSize="450" DataType="Int16" BlockXSize="130" BlockYSize="31" />
+      <SrcRect xOff="0" yOff="0" xSize="130" ySize="450" />
+      <DstRect xOff="3470" yOff="3150" xSize="130" ySize="450" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0" shared="0">//net.ucf.edu/COS/Profiles/ol732169/Documents/GitHub/FL_Carbon/FL_Carbon/Tiffs Soilgrids SOC 5-15cm/tileSG-011-023_1-1.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="450" RasterYSize="450" DataType="Int16" BlockXSize="450" BlockYSize="9" />
+      <SrcRect xOff="0" yOff="0" xSize="450" ySize="450" />
+      <DstRect xOff="1800" yOff="0" xSize="450" ySize="450" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0" shared="0">//net.ucf.edu/COS/Profiles/ol732169/Documents/GitHub/FL_Carbon/FL_Carbon/Tiffs Soilgrids SOC 5-15cm/tileSG-011-023_2-4.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="40" RasterYSize="155" DataType="Int16" BlockXSize="40" BlockYSize="102" />
+      <SrcRect xOff="0" yOff="0" xSize="40" ySize="155" />
+      <DstRect xOff="3150" yOff="450" xSize="40" ySize="155" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0" shared="0">//net.ucf.edu/COS/Profiles/ol732169/Documents/GitHub/FL_Carbon/FL_Carbon/Tiffs Soilgrids SOC 5-15cm/tileSG-011-023_3-2.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="450" RasterYSize="450" DataType="Int16" BlockXSize="450" BlockYSize="9" />
+      <SrcRect xOff="0" yOff="0" xSize="450" ySize="450" />
+      <DstRect xOff="2250" yOff="900" xSize="450" ySize="450" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0" shared="0">//net.ucf.edu/COS/Profiles/ol732169/Documents/GitHub/FL_Carbon/FL_Carbon/Tiffs Soilgrids SOC 5-15cm/tileSG-012-024_2-3.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="416" RasterYSize="225" DataType="Int16" BlockXSize="416" BlockYSize="9" />
+      <SrcRect xOff="0" yOff="0" xSize="416" ySize="225" />
+      <DstRect xOff="4534" yOff="2475" xSize="416" ySize="225" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0" shared="0">//net.ucf.edu/COS/Profiles/ol732169/Documents/GitHub/FL_Carbon/FL_Carbon/Tiffs Soilgrids SOC 5-15cm/tileSG-011-023_1-4.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="436" RasterYSize="450" DataType="Int16" BlockXSize="436" BlockYSize="9" />
+      <SrcRect xOff="0" yOff="0" xSize="436" ySize="450" />
+      <DstRect xOff="3150" yOff="0" xSize="436" ySize="450" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0" shared="0">//net.ucf.edu/COS/Profiles/ol732169/Documents/GitHub/FL_Carbon/FL_Carbon/Tiffs Soilgrids SOC 5-15cm/tileSG-012-023_2-4.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="450" RasterYSize="450" DataType="Int16" BlockXSize="450" BlockYSize="9" />
+      <SrcRect xOff="0" yOff="0" xSize="450" ySize="450" />
+      <DstRect xOff="3150" yOff="2250" xSize="450" ySize="450" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0" shared="0">//net.ucf.edu/COS/Profiles/ol732169/Documents/GitHub/FL_Carbon/FL_Carbon/Tiffs Soilgrids SOC 5-15cm/tileSG-012-023_3-3.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="69" RasterYSize="118" DataType="Int16" BlockXSize="69" BlockYSize="59" />
+      <SrcRect xOff="0" yOff="0" xSize="69" ySize="118" />
+      <DstRect xOff="3081" yOff="2712" xSize="69" ySize="118" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0" shared="0">//net.ucf.edu/COS/Profiles/ol732169/Documents/GitHub/FL_Carbon/FL_Carbon/Tiffs Soilgrids SOC 5-15cm/tileSG-012-025_4-1.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="264" RasterYSize="357" DataType="Int16" BlockXSize="264" BlockYSize="15" />
+      <SrcRect xOff="0" yOff="0" xSize="264" ySize="357" />
+      <DstRect xOff="5400" yOff="3243" xSize="264" ySize="357" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0" shared="0">//net.ucf.edu/COS/Profiles/ol732169/Documents/GitHub/FL_Carbon/FL_Carbon/Tiffs Soilgrids SOC 5-15cm/tileSG-011-023_1-2.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="450" RasterYSize="450" DataType="Int16" BlockXSize="450" BlockYSize="9" />
+      <SrcRect xOff="0" yOff="0" xSize="450" ySize="450" />
+      <DstRect xOff="2250" yOff="0" xSize="450" ySize="450" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0" shared="0">//net.ucf.edu/COS/Profiles/ol732169/Documents/GitHub/FL_Carbon/FL_Carbon/Tiffs Soilgrids SOC 5-15cm/tileSG-012-024_2-4.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="85" RasterYSize="57" DataType="Int16" BlockXSize="85" BlockYSize="48" />
+      <SrcRect xOff="0" yOff="0" xSize="85" ySize="57" />
+      <DstRect xOff="4955" yOff="2643" xSize="85" ySize="57" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0" shared="0">//net.ucf.edu/COS/Profiles/ol732169/Documents/GitHub/FL_Carbon/FL_Carbon/Tiffs Soilgrids SOC 5-15cm/tileSG-012-024_3-2.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="168" RasterYSize="432" DataType="Int16" BlockXSize="168" BlockYSize="24" />
+      <SrcRect xOff="0" yOff="0" xSize="168" ySize="432" />
+      <DstRect xOff="4332" yOff="2715" xSize="168" ySize="432" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0" shared="0">//net.ucf.edu/COS/Profiles/ol732169/Documents/GitHub/FL_Carbon/FL_Carbon/Tiffs Soilgrids SOC 5-15cm/tileSG-012-024_3-1.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="390" RasterYSize="450" DataType="Int16" BlockXSize="390" BlockYSize="10" />
+      <SrcRect xOff="0" yOff="0" xSize="390" ySize="450" />
+      <DstRect xOff="3600" yOff="2700" xSize="390" ySize="450" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0" shared="0">//net.ucf.edu/COS/Profiles/ol732169/Documents/GitHub/FL_Carbon/FL_Carbon/Tiffs Soilgrids SOC 5-15cm/tileSG-012-024_1-1.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="149" RasterYSize="393" DataType="Int16" BlockXSize="149" BlockYSize="27" />
+      <SrcRect xOff="0" yOff="0" xSize="149" ySize="393" />
+      <DstRect xOff="3600" yOff="1857" xSize="149" ySize="393" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0" shared="0">//net.ucf.edu/COS/Profiles/ol732169/Documents/GitHub/FL_Carbon/FL_Carbon/Tiffs Soilgrids SOC 5-15cm/tileSG-012-024_4-1.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="388" RasterYSize="450" DataType="Int16" BlockXSize="388" BlockYSize="10" />
+      <SrcRect xOff="0" yOff="0" xSize="388" ySize="450" />
+      <DstRect xOff="3600" yOff="3150" xSize="388" ySize="450" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0" shared="0">//net.ucf.edu/COS/Profiles/ol732169/Documents/GitHub/FL_Carbon/FL_Carbon/Tiffs Soilgrids SOC 5-15cm/tileSG-011-022_1-3.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="450" RasterYSize="450" DataType="Int16" BlockXSize="450" BlockYSize="9" />
+      <SrcRect xOff="0" yOff="0" xSize="450" ySize="450" />
+      <DstRect xOff="900" yOff="0" xSize="450" ySize="450" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0" shared="0">//net.ucf.edu/COS/Profiles/ol732169/Documents/GitHub/FL_Carbon/FL_Carbon/Tiffs Soilgrids SOC 5-15cm/tileSG-012-024_4-2.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="23" RasterYSize="12" DataType="Int16" BlockXSize="23" BlockYSize="12" />
+      <SrcRect xOff="0" yOff="0" xSize="23" ySize="12" />
+      <DstRect xOff="4326" yOff="3151" xSize="23" ySize="12" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0" shared="0">//net.ucf.edu/COS/Profiles/ol732169/Documents/GitHub/FL_Carbon/FL_Carbon/Tiffs Soilgrids SOC 5-15cm/tileSG-011-023_4-3.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="450" RasterYSize="450" DataType="Int16" BlockXSize="450" BlockYSize="9" />
+      <SrcRect xOff="0" yOff="0" xSize="450" ySize="450" />
+      <DstRect xOff="2700" yOff="1350" xSize="450" ySize="450" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0" shared="0">//net.ucf.edu/COS/Profiles/ol732169/Documents/GitHub/FL_Carbon/FL_Carbon/Tiffs Soilgrids SOC 5-15cm/tileSG-012-023_2-3.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="320" RasterYSize="440" DataType="Int16" BlockXSize="320" BlockYSize="12" />
+      <SrcRect xOff="0" yOff="0" xSize="320" ySize="440" />
+      <DstRect xOff="2830" yOff="2250" xSize="320" ySize="440" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0" shared="0">//net.ucf.edu/COS/Profiles/ol732169/Documents/GitHub/FL_Carbon/FL_Carbon/Tiffs Soilgrids SOC 5-15cm/tileSG-011-023_4-4.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="400" RasterYSize="450" DataType="Int16" BlockXSize="400" BlockYSize="10" />
+      <SrcRect xOff="0" yOff="0" xSize="400" ySize="450" />
+      <DstRect xOff="3150" yOff="1350" xSize="400" ySize="450" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0" shared="0">//net.ucf.edu/COS/Profiles/ol732169/Documents/GitHub/FL_Carbon/FL_Carbon/Tiffs Soilgrids SOC 5-15cm/tileSG-011-022_2-1.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="450" RasterYSize="450" DataType="Int16" BlockXSize="450" BlockYSize="9" />
+      <SrcRect xOff="0" yOff="0" xSize="450" ySize="450" />
+      <DstRect xOff="0" yOff="450" xSize="450" ySize="450" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0" shared="0">//net.ucf.edu/COS/Profiles/ol732169/Documents/GitHub/FL_Carbon/FL_Carbon/Tiffs Soilgrids SOC 5-15cm/tileSG-011-022_4-4.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="134" RasterYSize="65" DataType="Int16" BlockXSize="134" BlockYSize="30" />
+      <SrcRect xOff="0" yOff="0" xSize="134" ySize="65" />
+      <DstRect xOff="1666" yOff="1350" xSize="134" ySize="65" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0" shared="0">//net.ucf.edu/COS/Profiles/ol732169/Documents/GitHub/FL_Carbon/FL_Carbon/Tiffs Soilgrids SOC 5-15cm/tileSG-011-023_3-3.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="450" RasterYSize="450" DataType="Int16" BlockXSize="450" BlockYSize="9" />
+      <SrcRect xOff="0" yOff="0" xSize="450" ySize="450" />
+      <DstRect xOff="2700" yOff="900" xSize="450" ySize="450" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0" shared="0">//net.ucf.edu/COS/Profiles/ol732169/Documents/GitHub/FL_Carbon/FL_Carbon/Tiffs Soilgrids SOC 5-15cm/tileSG-011-022_2-3.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="450" RasterYSize="450" DataType="Int16" BlockXSize="450" BlockYSize="9" />
+      <SrcRect xOff="0" yOff="0" xSize="450" ySize="450" />
+      <DstRect xOff="900" yOff="450" xSize="450" ySize="450" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0" shared="0">//net.ucf.edu/COS/Profiles/ol732169/Documents/GitHub/FL_Carbon/FL_Carbon/Tiffs Soilgrids SOC 5-15cm/tileSG-011-022_3-1.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="450" RasterYSize="450" DataType="Int16" BlockXSize="450" BlockYSize="9" />
+      <SrcRect xOff="0" yOff="0" xSize="450" ySize="450" />
+      <DstRect xOff="0" yOff="900" xSize="450" ySize="450" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0" shared="0">//net.ucf.edu/COS/Profiles/ol732169/Documents/GitHub/FL_Carbon/FL_Carbon/Tiffs Soilgrids SOC 5-15cm/tileSG-011-022_1-4.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="450" RasterYSize="450" DataType="Int16" BlockXSize="450" BlockYSize="9" />
+      <SrcRect xOff="0" yOff="0" xSize="450" ySize="450" />
+      <DstRect xOff="1350" yOff="0" xSize="450" ySize="450" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0" shared="0">//net.ucf.edu/COS/Profiles/ol732169/Documents/GitHub/FL_Carbon/FL_Carbon/Tiffs Soilgrids SOC 5-15cm/tileSG-011-022_3-3.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="450" RasterYSize="203" DataType="Int16" BlockXSize="450" BlockYSize="9" />
+      <SrcRect xOff="0" yOff="0" xSize="450" ySize="203" />
+      <DstRect xOff="900" yOff="900" xSize="450" ySize="203" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0" shared="0">//net.ucf.edu/COS/Profiles/ol732169/Documents/GitHub/FL_Carbon/FL_Carbon/Tiffs Soilgrids SOC 5-15cm/tileSG-012-023_3-4.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="450" RasterYSize="450" DataType="Int16" BlockXSize="450" BlockYSize="9" />
+      <SrcRect xOff="0" yOff="0" xSize="450" ySize="450" />
+      <DstRect xOff="3150" yOff="2700" xSize="450" ySize="450" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0" shared="0">//net.ucf.edu/COS/Profiles/ol732169/Documents/GitHub/FL_Carbon/FL_Carbon/Tiffs Soilgrids SOC 5-15cm/tileSG-012-024_2-1.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="359" RasterYSize="450" DataType="Int16" BlockXSize="359" BlockYSize="11" />
+      <SrcRect xOff="0" yOff="0" xSize="359" ySize="450" />
+      <DstRect xOff="3600" yOff="2250" xSize="359" ySize="450" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0" shared="0">//net.ucf.edu/COS/Profiles/ol732169/Documents/GitHub/FL_Carbon/FL_Carbon/Tiffs Soilgrids SOC 5-15cm/tileSG-011-023_1-3.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="450" RasterYSize="450" DataType="Int16" BlockXSize="450" BlockYSize="9" />
+      <SrcRect xOff="0" yOff="0" xSize="450" ySize="450" />
+      <DstRect xOff="2700" yOff="0" xSize="450" ySize="450" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0" shared="0">//net.ucf.edu/COS/Profiles/ol732169/Documents/GitHub/FL_Carbon/FL_Carbon/Tiffs Soilgrids SOC 5-15cm/tileSG-011-023_2-1.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="450" RasterYSize="450" DataType="Int16" BlockXSize="450" BlockYSize="9" />
+      <SrcRect xOff="0" yOff="0" xSize="450" ySize="450" />
+      <DstRect xOff="1800" yOff="450" xSize="450" ySize="450" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0" shared="0">//net.ucf.edu/COS/Profiles/ol732169/Documents/GitHub/FL_Carbon/FL_Carbon/Tiffs Soilgrids SOC 5-15cm/tileSG-011-022_2-2.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="450" RasterYSize="450" DataType="Int16" BlockXSize="450" BlockYSize="9" />
+      <SrcRect xOff="0" yOff="0" xSize="450" ySize="450" />
+      <DstRect xOff="450" yOff="450" xSize="450" ySize="450" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+  </VRTRasterBand>
+</VRTDataset>
