@@ -1,6 +1,6 @@
 sitetree<-read.csv("soilCNcomparison.csv", header=T, sep=",", stringsAsFactors = F)
 
-sitetree$CN_RATIO_USA48<-as.numeric(sitetree$CN_RATIO_USA48)
+sitetree$CN_RATIO_ORNL<-as.numeric(sitetree$CN_RATIO_ORNL)
 sitetree$SPCD<-as.factor(sitetree$SPCD)
 
 attach(sitetree)

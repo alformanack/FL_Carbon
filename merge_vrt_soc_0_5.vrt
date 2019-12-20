@@ -1,0 +1,416 @@
+<VRTDataset rasterXSize="5664" rasterYSize="3600">
+  <SRS dataAxisToSRSAxisMapping="1,2">PROJCS["Interrupted_Goode_Homolosine",GEOGCS["GCS_unnamed ellipse",DATUM["D_unknown",SPHEROID["Unknown",6378137,298.257223563]],PRIMEM["Greenwich",0],UNIT["Degree",0.0174532925199433]],PROJECTION["Interrupted_Goode_Homolosine"],UNIT["metre",1,AUTHORITY["EPSG","9001"]],AXIS["Easting",EAST],AXIS["Northing",NORTH]]</SRS>
+  <GeoTransform> -1.0137500000000000e+07,  2.5000000000000000e+02,  0.0000000000000000e+00,  3.6507500000000000e+06,  0.0000000000000000e+00, -2.5000000000000000e+02</GeoTransform>
+  <VRTRasterBand dataType="Int16" band="1">
+    <Metadata>
+      <MDI key="STATISTICS_APPROXIMATE">YES</MDI>
+      <MDI key="STATISTICS_MAXIMUM">2157</MDI>
+      <MDI key="STATISTICS_MEAN">520.65203581643</MDI>
+      <MDI key="STATISTICS_MINIMUM">221</MDI>
+      <MDI key="STATISTICS_STDDEV">192.81499522309</MDI>
+      <MDI key="STATISTICS_VALID_PERCENT">26.82</MDI>
+    </Metadata>
+    <NoDataValue>-32768</NoDataValue>
+    <ColorInterp>Gray</ColorInterp>
+    <ComplexSource resampling="nearest">
+      <SourceFilename relativeToVRT="1">Tiff Soilgrids SOC 0-5cm/tileSG-011-022_1-1.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="450" RasterYSize="450" DataType="Int16" BlockXSize="450" BlockYSize="9" />
+      <SrcRect xOff="0" yOff="0" xSize="450" ySize="450" />
+      <DstRect xOff="0" yOff="0" xSize="450" ySize="450" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource resampling="nearest">
+      <SourceFilename relativeToVRT="1">Tiff Soilgrids SOC 0-5cm/tileSG-011-022_1-2.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="450" RasterYSize="450" DataType="Int16" BlockXSize="450" BlockYSize="9" />
+      <SrcRect xOff="0" yOff="0" xSize="450" ySize="450" />
+      <DstRect xOff="450" yOff="0" xSize="450" ySize="450" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource resampling="nearest">
+      <SourceFilename relativeToVRT="1">Tiff Soilgrids SOC 0-5cm/tileSG-011-022_1-3.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="450" RasterYSize="450" DataType="Int16" BlockXSize="450" BlockYSize="9" />
+      <SrcRect xOff="0" yOff="0" xSize="450" ySize="450" />
+      <DstRect xOff="900" yOff="0" xSize="450" ySize="450" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource resampling="nearest">
+      <SourceFilename relativeToVRT="1">Tiff Soilgrids SOC 0-5cm/tileSG-011-022_1-4.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="450" RasterYSize="450" DataType="Int16" BlockXSize="450" BlockYSize="9" />
+      <SrcRect xOff="0" yOff="0" xSize="450" ySize="450" />
+      <DstRect xOff="1350" yOff="0" xSize="450" ySize="450" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource resampling="nearest">
+      <SourceFilename relativeToVRT="1">Tiff Soilgrids SOC 0-5cm/tileSG-011-022_2-1.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="450" RasterYSize="450" DataType="Int16" BlockXSize="450" BlockYSize="9" />
+      <SrcRect xOff="0" yOff="0" xSize="450" ySize="450" />
+      <DstRect xOff="0" yOff="450" xSize="450" ySize="450" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource resampling="nearest">
+      <SourceFilename relativeToVRT="1">Tiff Soilgrids SOC 0-5cm/tileSG-011-022_2-2.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="450" RasterYSize="450" DataType="Int16" BlockXSize="450" BlockYSize="9" />
+      <SrcRect xOff="0" yOff="0" xSize="450" ySize="450" />
+      <DstRect xOff="450" yOff="450" xSize="450" ySize="450" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource resampling="nearest">
+      <SourceFilename relativeToVRT="1">Tiff Soilgrids SOC 0-5cm/tileSG-011-022_2-3.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="450" RasterYSize="450" DataType="Int16" BlockXSize="450" BlockYSize="9" />
+      <SrcRect xOff="0" yOff="0" xSize="450" ySize="450" />
+      <DstRect xOff="900" yOff="450" xSize="450" ySize="450" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource resampling="nearest">
+      <SourceFilename relativeToVRT="1">Tiff Soilgrids SOC 0-5cm/tileSG-011-022_2-4.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="450" RasterYSize="450" DataType="Int16" BlockXSize="450" BlockYSize="9" />
+      <SrcRect xOff="0" yOff="0" xSize="450" ySize="450" />
+      <DstRect xOff="1350" yOff="450" xSize="450" ySize="450" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource resampling="nearest">
+      <SourceFilename relativeToVRT="1">Tiff Soilgrids SOC 0-5cm/tileSG-011-022_3-1.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="450" RasterYSize="450" DataType="Int16" BlockXSize="450" BlockYSize="9" />
+      <SrcRect xOff="0" yOff="0" xSize="450" ySize="450" />
+      <DstRect xOff="0" yOff="900" xSize="450" ySize="450" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource resampling="nearest">
+      <SourceFilename relativeToVRT="1">Tiff Soilgrids SOC 0-5cm/tileSG-011-022_3-2.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="450" RasterYSize="255" DataType="Int16" BlockXSize="450" BlockYSize="9" />
+      <SrcRect xOff="0" yOff="0" xSize="450" ySize="255" />
+      <DstRect xOff="450" yOff="900" xSize="450" ySize="255" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource resampling="nearest">
+      <SourceFilename relativeToVRT="1">Tiff Soilgrids SOC 0-5cm/tileSG-011-022_3-3.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="450" RasterYSize="203" DataType="Int16" BlockXSize="450" BlockYSize="9" />
+      <SrcRect xOff="0" yOff="0" xSize="450" ySize="203" />
+      <DstRect xOff="900" yOff="900" xSize="450" ySize="203" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource resampling="nearest">
+      <SourceFilename relativeToVRT="1">Tiff Soilgrids SOC 0-5cm/tileSG-011-022_3-4.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="450" RasterYSize="450" DataType="Int16" BlockXSize="450" BlockYSize="9" />
+      <SrcRect xOff="0" yOff="0" xSize="450" ySize="450" />
+      <DstRect xOff="1350" yOff="900" xSize="450" ySize="450" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource resampling="nearest">
+      <SourceFilename relativeToVRT="1">Tiff Soilgrids SOC 0-5cm/tileSG-011-022_4-1.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="286" RasterYSize="369" DataType="Int16" BlockXSize="286" BlockYSize="14" />
+      <SrcRect xOff="0" yOff="0" xSize="286" ySize="369" />
+      <DstRect xOff="0" yOff="1350" xSize="286" ySize="369" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource resampling="nearest">
+      <SourceFilename relativeToVRT="1">Tiff Soilgrids SOC 0-5cm/tileSG-011-022_4-4.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="134" RasterYSize="65" DataType="Int16" BlockXSize="134" BlockYSize="30" />
+      <SrcRect xOff="0" yOff="0" xSize="134" ySize="65" />
+      <DstRect xOff="1666" yOff="1350" xSize="134" ySize="65" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource resampling="nearest">
+      <SourceFilename relativeToVRT="1">Tiff Soilgrids SOC 0-5cm/tileSG-011-023_1-1.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="450" RasterYSize="450" DataType="Int16" BlockXSize="450" BlockYSize="9" />
+      <SrcRect xOff="0" yOff="0" xSize="450" ySize="450" />
+      <DstRect xOff="1800" yOff="0" xSize="450" ySize="450" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource resampling="nearest">
+      <SourceFilename relativeToVRT="1">Tiff Soilgrids SOC 0-5cm/tileSG-011-023_1-2.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="450" RasterYSize="450" DataType="Int16" BlockXSize="450" BlockYSize="9" />
+      <SrcRect xOff="0" yOff="0" xSize="450" ySize="450" />
+      <DstRect xOff="2250" yOff="0" xSize="450" ySize="450" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource resampling="nearest">
+      <SourceFilename relativeToVRT="1">Tiff Soilgrids SOC 0-5cm/tileSG-011-023_1-3.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="450" RasterYSize="450" DataType="Int16" BlockXSize="450" BlockYSize="9" />
+      <SrcRect xOff="0" yOff="0" xSize="450" ySize="450" />
+      <DstRect xOff="2700" yOff="0" xSize="450" ySize="450" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource resampling="nearest">
+      <SourceFilename relativeToVRT="1">Tiff Soilgrids SOC 0-5cm/tileSG-011-023_1-4.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="436" RasterYSize="450" DataType="Int16" BlockXSize="436" BlockYSize="9" />
+      <SrcRect xOff="0" yOff="0" xSize="436" ySize="450" />
+      <DstRect xOff="3150" yOff="0" xSize="436" ySize="450" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource resampling="nearest">
+      <SourceFilename relativeToVRT="1">Tiff Soilgrids SOC 0-5cm/tileSG-011-023_2-1.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="450" RasterYSize="450" DataType="Int16" BlockXSize="450" BlockYSize="9" />
+      <SrcRect xOff="0" yOff="0" xSize="450" ySize="450" />
+      <DstRect xOff="1800" yOff="450" xSize="450" ySize="450" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource resampling="nearest">
+      <SourceFilename relativeToVRT="1">Tiff Soilgrids SOC 0-5cm/tileSG-011-023_2-2.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="450" RasterYSize="450" DataType="Int16" BlockXSize="450" BlockYSize="9" />
+      <SrcRect xOff="0" yOff="0" xSize="450" ySize="450" />
+      <DstRect xOff="2250" yOff="450" xSize="450" ySize="450" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource resampling="nearest">
+      <SourceFilename relativeToVRT="1">Tiff Soilgrids SOC 0-5cm/tileSG-011-023_2-3.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="450" RasterYSize="450" DataType="Int16" BlockXSize="450" BlockYSize="9" />
+      <SrcRect xOff="0" yOff="0" xSize="450" ySize="450" />
+      <DstRect xOff="2700" yOff="450" xSize="450" ySize="450" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource resampling="nearest">
+      <SourceFilename relativeToVRT="1">Tiff Soilgrids SOC 0-5cm/tileSG-011-023_2-4.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="40" RasterYSize="155" DataType="Int16" BlockXSize="40" BlockYSize="102" />
+      <SrcRect xOff="0" yOff="0" xSize="40" ySize="155" />
+      <DstRect xOff="3150" yOff="450" xSize="40" ySize="155" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource resampling="nearest">
+      <SourceFilename relativeToVRT="1">Tiff Soilgrids SOC 0-5cm/tileSG-011-023_3-1.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="450" RasterYSize="450" DataType="Int16" BlockXSize="450" BlockYSize="9" />
+      <SrcRect xOff="0" yOff="0" xSize="450" ySize="450" />
+      <DstRect xOff="1800" yOff="900" xSize="450" ySize="450" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource resampling="nearest">
+      <SourceFilename relativeToVRT="1">Tiff Soilgrids SOC 0-5cm/tileSG-011-023_3-2.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="450" RasterYSize="450" DataType="Int16" BlockXSize="450" BlockYSize="9" />
+      <SrcRect xOff="0" yOff="0" xSize="450" ySize="450" />
+      <DstRect xOff="2250" yOff="900" xSize="450" ySize="450" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource resampling="nearest">
+      <SourceFilename relativeToVRT="1">Tiff Soilgrids SOC 0-5cm/tileSG-011-023_3-3.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="450" RasterYSize="450" DataType="Int16" BlockXSize="450" BlockYSize="9" />
+      <SrcRect xOff="0" yOff="0" xSize="450" ySize="450" />
+      <DstRect xOff="2700" yOff="900" xSize="450" ySize="450" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource resampling="nearest">
+      <SourceFilename relativeToVRT="1">Tiff Soilgrids SOC 0-5cm/tileSG-011-023_3-4.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="116" RasterYSize="319" DataType="Int16" BlockXSize="116" BlockYSize="35" />
+      <SrcRect xOff="0" yOff="0" xSize="116" ySize="319" />
+      <DstRect xOff="3150" yOff="1031" xSize="116" ySize="319" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource resampling="nearest">
+      <SourceFilename relativeToVRT="1">Tiff Soilgrids SOC 0-5cm/tileSG-011-023_4-1.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="122" RasterYSize="77" DataType="Int16" BlockXSize="122" BlockYSize="33" />
+      <SrcRect xOff="0" yOff="0" xSize="122" ySize="77" />
+      <DstRect xOff="1800" yOff="1350" xSize="122" ySize="77" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource resampling="nearest">
+      <SourceFilename relativeToVRT="1">Tiff Soilgrids SOC 0-5cm/tileSG-011-023_4-2.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="332" RasterYSize="278" DataType="Int16" BlockXSize="332" BlockYSize="12" />
+      <SrcRect xOff="0" yOff="0" xSize="332" ySize="278" />
+      <DstRect xOff="2368" yOff="1350" xSize="332" ySize="278" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource resampling="nearest">
+      <SourceFilename relativeToVRT="1">Tiff Soilgrids SOC 0-5cm/tileSG-011-023_4-3.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="450" RasterYSize="450" DataType="Int16" BlockXSize="450" BlockYSize="9" />
+      <SrcRect xOff="0" yOff="0" xSize="450" ySize="450" />
+      <DstRect xOff="2700" yOff="1350" xSize="450" ySize="450" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource resampling="nearest">
+      <SourceFilename relativeToVRT="1">Tiff Soilgrids SOC 0-5cm/tileSG-011-023_4-4.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="400" RasterYSize="450" DataType="Int16" BlockXSize="400" BlockYSize="10" />
+      <SrcRect xOff="0" yOff="0" xSize="400" ySize="450" />
+      <DstRect xOff="3150" yOff="1350" xSize="400" ySize="450" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource resampling="nearest">
+      <SourceFilename relativeToVRT="1">Tiff Soilgrids SOC 0-5cm/tileSG-012-023_1-3.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="384" RasterYSize="450" DataType="Int16" BlockXSize="384" BlockYSize="10" />
+      <SrcRect xOff="0" yOff="0" xSize="384" ySize="450" />
+      <DstRect xOff="2766" yOff="1800" xSize="384" ySize="450" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource resampling="nearest">
+      <SourceFilename relativeToVRT="1">Tiff Soilgrids SOC 0-5cm/tileSG-012-023_1-4.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="450" RasterYSize="450" DataType="Int16" BlockXSize="450" BlockYSize="9" />
+      <SrcRect xOff="0" yOff="0" xSize="450" ySize="450" />
+      <DstRect xOff="3150" yOff="1800" xSize="450" ySize="450" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource resampling="nearest">
+      <SourceFilename relativeToVRT="1">Tiff Soilgrids SOC 0-5cm/tileSG-012-023_2-3.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="320" RasterYSize="440" DataType="Int16" BlockXSize="320" BlockYSize="12" />
+      <SrcRect xOff="0" yOff="0" xSize="320" ySize="440" />
+      <DstRect xOff="2830" yOff="2250" xSize="320" ySize="440" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource resampling="nearest">
+      <SourceFilename relativeToVRT="1">Tiff Soilgrids SOC 0-5cm/tileSG-012-023_2-4.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="450" RasterYSize="450" DataType="Int16" BlockXSize="450" BlockYSize="9" />
+      <SrcRect xOff="0" yOff="0" xSize="450" ySize="450" />
+      <DstRect xOff="3150" yOff="2250" xSize="450" ySize="450" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource resampling="nearest">
+      <SourceFilename relativeToVRT="1">Tiff Soilgrids SOC 0-5cm/tileSG-012-023_3-3.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="69" RasterYSize="118" DataType="Int16" BlockXSize="69" BlockYSize="59" />
+      <SrcRect xOff="0" yOff="0" xSize="69" ySize="118" />
+      <DstRect xOff="3081" yOff="2712" xSize="69" ySize="118" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource resampling="nearest">
+      <SourceFilename relativeToVRT="1">Tiff Soilgrids SOC 0-5cm/tileSG-012-023_3-4.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="450" RasterYSize="450" DataType="Int16" BlockXSize="450" BlockYSize="9" />
+      <SrcRect xOff="0" yOff="0" xSize="450" ySize="450" />
+      <DstRect xOff="3150" yOff="2700" xSize="450" ySize="450" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource resampling="nearest">
+      <SourceFilename relativeToVRT="1">Tiff Soilgrids SOC 0-5cm/tileSG-012-023_4-4.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="130" RasterYSize="450" DataType="Int16" BlockXSize="130" BlockYSize="31" />
+      <SrcRect xOff="0" yOff="0" xSize="130" ySize="450" />
+      <DstRect xOff="3470" yOff="3150" xSize="130" ySize="450" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource resampling="nearest">
+      <SourceFilename relativeToVRT="1">Tiff Soilgrids SOC 0-5cm/tileSG-012-024_1-1.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="149" RasterYSize="393" DataType="Int16" BlockXSize="149" BlockYSize="27" />
+      <SrcRect xOff="0" yOff="0" xSize="149" ySize="393" />
+      <DstRect xOff="3600" yOff="1857" xSize="149" ySize="393" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource resampling="nearest">
+      <SourceFilename relativeToVRT="1">Tiff Soilgrids SOC 0-5cm/tileSG-012-024_2-1.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="359" RasterYSize="450" DataType="Int16" BlockXSize="359" BlockYSize="11" />
+      <SrcRect xOff="0" yOff="0" xSize="359" ySize="450" />
+      <DstRect xOff="3600" yOff="2250" xSize="359" ySize="450" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource resampling="nearest">
+      <SourceFilename relativeToVRT="1">Tiff Soilgrids SOC 0-5cm/tileSG-012-024_2-3.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="416" RasterYSize="225" DataType="Int16" BlockXSize="416" BlockYSize="9" />
+      <SrcRect xOff="0" yOff="0" xSize="416" ySize="225" />
+      <DstRect xOff="4534" yOff="2475" xSize="416" ySize="225" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource resampling="nearest">
+      <SourceFilename relativeToVRT="1">Tiff Soilgrids SOC 0-5cm/tileSG-012-024_2-4.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="85" RasterYSize="57" DataType="Int16" BlockXSize="85" BlockYSize="48" />
+      <SrcRect xOff="0" yOff="0" xSize="85" ySize="57" />
+      <DstRect xOff="4955" yOff="2643" xSize="85" ySize="57" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource resampling="nearest">
+      <SourceFilename relativeToVRT="1">Tiff Soilgrids SOC 0-5cm/tileSG-012-024_3-1.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="390" RasterYSize="450" DataType="Int16" BlockXSize="390" BlockYSize="10" />
+      <SrcRect xOff="0" yOff="0" xSize="390" ySize="450" />
+      <DstRect xOff="3600" yOff="2700" xSize="390" ySize="450" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource resampling="nearest">
+      <SourceFilename relativeToVRT="1">Tiff Soilgrids SOC 0-5cm/tileSG-012-024_3-2.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="168" RasterYSize="432" DataType="Int16" BlockXSize="168" BlockYSize="24" />
+      <SrcRect xOff="0" yOff="0" xSize="168" ySize="432" />
+      <DstRect xOff="4332" yOff="2715" xSize="168" ySize="432" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource resampling="nearest">
+      <SourceFilename relativeToVRT="1">Tiff Soilgrids SOC 0-5cm/tileSG-012-024_3-3.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="420" RasterYSize="450" DataType="Int16" BlockXSize="420" BlockYSize="9" />
+      <SrcRect xOff="0" yOff="0" xSize="420" ySize="450" />
+      <DstRect xOff="4500" yOff="2700" xSize="420" ySize="450" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource resampling="nearest">
+      <SourceFilename relativeToVRT="1">Tiff Soilgrids SOC 0-5cm/tileSG-012-024_3-4.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="232" RasterYSize="391" DataType="Int16" BlockXSize="232" BlockYSize="17" />
+      <SrcRect xOff="0" yOff="0" xSize="232" ySize="391" />
+      <DstRect xOff="4970" yOff="2700" xSize="232" ySize="391" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource resampling="nearest">
+      <SourceFilename relativeToVRT="1">Tiff Soilgrids SOC 0-5cm/tileSG-012-024_4-1.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="388" RasterYSize="450" DataType="Int16" BlockXSize="388" BlockYSize="10" />
+      <SrcRect xOff="0" yOff="0" xSize="388" ySize="450" />
+      <DstRect xOff="3600" yOff="3150" xSize="388" ySize="450" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource resampling="nearest">
+      <SourceFilename relativeToVRT="1">Tiff Soilgrids SOC 0-5cm/tileSG-012-024_4-2.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="23" RasterYSize="12" DataType="Int16" BlockXSize="23" BlockYSize="12" />
+      <SrcRect xOff="0" yOff="0" xSize="23" ySize="12" />
+      <DstRect xOff="4326" yOff="3151" xSize="23" ySize="12" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource resampling="nearest">
+      <SourceFilename relativeToVRT="1">Tiff Soilgrids SOC 0-5cm/tileSG-012-024_4-3.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="163" RasterYSize="450" DataType="Int16" BlockXSize="163" BlockYSize="25" />
+      <SrcRect xOff="0" yOff="0" xSize="163" ySize="450" />
+      <DstRect xOff="4787" yOff="3150" xSize="163" ySize="450" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource resampling="nearest">
+      <SourceFilename relativeToVRT="1">Tiff Soilgrids SOC 0-5cm/tileSG-012-024_4-4.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="450" RasterYSize="409" DataType="Int16" BlockXSize="450" BlockYSize="9" />
+      <SrcRect xOff="0" yOff="0" xSize="450" ySize="409" />
+      <DstRect xOff="4950" yOff="3191" xSize="450" ySize="409" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+    <ComplexSource resampling="nearest">
+      <SourceFilename relativeToVRT="1">Tiff Soilgrids SOC 0-5cm/tileSG-012-025_4-1.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="264" RasterYSize="357" DataType="Int16" BlockXSize="264" BlockYSize="15" />
+      <SrcRect xOff="0" yOff="0" xSize="264" ySize="357" />
+      <DstRect xOff="5400" yOff="3243" xSize="264" ySize="357" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+  </VRTRasterBand>
+</VRTDataset>
