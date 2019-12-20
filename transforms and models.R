@@ -1,3 +1,4 @@
+setwd("//net.ucf.edu/COS/Profiles/ol732169/Documents/GitHub/FL_Carbon/FL_Carbon")
 sitetree<-read.csv("sitetree12.17.19.csv", header=T, sep=",", stringsAsFactors = F)
 
 attach(sitetree)
@@ -6,25 +7,34 @@ sitetree$SPCD<-as.factor(sitetree$SPCD)
 
 # calculate soil C:N for ORNL
 
-sitetree<-mutate(sitetree, ORNL_CN=(SOC_ORNL_kgperm2*1000)/N_ORNL_gperm2)
+#sitetree<-mutate(sitetree, ORNL_CN=(SOC_ORNL_kgperm2*1000)/N_ORNL_gperm2)
+sitetree$ORNL_CN<-sitetree$SOC_ORNL_kgperm2*1000/sitetree$N_ORNL_gperm2
 
 # calculate weighted averages and soil C:N for Soilgrids data
 
-sitetree<-mutate(sitetree, SOILGRIDS_C_AVG=((Soilgrids_C_0.5/10)*(1/3))+((Soilgrids_C_5.15/10)*(2/3)))
+#sitetree<-mutate(sitetree, SOILGRIDS_C_AVG=((Soilgrids_C_0.5/10)*(1/3))+((Soilgrids_C_5.15/10)*(2/3)))
+sitetree$SOILGRIDS_C_AVG<-(sitetree$Soilgrids_C_0.5/10)*(1/3)+((sitetree$Soilgrids_C_5.15/10)*(2/3))
                  
-sitetree<-mutate(sitetree, SOILGRIDS_N_AVG=((Soilgrids_N_0.5/100)*(1/3))+((Soilgrids_N_5.15/100)*(2/3)))                 
+#sitetree<-mutate(sitetree, SOILGRIDS_N_AVG=((Soilgrids_N_0.5/100)*(1/3))+((Soilgrids_N_5.15/100)*(2/3)))                 
+sitetree$SOILGRIDS_N_AVG<-(sitetree$Soilgrids_N_0.5/100)*(1/3)+((sitetree$Soilgrids_N_5.15/100)*(2/3))                 
 
-sitetree<-mutate(sitetree, SOILGRIDS_CN=SOILGRIDS_C_AVG/SOILGRIDS_N_AVG)  
+#sitetree<-mutate(sitetree, SOILGRIDS_CN=SOILGRIDS_C_AVG/SOILGRIDS_N_AVG)  
+sitetree$SOILGRIDS_CN<-sitetree$SOILGRIDS_C_AVG/sitetree$SOILGRIDS_N_AVG 
+
+sitetree$FIA_CN_RATIO<-as.numeric(sitetree$FIA_CN_RATIO)
+sitetree[which(is.finite(sitetree$SOILGRIDS_CN)==F),"SOILGRIDS_CN"]<-NA
+#sitetree[which(is.finite(sitetree$FIA_CN_RATIO)==F),"FIA_CN_RATIO"]<-NA
+model<-lm(FIA_CN_RATIO~SOILGRIDS_CN, data=sitetree)
 
 # comparing soils data with FIA
 
-plot(ORNL_CN, FIA_CN_RATIO)                 
+plot(sitetree$ORNL_CN, sitetree$FIA_CN_RATIO)                 
 
-plot(SOILGRIDS_CN, FIA_CN_RATIO)
+plot(sitetree$SOILGRIDS_CN, sitetree$FIA_CN_RATIO)
 
 # checking variable normality
 
-boxcox(model3)
+MASS:boxcox(model3)
 
 normali1 <- function (x)
 {mnT <- mean(x)
