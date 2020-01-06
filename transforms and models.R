@@ -1,4 +1,4 @@
-setwd("//net.ucf.edu/COS/Profiles/ol732169/Documents/GitHub/FL_Carbon/FL_Carbon")
+setwd("C:/Users/Alicia/Documents/GitHub/FL_Carbon")
 sitetree<-read.csv("sitetree12.17.19.csv", header=T, sep=",", stringsAsFactors = F)
 
 attach(sitetree)
@@ -25,6 +25,9 @@ sitetree$FIA_CN_RATIO<-as.numeric(sitetree$FIA_CN_RATIO)
 sitetree[which(is.finite(sitetree$SOILGRIDS_CN)==F),"SOILGRIDS_CN"]<-NA
 #sitetree[which(is.finite(sitetree$FIA_CN_RATIO)==F),"FIA_CN_RATIO"]<-NA
 model<-lm(FIA_CN_RATIO~SOILGRIDS_CN, data=sitetree)
+summary(model)
+
+sitetree$SOILGRIDS_CN_SCALE<-(sitetree$SOILGRIDS_CN*6.045)+19.775
 
 # comparing soils data with FIA
 
@@ -34,13 +37,12 @@ plot(sitetree$SOILGRIDS_CN, sitetree$FIA_CN_RATIO)
 
 # checking variable normality
 
-MASS:boxcox(model3)
 
 normali1 <- function (x)
-{mnT <- mean(x)
-sdT <- sd(x)
+{mnT <- mean(x,na.rm=T)
+sdT <- sd(x,na.rm=T)
 h<-hist(x, breaks=10, col="orangered1")
-xfit<-seq(min(x),max(x), length=100) 
+xfit<-seq(min(x,na.rm=T),max(x,na.rm=T), length=100) 
 yfit<-dnorm(xfit,mean=mnT,sd=sdT) 
 yfit <- yfit*diff(h$mids[1:2])*length(x) 
 lines(xfit, yfit, col="purple3", lwd=2)
@@ -48,26 +50,28 @@ qqnorm(x)
 qqline(x)
 shapiro.test(x)}
 
+par(mfrow=c(1,2))
 
 normali1(DIA)
-sitetree<-mutate(sitetree, logDIA=log10(DIA))
+sitetree$logDIA<-log10(sitetree$DIA)
 normali1(sitetree$logDIA)
-sitetree<-mutate(sitetree, lnDIA=log(DIA))
-normali1(sitetree$lnDIA)
+
+
+
 
 normali1(AVG_TEMP_bioclim)
-sitetree<-mutate(sitetree, logAVG_TEMP=log10(AVG_TEMP_bioclim))
+sitetree$logAVG_TEMP<-log10(sitetree$AVG_TEMP_bioclim)
 normali1(sitetree$logAVG_TEMP)
-sitetree<-mutate(sitetree, lnAVG_TEMP=log(AVG_TEMP_bioclim))
+sitetree<-dplyr::mutate(sitetree, lnAVG_TEMP=log(AVG_TEMP_bioclim))
 normali1(sitetree$lnAVG_TEMP)
 
-normali1(SOILGRIDS_CN)
-sitetree<-mutate(sitetree, logSOILGRIDS_CN=log10(SOILGRIDS_CN))
-normali1(na.omit(sitetree$logSOILGRIDS_CN))
+normali1(sitetree$SOILGRIDS_CN_SCALE)
+sitetree<-mutate(sitetree, logSOILGRIDS_CN_SCALE=log10(SOILGRIDS_CN_SCALE))
+normali1(na.omit(sitetree$logSOILGRIDS_CN_SCALE))
 
 normali1(AGEDIA)
-sitetree<-mutate(sitetree, logAGEDIA=log10(AGEDIA))
-normali1(sitetree$logAGEDIA)
+sitetree<-mutate(sitetree, sqrtAGEDIA=sqrt(AGEDIA))
+normali1(sitetree$sqrtAGEDIA)
 
 normali1(SOIL_MOIS)
 sitetree<-mutate(sitetree, logSOIL_MOIS=log10(SOIL_MOIS))
@@ -81,11 +85,11 @@ pairs(DIA~AVG_TEMP_bioclim+AGEDIA+ORNL_CN+SOIL_MOIS+SPCD)
 
 # building models
 
-model1<-lm(logDIA~AVG_TEMP_bioclim+AGEDIA+SOILGRIDS_CN+SOIL_MOIS+SPCD)
+model1<-lm(logDIA~AVG_TEMP_bioclim+AGEDIA+SOILGRIDS_CN+SOIL_MOIS, data=sitetree)
 summary(model1)
 plot(model1)
 
-model2<-lm(na.omit(logDIA~AVG_TEMP_bioclim+AGEDIA+logSOILGRIDS_CN+SOIL_MOIS+SPCD))
+model2<-lm(logDIA~AVG_TEMP_bioclim+logAGEDIA+logSOILGRIDS_CN_SCALE+SOIL_MOIS, data=sitetree)
 summary(model2)
 plot(model2)
 
