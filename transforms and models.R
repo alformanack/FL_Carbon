@@ -70,7 +70,7 @@ sitetree<-mutate(sitetree, logSOILGRIDS_CN_SCALE=log10(SOILGRIDS_CN_SCALE))
 normali1(na.omit(sitetree$logSOILGRIDS_CN_SCALE))
 
 normali1(AGEDIA)
-sitetree<-mutate(sitetree, sqrtAGEDIA=sqrt(AGEDIA))
+sitetree$logAGEDIA<-log10(sitetree$AGEDIA)
 normali1(sitetree$sqrtAGEDIA)
 
 normali1(SOIL_MOIS)
@@ -96,13 +96,6 @@ plot(model2)
 model3<-lm(logDIA~logAVG_TEMP+AGEDIA+logSOILGRIDS_CN+SOIL_MOIS+SPCD)
 summary(model3)
 
-model4<-lm(logDIA~logAVG_TEMP+logAGEDIA+logSOILGRIDS_CN+SOIL_MOIS+SPCD)
-summary(model4)
-plot(model4)
-
-model5<-lm(logDIA~logAVG_TEMP_bioclim+logAGEDIA+logSOILGRIDS_CN+SOIL_MOIS+SPCD)
-
-AICctab(model1, model2, model3, model4, base=T, delta=T, weights=T)
 
 # subsetting species
 
@@ -114,4 +107,25 @@ loblolly<-subset(sitetree, sitetree$SPCD=="131")
 
 model6<-lm(na.omit(slashpine$logDIA~slashpine$logAVG_TEMP+slashpine$logAGEDIA+slashpine$logSOILGRIDS_CN+slashpine$SOIL_MOIS))
 summary(model6)
-plot(model4)
+plot(model6)
+
+slashpinemodel<-lm(logDIA~AVG_TEMP_bioclim+logAGEDIA+logSOILGRIDS_CN_SCALE+SOIL_MOIS, data=slashpine)
+summary(slashpinemodel)
+
+longleafmodel<-lm(logDIA~AVG_TEMP_bioclim+logAGEDIA+logSOILGRIDS_CN_SCALE+SOIL_MOIS, data=longleaf)
+summary(longleafmodel)
+
+loblollymodel<-lm(logDIA~AVG_TEMP_bioclim+logAGEDIA+logSOILGRIDS_CN_SCALE+SOIL_MOIS, data=loblolly)
+summary(loblollymodel)
+
+slashgrowth<-(10^.381*10^(.0012*22)*(.346*slashpine$AGEDIA^-.654)*(60^-.0069)*(10^(-.0001*250)))
+longleafgrowth<-(10^-.043)*(10^(.023*22))*(.39*longleaf$AGEDIA^-.61)*(10^(-.00033*250))
+loblollygrowth<-(10^(-.56))*10^(.053*22)*(.45*loblolly$AGEDIA^-.55)  
+
+plot(slashpine$AGEDIA, slashgrowth,ylim=c(0,0.5), xlab="Age", ylab="growth (in/yr)")
+lines(longleaf$AGEDIA, longleafgrowth, type="p",col="red")
+lines(loblolly$AGEDIA, loblollygrowth, type="p", col="blue")
+
+hist(loblolly$DIA)
+hist(slashpine$DIA)
+hist(longleaf$DIA)
