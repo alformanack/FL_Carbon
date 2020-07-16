@@ -1,0 +1,1727 @@
+<!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
+<qgis projectname="" version="3.10.1-A Coruña">
+  <homePath path=""/>
+  <title></title>
+  <autotransaction active="0"/>
+  <evaluateDefaultValues active="0"/>
+  <trust active="0"/>
+  <projectCrs>
+    <spatialrefsys>
+      <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
+      <srsid>3452</srsid>
+      <srid>4326</srid>
+      <authid>EPSG:4326</authid>
+      <description>WGS 84</description>
+      <projectionacronym>longlat</projectionacronym>
+      <ellipsoidacronym>WGS84</ellipsoidacronym>
+      <geographicflag>true</geographicflag>
+    </spatialrefsys>
+  </projectCrs>
+  <layer-tree-group>
+    <customproperties/>
+    <layer-tree-layer name="Sampled Points" providerKey="memory" expanded="1" source="Point?crs=EPSG:4326&amp;field=plot:integer(0,0)&amp;field=LAT:double(0,0)&amp;field=LON:double(0,0)&amp;field=aridity_1:double(0,0)&amp;field=temp_1:double(0,0)&amp;field=SOC_0_5_1:double(0,0)&amp;field=SOC_5_15_1:double(0,0)&amp;field=N_0_5_1:double(0,0)&amp;field=N_5_15_1:double(0,0)&amp;field=S_0_5_1:double(0,0)&amp;uid={9cbf5fba-53f7-4713-a1ab-6a6e4c3a58ba}" checked="Qt::Checked" id="Sampled_Points_15af602b_33e6_48f7_845b_8316a2040cf9">
+      <customproperties/>
+    </layer-tree-layer>
+    <layer-tree-layer name="merge_SOC_5_15cm_default_projection" providerKey="gdal" expanded="1" source="./Maps/merge_SOC_5_15cm_default_projection.tif" checked="Qt::Checked" id="merge_SOC_5_15cm_default_projection_8e47f696_8034_4e44_a152_8c9615102322">
+      <customproperties/>
+    </layer-tree-layer>
+    <layer-tree-layer name="merge_SOC_0_5cm_default_projection" providerKey="gdal" expanded="1" source="./Maps/merge_SOC_0_5cm_default_projection.tif" checked="Qt::Checked" id="merge_SOC_0_5cm_default_projection_6e4d2ecd_5d7f_4b8c_b4f7_1b2ecb05e9aa">
+      <customproperties/>
+    </layer-tree-layer>
+    <layer-tree-layer name="merge_N_5_15cm_default_projection" providerKey="gdal" expanded="1" source="./Maps/merge_N_5_15cm_default_projection.tif" checked="Qt::Checked" id="merge_N_5_15cm_default_projection_da47ec6f_20df_45f9_9a6e_2bfbdc2a1a6f">
+      <customproperties/>
+    </layer-tree-layer>
+    <layer-tree-layer name="merge_N_0_5cm_default_projection" providerKey="gdal" expanded="1" source="./Maps/merge_N_0_5cm_default_projection.tif" checked="Qt::Checked" id="merge_N_0_5cm_default_projection_74b171b7_7f37_4efa_a44d_c73916535754">
+      <customproperties/>
+    </layer-tree-layer>
+    <layer-tree-layer name="Sampled Points" providerKey="memory" expanded="1" source="Point?crs=EPSG:4326&amp;field=plot:integer(0,0)&amp;field=LAT:double(0,0)&amp;field=LON:double(0,0)&amp;field=aridity_1:double(0,0)&amp;field=temp_1:double(0,0)&amp;field=SOC_0_5_1:double(0,0)&amp;field=SOC_5_15_1:double(0,0)&amp;field=N_0_5_1:double(0,0)&amp;field=N_5_15_1:double(0,0)&amp;uid={0b36eccf-7b37-440e-98aa-7b31c65a467a}" checked="Qt::Checked" id="Sampled_Points_b04bc6fb_4638_4c5d_bf73_de7a2ebbc7f3">
+      <customproperties/>
+    </layer-tree-layer>
+    <layer-tree-layer name="slash plot coordinates FIA" providerKey="delimitedtext" expanded="1" source="./slash plot coordinates FIA.csv?type=csv&amp;detectTypes=yes&amp;xField=LON&amp;yField=LAT&amp;crs=EPSG:4326&amp;spatialIndex=no&amp;subsetIndex=no&amp;watchFile=no" checked="Qt::Unchecked" id="slash_plot_coordinates_FIA_64e397e6_67c0_49f1_b068_87e2a6236d87">
+      <customproperties/>
+    </layer-tree-layer>
+    <layer-tree-layer name="nitrogen_5-15cm_mean" providerKey="wcs" expanded="1" source="cache=PreferNetwork&amp;crs=EPSG:4326&amp;dpiMode=7&amp;format=GEOTIFF_INT16&amp;identifier=nitrogen_5-15cm_mean&amp;url=https://maps.isric.org/mapserv?map%3D/map/nitrogen.map" checked="Qt::Checked" id="nitrogen_5_15cm_mean_4a4f94f1_bfa8_4bbd_9542_e1d9afafc96c">
+      <customproperties/>
+    </layer-tree-layer>
+    <layer-tree-layer name="nitrogen_0-5cm_mean" providerKey="wcs" expanded="1" source="cache=PreferNetwork&amp;crs=EPSG:4326&amp;dpiMode=7&amp;format=GEOTIFF_INT16&amp;identifier=nitrogen_0-5cm_mean&amp;url=https://maps.isric.org/mapserv?map%3D/map/nitrogen.map" checked="Qt::Checked" id="nitrogen_0_5cm_mean_511710f4_c15d_4683_8513_46a2ff272e7e">
+      <customproperties/>
+    </layer-tree-layer>
+    <layer-tree-layer name="soc_5-15cm_mean" providerKey="wcs" expanded="1" source="cache=PreferNetwork&amp;crs=EPSG:4326&amp;dpiMode=7&amp;format=GEOTIFF_INT16&amp;identifier=soc_5-15cm_mean&amp;url=https://maps.isric.org/mapserv?map%3D/map/soc.map" checked="Qt::Checked" id="soc_5_15cm_mean_3aa3de2f_3eca_4d45_a30c_6f365a7da272">
+      <customproperties/>
+    </layer-tree-layer>
+    <layer-tree-layer name="soc_0-5cm_mean" providerKey="wcs" expanded="1" source="cache=PreferNetwork&amp;crs=EPSG:4326&amp;dpiMode=7&amp;format=GEOTIFF_INT16&amp;identifier=soc_0-5cm_mean&amp;url=https://maps.isric.org/mapserv?map%3D/map/soc.map" checked="Qt::Checked" id="soc_0_5cm_mean_fd72d865_9dd9_419e_a448_3378a17746c8">
+      <customproperties/>
+    </layer-tree-layer>
+    <custom-order enabled="0">
+      <item>soc_0_5cm_mean_fd72d865_9dd9_419e_a448_3378a17746c8</item>
+      <item>soc_5_15cm_mean_3aa3de2f_3eca_4d45_a30c_6f365a7da272</item>
+      <item>nitrogen_0_5cm_mean_511710f4_c15d_4683_8513_46a2ff272e7e</item>
+      <item>nitrogen_5_15cm_mean_4a4f94f1_bfa8_4bbd_9542_e1d9afafc96c</item>
+      <item>slash_plot_coordinates_FIA_64e397e6_67c0_49f1_b068_87e2a6236d87</item>
+      <item>Sampled_Points_b04bc6fb_4638_4c5d_bf73_de7a2ebbc7f3</item>
+      <item>merge_N_0_5cm_default_projection_74b171b7_7f37_4efa_a44d_c73916535754</item>
+      <item>merge_N_5_15cm_default_projection_da47ec6f_20df_45f9_9a6e_2bfbdc2a1a6f</item>
+      <item>merge_SOC_0_5cm_default_projection_6e4d2ecd_5d7f_4b8c_b4f7_1b2ecb05e9aa</item>
+      <item>merge_SOC_5_15cm_default_projection_8e47f696_8034_4e44_a152_8c9615102322</item>
+      <item>Sampled_Points_15af602b_33e6_48f7_845b_8316a2040cf9</item>
+    </custom-order>
+  </layer-tree-group>
+  <snapping-settings mode="2" intersection-snapping="0" enabled="0" type="1" unit="1" tolerance="12">
+    <individual-layer-settings>
+      <layer-setting units="1" enabled="0" type="1" id="Sampled_Points_b04bc6fb_4638_4c5d_bf73_de7a2ebbc7f3" tolerance="12"/>
+      <layer-setting units="1" enabled="0" type="1" id="Sampled_Points_15af602b_33e6_48f7_845b_8316a2040cf9" tolerance="12"/>
+      <layer-setting units="1" enabled="0" type="1" id="slash_plot_coordinates_FIA_64e397e6_67c0_49f1_b068_87e2a6236d87" tolerance="12"/>
+    </individual-layer-settings>
+  </snapping-settings>
+  <relations/>
+  <mapcanvas name="theMapCanvas" annotationsVisible="1">
+    <units>degrees</units>
+    <extent>
+      <xmin>-85.73649824124098018</xmin>
+      <ymin>24.49829311150308087</ymin>
+      <xmax>-77.84757536421139434</xmax>
+      <ymax>31.76737204819462335</ymax>
+    </extent>
+    <rotation>0</rotation>
+    <destinationsrs>
+      <spatialrefsys>
+        <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
+        <srsid>3452</srsid>
+        <srid>4326</srid>
+        <authid>EPSG:4326</authid>
+        <description>WGS 84</description>
+        <projectionacronym>longlat</projectionacronym>
+        <ellipsoidacronym>WGS84</ellipsoidacronym>
+        <geographicflag>true</geographicflag>
+      </spatialrefsys>
+    </destinationsrs>
+    <rendermaptile>0</rendermaptile>
+    <expressionContextScope/>
+  </mapcanvas>
+  <projectModels/>
+  <legend updateDrawingOrder="true">
+    <legendlayer name="Sampled Points" open="true" checked="Qt::Checked" drawingOrder="-1" showFeatureCount="0">
+      <filegroup open="true" hidden="false">
+        <legendlayerfile visible="1" isInOverview="0" layerid="Sampled_Points_15af602b_33e6_48f7_845b_8316a2040cf9"/>
+      </filegroup>
+    </legendlayer>
+    <legendlayer name="merge_SOC_5_15cm_default_projection" open="true" checked="Qt::Checked" drawingOrder="-1" showFeatureCount="0">
+      <filegroup open="true" hidden="false">
+        <legendlayerfile visible="1" isInOverview="0" layerid="merge_SOC_5_15cm_default_projection_8e47f696_8034_4e44_a152_8c9615102322"/>
+      </filegroup>
+    </legendlayer>
+    <legendlayer name="merge_SOC_0_5cm_default_projection" open="true" checked="Qt::Checked" drawingOrder="-1" showFeatureCount="0">
+      <filegroup open="true" hidden="false">
+        <legendlayerfile visible="1" isInOverview="0" layerid="merge_SOC_0_5cm_default_projection_6e4d2ecd_5d7f_4b8c_b4f7_1b2ecb05e9aa"/>
+      </filegroup>
+    </legendlayer>
+    <legendlayer name="merge_N_5_15cm_default_projection" open="true" checked="Qt::Checked" drawingOrder="-1" showFeatureCount="0">
+      <filegroup open="true" hidden="false">
+        <legendlayerfile visible="1" isInOverview="0" layerid="merge_N_5_15cm_default_projection_da47ec6f_20df_45f9_9a6e_2bfbdc2a1a6f"/>
+      </filegroup>
+    </legendlayer>
+    <legendlayer name="merge_N_0_5cm_default_projection" open="true" checked="Qt::Checked" drawingOrder="-1" showFeatureCount="0">
+      <filegroup open="true" hidden="false">
+        <legendlayerfile visible="1" isInOverview="0" layerid="merge_N_0_5cm_default_projection_74b171b7_7f37_4efa_a44d_c73916535754"/>
+      </filegroup>
+    </legendlayer>
+    <legendlayer name="Sampled Points" open="true" checked="Qt::Checked" drawingOrder="-1" showFeatureCount="0">
+      <filegroup open="true" hidden="false">
+        <legendlayerfile visible="1" isInOverview="0" layerid="Sampled_Points_b04bc6fb_4638_4c5d_bf73_de7a2ebbc7f3"/>
+      </filegroup>
+    </legendlayer>
+    <legendlayer name="slash plot coordinates FIA" open="true" checked="Qt::Unchecked" drawingOrder="-1" showFeatureCount="0">
+      <filegroup open="true" hidden="false">
+        <legendlayerfile visible="0" isInOverview="0" layerid="slash_plot_coordinates_FIA_64e397e6_67c0_49f1_b068_87e2a6236d87"/>
+      </filegroup>
+    </legendlayer>
+    <legendlayer name="nitrogen_5-15cm_mean" open="true" checked="Qt::Checked" drawingOrder="-1" showFeatureCount="0">
+      <filegroup open="true" hidden="false">
+        <legendlayerfile visible="1" isInOverview="0" layerid="nitrogen_5_15cm_mean_4a4f94f1_bfa8_4bbd_9542_e1d9afafc96c"/>
+      </filegroup>
+    </legendlayer>
+    <legendlayer name="nitrogen_0-5cm_mean" open="true" checked="Qt::Checked" drawingOrder="-1" showFeatureCount="0">
+      <filegroup open="true" hidden="false">
+        <legendlayerfile visible="1" isInOverview="0" layerid="nitrogen_0_5cm_mean_511710f4_c15d_4683_8513_46a2ff272e7e"/>
+      </filegroup>
+    </legendlayer>
+    <legendlayer name="soc_5-15cm_mean" open="true" checked="Qt::Checked" drawingOrder="-1" showFeatureCount="0">
+      <filegroup open="true" hidden="false">
+        <legendlayerfile visible="1" isInOverview="0" layerid="soc_5_15cm_mean_3aa3de2f_3eca_4d45_a30c_6f365a7da272"/>
+      </filegroup>
+    </legendlayer>
+    <legendlayer name="soc_0-5cm_mean" open="true" checked="Qt::Checked" drawingOrder="-1" showFeatureCount="0">
+      <filegroup open="true" hidden="false">
+        <legendlayerfile visible="1" isInOverview="0" layerid="soc_0_5cm_mean_fd72d865_9dd9_419e_a448_3378a17746c8"/>
+      </filegroup>
+    </legendlayer>
+  </legend>
+  <mapViewDocks/>
+  <mapViewDocks3D/>
+  <mapcanvas name="mAreaCanvas" annotationsVisible="1">
+    <units>degrees</units>
+    <extent>
+      <xmin>0</xmin>
+      <ymin>0</ymin>
+      <xmax>0</xmax>
+      <ymax>0</ymax>
+    </extent>
+    <rotation>0</rotation>
+    <destinationsrs>
+      <spatialrefsys>
+        <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
+        <srsid>3452</srsid>
+        <srid>4326</srid>
+        <authid>EPSG:4326</authid>
+        <description>WGS 84</description>
+        <projectionacronym>longlat</projectionacronym>
+        <ellipsoidacronym>WGS84</ellipsoidacronym>
+        <geographicflag>true</geographicflag>
+      </spatialrefsys>
+    </destinationsrs>
+    <rendermaptile>0</rendermaptile>
+    <expressionContextScope/>
+  </mapcanvas>
+  <mapcanvas name="mAreaCanvas" annotationsVisible="1">
+    <units>degrees</units>
+    <extent>
+      <xmin>0</xmin>
+      <ymin>0</ymin>
+      <xmax>0</xmax>
+      <ymax>0</ymax>
+    </extent>
+    <rotation>0</rotation>
+    <destinationsrs>
+      <spatialrefsys>
+        <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
+        <srsid>3452</srsid>
+        <srid>4326</srid>
+        <authid>EPSG:4326</authid>
+        <description>WGS 84</description>
+        <projectionacronym>longlat</projectionacronym>
+        <ellipsoidacronym>WGS84</ellipsoidacronym>
+        <geographicflag>true</geographicflag>
+      </spatialrefsys>
+    </destinationsrs>
+    <rendermaptile>0</rendermaptile>
+    <expressionContextScope/>
+  </mapcanvas>
+  <mapcanvas name="mAreaCanvas" annotationsVisible="1">
+    <units>degrees</units>
+    <extent>
+      <xmin>0</xmin>
+      <ymin>0</ymin>
+      <xmax>0</xmax>
+      <ymax>0</ymax>
+    </extent>
+    <rotation>0</rotation>
+    <destinationsrs>
+      <spatialrefsys>
+        <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
+        <srsid>3452</srsid>
+        <srid>4326</srid>
+        <authid>EPSG:4326</authid>
+        <description>WGS 84</description>
+        <projectionacronym>longlat</projectionacronym>
+        <ellipsoidacronym>WGS84</ellipsoidacronym>
+        <geographicflag>true</geographicflag>
+      </spatialrefsys>
+    </destinationsrs>
+    <rendermaptile>0</rendermaptile>
+    <expressionContextScope/>
+  </mapcanvas>
+  <mapcanvas name="mAreaCanvas" annotationsVisible="1">
+    <units>degrees</units>
+    <extent>
+      <xmin>-198.00000000000002842</xmin>
+      <ymin>-99.00000000000001421</ymin>
+      <xmax>198.00000000000002842</xmax>
+      <ymax>99.00000000000001421</ymax>
+    </extent>
+    <rotation>0</rotation>
+    <destinationsrs>
+      <spatialrefsys>
+        <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
+        <srsid>3452</srsid>
+        <srid>4326</srid>
+        <authid>EPSG:4326</authid>
+        <description>WGS 84</description>
+        <projectionacronym>longlat</projectionacronym>
+        <ellipsoidacronym>WGS84</ellipsoidacronym>
+        <geographicflag>true</geographicflag>
+      </spatialrefsys>
+    </destinationsrs>
+    <rendermaptile>0</rendermaptile>
+    <expressionContextScope/>
+  </mapcanvas>
+  <projectlayers>
+    <maplayer simplifyDrawingTol="1" simplifyLocal="1" wkbType="Point" type="vector" simplifyMaxScale="1" autoRefreshTime="0" simplifyAlgorithm="0" simplifyDrawingHints="1" minScale="1e+08" labelsEnabled="0" maxScale="0" styleCategories="AllStyleCategories" refreshOnNotifyEnabled="0" autoRefreshEnabled="0" geometry="Point" readOnly="0" refreshOnNotifyMessage="" hasScaleBasedVisibilityFlag="0">
+      <extent>
+        <xmin>-85.00047999999999604</xmin>
+        <ymin>26.35999999999999943</ymin>
+        <xmax>-80.07999999999999829</xmax>
+        <ymax>30.22870999999999952</ymax>
+      </extent>
+      <id>Sampled_Points_15af602b_33e6_48f7_845b_8316a2040cf9</id>
+      <datasource>memory?geometry=Point&amp;crs=EPSG:4326&amp;field=plot:integer(0,0)&amp;field=LAT:double(0,0)&amp;field=LON:double(0,0)&amp;field=aridity_1:double(0,0)&amp;field=temp_1:double(0,0)&amp;field=SOC_0_5_1:double(0,0)&amp;field=SOC_5_15_1:double(0,0)&amp;field=N_0_5_1:double(0,0)&amp;field=N_5_15_1:double(0,0)&amp;field=S_0_5_1:double(0,0)</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>Sampled Points</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
+          <srsid>3452</srsid>
+          <srid>4326</srid>
+          <authid>EPSG:4326</authid>
+          <description>WGS 84</description>
+          <projectionacronym>longlat</projectionacronym>
+          <ellipsoidacronym>WGS84</ellipsoidacronym>
+          <geographicflag>true</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <resourceMetadata>
+        <identifier></identifier>
+        <parentidentifier></parentidentifier>
+        <language></language>
+        <type></type>
+        <title></title>
+        <abstract></abstract>
+        <links/>
+        <fees></fees>
+        <encoding></encoding>
+        <crs>
+          <spatialrefsys>
+            <proj4></proj4>
+            <srsid>0</srsid>
+            <srid>0</srid>
+            <authid></authid>
+            <description></description>
+            <projectionacronym></projectionacronym>
+            <ellipsoidacronym></ellipsoidacronym>
+            <geographicflag>false</geographicflag>
+          </spatialrefsys>
+        </crs>
+        <extent/>
+      </resourceMetadata>
+      <provider encoding="UTF-8">memory</provider>
+      <vectorjoins/>
+      <layerDependencies/>
+      <dataDependencies/>
+      <legend type="default-vector"/>
+      <expressionfields/>
+      <map-layer-style-manager current="default">
+        <map-layer-style name="default"/>
+      </map-layer-style-manager>
+      <auxiliaryLayer/>
+      <flags>
+        <Identifiable>1</Identifiable>
+        <Removable>1</Removable>
+        <Searchable>1</Searchable>
+      </flags>
+      <renderer-v2 symbollevels="0" forceraster="0" type="singleSymbol" enableorderby="0">
+        <symbols>
+          <symbol name="0" alpha="1" type="marker" force_rhr="0" clip_to_extent="1">
+            <layer locked="0" enabled="1" class="SimpleMarker" pass="0">
+              <prop v="0" k="angle"/>
+              <prop v="231,113,72,255" k="color"/>
+              <prop v="1" k="horizontal_anchor_point"/>
+              <prop v="bevel" k="joinstyle"/>
+              <prop v="circle" k="name"/>
+              <prop v="0,0" k="offset"/>
+              <prop v="3x:0,0,0,0,0,0" k="offset_map_unit_scale"/>
+              <prop v="MM" k="offset_unit"/>
+              <prop v="35,35,35,255" k="outline_color"/>
+              <prop v="solid" k="outline_style"/>
+              <prop v="0" k="outline_width"/>
+              <prop v="3x:0,0,0,0,0,0" k="outline_width_map_unit_scale"/>
+              <prop v="MM" k="outline_width_unit"/>
+              <prop v="diameter" k="scale_method"/>
+              <prop v="2" k="size"/>
+              <prop v="3x:0,0,0,0,0,0" k="size_map_unit_scale"/>
+              <prop v="MM" k="size_unit"/>
+              <prop v="1" k="vertical_anchor_point"/>
+              <data_defined_properties>
+                <Option type="Map">
+                  <Option name="name" value="" type="QString"/>
+                  <Option name="properties"/>
+                  <Option name="type" value="collection" type="QString"/>
+                </Option>
+              </data_defined_properties>
+            </layer>
+          </symbol>
+        </symbols>
+        <rotation/>
+        <sizescale/>
+      </renderer-v2>
+      <customproperties>
+        <property key="dualview/previewExpressions">
+          <value>"aridity_1"</value>
+        </property>
+      </customproperties>
+      <blendMode>0</blendMode>
+      <featureBlendMode>0</featureBlendMode>
+      <layerOpacity>1</layerOpacity>
+      <geometryOptions removeDuplicateNodes="0" geometryPrecision="0">
+        <activeChecks type="StringList">
+          <Option value="" type="QString"/>
+        </activeChecks>
+        <checkConfiguration/>
+      </geometryOptions>
+      <fieldConfiguration>
+        <field name="plot">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="LAT">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="LON">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="aridity_1">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="temp_1">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="SOC_0_5_1">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="SOC_5_15_1">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="N_0_5_1">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="N_5_15_1">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="S_0_5_1">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+      </fieldConfiguration>
+      <aliases>
+        <alias name="" field="plot" index="0"/>
+        <alias name="" field="LAT" index="1"/>
+        <alias name="" field="LON" index="2"/>
+        <alias name="" field="aridity_1" index="3"/>
+        <alias name="" field="temp_1" index="4"/>
+        <alias name="" field="SOC_0_5_1" index="5"/>
+        <alias name="" field="SOC_5_15_1" index="6"/>
+        <alias name="" field="N_0_5_1" index="7"/>
+        <alias name="" field="N_5_15_1" index="8"/>
+        <alias name="" field="S_0_5_1" index="9"/>
+      </aliases>
+      <excludeAttributesWMS/>
+      <excludeAttributesWFS/>
+      <defaults>
+        <default expression="" field="plot" applyOnUpdate="0"/>
+        <default expression="" field="LAT" applyOnUpdate="0"/>
+        <default expression="" field="LON" applyOnUpdate="0"/>
+        <default expression="" field="aridity_1" applyOnUpdate="0"/>
+        <default expression="" field="temp_1" applyOnUpdate="0"/>
+        <default expression="" field="SOC_0_5_1" applyOnUpdate="0"/>
+        <default expression="" field="SOC_5_15_1" applyOnUpdate="0"/>
+        <default expression="" field="N_0_5_1" applyOnUpdate="0"/>
+        <default expression="" field="N_5_15_1" applyOnUpdate="0"/>
+        <default expression="" field="S_0_5_1" applyOnUpdate="0"/>
+      </defaults>
+      <constraints>
+        <constraint exp_strength="0" unique_strength="0" field="plot" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" unique_strength="0" field="LAT" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" unique_strength="0" field="LON" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" unique_strength="0" field="aridity_1" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" unique_strength="0" field="temp_1" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" unique_strength="0" field="SOC_0_5_1" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" unique_strength="0" field="SOC_5_15_1" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" unique_strength="0" field="N_0_5_1" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" unique_strength="0" field="N_5_15_1" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" unique_strength="0" field="S_0_5_1" constraints="0" notnull_strength="0"/>
+      </constraints>
+      <constraintExpressions>
+        <constraint desc="" exp="" field="plot"/>
+        <constraint desc="" exp="" field="LAT"/>
+        <constraint desc="" exp="" field="LON"/>
+        <constraint desc="" exp="" field="aridity_1"/>
+        <constraint desc="" exp="" field="temp_1"/>
+        <constraint desc="" exp="" field="SOC_0_5_1"/>
+        <constraint desc="" exp="" field="SOC_5_15_1"/>
+        <constraint desc="" exp="" field="N_0_5_1"/>
+        <constraint desc="" exp="" field="N_5_15_1"/>
+        <constraint desc="" exp="" field="S_0_5_1"/>
+      </constraintExpressions>
+      <expressionfields/>
+      <attributeactions>
+        <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"/>
+      </attributeactions>
+      <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
+        <columns>
+          <column name="plot" width="-1" type="field" hidden="0"/>
+          <column name="LAT" width="-1" type="field" hidden="0"/>
+          <column name="LON" width="-1" type="field" hidden="0"/>
+          <column name="aridity_1" width="-1" type="field" hidden="0"/>
+          <column name="temp_1" width="-1" type="field" hidden="0"/>
+          <column name="SOC_0_5_1" width="-1" type="field" hidden="0"/>
+          <column name="SOC_5_15_1" width="-1" type="field" hidden="0"/>
+          <column name="N_0_5_1" width="-1" type="field" hidden="0"/>
+          <column name="N_5_15_1" width="-1" type="field" hidden="0"/>
+          <column name="S_0_5_1" width="-1" type="field" hidden="0"/>
+          <column width="-1" type="actions" hidden="1"/>
+        </columns>
+      </attributetableconfig>
+      <conditionalstyles>
+        <rowstyles/>
+        <fieldstyles/>
+      </conditionalstyles>
+      <storedexpressions/>
+      <editform tolerant="1"></editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath></editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <editable/>
+      <labelOnTop/>
+      <widgets/>
+      <previewExpression>"aridity_1"</previewExpression>
+      <mapTip></mapTip>
+    </maplayer>
+    <maplayer simplifyDrawingTol="1" simplifyLocal="1" wkbType="Point" type="vector" simplifyMaxScale="1" autoRefreshTime="0" simplifyAlgorithm="0" simplifyDrawingHints="1" minScale="1e+08" labelsEnabled="0" maxScale="0" styleCategories="AllStyleCategories" refreshOnNotifyEnabled="0" autoRefreshEnabled="0" geometry="Point" readOnly="0" refreshOnNotifyMessage="" hasScaleBasedVisibilityFlag="0">
+      <extent>
+        <xmin>-85.00047999999999604</xmin>
+        <ymin>26.35999999999999943</ymin>
+        <xmax>-80.07999999999999829</xmax>
+        <ymax>30.22870999999999952</ymax>
+      </extent>
+      <id>Sampled_Points_b04bc6fb_4638_4c5d_bf73_de7a2ebbc7f3</id>
+      <datasource>memory?geometry=Point&amp;crs=EPSG:4326&amp;field=plot:integer(0,0)&amp;field=LAT:double(0,0)&amp;field=LON:double(0,0)&amp;field=aridity_1:double(0,0)&amp;field=temp_1:double(0,0)&amp;field=SOC_0_5_1:double(0,0)&amp;field=SOC_5_15_1:double(0,0)&amp;field=N_0_5_1:double(0,0)&amp;field=N_5_15_1:double(0,0)</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>Sampled Points</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
+          <srsid>3452</srsid>
+          <srid>4326</srid>
+          <authid>EPSG:4326</authid>
+          <description>WGS 84</description>
+          <projectionacronym>longlat</projectionacronym>
+          <ellipsoidacronym>WGS84</ellipsoidacronym>
+          <geographicflag>true</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <resourceMetadata>
+        <identifier></identifier>
+        <parentidentifier></parentidentifier>
+        <language></language>
+        <type></type>
+        <title></title>
+        <abstract></abstract>
+        <links/>
+        <fees></fees>
+        <encoding></encoding>
+        <crs>
+          <spatialrefsys>
+            <proj4></proj4>
+            <srsid>0</srsid>
+            <srid>0</srid>
+            <authid></authid>
+            <description></description>
+            <projectionacronym></projectionacronym>
+            <ellipsoidacronym></ellipsoidacronym>
+            <geographicflag>false</geographicflag>
+          </spatialrefsys>
+        </crs>
+        <extent/>
+      </resourceMetadata>
+      <provider encoding="UTF-8">memory</provider>
+      <vectorjoins/>
+      <layerDependencies/>
+      <dataDependencies/>
+      <legend type="default-vector"/>
+      <expressionfields/>
+      <map-layer-style-manager current="default">
+        <map-layer-style name="default"/>
+      </map-layer-style-manager>
+      <auxiliaryLayer/>
+      <flags>
+        <Identifiable>1</Identifiable>
+        <Removable>1</Removable>
+        <Searchable>1</Searchable>
+      </flags>
+      <renderer-v2 symbollevels="0" forceraster="0" type="singleSymbol" enableorderby="0">
+        <symbols>
+          <symbol name="0" alpha="1" type="marker" force_rhr="0" clip_to_extent="1">
+            <layer locked="0" enabled="1" class="SimpleMarker" pass="0">
+              <prop v="0" k="angle"/>
+              <prop v="190,207,80,255" k="color"/>
+              <prop v="1" k="horizontal_anchor_point"/>
+              <prop v="bevel" k="joinstyle"/>
+              <prop v="circle" k="name"/>
+              <prop v="0,0" k="offset"/>
+              <prop v="3x:0,0,0,0,0,0" k="offset_map_unit_scale"/>
+              <prop v="MM" k="offset_unit"/>
+              <prop v="35,35,35,255" k="outline_color"/>
+              <prop v="solid" k="outline_style"/>
+              <prop v="0" k="outline_width"/>
+              <prop v="3x:0,0,0,0,0,0" k="outline_width_map_unit_scale"/>
+              <prop v="MM" k="outline_width_unit"/>
+              <prop v="diameter" k="scale_method"/>
+              <prop v="2" k="size"/>
+              <prop v="3x:0,0,0,0,0,0" k="size_map_unit_scale"/>
+              <prop v="MM" k="size_unit"/>
+              <prop v="1" k="vertical_anchor_point"/>
+              <data_defined_properties>
+                <Option type="Map">
+                  <Option name="name" value="" type="QString"/>
+                  <Option name="properties"/>
+                  <Option name="type" value="collection" type="QString"/>
+                </Option>
+              </data_defined_properties>
+            </layer>
+          </symbol>
+        </symbols>
+        <rotation/>
+        <sizescale/>
+      </renderer-v2>
+      <customproperties/>
+      <blendMode>0</blendMode>
+      <featureBlendMode>0</featureBlendMode>
+      <layerOpacity>1</layerOpacity>
+      <geometryOptions removeDuplicateNodes="0" geometryPrecision="0">
+        <activeChecks type="StringList">
+          <Option value="" type="QString"/>
+        </activeChecks>
+        <checkConfiguration/>
+      </geometryOptions>
+      <fieldConfiguration>
+        <field name="plot">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="LAT">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="LON">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="aridity_1">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="temp_1">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="SOC_0_5_1">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="SOC_5_15_1">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="N_0_5_1">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="N_5_15_1">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+      </fieldConfiguration>
+      <aliases>
+        <alias name="" field="plot" index="0"/>
+        <alias name="" field="LAT" index="1"/>
+        <alias name="" field="LON" index="2"/>
+        <alias name="" field="aridity_1" index="3"/>
+        <alias name="" field="temp_1" index="4"/>
+        <alias name="" field="SOC_0_5_1" index="5"/>
+        <alias name="" field="SOC_5_15_1" index="6"/>
+        <alias name="" field="N_0_5_1" index="7"/>
+        <alias name="" field="N_5_15_1" index="8"/>
+      </aliases>
+      <excludeAttributesWMS/>
+      <excludeAttributesWFS/>
+      <defaults>
+        <default expression="" field="plot" applyOnUpdate="0"/>
+        <default expression="" field="LAT" applyOnUpdate="0"/>
+        <default expression="" field="LON" applyOnUpdate="0"/>
+        <default expression="" field="aridity_1" applyOnUpdate="0"/>
+        <default expression="" field="temp_1" applyOnUpdate="0"/>
+        <default expression="" field="SOC_0_5_1" applyOnUpdate="0"/>
+        <default expression="" field="SOC_5_15_1" applyOnUpdate="0"/>
+        <default expression="" field="N_0_5_1" applyOnUpdate="0"/>
+        <default expression="" field="N_5_15_1" applyOnUpdate="0"/>
+      </defaults>
+      <constraints>
+        <constraint exp_strength="0" unique_strength="0" field="plot" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" unique_strength="0" field="LAT" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" unique_strength="0" field="LON" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" unique_strength="0" field="aridity_1" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" unique_strength="0" field="temp_1" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" unique_strength="0" field="SOC_0_5_1" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" unique_strength="0" field="SOC_5_15_1" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" unique_strength="0" field="N_0_5_1" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" unique_strength="0" field="N_5_15_1" constraints="0" notnull_strength="0"/>
+      </constraints>
+      <constraintExpressions>
+        <constraint desc="" exp="" field="plot"/>
+        <constraint desc="" exp="" field="LAT"/>
+        <constraint desc="" exp="" field="LON"/>
+        <constraint desc="" exp="" field="aridity_1"/>
+        <constraint desc="" exp="" field="temp_1"/>
+        <constraint desc="" exp="" field="SOC_0_5_1"/>
+        <constraint desc="" exp="" field="SOC_5_15_1"/>
+        <constraint desc="" exp="" field="N_0_5_1"/>
+        <constraint desc="" exp="" field="N_5_15_1"/>
+      </constraintExpressions>
+      <expressionfields/>
+      <attributeactions>
+        <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"/>
+      </attributeactions>
+      <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
+        <columns/>
+      </attributetableconfig>
+      <conditionalstyles>
+        <rowstyles/>
+        <fieldstyles/>
+      </conditionalstyles>
+      <storedexpressions/>
+      <editform tolerant="1"></editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath></editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <editable/>
+      <labelOnTop/>
+      <widgets/>
+      <previewExpression></previewExpression>
+      <mapTip></mapTip>
+    </maplayer>
+    <maplayer hasScaleBasedVisibilityFlag="0" minScale="1e+08" refreshOnNotifyMessage="" autoRefreshTime="0" autoRefreshEnabled="0" maxScale="0" refreshOnNotifyEnabled="0" type="raster" styleCategories="AllStyleCategories">
+      <extent>
+        <xmin>-90.16625841223027749</xmin>
+        <ymin>24.70947419773673559</ymin>
+        <xmax>-74.24162772498472407</xmax>
+        <ymax>32.79524523499342337</ymax>
+      </extent>
+      <id>merge_N_0_5cm_default_projection_74b171b7_7f37_4efa_a44d_c73916535754</id>
+      <datasource>./Maps/merge_N_0_5cm_default_projection.tif</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>merge_N_0_5cm_default_projection</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
+          <srsid>3452</srsid>
+          <srid>4326</srid>
+          <authid>EPSG:4326</authid>
+          <description>WGS 84</description>
+          <projectionacronym>longlat</projectionacronym>
+          <ellipsoidacronym>WGS84</ellipsoidacronym>
+          <geographicflag>true</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <resourceMetadata>
+        <identifier></identifier>
+        <parentidentifier></parentidentifier>
+        <language></language>
+        <type></type>
+        <title></title>
+        <abstract></abstract>
+        <links/>
+        <fees></fees>
+        <encoding></encoding>
+        <crs>
+          <spatialrefsys>
+            <proj4></proj4>
+            <srsid>0</srsid>
+            <srid>0</srid>
+            <authid></authid>
+            <description></description>
+            <projectionacronym></projectionacronym>
+            <ellipsoidacronym></ellipsoidacronym>
+            <geographicflag>false</geographicflag>
+          </spatialrefsys>
+        </crs>
+        <extent/>
+      </resourceMetadata>
+      <provider>gdal</provider>
+      <noData>
+        <noDataList useSrcNoData="1" bandNo="1"/>
+      </noData>
+      <map-layer-style-manager current="default">
+        <map-layer-style name="default"/>
+      </map-layer-style-manager>
+      <flags>
+        <Identifiable>1</Identifiable>
+        <Removable>1</Removable>
+        <Searchable>1</Searchable>
+      </flags>
+      <customproperties>
+        <property key="identify/format" value="Value"/>
+      </customproperties>
+      <pipe>
+        <rasterrenderer grayBand="1" gradient="BlackToWhite" opacity="1" type="singlebandgray" alphaBand="-1">
+          <rasterTransparency/>
+          <minMaxOrigin>
+            <limits>MinMax</limits>
+            <extent>WholeRaster</extent>
+            <statAccuracy>Estimated</statAccuracy>
+            <cumulativeCutLower>0.02</cumulativeCutLower>
+            <cumulativeCutUpper>0.98</cumulativeCutUpper>
+            <stdDevFactor>2</stdDevFactor>
+          </minMaxOrigin>
+          <contrastEnhancement>
+            <minValue>187</minValue>
+            <maxValue>2853</maxValue>
+            <algorithm>StretchToMinimumMaximum</algorithm>
+          </contrastEnhancement>
+        </rasterrenderer>
+        <brightnesscontrast brightness="0" contrast="0"/>
+        <huesaturation grayscaleMode="0" colorizeRed="255" colorizeStrength="100" saturation="0" colorizeGreen="128" colorizeBlue="128" colorizeOn="0"/>
+        <rasterresampler maxOversampling="2"/>
+      </pipe>
+      <blendMode>0</blendMode>
+    </maplayer>
+    <maplayer hasScaleBasedVisibilityFlag="0" minScale="1e+08" refreshOnNotifyMessage="" autoRefreshTime="0" autoRefreshEnabled="0" maxScale="0" refreshOnNotifyEnabled="0" type="raster" styleCategories="AllStyleCategories">
+      <extent>
+        <xmin>-90.16625841223027749</xmin>
+        <ymin>24.70947419773673559</ymin>
+        <xmax>-74.24162772498472407</xmax>
+        <ymax>32.79524523499342337</ymax>
+      </extent>
+      <id>merge_N_5_15cm_default_projection_da47ec6f_20df_45f9_9a6e_2bfbdc2a1a6f</id>
+      <datasource>./Maps/merge_N_5_15cm_default_projection.tif</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>merge_N_5_15cm_default_projection</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
+          <srsid>3452</srsid>
+          <srid>4326</srid>
+          <authid>EPSG:4326</authid>
+          <description>WGS 84</description>
+          <projectionacronym>longlat</projectionacronym>
+          <ellipsoidacronym>WGS84</ellipsoidacronym>
+          <geographicflag>true</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <resourceMetadata>
+        <identifier></identifier>
+        <parentidentifier></parentidentifier>
+        <language></language>
+        <type></type>
+        <title></title>
+        <abstract></abstract>
+        <links/>
+        <fees></fees>
+        <encoding></encoding>
+        <crs>
+          <spatialrefsys>
+            <proj4></proj4>
+            <srsid>0</srsid>
+            <srid>0</srid>
+            <authid></authid>
+            <description></description>
+            <projectionacronym></projectionacronym>
+            <ellipsoidacronym></ellipsoidacronym>
+            <geographicflag>false</geographicflag>
+          </spatialrefsys>
+        </crs>
+        <extent/>
+      </resourceMetadata>
+      <provider>gdal</provider>
+      <noData>
+        <noDataList useSrcNoData="1" bandNo="1"/>
+      </noData>
+      <map-layer-style-manager current="default">
+        <map-layer-style name="default"/>
+      </map-layer-style-manager>
+      <flags>
+        <Identifiable>1</Identifiable>
+        <Removable>1</Removable>
+        <Searchable>1</Searchable>
+      </flags>
+      <customproperties>
+        <property key="identify/format" value="Value"/>
+      </customproperties>
+      <pipe>
+        <rasterrenderer grayBand="1" gradient="BlackToWhite" opacity="1" type="singlebandgray" alphaBand="-1">
+          <rasterTransparency/>
+          <minMaxOrigin>
+            <limits>MinMax</limits>
+            <extent>WholeRaster</extent>
+            <statAccuracy>Estimated</statAccuracy>
+            <cumulativeCutLower>0.02</cumulativeCutLower>
+            <cumulativeCutUpper>0.98</cumulativeCutUpper>
+            <stdDevFactor>2</stdDevFactor>
+          </minMaxOrigin>
+          <contrastEnhancement>
+            <minValue>43</minValue>
+            <maxValue>2821</maxValue>
+            <algorithm>StretchToMinimumMaximum</algorithm>
+          </contrastEnhancement>
+        </rasterrenderer>
+        <brightnesscontrast brightness="0" contrast="0"/>
+        <huesaturation grayscaleMode="0" colorizeRed="255" colorizeStrength="100" saturation="0" colorizeGreen="128" colorizeBlue="128" colorizeOn="0"/>
+        <rasterresampler maxOversampling="2"/>
+      </pipe>
+      <blendMode>0</blendMode>
+    </maplayer>
+    <maplayer hasScaleBasedVisibilityFlag="0" minScale="1e+08" refreshOnNotifyMessage="" autoRefreshTime="0" autoRefreshEnabled="0" maxScale="0" refreshOnNotifyEnabled="0" type="raster" styleCategories="AllStyleCategories">
+      <extent>
+        <xmin>-90.16625841223027749</xmin>
+        <ymin>24.70947419773673559</ymin>
+        <xmax>-74.24162772498472407</xmax>
+        <ymax>32.79524523499342337</ymax>
+      </extent>
+      <id>merge_SOC_0_5cm_default_projection_6e4d2ecd_5d7f_4b8c_b4f7_1b2ecb05e9aa</id>
+      <datasource>./Maps/merge_SOC_0_5cm_default_projection.tif</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>merge_SOC_0_5cm_default_projection</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
+          <srsid>3452</srsid>
+          <srid>4326</srid>
+          <authid>EPSG:4326</authid>
+          <description>WGS 84</description>
+          <projectionacronym>longlat</projectionacronym>
+          <ellipsoidacronym>WGS84</ellipsoidacronym>
+          <geographicflag>true</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <resourceMetadata>
+        <identifier></identifier>
+        <parentidentifier></parentidentifier>
+        <language></language>
+        <type></type>
+        <title></title>
+        <abstract></abstract>
+        <links/>
+        <fees></fees>
+        <encoding></encoding>
+        <crs>
+          <spatialrefsys>
+            <proj4></proj4>
+            <srsid>0</srsid>
+            <srid>0</srid>
+            <authid></authid>
+            <description></description>
+            <projectionacronym></projectionacronym>
+            <ellipsoidacronym></ellipsoidacronym>
+            <geographicflag>false</geographicflag>
+          </spatialrefsys>
+        </crs>
+        <extent/>
+      </resourceMetadata>
+      <provider>gdal</provider>
+      <noData>
+        <noDataList useSrcNoData="1" bandNo="1"/>
+      </noData>
+      <map-layer-style-manager current="default">
+        <map-layer-style name="default"/>
+      </map-layer-style-manager>
+      <flags>
+        <Identifiable>1</Identifiable>
+        <Removable>1</Removable>
+        <Searchable>1</Searchable>
+      </flags>
+      <customproperties>
+        <property key="identify/format" value="Value"/>
+      </customproperties>
+      <pipe>
+        <rasterrenderer grayBand="1" gradient="BlackToWhite" opacity="1" type="singlebandgray" alphaBand="-1">
+          <rasterTransparency/>
+          <minMaxOrigin>
+            <limits>MinMax</limits>
+            <extent>WholeRaster</extent>
+            <statAccuracy>Estimated</statAccuracy>
+            <cumulativeCutLower>0.02</cumulativeCutLower>
+            <cumulativeCutUpper>0.98</cumulativeCutUpper>
+            <stdDevFactor>2</stdDevFactor>
+          </minMaxOrigin>
+          <contrastEnhancement>
+            <minValue>152</minValue>
+            <maxValue>2303</maxValue>
+            <algorithm>StretchToMinimumMaximum</algorithm>
+          </contrastEnhancement>
+        </rasterrenderer>
+        <brightnesscontrast brightness="0" contrast="0"/>
+        <huesaturation grayscaleMode="0" colorizeRed="255" colorizeStrength="100" saturation="0" colorizeGreen="128" colorizeBlue="128" colorizeOn="0"/>
+        <rasterresampler maxOversampling="2"/>
+      </pipe>
+      <blendMode>0</blendMode>
+    </maplayer>
+    <maplayer hasScaleBasedVisibilityFlag="0" minScale="1e+08" refreshOnNotifyMessage="" autoRefreshTime="0" autoRefreshEnabled="0" maxScale="0" refreshOnNotifyEnabled="0" type="raster" styleCategories="AllStyleCategories">
+      <extent>
+        <xmin>-90.16625841223027749</xmin>
+        <ymin>24.70947419773673559</ymin>
+        <xmax>-74.24162772498472407</xmax>
+        <ymax>32.79524523499342337</ymax>
+      </extent>
+      <id>merge_SOC_5_15cm_default_projection_8e47f696_8034_4e44_a152_8c9615102322</id>
+      <datasource>./Maps/merge_SOC_5_15cm_default_projection.tif</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>merge_SOC_5_15cm_default_projection</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
+          <srsid>3452</srsid>
+          <srid>4326</srid>
+          <authid>EPSG:4326</authid>
+          <description>WGS 84</description>
+          <projectionacronym>longlat</projectionacronym>
+          <ellipsoidacronym>WGS84</ellipsoidacronym>
+          <geographicflag>true</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <resourceMetadata>
+        <identifier></identifier>
+        <parentidentifier></parentidentifier>
+        <language></language>
+        <type></type>
+        <title></title>
+        <abstract></abstract>
+        <links/>
+        <fees></fees>
+        <encoding></encoding>
+        <crs>
+          <spatialrefsys>
+            <proj4></proj4>
+            <srsid>0</srsid>
+            <srid>0</srid>
+            <authid></authid>
+            <description></description>
+            <projectionacronym></projectionacronym>
+            <ellipsoidacronym></ellipsoidacronym>
+            <geographicflag>false</geographicflag>
+          </spatialrefsys>
+        </crs>
+        <extent/>
+      </resourceMetadata>
+      <provider>gdal</provider>
+      <noData>
+        <noDataList useSrcNoData="1" bandNo="1"/>
+      </noData>
+      <map-layer-style-manager current="default">
+        <map-layer-style name="default"/>
+      </map-layer-style-manager>
+      <flags>
+        <Identifiable>1</Identifiable>
+        <Removable>1</Removable>
+        <Searchable>1</Searchable>
+      </flags>
+      <customproperties>
+        <property key="identify/format" value="Value"/>
+      </customproperties>
+      <pipe>
+        <rasterrenderer grayBand="1" gradient="BlackToWhite" opacity="1" type="singlebandgray" alphaBand="-1">
+          <rasterTransparency/>
+          <minMaxOrigin>
+            <limits>MinMax</limits>
+            <extent>WholeRaster</extent>
+            <statAccuracy>Estimated</statAccuracy>
+            <cumulativeCutLower>0.02</cumulativeCutLower>
+            <cumulativeCutUpper>0.98</cumulativeCutUpper>
+            <stdDevFactor>2</stdDevFactor>
+          </minMaxOrigin>
+          <contrastEnhancement>
+            <minValue>72</minValue>
+            <maxValue>3026</maxValue>
+            <algorithm>StretchToMinimumMaximum</algorithm>
+          </contrastEnhancement>
+        </rasterrenderer>
+        <brightnesscontrast brightness="0" contrast="0"/>
+        <huesaturation grayscaleMode="0" colorizeRed="255" colorizeStrength="100" saturation="0" colorizeGreen="128" colorizeBlue="128" colorizeOn="0"/>
+        <rasterresampler maxOversampling="2"/>
+      </pipe>
+      <blendMode>0</blendMode>
+    </maplayer>
+    <maplayer hasScaleBasedVisibilityFlag="0" minScale="1e+08" refreshOnNotifyMessage="" autoRefreshTime="0" autoRefreshEnabled="0" maxScale="0" refreshOnNotifyEnabled="0" type="raster" styleCategories="AllStyleCategories">
+      <extent>
+        <xmin>-179.99836080934699112</xmin>
+        <ymin>-55.97730092024180237</ymin>
+        <xmax>179.99446188009400771</xmax>
+        <ymax>82.71928405344530688</ymax>
+      </extent>
+      <id>nitrogen_0_5cm_mean_511710f4_c15d_4683_8513_46a2ff272e7e</id>
+      <datasource>cache=PreferNetwork&amp;crs=EPSG:4326&amp;dpiMode=7&amp;format=GEOTIFF_INT16&amp;identifier=nitrogen_0-5cm_mean&amp;url=https://maps.isric.org/mapserv?map%3D/map/nitrogen.map</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>nitrogen_0-5cm_mean</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
+          <srsid>3452</srsid>
+          <srid>4326</srid>
+          <authid>EPSG:4326</authid>
+          <description>WGS 84</description>
+          <projectionacronym>longlat</projectionacronym>
+          <ellipsoidacronym>WGS84</ellipsoidacronym>
+          <geographicflag>true</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <resourceMetadata>
+        <identifier></identifier>
+        <parentidentifier></parentidentifier>
+        <language></language>
+        <type></type>
+        <title></title>
+        <abstract></abstract>
+        <links/>
+        <fees></fees>
+        <encoding></encoding>
+        <crs>
+          <spatialrefsys>
+            <proj4></proj4>
+            <srsid>0</srsid>
+            <srid>0</srid>
+            <authid></authid>
+            <description></description>
+            <projectionacronym></projectionacronym>
+            <ellipsoidacronym></ellipsoidacronym>
+            <geographicflag>false</geographicflag>
+          </spatialrefsys>
+        </crs>
+        <extent/>
+      </resourceMetadata>
+      <provider>wcs</provider>
+      <noData>
+        <noDataList useSrcNoData="0" bandNo="1"/>
+      </noData>
+      <map-layer-style-manager current="default">
+        <map-layer-style name="default"/>
+      </map-layer-style-manager>
+      <flags>
+        <Identifiable>1</Identifiable>
+        <Removable>1</Removable>
+        <Searchable>1</Searchable>
+      </flags>
+      <customproperties>
+        <property key="identify/format" value="Value"/>
+      </customproperties>
+      <pipe>
+        <rasterrenderer grayBand="1" gradient="BlackToWhite" opacity="1" type="singlebandgray" alphaBand="-1">
+          <rasterTransparency/>
+          <minMaxOrigin>
+            <limits>MinMax</limits>
+            <extent>WholeRaster</extent>
+            <statAccuracy>Estimated</statAccuracy>
+            <cumulativeCutLower>0.02</cumulativeCutLower>
+            <cumulativeCutUpper>0.98</cumulativeCutUpper>
+            <stdDevFactor>2</stdDevFactor>
+          </minMaxOrigin>
+          <contrastEnhancement>
+            <minValue>0</minValue>
+            <maxValue>2584</maxValue>
+            <algorithm>StretchToMinimumMaximum</algorithm>
+          </contrastEnhancement>
+        </rasterrenderer>
+        <brightnesscontrast brightness="0" contrast="0"/>
+        <huesaturation grayscaleMode="0" colorizeRed="255" colorizeStrength="100" saturation="0" colorizeGreen="128" colorizeBlue="128" colorizeOn="0"/>
+        <rasterresampler maxOversampling="2"/>
+      </pipe>
+      <blendMode>0</blendMode>
+    </maplayer>
+    <maplayer hasScaleBasedVisibilityFlag="0" minScale="1e+08" refreshOnNotifyMessage="" autoRefreshTime="0" autoRefreshEnabled="0" maxScale="0" refreshOnNotifyEnabled="0" type="raster" styleCategories="AllStyleCategories">
+      <extent>
+        <xmin>-179.99836080934699112</xmin>
+        <ymin>-55.97730092024180237</ymin>
+        <xmax>179.99446188009400771</xmax>
+        <ymax>82.71928405344530688</ymax>
+      </extent>
+      <id>nitrogen_5_15cm_mean_4a4f94f1_bfa8_4bbd_9542_e1d9afafc96c</id>
+      <datasource>cache=PreferNetwork&amp;crs=EPSG:4326&amp;dpiMode=7&amp;format=GEOTIFF_INT16&amp;identifier=nitrogen_5-15cm_mean&amp;url=https://maps.isric.org/mapserv?map%3D/map/nitrogen.map</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>nitrogen_5-15cm_mean</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
+          <srsid>3452</srsid>
+          <srid>4326</srid>
+          <authid>EPSG:4326</authid>
+          <description>WGS 84</description>
+          <projectionacronym>longlat</projectionacronym>
+          <ellipsoidacronym>WGS84</ellipsoidacronym>
+          <geographicflag>true</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <resourceMetadata>
+        <identifier></identifier>
+        <parentidentifier></parentidentifier>
+        <language></language>
+        <type></type>
+        <title></title>
+        <abstract></abstract>
+        <links/>
+        <fees></fees>
+        <encoding></encoding>
+        <crs>
+          <spatialrefsys>
+            <proj4></proj4>
+            <srsid>0</srsid>
+            <srid>0</srid>
+            <authid></authid>
+            <description></description>
+            <projectionacronym></projectionacronym>
+            <ellipsoidacronym></ellipsoidacronym>
+            <geographicflag>false</geographicflag>
+          </spatialrefsys>
+        </crs>
+        <extent/>
+      </resourceMetadata>
+      <provider>wcs</provider>
+      <noData>
+        <noDataList useSrcNoData="0" bandNo="1"/>
+      </noData>
+      <map-layer-style-manager current="default">
+        <map-layer-style name="default"/>
+      </map-layer-style-manager>
+      <flags>
+        <Identifiable>1</Identifiable>
+        <Removable>1</Removable>
+        <Searchable>1</Searchable>
+      </flags>
+      <customproperties>
+        <property key="identify/format" value="Value"/>
+      </customproperties>
+      <pipe>
+        <rasterrenderer grayBand="1" gradient="BlackToWhite" opacity="1" type="singlebandgray" alphaBand="-1">
+          <rasterTransparency/>
+          <minMaxOrigin>
+            <limits>MinMax</limits>
+            <extent>WholeRaster</extent>
+            <statAccuracy>Estimated</statAccuracy>
+            <cumulativeCutLower>0.02</cumulativeCutLower>
+            <cumulativeCutUpper>0.98</cumulativeCutUpper>
+            <stdDevFactor>2</stdDevFactor>
+          </minMaxOrigin>
+          <contrastEnhancement>
+            <minValue>0</minValue>
+            <maxValue>2223</maxValue>
+            <algorithm>StretchToMinimumMaximum</algorithm>
+          </contrastEnhancement>
+        </rasterrenderer>
+        <brightnesscontrast brightness="0" contrast="0"/>
+        <huesaturation grayscaleMode="0" colorizeRed="255" colorizeStrength="100" saturation="0" colorizeGreen="128" colorizeBlue="128" colorizeOn="0"/>
+        <rasterresampler maxOversampling="2"/>
+      </pipe>
+      <blendMode>0</blendMode>
+    </maplayer>
+    <maplayer simplifyDrawingTol="1" simplifyLocal="1" wkbType="Point" type="vector" simplifyMaxScale="1" autoRefreshTime="0" simplifyAlgorithm="0" simplifyDrawingHints="1" minScale="1e+08" labelsEnabled="0" maxScale="0" styleCategories="AllStyleCategories" refreshOnNotifyEnabled="0" autoRefreshEnabled="0" geometry="Point" readOnly="0" refreshOnNotifyMessage="" hasScaleBasedVisibilityFlag="0">
+      <extent>
+        <xmin>-85.00047999999999604</xmin>
+        <ymin>26.35999999999999943</ymin>
+        <xmax>-80.07999999999999829</xmax>
+        <ymax>30.22870999999999952</ymax>
+      </extent>
+      <id>slash_plot_coordinates_FIA_64e397e6_67c0_49f1_b068_87e2a6236d87</id>
+      <datasource>file:./slash%20plot%20coordinates%20FIA.csv?type=csv&amp;detectTypes=yes&amp;xField=LON&amp;yField=LAT&amp;crs=EPSG:4326&amp;spatialIndex=no&amp;subsetIndex=no&amp;watchFile=no</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>slash plot coordinates FIA</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
+          <srsid>3452</srsid>
+          <srid>4326</srid>
+          <authid>EPSG:4326</authid>
+          <description>WGS 84</description>
+          <projectionacronym>longlat</projectionacronym>
+          <ellipsoidacronym>WGS84</ellipsoidacronym>
+          <geographicflag>true</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <resourceMetadata>
+        <identifier></identifier>
+        <parentidentifier></parentidentifier>
+        <language></language>
+        <type></type>
+        <title></title>
+        <abstract></abstract>
+        <links/>
+        <fees></fees>
+        <encoding></encoding>
+        <crs>
+          <spatialrefsys>
+            <proj4></proj4>
+            <srsid>0</srsid>
+            <srid>0</srid>
+            <authid></authid>
+            <description></description>
+            <projectionacronym></projectionacronym>
+            <ellipsoidacronym></ellipsoidacronym>
+            <geographicflag>false</geographicflag>
+          </spatialrefsys>
+        </crs>
+        <extent/>
+      </resourceMetadata>
+      <provider encoding="UTF-8">delimitedtext</provider>
+      <vectorjoins/>
+      <layerDependencies/>
+      <dataDependencies/>
+      <legend type="default-vector"/>
+      <expressionfields/>
+      <map-layer-style-manager current="default">
+        <map-layer-style name="default"/>
+      </map-layer-style-manager>
+      <auxiliaryLayer/>
+      <flags>
+        <Identifiable>1</Identifiable>
+        <Removable>1</Removable>
+        <Searchable>1</Searchable>
+      </flags>
+      <renderer-v2 symbollevels="0" forceraster="0" type="singleSymbol" enableorderby="0">
+        <symbols>
+          <symbol name="0" alpha="1" type="marker" force_rhr="0" clip_to_extent="1">
+            <layer locked="0" enabled="1" class="SimpleMarker" pass="0">
+              <prop v="0" k="angle"/>
+              <prop v="125,139,143,255" k="color"/>
+              <prop v="1" k="horizontal_anchor_point"/>
+              <prop v="bevel" k="joinstyle"/>
+              <prop v="circle" k="name"/>
+              <prop v="0,0" k="offset"/>
+              <prop v="3x:0,0,0,0,0,0" k="offset_map_unit_scale"/>
+              <prop v="MM" k="offset_unit"/>
+              <prop v="35,35,35,255" k="outline_color"/>
+              <prop v="solid" k="outline_style"/>
+              <prop v="0" k="outline_width"/>
+              <prop v="3x:0,0,0,0,0,0" k="outline_width_map_unit_scale"/>
+              <prop v="MM" k="outline_width_unit"/>
+              <prop v="diameter" k="scale_method"/>
+              <prop v="2" k="size"/>
+              <prop v="3x:0,0,0,0,0,0" k="size_map_unit_scale"/>
+              <prop v="MM" k="size_unit"/>
+              <prop v="1" k="vertical_anchor_point"/>
+              <data_defined_properties>
+                <Option type="Map">
+                  <Option name="name" value="" type="QString"/>
+                  <Option name="properties"/>
+                  <Option name="type" value="collection" type="QString"/>
+                </Option>
+              </data_defined_properties>
+            </layer>
+          </symbol>
+        </symbols>
+        <rotation/>
+        <sizescale/>
+      </renderer-v2>
+      <customproperties/>
+      <blendMode>0</blendMode>
+      <featureBlendMode>0</featureBlendMode>
+      <layerOpacity>1</layerOpacity>
+      <geometryOptions removeDuplicateNodes="0" geometryPrecision="0">
+        <activeChecks type="StringList">
+          <Option value="" type="QString"/>
+        </activeChecks>
+        <checkConfiguration/>
+      </geometryOptions>
+      <fieldConfiguration>
+        <field name="plot">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="LAT">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="LON">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+      </fieldConfiguration>
+      <aliases>
+        <alias name="" field="plot" index="0"/>
+        <alias name="" field="LAT" index="1"/>
+        <alias name="" field="LON" index="2"/>
+      </aliases>
+      <excludeAttributesWMS/>
+      <excludeAttributesWFS/>
+      <defaults>
+        <default expression="" field="plot" applyOnUpdate="0"/>
+        <default expression="" field="LAT" applyOnUpdate="0"/>
+        <default expression="" field="LON" applyOnUpdate="0"/>
+      </defaults>
+      <constraints>
+        <constraint exp_strength="0" unique_strength="0" field="plot" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" unique_strength="0" field="LAT" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" unique_strength="0" field="LON" constraints="0" notnull_strength="0"/>
+      </constraints>
+      <constraintExpressions>
+        <constraint desc="" exp="" field="plot"/>
+        <constraint desc="" exp="" field="LAT"/>
+        <constraint desc="" exp="" field="LON"/>
+      </constraintExpressions>
+      <expressionfields/>
+      <attributeactions>
+        <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"/>
+      </attributeactions>
+      <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
+        <columns/>
+      </attributetableconfig>
+      <conditionalstyles>
+        <rowstyles/>
+        <fieldstyles/>
+      </conditionalstyles>
+      <storedexpressions/>
+      <editform tolerant="1"></editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath></editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <editable/>
+      <labelOnTop/>
+      <widgets/>
+      <previewExpression></previewExpression>
+      <mapTip></mapTip>
+    </maplayer>
+    <maplayer hasScaleBasedVisibilityFlag="0" minScale="1e+08" refreshOnNotifyMessage="" autoRefreshTime="0" autoRefreshEnabled="0" maxScale="0" refreshOnNotifyEnabled="0" type="raster" styleCategories="AllStyleCategories">
+      <extent>
+        <xmin>-179.99134755306801026</xmin>
+        <ymin>-55.97730092024180237</ymin>
+        <xmax>179.99446188009400771</xmax>
+        <ymax>82.71928405344530688</ymax>
+      </extent>
+      <id>soc_0_5cm_mean_fd72d865_9dd9_419e_a448_3378a17746c8</id>
+      <datasource>cache=PreferNetwork&amp;crs=EPSG:4326&amp;dpiMode=7&amp;format=GEOTIFF_INT16&amp;identifier=soc_0-5cm_mean&amp;url=https://maps.isric.org/mapserv?map%3D/map/soc.map</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>soc_0-5cm_mean</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
+          <srsid>3452</srsid>
+          <srid>4326</srid>
+          <authid>EPSG:4326</authid>
+          <description>WGS 84</description>
+          <projectionacronym>longlat</projectionacronym>
+          <ellipsoidacronym>WGS84</ellipsoidacronym>
+          <geographicflag>true</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <resourceMetadata>
+        <identifier></identifier>
+        <parentidentifier></parentidentifier>
+        <language></language>
+        <type></type>
+        <title></title>
+        <abstract></abstract>
+        <links/>
+        <fees></fees>
+        <encoding></encoding>
+        <crs>
+          <spatialrefsys>
+            <proj4></proj4>
+            <srsid>0</srsid>
+            <srid>0</srid>
+            <authid></authid>
+            <description></description>
+            <projectionacronym></projectionacronym>
+            <ellipsoidacronym></ellipsoidacronym>
+            <geographicflag>false</geographicflag>
+          </spatialrefsys>
+        </crs>
+        <extent/>
+      </resourceMetadata>
+      <provider>wcs</provider>
+      <noData>
+        <noDataList useSrcNoData="0" bandNo="1"/>
+      </noData>
+      <map-layer-style-manager current="default">
+        <map-layer-style name="default"/>
+      </map-layer-style-manager>
+      <flags>
+        <Identifiable>1</Identifiable>
+        <Removable>1</Removable>
+        <Searchable>1</Searchable>
+      </flags>
+      <customproperties>
+        <property key="identify/format" value="Value"/>
+      </customproperties>
+      <pipe>
+        <rasterrenderer grayBand="1" gradient="BlackToWhite" opacity="1" type="singlebandgray" alphaBand="-1">
+          <rasterTransparency/>
+          <minMaxOrigin>
+            <limits>MinMax</limits>
+            <extent>WholeRaster</extent>
+            <statAccuracy>Estimated</statAccuracy>
+            <cumulativeCutLower>0.02</cumulativeCutLower>
+            <cumulativeCutUpper>0.98</cumulativeCutUpper>
+            <stdDevFactor>2</stdDevFactor>
+          </minMaxOrigin>
+          <contrastEnhancement>
+            <minValue>0</minValue>
+            <maxValue>4659</maxValue>
+            <algorithm>StretchToMinimumMaximum</algorithm>
+          </contrastEnhancement>
+        </rasterrenderer>
+        <brightnesscontrast brightness="0" contrast="0"/>
+        <huesaturation grayscaleMode="0" colorizeRed="255" colorizeStrength="100" saturation="0" colorizeGreen="128" colorizeBlue="128" colorizeOn="0"/>
+        <rasterresampler maxOversampling="2"/>
+      </pipe>
+      <blendMode>0</blendMode>
+    </maplayer>
+    <maplayer hasScaleBasedVisibilityFlag="0" minScale="1e+08" refreshOnNotifyMessage="" autoRefreshTime="0" autoRefreshEnabled="0" maxScale="0" refreshOnNotifyEnabled="0" type="raster" styleCategories="AllStyleCategories">
+      <extent>
+        <xmin>-179.99134755306801026</xmin>
+        <ymin>-55.97730092024180237</ymin>
+        <xmax>179.99446188009400771</xmax>
+        <ymax>82.71928405344530688</ymax>
+      </extent>
+      <id>soc_5_15cm_mean_3aa3de2f_3eca_4d45_a30c_6f365a7da272</id>
+      <datasource>cache=PreferNetwork&amp;crs=EPSG:4326&amp;dpiMode=7&amp;format=GEOTIFF_INT16&amp;identifier=soc_5-15cm_mean&amp;url=https://maps.isric.org/mapserv?map%3D/map/soc.map</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>soc_5-15cm_mean</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
+          <srsid>3452</srsid>
+          <srid>4326</srid>
+          <authid>EPSG:4326</authid>
+          <description>WGS 84</description>
+          <projectionacronym>longlat</projectionacronym>
+          <ellipsoidacronym>WGS84</ellipsoidacronym>
+          <geographicflag>true</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <resourceMetadata>
+        <identifier></identifier>
+        <parentidentifier></parentidentifier>
+        <language></language>
+        <type></type>
+        <title></title>
+        <abstract></abstract>
+        <links/>
+        <fees></fees>
+        <encoding></encoding>
+        <crs>
+          <spatialrefsys>
+            <proj4></proj4>
+            <srsid>0</srsid>
+            <srid>0</srid>
+            <authid></authid>
+            <description></description>
+            <projectionacronym></projectionacronym>
+            <ellipsoidacronym></ellipsoidacronym>
+            <geographicflag>false</geographicflag>
+          </spatialrefsys>
+        </crs>
+        <extent/>
+      </resourceMetadata>
+      <provider>wcs</provider>
+      <noData>
+        <noDataList useSrcNoData="0" bandNo="1"/>
+      </noData>
+      <map-layer-style-manager current="default">
+        <map-layer-style name="default"/>
+      </map-layer-style-manager>
+      <flags>
+        <Identifiable>1</Identifiable>
+        <Removable>1</Removable>
+        <Searchable>1</Searchable>
+      </flags>
+      <customproperties>
+        <property key="identify/format" value="Value"/>
+      </customproperties>
+      <pipe>
+        <rasterrenderer grayBand="1" gradient="BlackToWhite" opacity="1" type="singlebandgray" alphaBand="-1">
+          <rasterTransparency/>
+          <minMaxOrigin>
+            <limits>MinMax</limits>
+            <extent>WholeRaster</extent>
+            <statAccuracy>Estimated</statAccuracy>
+            <cumulativeCutLower>0.02</cumulativeCutLower>
+            <cumulativeCutUpper>0.98</cumulativeCutUpper>
+            <stdDevFactor>2</stdDevFactor>
+          </minMaxOrigin>
+          <contrastEnhancement>
+            <minValue>0</minValue>
+            <maxValue>4807</maxValue>
+            <algorithm>StretchToMinimumMaximum</algorithm>
+          </contrastEnhancement>
+        </rasterrenderer>
+        <brightnesscontrast brightness="0" contrast="0"/>
+        <huesaturation grayscaleMode="0" colorizeRed="255" colorizeStrength="100" saturation="0" colorizeGreen="128" colorizeBlue="128" colorizeOn="0"/>
+        <rasterresampler maxOversampling="2"/>
+      </pipe>
+      <blendMode>0</blendMode>
+    </maplayer>
+  </projectlayers>
+  <layerorder>
+    <layer id="soc_0_5cm_mean_fd72d865_9dd9_419e_a448_3378a17746c8"/>
+    <layer id="soc_5_15cm_mean_3aa3de2f_3eca_4d45_a30c_6f365a7da272"/>
+    <layer id="nitrogen_0_5cm_mean_511710f4_c15d_4683_8513_46a2ff272e7e"/>
+    <layer id="nitrogen_5_15cm_mean_4a4f94f1_bfa8_4bbd_9542_e1d9afafc96c"/>
+    <layer id="slash_plot_coordinates_FIA_64e397e6_67c0_49f1_b068_87e2a6236d87"/>
+    <layer id="Sampled_Points_b04bc6fb_4638_4c5d_bf73_de7a2ebbc7f3"/>
+    <layer id="merge_N_0_5cm_default_projection_74b171b7_7f37_4efa_a44d_c73916535754"/>
+    <layer id="merge_N_5_15cm_default_projection_da47ec6f_20df_45f9_9a6e_2bfbdc2a1a6f"/>
+    <layer id="merge_SOC_0_5cm_default_projection_6e4d2ecd_5d7f_4b8c_b4f7_1b2ecb05e9aa"/>
+    <layer id="merge_SOC_5_15cm_default_projection_8e47f696_8034_4e44_a152_8c9615102322"/>
+    <layer id="Sampled_Points_15af602b_33e6_48f7_845b_8316a2040cf9"/>
+  </layerorder>
+  <properties>
+    <Gui>
+      <CanvasColorBluePart type="int">255</CanvasColorBluePart>
+      <CanvasColorGreenPart type="int">255</CanvasColorGreenPart>
+      <CanvasColorRedPart type="int">255</CanvasColorRedPart>
+      <SelectionColorAlphaPart type="int">255</SelectionColorAlphaPart>
+      <SelectionColorBluePart type="int">0</SelectionColorBluePart>
+      <SelectionColorGreenPart type="int">255</SelectionColorGreenPart>
+      <SelectionColorRedPart type="int">255</SelectionColorRedPart>
+    </Gui>
+    <Legend>
+      <filterByMap type="bool">false</filterByMap>
+    </Legend>
+    <Measure>
+      <Ellipsoid type="QString">WGS84</Ellipsoid>
+    </Measure>
+    <Measurement>
+      <AreaUnits type="QString">m2</AreaUnits>
+      <DistanceUnits type="QString">meters</DistanceUnits>
+    </Measurement>
+    <PAL>
+      <CandidatesLine type="int">50</CandidatesLine>
+      <CandidatesPoint type="int">16</CandidatesPoint>
+      <CandidatesPolygon type="int">30</CandidatesPolygon>
+      <DrawRectOnly type="bool">false</DrawRectOnly>
+      <DrawUnplaced type="bool">false</DrawUnplaced>
+      <SearchMethod type="int">0</SearchMethod>
+      <ShowingAllLabels type="bool">false</ShowingAllLabels>
+      <ShowingCandidates type="bool">false</ShowingCandidates>
+      <ShowingPartialsLabels type="bool">true</ShowingPartialsLabels>
+      <TextFormat type="int">0</TextFormat>
+      <UnplacedColor type="QString">255,0,0,255</UnplacedColor>
+    </PAL>
+    <Paths>
+      <Absolute type="bool">false</Absolute>
+    </Paths>
+    <PositionPrecision>
+      <Automatic type="bool">true</Automatic>
+      <DecimalPlaces type="int">2</DecimalPlaces>
+    </PositionPrecision>
+    <SpatialRefSys>
+      <ProjectionsEnabled type="int">1</ProjectionsEnabled>
+    </SpatialRefSys>
+  </properties>
+  <visibility-presets/>
+  <transformContext/>
+  <projectMetadata>
+    <identifier></identifier>
+    <parentidentifier></parentidentifier>
+    <language></language>
+    <type></type>
+    <title></title>
+    <abstract></abstract>
+    <links/>
+    <author>Alicia</author>
+    <creation>2020-05-16T20:15:54</creation>
+  </projectMetadata>
+  <Annotations/>
+  <Layouts/>
+  <Bookmarks/>
+  <ProjectViewSettings UseProjectScales="0">
+    <Scales/>
+  </ProjectViewSettings>
+</qgis>
