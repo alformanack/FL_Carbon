@@ -8,7 +8,7 @@ theme_Publication <- function(base_size=14, base_family="helvetica") {
             panel.background = element_rect(colour = NA),
             plot.background = element_rect(colour = NA),
             panel.border = element_rect(colour = NA),
-            axis.title = element_text(face = "bold",size = rel(1)),
+            axis.title = element_text(face = "bold",size = rel(1.5)),
             axis.title.y = element_text(angle=90,vjust =2),
             axis.title.x = element_text(vjust = -0.2),
             axis.text = element_text(), 
@@ -56,28 +56,15 @@ scale_colour_Publication <- function(...){
 
 # Biomass and DBH plots -------------------------------------------------------------------
 
-ggplot(final_list, aes(Modeled_Biomass,Observed_Biomass )) +
-  labs(title="Tree Carbon (gC/m^2)", x="Modeled", y="Observed") +
-  xlim(0,20000) +
-  ylim(0,20000) +
+ggplot(final_list, aes(Modeled_Biomass,Observed_Biomass)) +
+  labs(title = expression(bold(Tree~Carbon~(gC/m^{2}))), x="Modeled", y="Observed")+
+  # labs(title = bquote("Tree Carbon gC/m^2"), x="Modeled", y="Observed", face = "bold",
+       # size = rel(1.2)) +
+  # xlim(0,30000) +
+  # ylim(0,30000) +
   geom_errorbarh(aes(xmin=final_list$Modeled_Biomass-(1.96*final_list$sd.tasb), 
                      xmax=final_list$Modeled_Biomass+(1.96*final_list$sd.tasb), 
-                     height = .5)) +
-  geom_point(aes(size=Tree_Density, color=Species), cex=5, alpha=0.75) +
-  scale_color_manual(values=c("#495F8C", "#F25C05","#F2B705" )) +
-  geom_abline(linetype = "dashed", size=1) +
-  theme_Publication() +
-  scale_fill_Publication() 
-  # scale_colour_Publication()
-
-
-ggplot(final_list, aes(Modeled_Diameter,Observed_Diameter )) +
-  labs(title="Average DBH (inches)", x="Modeled DBH (in)", y="Observed DBH (in)") +
-  xlim(2,16) +
-  ylim(2,16) +
-  #geom_abline(linetype = "dashed") +
-  geom_errorbarh(aes(xmin=final_list$Modeled_Diameter-(1.96*final_list$sd.dbh), 
-                     xmax=final_list$Modeled_Diameter+(1.96*final_list$sd.dbh), height = .5)) +
+                     height = .9)) +
   geom_point(aes(size=Tree_Density, color=Species), cex=5, alpha=0.75) +
   scale_color_manual(values=c("#495F8C", "#F25C05","#F2B705")) +
   geom_abline(linetype = "dashed", size=1) +
@@ -85,6 +72,27 @@ ggplot(final_list, aes(Modeled_Diameter,Observed_Diameter )) +
   scale_fill_Publication() 
   # scale_colour_Publication()
 
+
+ggplot(final_list, aes(Modeled_Diameter,Observed_Diameter )) +
+  labs(title="Average DBH (inches)", x="Modeled", y="Observed") +
+  xlim(2,16) +
+  ylim(2,16) +
+  #geom_abline(linetype = "dashed") +
+  geom_errorbarh(aes(xmin=final_list$Modeled_Diameter-(1.96*final_list$sd.dbh), 
+                     xmax=final_list$Modeled_Diameter+(1.96*final_list$sd.dbh), height = 0)) +
+  geom_point(aes(size=Tree_Density, color=Species), cex=5, alpha=0.75) +
+  scale_color_manual(values=c("#495F8C", "#F25C05","#F2B705")) +
+  geom_abline(linetype = "dashed", size=1) +
+  theme_Publication() +
+  scale_fill_Publication() 
+  # scale_colour_Publication()
+
+dbh<-lm(data=final_list, Observed_Diameter~Modeled_Diameter )
+
+summary(dbh)
+
+carbon<-lm(data = final_list, Observed_Biomass~Modeled_Biomass)
+summary(carbon)
 
 # relative effect of coefficient ------------------------------------------
 
@@ -102,6 +110,17 @@ ggplot() +
              aes(aridity_1, 10^(- 0.977477*longleaf$aridity_1)/10^(- 0.977477*min(longleaf$aridity_1))), 
              cex=4, alpha=0.5, color="#F25C05") +
   #scale_color_manual(values=c("#495F8C", "#F2B705", "#F25C05")) +
+  theme_Publication() +
+  scale_fill_Publication() +
+  scale_colour_Publication()
+
++ 0.182686*temp - 0.004512*temp2
+
+ggplot() +
+  labs( x="Temperature", y="Relative effect on growth") +
+  geom_point(data=slashpine, 
+             aes(AVG_TEMP_bioclim, 10^(0.182686*slashpine$AVG_TEMP_bioclim - 0.004512*slashpine$temp2)/10^(0.182686*min(slashpine$AVG_TEMP_bioclim)- 0.004512*min(slashpine$temp2))), 
+             cex=4, alpha=0.5, color="#F2B705") +
   theme_Publication() +
   scale_fill_Publication() +
   scale_colour_Publication()
@@ -179,7 +198,7 @@ theme_Publication <- function(base_size=14, base_family="helvetica") {
 
 
 ggplot(biomass, aes(x=Location, y=TASB, fill=ï..Species)) + 
-  labs(y="grams Carbon/m^2", title="Potential carbon storage for 700tph in year 2100") +
+  labs(y = expression(bold(Tree~Carbon~(gC/m^{2}))), title="Potential C storage for 700tph after 80 years") +
   geom_bar(position=position_dodge(), stat="identity") +
   geom_errorbar(aes(ymin=TASB-SD, ymax=TASB+SD),
                 width=.2,                    # Width of the error bars
@@ -188,7 +207,17 @@ ggplot(biomass, aes(x=Location, y=TASB, fill=ï..Species)) +
   scale_fill_Publication() +
   scale_colour_Publication()
 
+ggplot(fb, aes(x=Location, y=TASB, fill=Species)) + 
+  labs(y = expression(bold(Tree~Carbon~(gC/m^{2}))), title="Potential C storage for 700tph after 30 years") +
+  geom_bar(position=position_dodge(), stat="identity") +
+  geom_errorbar(aes(ymin=TASB-sd, ymax=TASB+sd),
+                width=.2,                    # Width of the error bars
+                position=position_dodge(.9), colour="black") +
+  theme_Publication() +
+  scale_fill_Publication() +
+  scale_colour_Publication()
 
+fb$Species <- factor(fb$Species, levels = c("Loblolly", "Longleaf", "Slashpine"))
 
 # Extra -------------------------------------------------------------------
 

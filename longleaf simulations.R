@@ -4,7 +4,7 @@ rm(list=ls())
 
 setwd("C:/Users/Alicia/Documents/GitHub/FL_Carbon")
 
-envdata<-read.csv("longleaf_env_data.csv", header=T, sep=",")
+envdata<-read.csv("longleaf_env_data1.csv", header=T, sep=",")
 
 par(mfrow=c(2,5))
 final_list_longleaf<-list()
@@ -1759,6 +1759,10 @@ row.names(final_list_longleaf) <- c(as.vector(envdata[,10]))
 sdev<-as.vector(final_list_longleaf$sd.tasb)
 sdev.dbh<-as.vector(final_list_longleaf$sd.dbh)
 
+
+write.csv(final_list_longleaf, "C:/Users/Alicia/Documents/GitHub/FL_Carbon/final_list_longleaf.csv")
+setwd("C:/Users/Alicia/Documents/GitHub/FL_Carbon")
+final_list_longleaf<-read.csv("final_list_longleaf.csv", header=T, sep=",")
 
 # Compare observed diameter vs modeled diameter ---------------------------
 par(mfrow=c(1,1))
@@ -3634,7 +3638,7 @@ for (b in 1:10){
     
     
     
-    for (i in 2:80){ # specify how long to run the simulation (years)
+    for (i in 2:30){ # specify how long to run the simulation (years)
       
       age[i,j]<-age[i-1,j]+1
       
@@ -3665,10 +3669,10 @@ for (b in 1:10){
       
     }
   }
-  Panhandle[b]<-sum(TASB[80,])*.5*1000*(1/10000)
+  Panhandle[b]<-sum(TASB[30,])*.5*1000*(1/10000)
 }
 
-hist(Diameter[80,]*2.54, main = "Panhandle", xlab = "Diameter (cm)")
+hist(Diameter[30,]*2.54, main = "Panhandle", xlab = "Diameter (cm)")
 
 species<-rep("Longleaf",10)
 
@@ -3712,7 +3716,7 @@ for (b in 1:10){
     
     
     
-    for (i in 2:80){ # specify how long to run the simulation (years)
+    for (i in 2:30){ # specify how long to run the simulation (years)
       
       age[i,j]<-age[i-1,j]+1
       
@@ -3743,10 +3747,10 @@ for (b in 1:10){
       
     }
   }
-  North[b]<-sum(TASB[80,])*.5*1000*(1/10000)
+  North[b]<-sum(TASB[30,])*.5*1000*(1/10000)
 }
 
-hist(Diameter[80,]*2.54, main = "North", xlab = "Diameter (cm)")
+hist(Diameter[30,]*2.54, main = "North", xlab = "Diameter (cm)")
 
 species<-rep("Longleaf",10)
 
@@ -3791,7 +3795,7 @@ for (b in 1:10){
     
     
     
-    for (i in 2:80){ # specify how long to run the simulation (years)
+    for (i in 2:30){ # specify how long to run the simulation (years)
       
       age[i,j]<-age[i-1,j]+1
       
@@ -3822,10 +3826,10 @@ for (b in 1:10){
       
     }
   }
-  Central[b]<-sum(TASB[80,])*.5*1000*(1/10000)
+  Central[b]<-sum(TASB[30,])*.5*1000*(1/10000)
 }
 
-hist(Diameter[80,]*2.54, main = "Central", xlab = "Diameter (cm)")
+hist(Diameter[30,]*2.54, main = "Central", xlab = "Diameter (cm)")
 
 species<-rep("Longleaf",10)
 
@@ -3870,7 +3874,7 @@ for (b in 1:10){
     
     
     
-    for (i in 2:80){ # specify how long to run the simulation (years)
+    for (i in 2:30){ # specify how long to run the simulation (years)
       
       age[i,j]<-age[i-1,j]+1
       
@@ -3901,11 +3905,11 @@ for (b in 1:10){
       
     }
   }
-  South[b]<-sum(TASB[80,])*.5*1000*(1/10000)
+  South[b]<-sum(TASB[30,])*.5*1000*(1/10000)
 }
 
 
-hist(Diameter[80,]*2.54, main = "South", xlab = "Diameter (cm)")
+hist(Diameter[30,]*2.54, main = "South", xlab = "Diameter (cm)")
 
 species<-rep("Longleaf",10)
 

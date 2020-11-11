@@ -40,7 +40,8 @@ for (i in 2:500){
   else if (Diameter[i,j]>3.94 & Diameter[i,j]<=7.97){M<-rbinom(1,1,(.2/8))}
   else if (Diameter[i,j]>7.97 & Diameter[i,j]<=11.81){M<-rbinom(1,1,(.15/8))}
   else if (Diameter[i,j]>11.81 & Diameter[i,j]<=15.75){M<-rbinom(1,1,(.1/8))}
-  else {M<-rbinom(1,1,(1/(1+exp(-0.05+0.2*Diameter[i-1,j])))/8)}
+  else if (Diameter[i,j]>15.75){M<-rbinom(1,1,(0.01/8))}
+  #else {M<-rbinom(1,1,(1/(1+exp(-0.05+0.2*Diameter[i-1,j])))/8)}
   #if (7.97<Diameter<=11.81){M<- rbinom(1,1,(.15/8))},
   #if (11.81<Diameter<=15.75){M<- rbinom(1,1,(.1/8))},
  
@@ -53,9 +54,3 @@ for (i in 2:500){
   }
 }}
 
-
-
-hist(age[500,which(Diameter[500,]>=5)])
-hist(Diameter[500,which(Diameter[500,]>=5)])
-
-              

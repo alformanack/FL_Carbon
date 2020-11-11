@@ -1739,11 +1739,12 @@ row.names(final_list_slash) <- c(as.vector(envdata[,9]))
 sdev<-as.vector(final_list_slash$sd.tasb)
 sdev.dbh<-as.vector(final_list_slash$sd.dbh)
 
-
+write.csv(final_list_slash, "C:/Users/Alicia/Documents/GitHub/FL_Carbon/final_list_slash.csv")
+final_list_slash<-read.csv("final_list_slash.csv", header=T, sep=",")
 # Compare observed diameter vs modeled diameter ---------------------------
 par(mfrow=c(1,1))
 
-model.1<-lm(data = final_list, log10(Observed_Diameter/Modeled_Diameter)~log10(Age)+Tree_Density+Temperature+Soil_CN*Aridity)
+model.1<-lm(data = final_list_slash, log10(Observed_Diameter/Modeled_Diameter)~Tree_Density+Temperature)
 summary(model.1)
 # plot(Temperature~Aridity, data= final_list[[1]])
 # 
@@ -1757,10 +1758,10 @@ summary(model.2)
 model.3<-lm(data = final_list, Modeled_Biomass~Observed_Biomass)
 summary(model.3)
 
-plot(data = final_list, Modeled_Biomass~Tree_Density)
-plot(data = final_list, Observed_Biomass~Tree_Density)
-plot(data = final_list, Modeled_Diameter~Tree_Density)
-plot(data = final_list, Observed_Diameter~Tree_Density)
+plot(data = final_list_slash, Modeled_Biomass~Tree_Density)
+plot(data = final_list_slash, Observed_Biomass~Tree_Density)
+plot(data = final_list_slash, Modeled_Diameter~Tree_Density)
+plot(data = final_list_slash, Observed_Diameter~Tree_Density)
 
 plot(data = final_list, Observed_Diameter~Modeled_Diameter, xlim = c(0,15), ylim = c(0,15), xlab="Modeled DBH (in)", ylab="Observed DBH (in)",
      main = "Before parameter correction", col.axis="#027368", col="#75BFBF", pch=16, type="p") + abline(0,1, col="#048ABF")
@@ -1813,7 +1814,7 @@ for (b in 1:10){
     
     
     
-    for (i in 2:80){ # specify how long to run the simulation (years)
+    for (i in 2:30){ # specify how long to run the simulation (years)
       
       age[i,j]<-age[i-1,j]+1
       
@@ -1841,10 +1842,10 @@ for (b in 1:10){
       
     }
   }
-  Panhandle[b]<-sum(TASB[80,])*.5*1000*(1/10000)
+  Panhandle[b]<-sum(TASB[30,])*.5*1000*(1/10000)
 }
 
-hist(Diameter[80,]*2.54, main = "Panhandle", xlab = "Diameter (cm)")
+hist(Diameter[30,]*2.54, main = "Panhandle", xlab = "Diameter (cm)")
 
 species<-rep("Slashpine",10)
 
@@ -1888,7 +1889,7 @@ for (b in 1:10){
     
     
     
-    for (i in 2:80){ # specify how long to run the simulation (years)
+    for (i in 2:30){ # specify how long to run the simulation (years)
       
       age[i,j]<-age[i-1,j]+1
       
@@ -1916,10 +1917,10 @@ for (b in 1:10){
       
     }
   }
-  North[b]<-sum(TASB[80,])*.5*1000*(1/10000)
+  North[b]<-sum(TASB[30,])*.5*1000*(1/10000)
 }
 
-hist(Diameter[80,]*2.54, main = "North", xlab = "Diameter (cm)")
+hist(Diameter[30,]*2.54, main = "North", xlab = "Diameter (cm)")
 
 species<-rep("Slashpine",10)
 
@@ -1964,7 +1965,7 @@ for (b in 1:10){
     
     
     
-    for (i in 2:80){ # specify how long to run the simulation (years)
+    for (i in 2:30){ # specify how long to run the simulation (years)
       
       age[i,j]<-age[i-1,j]+1
       
@@ -1992,10 +1993,10 @@ for (b in 1:10){
       
     }
   }
-  Central[b]<-sum(TASB[80,])*.5*1000*(1/10000)
+  Central[b]<-sum(TASB[30,])*.5*1000*(1/10000)
 }
 
-hist(Diameter[80,]*2.54, main = "Central", xlab = "Diameter (cm)")
+hist(Diameter[30,]*2.54, main = "Central", xlab = "Diameter (cm)")
 
 species<-rep("Slashpine",10)
 
@@ -2040,7 +2041,7 @@ for (b in 1:10){
     
     
     
-    for (i in 2:80){ # specify how long to run the simulation (years)
+    for (i in 2:30){ # specify how long to run the simulation (years)
       
       age[i,j]<-age[i-1,j]+1
       
@@ -2068,10 +2069,10 @@ for (b in 1:10){
       
     }
   }
-  South[b]<-sum(TASB[80,])*.5*1000*(1/10000)
+  South[b]<-sum(TASB[30,])*.5*1000*(1/10000)
 }
 
-hist(Diameter[80,]*2.54, main = "South", xlab = "Diameter (cm)")
+hist(Diameter[30,]*2.54, main = "South", xlab = "Diameter (cm)")
 
 species<-rep("Slashpine",10)
 
@@ -2087,6 +2088,7 @@ biomass_list[[12]] <- df
 
 final_biomass <- do.call(rbind.data.frame, biomass_list)
 final_biomass$TASB<-as.numeric(as.character(final_biomass$TASB))
+
 final_biomass<-final_biomass[which(final_biomass$Location!="South"),]
 
 

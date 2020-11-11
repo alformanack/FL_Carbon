@@ -220,9 +220,10 @@ plots2<-read.csv("plots2.csv", header=T, sep=",")
 
 #producing histograms of diameter distributions by plot
 
-par(mfrow=c(2,5))
+par(mfrow=c(1,5))
 c<-c(1, 2, 5:7, 9:20)
 c<-c(2711,1869,2642,1766,1848,1027,196,2243,771,2328,170,2309,3105,2801,1984,2022,476,3614,1070,669)
+c<-sort(c, decreasing = FALSE)
 for (o in c){
   diameter.totals<-vector()
   df<-plots[[o]]
@@ -231,6 +232,24 @@ for (o in c){
     for (h in 1:length(df2$DIA))
     {diameter.totals<-rep((df2$DIA), round(df2$TPA_UNADJ*2.47))}
       hist(diameter.totals, main = o, xlab = "Diameter (in)")}
+
+#trying to save info from histogram in table
+par(mfrow=c(2,5))
+c<-c(2711,1869,2642,1766,1848,1027,196,2243,771,2328,170,2309,3105,2801,1984,2022,476,3614,1070,669)
+c<-sort(c, decreasing = FALSE)
+observed.DBH<-list()
+for (p in 1:length(c)){
+  for (o in c){
+  diameter.totals<-vector()
+  df<-plots[[o]]
+  df2<-df[df$INVYR==min(df$INVYR) & df$STATUSCD=="1",]
+  df2$TPA_UNADJ <- ifelse(is.na(df2$TPA_UNADJ), df2$TPAGROW_UNADJ, df2$TPA_UNADJ)
+    for (h in 1:length(df2$DIA))
+    {diameter.totals<-rep((df2$DIA), round(df2$TPA_UNADJ*2.47))}
+      hist(diameter.totals, main = o, xlab = "Diameter (in)")
+  }
+  observed.DBH[p]<-diameter.totals
+}
 
 df <- plots2[plots2[,8] %in% c,]
 
