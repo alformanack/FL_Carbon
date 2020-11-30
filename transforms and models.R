@@ -142,6 +142,7 @@ other2.slash<-lm(data=slashpine, slashresidualssma ~ aridity_1*SOILGRIDS_CN_SCAL
 summary(other2.slash)
 
 write.csv(slashpine, "C:/Users/Alicia/Documents/GitHub/FL_Carbon/slashpine_data.csv")
+write.csv(longleaf, "C:/Users/Alicia/Documents/GitHub/FL_Carbon/longleaf_data.csv")
 
 s1<-lm(data=slashpine, logDIA ~ AVG_TEMP_bioclim + temp2 + logAGEDIA + aridity_1*SOILGRIDS_CN_SCALE)
 #confint(s1, level=0.95)
