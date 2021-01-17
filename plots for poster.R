@@ -95,21 +95,22 @@ carbon<-lm(data = final_list, Observed_Biomass~Modeled_Biomass)
 summary(carbon)
 
 # relative effect of coefficient ------------------------------------------
+par(mfrow=c(1,2))
 
 ggplot() +
-  labs( x="Aridity index", y="Relative effect on growth") +
+  labs( x="MAP/PET", y="Relative effect on growth") +
   # xlim(2,16) +
   # ylim(2,16) +
-  geom_point(data=loblolly, 
-             aes(loblolly$aridity_1, 10^(3.2046573*loblolly$aridity_1 - 1.9681509*loblolly$aridity2)/10^(3.2046573*min(loblolly$aridity_1)- 1.9681509*min(loblolly$aridity2))), 
-             cex=4, alpha=0.5, color="#495F8C") +
+  # geom_point(data=loblolly,
+  #            aes(loblolly$aridity_1, 10^(3.2046573*loblolly$aridity_1 - 1.9681509*loblolly$aridity2)/10^(3.2046573*min(loblolly$aridity_1)- 1.9681509*min(loblolly$aridity2))),
+  #            cex=4, alpha=0.5, color="#495F8C") +
   geom_point(data=slashpine, 
              aes(aridity_1, 10^(- 0.301793*slashpine$aridity_1)/10^(- 0.301793*min(slashpine$aridity_1))), 
              cex=4, alpha=0.5, color="#F2B705") +
-  geom_point(data=longleaf, 
-             aes(aridity_1, 10^(- 0.977477*longleaf$aridity_1)/10^(- 0.977477*min(longleaf$aridity_1))), 
-             cex=4, alpha=0.5, color="#F25C05") +
-  #scale_color_manual(values=c("#495F8C", "#F2B705", "#F25C05")) +
+  # geom_point(data=longleaf,
+  #            aes(aridity_1, 10^(- 0.977477*longleaf$aridity_1)/10^(- 0.977477*min(longleaf$aridity_1))),
+  #            cex=4, alpha=0.5, color="#F25C05") +
+  scale_color_manual(values=c("#495F8C", "#F2B705", "#F25C05")) +
   theme_Publication() +
   scale_fill_Publication() +
   scale_colour_Publication()
@@ -117,7 +118,7 @@ ggplot() +
 + 0.182686*temp - 0.004512*temp2
 
 ggplot() +
-  labs( x="Temperature", y="Relative effect on growth") +
+  labs( x="MAT", y="Relative effect on growth") +
   geom_point(data=slashpine, 
              aes(AVG_TEMP_bioclim, 10^(0.182686*slashpine$AVG_TEMP_bioclim - 0.004512*slashpine$temp2)/10^(0.182686*min(slashpine$AVG_TEMP_bioclim)- 0.004512*min(slashpine$temp2))), 
              cex=4, alpha=0.5, color="#F2B705") +

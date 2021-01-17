@@ -1752,7 +1752,7 @@ summary(model.1)
 # plot(res.age~df2$Age)
 # plot(res.age~df2$Aridity)
 
-model.2<-lm(data = final_list, log10(Observed_Diameter/Modeled_Diameter)~Tree_Density)
+model.2<-lm(data = final_list_slash, log10(Observed_Diameter/Modeled_Diameter)~Tree_Density)
 summary(model.2)
 
 model.3<-lm(data = final_list, Modeled_Biomass~Observed_Biomass)
