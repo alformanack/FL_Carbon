@@ -3,6 +3,8 @@ setwd("C:/Users/Alicia/Documents/GitHub/FL_Carbon")
 sitetree<-read.csv("sitetree12.17.19.csv", header=T, sep=",", stringsAsFactors = F)
 sitetree<-read.csv("precip.csv", header=T, sep=",", stringsAsFactors = F)
 sitetree<-read.csv("aridity3.csv", header=T, sep=",", stringsAsFactors = F)
+sitetree<-read.csv("aridity3.csv", header=T, sep=",", stringsAsFactors = F)
+sitetree<-read.csv("sitetree_NAD83_envData.csv", header=T, sep=",", stringsAsFactors = F)
 
 
 

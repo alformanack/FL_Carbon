@@ -3,70 +3,87 @@
 rm(list=ls())
 
 setwd("C:/Users/Alicia/Documents/GitHub/FL_Carbon")
-envdata<-read.csv("slash_remeas_env.csv", header=T, sep=",")
-load("slash_remeas_start.Rdata")
+envdata<-read.csv("slashRemeasPlots.csv", header=T, sep=",") %>%
+  mutate(PLT_CN=finalSummary$PLT_CN) %>%
+  select(-OID, -Field1) 
+view(envdata)
 
+load("slashStartPlots.Rdata")
+load("slashEndPlots")
 
-a<-c(451, 177, 587, 546, 124, 547, 235, 131, 589, 141, 303, 305, 188,  10, 391, 318, 348, 464, 402, 67)
+envdata$PLT_CN<-sort(envdata$PLT_CN, decreasing = FALSE)
+
+envdata$PLT_CN<-as.character(envdata$PLT_CN)
+
 
 par(mfrow=c(2,5))
-final_list_slash<-list()
+
+mylist<-list()
 
 # Plot 170 ----------------------------------------------
+diameter.totals<-list()
+age.totals<-list()
+diameter.totals.end<-list()
+age.totals.end<-list()
+plot_data_end<-list()
 
-# data will be saved as list 1
-for (s in 2:20){
+
+for (s in 1:21){
   
-  plot_data<-final.start[[s]] %>%
+  aridity<-envdata[s, 12]*0.0001
+  
+  temp<-envdata[s, 11]
+  
+  temp2<-envdata[s, 11]^2
+  
+  plot_data<-startPlots[[s]] %>%
     filter(STATUSCD=="1") %>%
-    mutate(TPA=ifelse(is.na(TPA_UNADJ), TPAGROW_UNADJ, TPA_UNADJ)) %>%
-    mutate(TPA_total=sum(round(TPA))) %>%
+    # mutate(TPA=ifelse(is.na(TPA_UNADJ), TPAGROW_UNADJ, TPA_UNADJ)) %>%
+    mutate(TPA_total=sum(round(TPA_UNADJ))) %>%
     mutate(age=round((10^(2.475538 - 0.3158355*temp + 0.007800543*temp2 + 0.5217529*aridity)*(DIA^1.728844))))  
 
-  diameter.totals<-vector()
-  age.totals<-vector
     for (h in 1:length(plot_data$DIA))
-      {diameter.totals<-rep((plot_data$DIA), round(plot_data$TPA))
-        age.totals<-rep((plot_data$age), round(plot_data$TPA))}
-  hist(diameter.totals, main = paste("Start plot", s), xlab = "Diameter (in)")
+      {diameter.totals[[s]]<-rep((plot_data$DIA), round(plot_data$TPA_UNADJ))
+        age.totals[[s]]<-rep((plot_data$age), round(plot_data$TPA_UNADJ))}
+  hist(diameter.totals[[s]], main = paste("Start plot", s), xlab = "Diameter (in)")
       
-  plot_data_end<-final.end[[s]] %>%
-    filter(STATUSCD=="1") %>%
-    mutate(TPA=ifelse(is.na(TPA_UNADJ), TPAGROW_UNADJ, TPA_UNADJ)) %>%
-    mutate(TPA_total=sum(round(TPA))) %>%
-    mutate(age=round((10^(2.475538 - 0.3158355*temp + 0.007800543*temp2 + 0.5217529*aridity)*(DIA^1.728844))))  
+  plot_data_end[[s]]<-endPlots[[s]] %>%
+    filter(secondTreeStatus=="1") %>%
+    # mutate(TPA=ifelse(is.na(TPA_UNADJ), TPAGROW_UNADJ, TPA_UNADJ)) %>%
+    mutate(TPA_total=sum(round(secondTPA))) %>%
+    mutate(age=round((10^(2.475538 - 0.3158355*temp + 0.007800543*temp2 + 0.5217529*aridity)*(secondDIA^1.728844)))) %>%
+    mutate(TASB=(0.041281*((secondDIA*2.54)^2.722214))*(round(secondTPA)))
   
-  diameter.totals.end<-vector()
-  age.totals.end<-vector
+
     for (h in 1:length(plot_data_end$DIA))
-    {diameter.totals.end<-rep((plot_data_end$DIA), round(plot_data_end$TPA))
-      age.totals.end<-rep((plot_data_end$age), round(plot_data_end$TPA))}
-  hist(diameter.totals.end, main =paste("End plot", s), xlab = "Diameter (in)")
+    {diameter.totals.end[[s]]<-rep((plot_data_end[[s]]$secondDIA), round(plot_data_end[[s]]$secondTPA))
+      age.totals.end[[s]]<-rep((plot_data_end[[s]]$age), round(plot_data_end[[s]]$secondTPA))}
+  hist(diameter.totals.end[[s]], main =paste("End plot", s), xlab = "Diameter (in)")
       
-}
 
-for (c in a){
 
-# set parameters for growth equation
-aridity<-envdata[10, 7]*0.0001
 
-temp<-envdata[10, 6]
 
-temp2<-envdata[10, 6]^2
-
-# C_AVG<-((envdata[1,11]/10)*(1/3))+((envdata[1,12]/10)*(2/3))
+# # set parameters for growth equation
+# aridity<-envdata[a, 7]*0.0001
 # 
-# N_AVG<-((envdata[1,13]/100)*(1/3))+((envdata[1,14]/100)*(2/3))
+# temp<-envdata[a, 6]
 # 
-# CN<-C_AVG/N_AVG
+# temp2<-envdata[a, 6]^2
 # 
-# CN_SCALE<-(CN*4.941)+29.777
+# # C_AVG<-((envdata[1,11]/10)*(1/3))+((envdata[1,12]/10)*(2/3))
+# # 
+# # N_AVG<-((envdata[1,13]/100)*(1/3))+((envdata[1,14]/100)*(2/3))
+# # 
+# # CN<-C_AVG/N_AVG
+# # 
+# # CN_SCALE<-(CN*4.941)+29.777
 
 
 # set stand age and density
-plot_density<-diameter.totals
-observed.a<-unique(plot_data$how_long)
-ages<-age.totals
+plot_density<-diameter.totals[[s]]
+observed.a<-envdata[s,9]
+ages<-age.totals[[s]]
 predict.tasb<-matrix(nrow = 10, ncol = 1,0)
 predict.d<-matrix(nrow = 10, ncol = 1,0)
 
@@ -110,25 +127,46 @@ for (o in 1:10){
   }
   # save average modeled diameter
   predict.d[o,1]<-mean(Diameter[observed.a,])
-  predict.tasb[o,1]<-sum(TASB[21, ])*.5*1000*(1/10000)
+  predict.tasb[o,1]<-sum(TASB[observed.a, ])*.5
 }
-observed.d<-c(envdata[1,4])
-observed.tasb<-c(envdata[1,5])
+
+observed.d<-mean(diameter.totals[[s]])
+observed.tasb<-sum(plot_data_end[[s]]$TASB)*.5
 modeled.d<-mean(predict.d)
 modeled.tasb<-mean(predict.tasb)
 sd.tasb<-sd(predict.tasb)
 sd.dbh<-sd(predict.d)
-hist(Diameter[observed.a,], main = a, xlab = "Diameter (in)")
+hist(Diameter[observed.a,], main=paste("End simulation", s), xlab = "Diameter (in)")
 
 # set up dataframe to store simulated data
-df<-cbind(observed.d, modeled.d, observed.a, plot_density, temp, CN_SCALE*aridity, aridity, CN_SCALE, observed.tasb, modeled.tasb, 
+df<-cbind(observed.d, modeled.d, observed.a, length(plot_density), temp, aridity, observed.tasb, modeled.tasb, 
           sd.tasb, sd.dbh)
 
 df<-data.frame(df)
 
-colnames(df)<-c("Observed_Diameter","Modeled_Diameter","Age", "Tree_Density", "Temperature", "CN*aridity", "Aridity", "Soil_CN", "Observed_Biomass", 
+colnames(df)<-c("Observed_Diameter","Modeled_Diameter","Age", "Tree_Density", "Temperature",  "Aridity", "Observed_Biomass", 
                 "Modeled_Biomass", "sd.tasb", "sd.dbh")
 
 # data will be saved as list 1
-mylist[[1]] <- df
+mylist[[s]] <- df
 
+}
+
+par(mfrow=c(1,1))
+
+final_list <- do.call(rbind.data.frame, mylist)
+row.names(final_list_slash) <- c(as.vector(envdata[,9]))
+# final_list$Plot<- c(1,12,14:18)
+# final_list$Plot<-as.factor(final_list$Plot)
+sdev<-as.vector(final_list$sd.tasb)
+sdev.dbh<-as.vector(final_list$sd.dbh)
+
+plot(data = final_list, Observed_Diameter~Modeled_Diameter, xlim = c(2,13), ylim = c(2,13), xlab="Modeled DBH (in)", ylab="Observed DBH (in)",
+     main = "Before parameter correction", col.axis="#027368", col="#75BFBF", pch=16, type="p") + abline(0,1, col="#048ABF")
+text(Observed_Diameter~Modeled_Diameter, labels=rownames(final_list),data=final_list, cex=0.9, font=2, pos=4)
+arrows(final_list$Modeled_Diameter-sdev.dbh, final_list$Observed_Diameter, final_list$Modeled_Diameter+sdev.dbh, final_list$Observed_Diameter, length=0.05, angle=90, code=3)
+
+plot(data = final_list, Observed_Biomass~Modeled_Biomass, xlim = c(0,30500), ylim = c(0,30500), col = "#75BFBF", xlab="Modeled", ylab="Observed", main ="Tree Carbon (gC/m^2)",
+     col.axis="#027368", pch=16, type="p") + abline(0,1, col="#048ABF")
+text(Observed_Biomass~Modeled_Biomass, labels=rownames(final_list),data=final_list, cex=0.9, font=2, pos=4)
+arrows(final_list$Modeled_Biomass-sdev, final_list$Observed_Biomass, final_list$Modeled_Biomass+sdev, final_list$Observed_Biomass, length=0.05, angle=90, code=3)
