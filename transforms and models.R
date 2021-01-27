@@ -24,6 +24,7 @@ sitetree$ORNL_CN<-sitetree$SOC_ORNL_kgperm2*1000/sitetree$N_ORNL_gperm2
 
 is.na(sitetree$SOC0_5_NAD) <- sitetree$SOC0_5_NAD==-9999
 is.na(sitetree$SOC5_15_NA) <- sitetree$SOC5_15_NA==-9999
+
 is.na(sitetree$N0_5_NAD) <- sitetree$N0_5_NAD==-9999
 is.na(sitetree$N5_15_NAD) <- sitetree$N5_15_NAD==-9999
 
@@ -44,6 +45,7 @@ is.na(sitetree$ai_et0_NAD) <- sitetree$ai_et0_NAD==-9999
 
 sitetree$SOILGRIDS_C_AVG<-((sitetree$SOC0_5_NAD/10)*(1/3))+((sitetree$SOC5_15_NA/10)*(2/3))
                  
+
 sitetree$SOILGRIDS_N_AVG<-((sitetree$N0_5_NAD/100)*(1/3))+((sitetree$N5_15_NAD/100)*(2/3))                 
 
 sitetree$SOILGRIDS_CN<-sitetree$SOILGRIDS_C_AVG/sitetree$SOILGRIDS_N_AVG 
@@ -516,16 +518,65 @@ plot(longleafmodel1)
 
 par(mfrow=c (1,1))
 plot(LongleafSMA)
-LongleafSMA <- smatr::sma(data=longleaf, logDIA ~ logAGEDIA, method = "SMA")
+LongleafSMA <- smatr::sma(data=longleaf, log(DIA) ~ log(AGEDIA), method = "SMA")
 resid.LLSMA<- residuals(LongleafSMA)
-newLongleaf<- lm(resid.LLSMA~SOILGRIDS_CN_SCALE*aridity_1, data=longleaf)
-plot(newLongleaf)
+
+# Call: smatr::sma(formula = log(DIA) ~ log(AGEDIA), data = longleaf, 
+#                  method = "SMA") 
+# 
+# Fit using Standardized Major Axis 
+# 
+# ------------------------------------------------------------
+#   Coefficients:
+#   elevation     slope
+# estimate    0.2746847 0.5718692
+# lower limit 0.1565138 0.5415208
+# upper limit 0.3928557 0.6039184
+# 
+# H0 : variables uncorrelated
+# R-squared : 0.4207783 
+# P-value : < 2.22e-16 
+
+full.model<-lm(resid.LLSMA~X30s_NAD + ai_et0_NAD + SOILGRIDS_CN_SCALE, data=longleaf)
+summary(full.model)
+car::vif(full.model)
+
+notemp.model<-lm(resid.LLSMA~ai_et0_NAD + SOILGRIDS_CN_SCALE, data=longleaf)
+summary(notemp.model)
+
+int.model<-lm(resid.LLSMA~ai_et0_NAD * SOILGRIDS_CN_SCALE, data=longleaf)
+summary(int.model)
+plot(int.model)
+
+# Call:
+#   lm(formula = resid.LLSMA ~ ai_et0_NAD * SOILGRIDS_CN_SCALE, data = longleaf)
+# 
+# Residuals:
+#   Min       1Q   Median       3Q      Max 
+# -0.86952 -0.15981  0.00771  0.15900  0.54656 
+# 
+# Coefficients:
+#   Estimate Std. Error t value Pr(>|t|)    
+# (Intercept)                    1.597324   0.276706   5.773 1.15e-08 ***
+#   ai_et0_NAD                    -1.912994   0.307574  -6.220 8.33e-10 ***
+#   SOILGRIDS_CN_SCALE            -0.016069   0.005036  -3.191 0.001478 ** 
+#   ai_et0_NAD:SOILGRIDS_CN_SCALE  0.019731   0.005351   3.687 0.000243 ***
+#   ---
+#   Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+# 
+# Residual standard error: 0.2188 on 740 degrees of freedom
+# (8 observations deleted due to missingness)
+# Multiple R-squared:  0.1142,	Adjusted R-squared:  0.1106 
+# F-statistic: 31.81 on 3 and 740 DF,  p-value: < 2.2e-16
+
+
 plot(resid.LLSMA~longleaf$SOILGRIDS_CN_SCALE)
 plot(resid.LLSMA~longleaf$aridity_1)
 plot(resid.LLSMA~longleaf$aridity_1)
 plot(resid.LLSMA~longleaf$AVG_TEMP_bioclim)
 
-longleafgrowth<-(10^(0.9333281 - 0.009259*CN + 0.011340*CN*aridity - 0.977477*aridity))*(0.5718692*age[i,j]^(-0.4281308))
+longleafgrowth<-(10^(1.872009 - 0.016069*CN + 0.019731*CN*aridity - 1.912994*aridity))*(0.5718692*age[i,j]^(-0.4281308))
+# longleafgrowth<-(10^(0.9333281 - 0.009259*CN + 0.011340*CN*aridity - 0.977477*aridity))*(0.5718692*age[i,j]^(-0.4281308))
 
 #longleafmodel2<-lm(logDIA~AVG_TEMP_bioclim+logAGEDIA+logSOILGRIDS_CN_SCALE+SOIL_MOIS, data=longleaf)
 #longleafmodel<-lm(logDIA~AVG_TEMP_bioclim+logAGEDIA+logSOILGRIDS_CN_SCALE+longleaf$precip_1, data=longleaf)
@@ -542,17 +593,38 @@ summary(longleafmodel3)
 loblolly$aridity2<-loblolly$aridity_1^2
 
 par(mfrow=c (2,2))
-LoblollySMA <- smatr::sma(data=loblolly, logDIA ~ logAGEDIA, method = "SMA")
+LoblollySMA <- smatr::sma(data=loblolly, log(DIA) ~ log(AGEDIA), method = "SMA")
 # LoblollyMA <- smatr::sma(data=loblolly, logDIA ~ logAGEDIA, method = "MA")
-plot(LoblollySMA)
-plot(LoblollyMA)
+# method = "SMA") 
+# 
+# Fit using Standardized Major Axis 
+# 
+# ------------------------------------------------------------
+#   Coefficients:
+#   elevation     slope
+# estimate     0.005106407 0.7405648
+# lower limit -0.149203086 0.6945966
+# upper limit  0.159415900 0.7895752
+# 
+# H0 : variables uncorrelated
+# R-squared : 0.4149081 
+# P-value : < 2.22e-16
+
 residloblollysma<-residuals(LoblollySMA)
 plot(residloblollysma)
+
+
+loblollymodel1<-lm(residloblollysma~ai_et0_NAD+loblolly$X30s_NAD+SOILGRIDS_CN_SCALE, data=(loblolly))
+summary(loblollymodel1)
+
+loblollymodel2<-lm(residloblollysma~ai_et0_NAD+SOILGRIDS_CN_SCALE, data=(loblolly))
+summary(loblollymodel2)
+
 loblollymodel3<-lm(residloblollysma~SOILGRIDS_CN_SCALE+aridity_1+aridity2, data=(loblolly))
 loblollymodel3<-lm(residloblollysma~SOILGRIDS_CN_SCALE+aridity2, data=(loblolly))
 plot(loblollymodel3)
 
-car::vif(loblollymodel1)
+car::vif(loblollymodel2)
 
 par(mfrow=c (1,1))
 ggplot(data=na.exclude(loblolly), aes(loblollymodel3$residuals)) +

@@ -1,4 +1,4 @@
-#Finding longleaf plots that were remeasured
+#Finding loblolly plots that were remeasured
 
 # Get plot data from FIA TREE file ----------------------------------------
 
@@ -11,13 +11,13 @@ tree<-read.csv("FL_TREE.csv", header=T, sep=",") %>%
 
 unique.plot<-unique(tree$PLT_CN)
 
-plot_notLL<-unique(tree[tree$SPCD!=121,]$PLT_CN)
+plot_notLob<-unique(tree[tree$SPCD!=131,]$PLT_CN)
 
 # unique.prev<-unique(plot$PREV_PLT_CN)
 # 
 # remeasure<-df[df$PLT_CN %in% unique.prev]
 
-unique.121 <- setdiff(unique.plot, plot_notLL)
+unique.131 <- setdiff(unique.plot, plot_notLob)
 
 cut_trees<- unique(tree[tree$STATUSCD==3,]$PLT_CN)
 
@@ -42,6 +42,7 @@ fiaSurvey <- read.csv("FL_SURVEY.csv", header=T, sep=",") %>%
 
 fiaPlots <- read.csv("FL_PLOT.csv", header=T, sep=",") %>%
   mutate(CN = as.character(CN)) %>%
+  filter(DESIGNCD==1) %>%
   filter(KINDCD == 1 | KINDCD == 2) %>% #first or re-measurement in annual survey system
   filter(PLOT_STATUS_CD == 1) %>% #accessible forest measured
   mutate(CN = as.character(CN),
@@ -53,7 +54,7 @@ fiaPlots <- read.csv("FL_PLOT.csv", header=T, sep=",") %>%
 
 fiaTrees <- tree %>%
   mutate(PLT_CN = as.character(PLT_CN)) %>%
-  filter(PLT_CN %in% intersect(unique.121, filter_cut_trees)) %>%
+  filter(PLT_CN %in% intersect(unique.131, filter_cut_trees)) %>%
   group_by(PLT_CN) %>%
   # mutate(numSubplots = length(unique(SUBP))) %>%
   mutate(maxSUBP= max(SUBP)) %>% 
@@ -149,16 +150,16 @@ plots.remeasure <-
 #removing empty dataframes in list
 plots.remeasure<-plots.remeasure[sapply(plots.remeasure, function(x) dim(x)[1]) > 0]
 
-view(plots.remeasure[[7]])
-# remove first line from 6
+view(plots.remeasure[[1]])
+16
 
 #creating single dataframe that has all plots remeasured withtime since remeasurement being greater than 10 years
 #saving it as slash_remeas_plots to extract env data using ArcMap
 
-plots2<-as.data.frame(matrix(0, ncol = 4, nrow = 23))
+plots2<-as.data.frame(matrix(0, ncol = 4, nrow = 10))
 colnames(plots2)<-c("PLT_CN", "LAT", "LON", "TIME_INT")
 
-for (j in 1:23) {
+for (j in 1:10) {
   df<-plots.remeasure[[j]]
   plots2[j,1]<-max(df$PLT_CN)
   plots2[j,2]<-unique(df$LAT)
@@ -166,7 +167,7 @@ for (j in 1:23) {
   plots2[j,4]<-unique(df$how_long)
 }
 
-write.csv(plots2, "C:/Users/Alicia/Documents/GitHub/FL_Carbon/longleaf_remeas_plots.csv")
+#write.csv(plots2, "C:/Users/Alicia/Documents/GitHub/FL_Carbon/slash_remeas_plots.csv")
 
 #looking at spatial variability of remeasurment plots
 ggplot(plots2, aes(x = LON, y = LAT, label=row.names(plots2))) +
@@ -187,19 +188,19 @@ ggplot(plots3, aes(x = LON, y = LAT, label=row.names(plots3))) +
 #subsetting the data into a list of initial measurement plots (plots.start) and final measurment (plots.end)
 plots.start<- list()
 df<-data.frame()
-for (h in 1:23) {
+for (h in a) {
   df<-plots.remeasure[[h]]
   df<-subset(df, df$MEASYEAR== min(df$MEASYEAR))
   plots.start[[h]]<-df
 }
 
-# final.start<-plots.start[lengths(plots.start) != 0]
+final.start<-plots.start[lengths(plots.start) != 0]
 
-save(plots.start, file="longleaf_remeas_start.Rdata")
+#save(final.start, file="slash_remeas_start.Rdata")
 
 plots.end<- list()
 
-for (h in 1:23) {
+for (h in a) {
   df<-plots.remeasure[[h]]
   df<-subset(df, MEASYEAR==max(MEASYEAR))
   plots.end[[h]]<-df
@@ -208,7 +209,7 @@ for (h in 1:23) {
 
 final.end<-plots.end[lengths(plots.end) != 0]
 
-save(plots.end, file="longleaf_remeas_end.Rdata")
+#save(final.end, file="slash_remeas_end.Rdata")
 
 view(final.start[[1]])
 view(final.end[[1]])
