@@ -16,20 +16,35 @@ sitetree$SPCD<-as.factor(sitetree$SPCD)
 sitetree$ORNL_CN<-sitetree$SOC_ORNL_kgperm2*1000/sitetree$N_ORNL_gperm2
 
 # Calculate weighted averages and soil C:N for Soilgrids data -------------
+# 
+# is.na(sitetree$SOC_0_5_1) <- !sitetree$SOC_0_5_1
+# is.na(sitetree$SOC_5_15_1) <- !sitetree$SOC_5_15_1
+# is.na(sitetree$Nitrogen_0_5_1) <- !sitetree$Nitrogen_0_5_1
+# is.na(sitetree$Nitrogen_5_15_1) <- !sitetree$Nitrogen_5_15_1
 
-is.na(sitetree$SOC_0_5_1) <- !sitetree$SOC_0_5_1
-is.na(sitetree$SOC_5_15_1) <- !sitetree$SOC_5_15_1
-is.na(sitetree$Nitrogen_0_5_1) <- !sitetree$Nitrogen_0_5_1
-is.na(sitetree$Nitrogen_5_15_1) <- !sitetree$Nitrogen_5_15_1
+is.na(sitetree$SOC0_5_NAD) <- sitetree$SOC0_5_NAD==-9999
+is.na(sitetree$SOC5_15_NA) <- sitetree$SOC5_15_NA==-9999
+is.na(sitetree$N0_5_NAD) <- sitetree$N0_5_NAD==-9999
+is.na(sitetree$N5_15_NAD) <- sitetree$N5_15_NAD==-9999
+
+is.na(sitetree$X30s_NAD) <- sitetree$X30s_NAD==-9999
+is.na(sitetree$ai_et0_NAD) <- sitetree$ai_et0_NAD==-9999
 
 # sitetree <- sitetree[which(!is.na(sitetree$SOC_0_5_1) &
 #                  !is.na(sitetree$SOC_5_15_1) &
 #                  !is.na(sitetree$Nitrogen_0_5_1) &
 #                  !is.na(sitetree$Nitrogen_5_15_1)),]
 
-sitetree$SOILGRIDS_C_AVG<-((sitetree$SOC_0_5_1/10)*(1/3))+((sitetree$SOC_5_15_1/10)*(2/3))
+# sitetree$SOILGRIDS_C_AVG<-((sitetree$SOC_0_5_1/10)*(1/3))+((sitetree$SOC_5_15_1/10)*(2/3))
+#                  
+# sitetree$SOILGRIDS_N_AVG<-((sitetree$Nitrogen_0_5_1/100)*(1/3))+((sitetree$Nitrogen_5_15_1/100)*(2/3))                 
+# 
+# sitetree$SOILGRIDS_CN<-sitetree$SOILGRIDS_C_AVG/sitetree$SOILGRIDS_N_AVG 
+
+
+sitetree$SOILGRIDS_C_AVG<-((sitetree$SOC0_5_NAD/10)*(1/3))+((sitetree$SOC5_15_NA/10)*(2/3))
                  
-sitetree$SOILGRIDS_N_AVG<-((sitetree$Nitrogen_0_5_1/100)*(1/3))+((sitetree$Nitrogen_5_15_1/100)*(2/3))                 
+sitetree$SOILGRIDS_N_AVG<-((sitetree$N0_5_NAD/100)*(1/3))+((sitetree$N5_15_NAD/100)*(2/3))                 
 
 sitetree$SOILGRIDS_CN<-sitetree$SOILGRIDS_C_AVG/sitetree$SOILGRIDS_N_AVG 
 
@@ -37,26 +52,28 @@ sitetree$SOILGRIDS_CN<-sitetree$SOILGRIDS_C_AVG/sitetree$SOILGRIDS_N_AVG
 sitetree[which(is.finite(sitetree$SOILGRIDS_CN)==F),"SOILGRIDS_CN"]<-NA 
 
 
-sitetree$FIA_CN_RATIO<-as.numeric(sitetree$FIA_CN_RATIO)
-sitetree[which(is.finite(sitetree$FIA_CN_RATIO)==F),"FIA_CN_RATIO"]<-NA
+sitetree$FIA_CN_RAT<-as.numeric(sitetree$FIA_CN_RAT)
+sitetree[which(is.finite(sitetree$FIA_CN_RAT)==F),"FIA_CN_RAT"]<-NA
 
 
 # Comparing soils data with FIA -------------------------------------------
 
-plot(sitetree$ORNL_CN, sitetree$FIA_CN_RATIO)                 
+# plot(sitetree$ORNL_CN, sitetree$FIA_CN_RATIO)                 
 
-plot(sitetree$SOILGRIDS_CN, sitetree$FIA_CN_RATIO)
+plot(sitetree$SOILGRIDS_CN, sitetree$FIA_CN_RAT)
 
-model<-lm(FIA_CN_RATIO~SOILGRIDS_CN, data=sitetree)
+model<-lm(na.omit(sitetree$FIA_CN_RAT~sitetree$SOILGRIDS_CN, data=sitetree))
 summary(model)
 
 #scale CN from FIA data
-sitetree$SOILGRIDS_CN_SCALE<-(sitetree$SOILGRIDS_CN*4.941)+29.777
+sitetree$SOILGRIDS_CN_SCALE<-(sitetree$SOILGRIDS_CN*6.212)+24.634
+# sitetree$SOILGRIDS_CN_SCALE<-(sitetree$SOILGRIDS_CN*4.941)+29.777
 #sitetree$SOILGRIDS_CN_SCALE<-(sitetree$SOILGRIDS_CN*6.045)+19.775
 
-plot(sitetree$SOILGRIDS_CN_SCALE, sitetree$FIA_CN_RATIO)
-model<-lm(FIA_CN_RATIO~SOILGRIDS_CN_SCALE, data=sitetree)
-summary(model)
+
+# plot(sitetree$SOILGRIDS_CN_SCALE, sitetree$FIA_CN_RAT)
+# model<-lm(FIA_CN_RAT~SOILGRIDS_CN_SCALE, data=sitetree)
+# summary(model)
 
 # Checking variable normality ---------------------------------------------
 
@@ -120,7 +137,7 @@ normali1(sitetree$logprecip)
 #plot(log10(DIA)~SOIL_MOIS)
 sitetree<-sitetree[-c(1336), ]
 
-sitetree$aridity_1<-sitetree$aridity_1*.0001
+sitetree$ai_et0_NAD<-sitetree$ai_et0_NAD*.0001
 summary(sitetree$aridity_1)
 hist(sitetree$aridity_1)
 
@@ -135,10 +152,85 @@ slashpine<-subset(sitetree, sitetree$SPCD=="111")
 longleaf<-subset(sitetree, sitetree$SPCD=="121")
 loblolly<-subset(sitetree, sitetree$SPCD=="131")
 
-slashpine$temp2<-slashpine$AVG_TEMP_bioclim^2
 
-SlashSMA <- smatr::sma(data=slashpine, logDIA ~ logAGEDIA, method = "SMA")
+normali1(slashpine$X30s_NAD)
+normali1(slashpine$ai_et0_NAD)
+normali1(slashpine$SOILGRIDS_CN_SCALE)
+
+slashpine$temp2<-slashpine$X30s_NAD^2
+
+SlashSMA <- smatr::sma(data=slashpine, log(slashpine$DIA)~log(slashpine$AGEDIA), method = "SMA")
 slashresidualssma<-residuals(SlashSMA)
+plot(SlashSMA)
+summary(SlashSMA)
+
+# Call: smatr::sma(formula = log(slashpine$DIA) ~ log(slashpine$AGEDIA), 
+#                  data = slashpine, method = "SMA") 
+# 
+# Fit using Standardized Major Axis 
+# 
+# ------------------------------------------------------------
+#   Coefficients:
+#   elevation     slope
+# estimate    0.3440118 0.5783973
+# lower limit 0.2799281 0.5599690
+# upper limit 0.4080955 0.5974321
+# 
+# H0 : variables uncorrelated
+# R-squared : 0.3770741 
+# P-value : < 2.22e-16 
+
+
+
+
+
+full.model<-lm(slashresidualssma~X30s_NAD + ai_et0_NAD + SOILGRIDS_CN_SCALE, data=slashpine)
+summary(full.model)
+plot(full.model)
+car::vif(full.model)
+
+# X30s_NAD         ai_et0_NAD SOILGRIDS_CN_SCALE 
+# 3.587173           3.812656           1.122901 
+
+pairs(slashresidualssma~X30s_NAD + ai_et0_NAD + SOILGRIDS_CN_SCALE, data=slashpine)
+
+.model<-lm(slashresidualssma~X30s_NAD + temp2 +  ai_et0_NAD, data=slashpine)
+summary(.model)
+
+notemp.model<-lm(slashresidualssma~ai_et0_NAD, data=slashpine)
+summary(notemp.model)
+
+int.model<-lm(slashresidualssma~X30s_NAD + ai_et0_NAD, data=slashpine)
+summary(int.model)
+
+int.model2<-lm(slashresidualssma~ ai_et0_NAD*SOILGRIDS_CN_SCALE , data=slashpine)
+summary(int.model2)
+plot(int.model2)
+
+bbmle::BICtab(.model, notemp.model, int.model, base=T, delta=T, weights=T)
+bbmle::AICctab(.model, notemp.model, int.model, base=T, delta=T, weights=T)
+# Call:
+#   lm(formula = slashresidualssma ~ ai_et0_NAD * SOILGRIDS_CN_SCALE, 
+#      data = slashpine)
+# 
+# Residuals:
+#   Min       1Q   Median       3Q      Max 
+# -0.73974 -0.14481  0.00549  0.13457  1.07212 
+# 
+# Coefficients:
+#   Estimate Std. Error t value Pr(>|t|)    
+# (Intercept)                    1.269e+00  1.559e-01   8.139 6.58e-16 ***
+#   ai_et0_NAD                    -1.436e-04  1.789e-05  -8.023 1.66e-15 ***
+#   SOILGRIDS_CN_SCALE            -1.500e-02  2.730e-03  -5.496 4.33e-08 ***
+#   ai_et0_NAD:SOILGRIDS_CN_SCALE  1.646e-06  3.075e-07   5.354 9.51e-08 ***
+#   ---
+#   Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+# 
+# Residual standard error: 0.2071 on 2202 degrees of freedom
+# (80 observations deleted due to missingness)
+# Multiple R-squared:  0.07767,	Adjusted R-squared:  0.07641 
+# F-statistic: 61.81 on 3 and 2202 DF,  p-value: < 2.2e-16
+
 
 other2.slash<-lm(data=slashpine, slashresidualssma ~ aridity_1*SOILGRIDS_CN_SCALE+AVG_TEMP_bioclim)
 summary(other2.slash)
