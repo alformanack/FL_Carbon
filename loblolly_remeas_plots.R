@@ -150,7 +150,7 @@ plots.remeasure <-
 #removing empty dataframes in list
 plots.remeasure<-plots.remeasure[sapply(plots.remeasure, function(x) dim(x)[1]) > 0]
 
-view(plots.remeasure[[1]])
+view(plots.remeasure[[3]])
 16
 
 #creating single dataframe that has all plots remeasured withtime since remeasurement being greater than 10 years
@@ -167,7 +167,7 @@ for (j in 1:10) {
   plots2[j,4]<-unique(df$how_long)
 }
 
-#write.csv(plots2, "C:/Users/Alicia/Documents/GitHub/FL_Carbon/slash_remeas_plots.csv")
+write.csv(plots2, "C:/Users/Alicia/Documents/GitHub/FL_Carbon/loblolly_remeas_plots.csv")
 
 #looking at spatial variability of remeasurment plots
 ggplot(plots2, aes(x = LON, y = LAT, label=row.names(plots2))) +
@@ -188,7 +188,7 @@ ggplot(plots3, aes(x = LON, y = LAT, label=row.names(plots3))) +
 #subsetting the data into a list of initial measurement plots (plots.start) and final measurment (plots.end)
 plots.start<- list()
 df<-data.frame()
-for (h in a) {
+for (h in 1:10) {
   df<-plots.remeasure[[h]]
   df<-subset(df, df$MEASYEAR== min(df$MEASYEAR))
   plots.start[[h]]<-df
@@ -196,11 +196,11 @@ for (h in a) {
 
 final.start<-plots.start[lengths(plots.start) != 0]
 
-#save(final.start, file="slash_remeas_start.Rdata")
+save(plots.start, file="loblolly_remeas_start.Rdata")
 
 plots.end<- list()
 
-for (h in a) {
+for (h in 1:10) {
   df<-plots.remeasure[[h]]
   df<-subset(df, MEASYEAR==max(MEASYEAR))
   plots.end[[h]]<-df
@@ -209,7 +209,7 @@ for (h in a) {
 
 final.end<-plots.end[lengths(plots.end) != 0]
 
-#save(final.end, file="slash_remeas_end.Rdata")
+save(plots.end, file="loblolly_remeas_end.Rdata")
 
 view(final.start[[1]])
 view(final.end[[1]])

@@ -1,9 +1,9 @@
 rm(list=ls())
 setwd("C:/Users/Alicia/Documents/GitHub/FL_Carbon")
-sitetree<-read.csv("sitetree12.17.19.csv", header=T, sep=",", stringsAsFactors = F)
-sitetree<-read.csv("precip.csv", header=T, sep=",", stringsAsFactors = F)
-sitetree<-read.csv("aridity3.csv", header=T, sep=",", stringsAsFactors = F)
-sitetree<-read.csv("aridity3.csv", header=T, sep=",", stringsAsFactors = F)
+# sitetree<-read.csv("sitetree12.17.19.csv", header=T, sep=",", stringsAsFactors = F)
+# sitetree<-read.csv("precip.csv", header=T, sep=",", stringsAsFactors = F)
+# sitetree<-read.csv("aridity3.csv", header=T, sep=",", stringsAsFactors = F)
+# sitetree<-read.csv("aridity3.csv", header=T, sep=",", stringsAsFactors = F)
 sitetree<-read.csv("sitetree_NAD83_envData.csv", header=T, sep=",", stringsAsFactors = F)
 
 
@@ -13,14 +13,10 @@ sitetree$SPCD<-as.factor(sitetree$SPCD)
 
 # Calculate soil C:N for ORNL ---------------------------------------------
 
-sitetree$ORNL_CN<-sitetree$SOC_ORNL_kgperm2*1000/sitetree$N_ORNL_gperm2
+# sitetree$ORNL_CN<-sitetree$SOC_ORNL_kgperm2*1000/sitetree$N_ORNL_gperm2
 
 # Calculate weighted averages and soil C:N for Soilgrids data -------------
-# 
-# is.na(sitetree$SOC_0_5_1) <- !sitetree$SOC_0_5_1
-# is.na(sitetree$SOC_5_15_1) <- !sitetree$SOC_5_15_1
-# is.na(sitetree$Nitrogen_0_5_1) <- !sitetree$Nitrogen_0_5_1
-# is.na(sitetree$Nitrogen_5_15_1) <- !sitetree$Nitrogen_5_15_1
+
 
 is.na(sitetree$SOC0_5_NAD) <- sitetree$SOC0_5_NAD==-9999
 is.na(sitetree$SOC5_15_NA) <- sitetree$SOC5_15_NA==-9999
@@ -31,16 +27,13 @@ is.na(sitetree$N5_15_NAD) <- sitetree$N5_15_NAD==-9999
 is.na(sitetree$X30s_NAD) <- sitetree$X30s_NAD==-9999
 is.na(sitetree$ai_et0_NAD) <- sitetree$ai_et0_NAD==-9999
 
-# sitetree <- sitetree[which(!is.na(sitetree$SOC_0_5_1) &
-#                  !is.na(sitetree$SOC_5_15_1) &
-#                  !is.na(sitetree$Nitrogen_0_5_1) &
-#                  !is.na(sitetree$Nitrogen_5_15_1)),]
+# sitetree <- sitetree[which(!is.na(sitetree$SOC0_5_NAD) &
+#                  !is.na(sitetree$SOC5_15_NA) &
+#                  !is.na(sitetree$N0_5_NAD) &
+#                  !is.na(sitetree$X30s_NAD) &
+#                  !is.na(sitetree$ai_et0_NAD) &
+#                  !is.na(sitetree$N5_15_NAD)),]
 
-# sitetree$SOILGRIDS_C_AVG<-((sitetree$SOC_0_5_1/10)*(1/3))+((sitetree$SOC_5_15_1/10)*(2/3))
-#                  
-# sitetree$SOILGRIDS_N_AVG<-((sitetree$Nitrogen_0_5_1/100)*(1/3))+((sitetree$Nitrogen_5_15_1/100)*(2/3))                 
-# 
-# sitetree$SOILGRIDS_CN<-sitetree$SOILGRIDS_C_AVG/sitetree$SOILGRIDS_N_AVG 
 
 
 sitetree$SOILGRIDS_C_AVG<-((sitetree$SOC0_5_NAD/10)*(1/3))+((sitetree$SOC5_15_NA/10)*(2/3))
@@ -69,85 +62,24 @@ summary(model)
 
 #scale CN from FIA data
 sitetree$SOILGRIDS_CN_SCALE<-(sitetree$SOILGRIDS_CN*6.212)+24.634
-# sitetree$SOILGRIDS_CN_SCALE<-(sitetree$SOILGRIDS_CN*4.941)+29.777
-#sitetree$SOILGRIDS_CN_SCALE<-(sitetree$SOILGRIDS_CN*6.045)+19.775
 
-
-# plot(sitetree$SOILGRIDS_CN_SCALE, sitetree$FIA_CN_RAT)
-# model<-lm(FIA_CN_RAT~SOILGRIDS_CN_SCALE, data=sitetree)
-# summary(model)
 
 # Checking variable normality ---------------------------------------------
 
-normali1 <- function (x)
-{mnT <- mean(x,na.rm=T)
-sdT <- sd(x,na.rm=T)
-h<-hist(x, breaks=10, col="orangered1")
-xfit<-seq(min(x,na.rm=T),max(x,na.rm=T), length=100) 
-yfit<-dnorm(xfit,mean=mnT,sd=sdT) 
-yfit <- yfit*diff(h$mids[1:2])*length(x) 
-lines(xfit, yfit, col="purple3", lwd=2)
-qqnorm(x)
-qqline(x)
-shapiro.test(x)}
-
-par(mfrow=c(1,1))
-
-normali1(sitetree$DIA)
-sitetree$logDIA<-log10(sitetree$DIA)
-normali1(sitetree$logDIA)
-hist(sitetree$AVG_TEMP_bioclim)
-pairs(sitetree$DIA~sitetree$AVG_TEMP_bioclim)
-normali1(sitetree$AVG_TEMP_bioclim)
-sitetree$logAVG_TEMP<-log10(sitetree$AVG_TEMP_bioclim)
-normali1(sitetree$logAVG_TEMP)
-#sitetree<-dplyr::mutate(sitetree, lnAVG_TEMP=log(AVG_TEMP_bioclim))
-#normali1(sitetree$lnAVG_TEMP)
-
-normali1(sitetree$SOILGRIDS_CN_SCALE)
-sitetree$logSOILGRIDS_CN_SCALE<-log10(sitetree$SOILGRIDS_CN_SCALE)
-normali1(sitetree$logSOILGRIDS_CN_SCALE)
-
-normali1(sitetree$AGEDIA)
-sitetree$logAGEDIA<-log10(sitetree$AGEDIA)
-normali1(sitetree$logAGEDIA)
-
-#normali1(SOIL_MOIS)
-#sitetree<-mutate(sitetree, logSOIL_MOIS=log10(SOIL_MOIS))
-#normali1(sitetree$logSOIL_MOIS)
-
-# looking at trends
-
-#pairs(DIA~AVG_TEMP_bioclim+AGEDIA+SOILGRIDS_CN+SOIL_MOIS+SPCD)
-
-#plot(DIA~AVG_TEMP_bioclim)
-plot(sitetree$logDIA~sitetree$AVG_TEMP_bioclim) #USED
-#plot(log10(DIA)~log10(AVG_TEMP_bioclim))
-
-#plot(DIA~AGEDIA)
-#plot(log10(DIA)~AGEDIA)
-plot(sitetree$logDIA~sitetree$logAGEDIA) #USED
-
-#plot(DIA~SOILGRIDS_CN_SCALE, data=sitetree)
-#plot(log10(DIA)~SOILGRIDS_CN_SCALE, data=sitetree)
-plot(log10(DIA)~log10(SOILGRIDS_CN_SCALE), data=sitetree) #USED
-
-plot(logDIA~sitetree$precip_1, data=sitetree)
-normali1(sitetree$precip_1)
-sitetree$logprecip<-log10(sitetree$precip)
-normali1(sitetree$logprecip)
-#plot(log10(DIA)~SOIL_MOIS)
-sitetree<-sitetree[-c(1336), ]
+# normali1 <- function (x)
+# {mnT <- mean(x,na.rm=T)
+# sdT <- sd(x,na.rm=T)
+# h<-hist(x, breaks=10, col="orangered1")
+# xfit<-seq(min(x,na.rm=T),max(x,na.rm=T), length=100) 
+# yfit<-dnorm(xfit,mean=mnT,sd=sdT) 
+# yfit <- yfit*diff(h$mids[1:2])*length(x) 
+# lines(xfit, yfit, col="purple3", lwd=2)
+# qqnorm(x)
+# qqline(x)
+# shapiro.test(x)}
 
 sitetree$ai_et0_NAD<-sitetree$ai_et0_NAD*.0001
-summary(sitetree$aridity_1)
-hist(sitetree$aridity_1)
 
-plot(logDIA~sitetree$aridity_1, data=sitetree)
-normali1(sitetree$aridity_1)
-#sitetree$logaridity<-log10(sitetree$aridity_1)
-normali1(sitetree$logaridity)
-plot(logDIA~sitetree$logaridity, data=sitetree)
 # Subsetting species ------------------------------------------------------
 
 slashpine<-subset(sitetree, sitetree$SPCD=="111")
@@ -155,39 +87,54 @@ longleaf<-subset(sitetree, sitetree$SPCD=="121")
 loblolly<-subset(sitetree, sitetree$SPCD=="131")
 
 
-normali1(slashpine$X30s_NAD)
-normali1(slashpine$ai_et0_NAD)
-normali1(slashpine$SOILGRIDS_CN_SCALE)
-
 slashpine$temp2<-slashpine$X30s_NAD^2
 
-SlashSMA <- smatr::sma(data=slashpine, log(slashpine$DIA)~log(slashpine$AGEDIA), method = "SMA")
-slashresidualssma<-residuals(SlashSMA)
-plot(SlashSMA)
-summary(SlashSMA)
+SlashMA <- smatr::sma(data=slashpine, log(slashpine$DIA)~log(slashpine$AGEDIA), method = "MA")
+slashresidualsma<-residuals(SlashMA)
+plot(SlashMA)
+summary(SlashMA)
 
 # Call: smatr::sma(formula = log(slashpine$DIA) ~ log(slashpine$AGEDIA), 
-#                  data = slashpine, method = "SMA") 
+#                  data = slashpine, method = "MA") 
 # 
-# Fit using Standardized Major Axis 
+# Fit using Major Axis 
 # 
 # ------------------------------------------------------------
 #   Coefficients:
 #   elevation     slope
-# estimate    0.3440118 0.5783973
-# lower limit 0.2799281 0.5599690
-# upper limit 0.4080955 0.5974321
+# estimate    0.8340824 0.4334511
+# lower limit 0.7562790 0.4107720
+# upper limit 0.9118858 0.4565120
 # 
 # H0 : variables uncorrelated
 # R-squared : 0.3770741 
 # P-value : < 2.22e-16 
 
+cor.test(slashpine$X30s_NAD, slashresidualsma, method = c("pearson")) #0.19
+cor.test(slashpine$ai_et0_NAD, slashresidualsma, method = c("pearson")) #-0.27
+cor.test(slashpine$SOILGRIDS_CN_SCALE, slashresidualsma, method = c("pearson")) #-0.10
+cor.test(log10(slashpine$DIA), log10(slashpine$AGEDIA), method = c("pearson")) #0.61
+
+MPV::PRESS(full.model) #95.62
+MPV::PRESS(add.model) #99.94
+MPV::PRESS(notemp.model) #100.24
+MPV::PRESS(int.model2) #100.01
+MPV::PRESS(int.model3) #94.73 ******model3
+MPV::PRESS(int.model4) #94.80
+MPV::PRESS(.model) #99.90
+
+#adj_r_squared*******model3
+
+BIC(full.model) #-632.9722
+BIC(add.model) #-625.0302
+BIC(notemp.model) #-628.8401
+BIC(int.model2) #-617.7074
+BIC(int.model3) #-647.9377
+BIC(int.model4) #-651.7585 *****model4
 
 
-
-
-full.model<-lm(slashresidualssma~X30s_NAD + ai_et0_NAD + SOILGRIDS_CN_SCALE, data=slashpine)
-summary(full.model)
+full.model<-lm(slashresidualsma~slashpine$X30s_NAD + slashpine$ai_et0_NAD + slashpine$SOILGRIDS_CN_SCALE) #CN not significant
+summary(full.model) #.0685
 plot(full.model)
 car::vif(full.model)
 
@@ -196,23 +143,27 @@ car::vif(full.model)
 
 pairs(slashresidualssma~X30s_NAD + ai_et0_NAD + SOILGRIDS_CN_SCALE, data=slashpine)
 
-.model<-lm(slashresidualssma~X30s_NAD + temp2 +  ai_et0_NAD, data=slashpine)
-summary(.model)
+.model<-lm(slashresidualsma~X30s_NAD + temp2 +  ai_et0_NAD, data=slashpine) #temp and temp2 significant at .1
+summary(.model) #.07518
 
-notemp.model<-lm(slashresidualssma~ai_et0_NAD, data=slashpine)
-summary(notemp.model)
+add.model<-lm(slashresidualsma~slashpine$X30s_NAD + slashpine$ai_et0_NAD, data=slashpine)
+summary(int.model) #.07426
 
-int.model<-lm(slashresidualssma~X30s_NAD + ai_et0_NAD, data=slashpine)
-summary(int.model)
+notemp.model<-lm(slashresidualsma~slashpine$ai_et0_NA)
+summary(notemp.model) #.07107
 
-int.model2<-lm(slashresidualssma~ ai_et0_NAD*SOILGRIDS_CN_SCALE , data=slashpine)
-summary(int.model2)
-plot(int.model2)
+int.model2<-lm(slashresidualsma~slashpine$X30s_NAD * slashpine$ai_et0_NAD, data=slashpine) #no significant predictors
+summary(int.model2) #.07401
 
-bbmle::BICtab(.model, notemp.model, int.model, base=T, delta=T, weights=T)
-bbmle::AICctab(.model, notemp.model, int.model, base=T, delta=T, weights=T)
+int.model3<-lm(slashresidualsma~ ai_et0_NAD*SOILGRIDS_CN_SCALE + slashpine$X30s_NAD, data=slashpine)
+summary(int.model3) #.07762
+
+
+int.model4<-lm(slashresidualsma~ ai_et0_NAD*SOILGRIDS_CN_SCALE, data=slashpine)
+summary(int.model4) #.07641
+
 # Call:
-#   lm(formula = slashresidualssma ~ ai_et0_NAD * SOILGRIDS_CN_SCALE, 
+#   lm(formula = slashresidualsma ~ ai_et0_NAD * SOILGRIDS_CN_SCALE, 
 #      data = slashpine)
 # 
 # Residuals:
@@ -221,10 +172,10 @@ bbmle::AICctab(.model, notemp.model, int.model, base=T, delta=T, weights=T)
 # 
 # Coefficients:
 #   Estimate Std. Error t value Pr(>|t|)    
-# (Intercept)                    1.269e+00  1.559e-01   8.139 6.58e-16 ***
-#   ai_et0_NAD                    -1.436e-04  1.789e-05  -8.023 1.66e-15 ***
-#   SOILGRIDS_CN_SCALE            -1.500e-02  2.730e-03  -5.496 4.33e-08 ***
-#   ai_et0_NAD:SOILGRIDS_CN_SCALE  1.646e-06  3.075e-07   5.354 9.51e-08 ***
+# (Intercept)                    1.269207   0.155936   8.139 6.58e-16 ***
+#   ai_et0_NAD                    -1.435603   0.178935  -8.023 1.66e-15 ***
+#   SOILGRIDS_CN_SCALE            -0.015004   0.002730  -5.496 4.33e-08 ***
+#   ai_et0_NAD:SOILGRIDS_CN_SCALE  0.016463   0.003075   5.354 9.51e-08 ***
 #   ---
 #   Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 # 
@@ -234,46 +185,8 @@ bbmle::AICctab(.model, notemp.model, int.model, base=T, delta=T, weights=T)
 # F-statistic: 61.81 on 3 and 2202 DF,  p-value: < 2.2e-16
 
 
-other2.slash<-lm(data=slashpine, slashresidualssma ~ aridity_1*SOILGRIDS_CN_SCALE+AVG_TEMP_bioclim)
-summary(other2.slash)
-
-write.csv(slashpine, "C:/Users/Alicia/Documents/GitHub/FL_Carbon/slashpine_data.csv")
-write.csv(longleaf, "C:/Users/Alicia/Documents/GitHub/FL_Carbon/longleaf_data.csv")
-
-s1<-lm(data=slashpine, logDIA ~ AVG_TEMP_bioclim + temp2 + logAGEDIA + aridity_1*SOILGRIDS_CN_SCALE)
-#confint(s1, level=0.95)
-s2<-lm(data=slashpine, logDIA ~ logAGEDIA + AVG_TEMP_bioclim + aridity_1*SOILGRIDS_CN_SCALE)
-#confint(s2, level=0.95)
-s3<-lm(data=slashpine, logDIA ~ AVG_TEMP_bioclim + temp2 + logAGEDIA + aridity_1 + SOILGRIDS_CN_SCALE)
-s7<-lm(data=slashpine, logDIA ~ AVG_TEMP_bioclim + temp2 + logAGEDIA + aridity_1)
- 
-s4<-lm(data=slashpine, logDIA ~ AVG_TEMP_bioclim + logAGEDIA + aridity_1*SOILGRIDS_CN_SCALE)
-s5<-lm(data=slashpine, logDIA ~ AVG_TEMP_bioclim*aridity_1 +logAGEDIA +SOILGRIDS_CN_SCALE)
-
-#WINNER WINNER CHICKEN DINNER
-s6<-lm(data=slashpine, logDIA ~ SOILGRIDS_CN_SCALE*aridity_1 +logAGEDIA)
-
-#alometric equation to predict height frfom dbh
-
-height<-lm(data = slashpine, log10(HT)~log10(DIA))
-summary(height)
-
-heightSMA <- smatr::sma(data=slashpine, log10(HT) ~ log10(DIA), method = "SMA")
-
-height2<-lm(data = slashpine, log10(HT)~log10(DIA) + AVG_TEMP_bioclim + temp2 + logAGEDIA + aridity_1)
-summary(height2)
-
-
-bbmle::AICctab(s1, s2, s5, s3, s4, s6, base=T, delta=T, weights=T)
-bbmle::BICtab(s1, s2, s5, s3, s4, s6, base=T, delta=T, weights=T)
-
-# glm1<-glm(data=slashpine, family = poisson, slashresiduals.sma ~ AVG_TEMP_bioclim + temp2 + aridity_1)
-# glm2<-glm(data=slashpine, family = Gamma, slashresiduals.sma ~ AVG_TEMP_bioclim + temp2 + aridity_1)
-# glm3<-glm.nb(data=slashpine, slashresiduals.sma ~ AVG_TEMP_bioclim + temp2 + aridity_1)
-
-# AICctab(s1, glm1, glm2, glm3, base=T, delta=T, weights=T)
-
-car::vif(s2)
+# write.csv(slashpine, "C:/Users/Alicia/Documents/GitHub/FL_Carbon/slashpine_data.csv")
+# write.csv(longleaf, "C:/Users/Alicia/Documents/GitHub/FL_Carbon/longleaf_data.csv")
 
 
 ggplot(data=slashpine, aes(other.slash$residuals)) +
@@ -291,7 +204,6 @@ ggplot(data = slashpine, aes(x = AGEDIA, y = DIA)) +
         axis.line.y=element_line()) +
   ggtitle("Linear Model Fitted to Data")
 
-AICctab(s1, s2, s3, base=T, delta=T, weights=T)
 
 # # sdlogDIA <- sd(slashpine$logDIA)
 # sdslashresid <- sd(slashresidualssma)
@@ -315,286 +227,88 @@ AICctab(s1, s2, s3, base=T, delta=T, weights=T)
 # plot(model2)
 # pairs(model2)
 
-# slashpine$logAGEDIA.s <- (slashpine$logAGEDIA - mean(slashpine$logAGEDIA))/sd(slashpine$logAGEDIA)
-# slashpine$AVG_TEMP_bioclim.s <- (slashpine$AVG_TEMP_bioclim - mean(slashpine$AVG_TEMP_bioclim))/sd(slashpine$AVG_TEMP_bioclim)
-# slashpine$temp2.s <- (slashpine$temp2 - mean(slashpine$temp2))/sd(slashpine$temp2)
-# slashpine$aridity_1.s <- (slashpine$aridity_1 - mean(slashpine$aridity_1))/sd(slashpine$aridity_1)
-# 
-# model2 <- map2stan(
-#   alist(
-#     logDIA ~ dnorm(mu,sigma),
-#     mu <- a + b*logAGEDIA.s + c*AVG_TEMP_bioclim.s + d*temp2.s + e*aridity_1.s,
-#     a ~ dnorm(0.9986263,0.117853),
-#     b ~ dnorm(0,10),
-#     c ~ dnorm(0,10),
-#     d ~ dnorm(0,10),
-#     e ~ dnorm(0,10),
-#     sigma ~ dunif(0,50)
-#   ),
-#   data = slashpine,chains =3,
-#   start <- list(a = 0, b= 0, c=0, d=0, e=0, sigma=sdlogDIA)
-# )
-# 
-# precis(model2,digits=3)
-# plot(model2)
-# pairs(model2)
-# 
-# model3 <- map2stan(
-#   alist(
-#     DIA ~ dnorm(mu,sigma),
-#     mu <- 10^(a + c*AVG_TEMP_bioclim + d*temp2 + e*aridity_1) * AGEDIA^b,
-#     a ~ dnorm(0,10),
-#     b ~ dnorm(0,10),
-#     c ~ dnorm(0,10),
-#     d ~ dnorm(0,10),
-#     e ~ dnorm(0,10),
-#     sigma ~ dunif(0,100)
-#   ),
-#   data = slashpine,chains =3,
-#   start <- list(a = 0, b= 0, c=0, d=0, e=0, sigma=sdDIA)
-# )
-# 
-# precis(model3,digits=3)
-# plot(model3)
-# pairs(model3)
-# 
-# par(mfrow=c (1,1))
-# plot(dt$height,dt$rep_structures, main="",xlab="height (cm)",
-#      ylab="Number of fruits",pch=16,cex=0.55, xlim=c(0,80), ylim= c(0,1000) ) 
-# lnhgt <- seq(0, log(max(dt$ht_init)), 0.01)
-# mu <- link(model2,data=data.frame(lnht=lnhgt))
-# mu.mean <- apply(mu,2,mean)
-# mu.PI <- apply(mu,2,PI,prob=0.95)
-# lines(exp(lnhgt),exp(mu.mean),col="red")
-# shade(exp(mu.PI),exp(lnhgt))
-
-slashpin<-slashpine[na.exclude(slashpine$SOILGRIDS_CN_SCALE),]
-
-SlashSMA <- smatr::sma(data=slashpine, logDIA ~ logAGEDIA, method = "SMA")
-slashresidualssma<-residuals(SlashSMA)
-plot(SlashSMA)
-
-plot(slashresidualssma~slashpine$AVG_TEMP_bioclim)
-plot(slashresidualssma~slashpine$temp2)
-plot(slashresidualssma~slashpine$aridity_1)
-plot(slashresidualssma~slashpine$SOILGRIDS_CN_SCALE)
-plot(slashresidualssma~slashpine$logSOILGRIDS_CN_SCALE)
-#SlashMA <- ma(data=slashpine, logDIA ~ logAGEDIA)
-#plot(SlashMA)
-# plot(slashresiduals.sma)
-
-car::vif(new.slash)
-
-new.slash<-lm(data=slashpine, slashresidualssma ~ aridity_1+AVG_TEMP_bioclim)
-other.slash<-lm(data=slashpine, slashresidualssma ~ aridity_1+AVG_TEMP_bioclim+temp2)
-other2.slash<-lm(data=slashpine, slashresidualssma ~ aridity_1*AVG_TEMP_bioclim)
-bbmle::BICtab( new.slash, other2.slash, other.slash,  base=T, delta=T, weights=T)
-bbmle::AICctab( new.slash, other2.slash, other.slash,  base=T, delta=T, weights=T)
-
-
-
-# summary(other2.slash)
-# old.slash<-lm(data=slashpine, slashresidualssma ~ aridity_1+AVG_TEMP_bioclim+temp2)
-# old.slash2<-lm(data=slashpine, slashresidualssma ~ aridity_1+AVG_TEMP_bioclim*AVG_TEMP_bioclim+SOILGRIDS_CN_SCALE)
-# 
-# new.slash<-lm(data=slashpine, slashresidualssma ~ aridity_1*SOILGRIDS_CN_SCALE)
-# other.slash<-lm(data=slashpine, slashresidualssma ~ aridity_1*SOILGRIDS_CN_SCALE+AVG_TEMP_bioclim+temp2)
-# other2.slash<-lm(data=slashpine, slashresidualssma ~ aridity_1*SOILGRIDS_CN_SCALE+AVG_TEMP_bioclim)
-# old.slash<-lm(data=slashpine, slashresidualssma ~ aridity_1+AVG_TEMP_bioclim+temp2)
-# 
-# 
-# bbmle::AICctab( new.slash, other2.slash, other.slash, old.slash2,  base=T, delta=T, weights=T)
-# bbmle::BICtab( new.slash, other2.slash, other.slash,  base=T, delta=T, weights=T)
-# 
-# bbmle::AICctab(   base=T, delta=T, weights=T)
-# bbmle::BICtab(  base=T, delta=T, weights=T)
-# 
-# slashgrowth<-(10^(0.9840024 -0.006014*CN + 0.006573*CN*aridity -0.690718*aridity -0.010983*temp))*(0.5784213*age[i,j]^(-0.4215787))
-# age<-round((10^(-1.701186 +0.01039727*CN -0.01136369*CN*aridity +1.194143*aridity +0.01898789*temp))*(envdata[1,3]^(1.728844)))
-# 
-# 
-# 
-# 
-# errors <- otherslashresid[!is.na(otherslashresid)]
-# otherslashresid<-residuals(other.slash)
-# 
-# ggplot(data=na.exclude(slashpine), aes(other.slash$residuals)) +
-#   geom_histogram(color = "black", fill = "purple4") +
-#   theme(panel.background = element_rect(fill = "white"),
-#         axis.line.x=element_line(),
-#         axis.line.y=element_line()) +
-#   ggtitle("Histogram for Model Residuals")
-# 
-# slashgrowth<-(10^(0.7217104 -0.007283*CN + 0.007855*CN*aridity -0.638287*aridity))*(0.5784213*age[i,j]^(-0.4215787))
-# age<-round((10^(-1.247724 +0.01259117*CN -0.01358007*CN*aridity +1.103498*aridity))*(envdata[1,3]^(1.728844)))
-# 
-# 
-# par(mfrow=c (2,2))
-# plot(new.slash)
-# #this is for MA (didn't use)(10^(-1.345167 + 0.185595*temp - 0.004456*temp2 - 0.251804*aridity))*(0.4332775*age[i,j]^(-0.5667225))
-# 
-# normali1(slashpine$aridity_1)
-# normali1(slashpine$AVG_TEMP_bioclim) #not normal
-# normali1(slashpine$logAGEDIA)
-# normali1(slashpine$temp2) #not normal
-# 
-# # slashpinemodel<-lm(logDIA~AVG_TEMP_bioclim+logAGEDIA+logSOILGRIDS_CN_SCALE+slashpine$precip_1, data=slashpine)
-# # slashpinemodel2<-lm(logDIA~AVG_TEMP_bioclim+logAGEDIA+logSOILGRIDS_CN_SCALE+slashpine$SOIL_MOIS, data=slashpine)
-# slashpinemodel2<-lm(logDIA~logAGEDIA+logSOILGRIDS_CN_SCALE+slashpine$aridity_1, data=slashpine)
-# summary(slashpinemodel2)
-# slashpinemodel3<-lm(na.omit(data=slashpine, logDIA~AVG_TEMP_bioclim+logAGEDIA+logSOILGRIDS_CN_SCALE+slashpine$aridity_1))
-# summary(slashpinemodel3)
-# slashpinemodel4<-lm(logDIA~AVG_TEMP_bioclim+aridity_1+logAGEDIA, data=slashpine)
-# summary(slashpinemodel4)
-# res.slash<-resid(slashpinemodel4)
-# plot(res.slash~slashpine$aridity_1)
-# plot(res.slash~slashpine$AVG_TEMP_bioclim)
-# plot(res.slash~slashpine$logAGEDIA)
-# plot(res.slash~slashpine$logSOILGRIDS_CN_SCALE)
-# # summary(slashpinemodel2)
-# # summary(slashpinemodel)
-# 
-# pairs(logDIA~AVG_TEMP_bioclim+logAGEDIA+logSOILGRIDS_CN_SCALE+slashpine$aridity_1+temp2, data=slashpine)
-# car::vif(slashpinemodel3)
-
 
 # Longleaf Data -----------------------------------------------------------
 
-normali1(longleaf$aridity_1) #not normal
-normali1(longleaf$AVG_TEMP_bioclim)
-normali1(longleaf$logSOILGRIDS_CN_SCALE)
-normali1(longleaf$SOILGRIDS_CN_SCALE)
-normali1(longleaf$logAGEDIA)
+cor(longleaf$X30s_NAD, resid.LLSMA, method = c("pearson")) #0.17
+cor.test(longleaf$X30s_NAD, resid.LLSMA, method = c("pearson"))
+cor.test(longleaf$ai_et0_NAD, resid.LLSMA, method = c("pearson")) #-0.26
+cor.test(longleaf$SOILGRIDS_CN_SCALE, resid.LLSMA, method = c("pearson")) #not significant
+cor.test(log10(longleaf$DIA), log10(longleaf$AGEDIA), method = c("pearson")) #0.65
+
+MPV::PRESS(full.model) #30.7
+MPV::PRESS(int.model) #31.42602
+MPV::PRESS(notemp.model) #32.18844
+MPV::PRESS(int.model2) #30.77593
+MPV::PRESS(int.model3) #30.11378 *****model3
+
+#adj_rsquared*****model3
+
+BIC(full.model) #-234.2603
+BIC(int.model) #-232.4288
+BIC(notemp.model) #-219.6586
+BIC(int.model2) #-243.6327
+BIC(int.model3) #-243.7491*****model3
 
 
 pairs(logDIA~AVG_TEMP_bioclim+logAGEDIA+logSOILGRIDS_CN_SCALE+aridity_1, data=longleaf)
 
-car::vif(longleafmodel1) #temperature is too correlated with aridity
-
-longleaf$aridity2<-longleaf$aridity_1^2
-
-longleafmodel1<-lm(resid.LLSMA~SOILGRIDS_CN_SCALE+AVG_TEMP_bioclim+aridity_1, data=longleaf)
-longleafmodel2<-lm(resid.LLSMA~SOILGRIDS_CN_SCALE+AVG_TEMP_bioclim, data=longleaf)
-
-#WINNER WINNER CHICKEN DINNER
-longleafmodel3<-lm(resid.LLSMA~aridity_1*SOILGRIDS_CN_SCALE, data=longleaf)
-longleafmodel5<-lm(resid.LLSMA~aridity_1, data=longleaf)
-longleafmodel6<-lm(resid.LLSMA~aridity_1+SOILGRIDS_CN_SCALE, data=longleaf)
-
-bbmle::BICtab(longleafmodel1, longleafmodel2, longleafmodel3, base=T, delta=T, weights=T)
-bbmle::AICctab(longleafmodel1, longleafmodel2, longleafmodel3, base=T, delta=T, weights=T)
-
-# longleafmodel4<-lm(logDIA~logAGEDIA+logSOILGRIDS_CN_SCALE*aridity_1, data=longleaf) 
-# longleafmodel5<-lm(logDIA~logAGEDIA+SOILGRIDS_CN_SCALE+aridity_1+AVG_TEMP_bioclim, data=longleaf)
-# plot(longleafmodel4)
-# 
-# summary(longleafmodel4)
-# resid.L3<-resid(longleafmodel3)
-# plot(data = longleaf, resid.L3~ logSOILGRIDS_CN_SCALE)
-# 
-# ggplot(data=na.exclude(longleaf), aes(newLongleaf$residuals)) +
-#   geom_histogram(color = "black", fill = "purple4") +
-#   theme(panel.background = element_rect(fill = "white"),
-#         axis.line.x=element_line(),
-#         axis.line.y=element_line()) +
-#   ggtitle("Histogram for Model Residuals")
-# 
-# bbmle::AICctab(longleafmodel1, longleafmodel2, longleafmodel3, longleafmodel4, longleafmodel5, base=T, delta=T, weights=T)
-# bbmle::BICtab(longleafmodel1, longleafmodel2, longleafmodel3, longleafmodel4, longleafmodel5, base=T, delta=T, weights=T)
-# 
-# ggplot2::interact_plot(longleafmodel3, pred = logSOILGRIDS_CN_SCALE, modx = AVG_TEMP_bioclim)
-
-res.longleaf<-resid(longleafmodel1)
-plot(data=longleaf, logDIA~longleaf$aridity_1)
-plot(data=longleaf, logDIA~longleaf$logSOILGRIDS_CN_SCALE)
-plot(data=longleaf, logDIA~longleaf$logAGEDIA)
-
-plot(res.longleaf~longleaf$logAGEDIA)
-plot(res.slash~slashpine$logSOILGRIDS_CN_SCALE)
-
-par(mfrow=c (2,2))
-
-plot(longleafmodel1)
-
 par(mfrow=c (1,1))
 plot(LongleafSMA)
-LongleafSMA <- smatr::sma(data=longleaf, log(DIA) ~ log(AGEDIA), method = "SMA")
+LongleafSMA <- smatr::sma(data=longleaf, log(DIA) ~ log(AGEDIA), method = "MA")
 resid.LLSMA<- residuals(LongleafSMA)
-
-# Call: smatr::sma(formula = log(DIA) ~ log(AGEDIA), data = longleaf, 
-#                  method = "SMA") 
 # 
-# Fit using Standardized Major Axis 
+# Call: smatr::sma(formula = log(DIA) ~ log(AGEDIA), data = longleaf, 
+#                  method = "MA") 
+# 
+# Fit using Major Axis 
 # 
 # ------------------------------------------------------------
 #   Coefficients:
 #   elevation     slope
-# estimate    0.2746847 0.5718692
-# lower limit 0.1565138 0.5415208
-# upper limit 0.3928557 0.6039184
+# estimate    0.7578183 0.4430331
+# lower limit 0.6172557 0.4062444
+# upper limit 0.8983809 0.4808524
 # 
 # H0 : variables uncorrelated
 # R-squared : 0.4207783 
 # P-value : < 2.22e-16 
 
-full.model<-lm(resid.LLSMA~X30s_NAD + ai_et0_NAD + SOILGRIDS_CN_SCALE, data=longleaf)
-summary(full.model)
+full.model<-lm(resid.LLSMA~X30s_NAD + ai_et0_NAD + SOILGRIDS_CN_SCALE, data=longleaf) #all significant
+summary(full.model) #.1039
+plot(full.model)
+
 car::vif(full.model)
 
-notemp.model<-lm(resid.LLSMA~ai_et0_NAD + SOILGRIDS_CN_SCALE, data=longleaf)
-summary(notemp.model)
+# X30s_NAD         ai_et0_NAD SOILGRIDS_CN_SCALE 
+# 6.255180           6.211489           1.683972
 
-int.model<-lm(resid.LLSMA~ai_et0_NAD * SOILGRIDS_CN_SCALE, data=longleaf)
-summary(int.model)
+notemp.model<-lm(resid.LLSMA~ai_et0_NAD, data=longleaf)
+summary(notemp.model) #0.0645
+
+int.model<-lm(resid.LLSMA~ai_et0_NAD + X30s_NAD, data=longleaf)
+summary(int.model) #.08712
 plot(int.model)
 
-# Call:
-#   lm(formula = resid.LLSMA ~ ai_et0_NAD * SOILGRIDS_CN_SCALE, data = longleaf)
-# 
-# Residuals:
-#   Min       1Q   Median       3Q      Max 
-# -0.86952 -0.15981  0.00771  0.15900  0.54656 
-# 
-# Coefficients:
-#   Estimate Std. Error t value Pr(>|t|)    
-# (Intercept)                    1.597324   0.276706   5.773 1.15e-08 ***
-#   ai_et0_NAD                    -1.912994   0.307574  -6.220 8.33e-10 ***
-#   SOILGRIDS_CN_SCALE            -0.016069   0.005036  -3.191 0.001478 ** 
-#   ai_et0_NAD:SOILGRIDS_CN_SCALE  0.019731   0.005351   3.687 0.000243 ***
-#   ---
-#   Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-# 
-# Residual standard error: 0.2188 on 740 degrees of freedom
-# (8 observations deleted due to missingness)
-# Multiple R-squared:  0.1142,	Adjusted R-squared:  0.1106 
-# F-statistic: 31.81 on 3 and 740 DF,  p-value: < 2.2e-16
+int.model2<-lm(resid.LLSMA~ai_et0_NAD * X30s_NAD, data=longleaf)
+summary(int.model2) #.1073
+plot(int.model2)
 
+int.model3<-lm(resid.LLSMA~ X30s_NAD + ai_et0_NAD * SOILGRIDS_CN_SCALE, data=longleaf)
+summary(int.model3) #.1219
+plot(int.model2)
 
-plot(resid.LLSMA~longleaf$SOILGRIDS_CN_SCALE)
-plot(resid.LLSMA~longleaf$aridity_1)
-plot(resid.LLSMA~longleaf$aridity_1)
-plot(resid.LLSMA~longleaf$AVG_TEMP_bioclim)
-
-longleafgrowth<-(10^(1.872009 - 0.016069*CN + 0.019731*CN*aridity - 1.912994*aridity))*(0.5718692*age[i,j]^(-0.4281308))
-# longleafgrowth<-(10^(0.9333281 - 0.009259*CN + 0.011340*CN*aridity - 0.977477*aridity))*(0.5718692*age[i,j]^(-0.4281308))
-
-#longleafmodel2<-lm(logDIA~AVG_TEMP_bioclim+logAGEDIA+logSOILGRIDS_CN_SCALE+SOIL_MOIS, data=longleaf)
-#longleafmodel<-lm(logDIA~AVG_TEMP_bioclim+logAGEDIA+logSOILGRIDS_CN_SCALE+longleaf$precip_1, data=longleaf)
-summary(longleafmodel3)
-#summary(longleafmodel2)
-#summary(longleafmodel)
-
+bbmle::BICtab(full.model, notemp.model, int.model, int.model2, base=T, delta=T, weights=T)
+bbmle::AICctab(full.model, notemp.model, int.model, int.model2, base=T, delta=T, weights=T)
 
 # Loblolly ----------------------------------------------------------------
 
-
-
 #loblolly$temp2<-loblolly$AVG_TEMP_bioclim^2
-loblolly$aridity2<-loblolly$aridity_1^2
+loblolly$aridity2<-loblolly$ai_et0_NAD^2
 
-par(mfrow=c (2,2))
+par(mfrow=c (1,1))
 LoblollySMA <- smatr::sma(data=loblolly, log(DIA) ~ log(AGEDIA), method = "SMA")
-# LoblollyMA <- smatr::sma(data=loblolly, logDIA ~ logAGEDIA, method = "MA")
+LoblollyMA <- smatr::sma(data=loblolly, log(DIA) ~ log(AGEDIA), method = "MA")
 # method = "SMA") 
 # 
 # Fit using Standardized Major Axis 
@@ -611,71 +325,74 @@ LoblollySMA <- smatr::sma(data=loblolly, log(DIA) ~ log(AGEDIA), method = "SMA")
 # P-value : < 2.22e-16
 
 residloblollysma<-residuals(LoblollySMA)
+residloblollyma<-residuals(LoblollyMA)
 plot(residloblollysma)
 
+cor(loblolly$X30s_NAD, residloblollyma, method = c("pearson")) #0.3
+cor.test(loblolly$X30s_NAD, residloblollyma, method = c("pearson"))
+cor.test(loblolly$ai_et0_NAD, residloblollyma, method = c("pearson")) #-0.366
+cor.test(loblolly$SOILGRIDS_CN_SCALE, residloblollyma, method = c("pearson")) #-.315
+cor.test(log10(loblolly$DIA), log10(loblolly$AGEDIA), method = c("pearson")) #0.644
 
-loblollymodel1<-lm(residloblollysma~ai_et0_NAD+loblolly$X30s_NAD+SOILGRIDS_CN_SCALE, data=(loblolly))
-summary(loblollymodel1)
+MPV::PRESS(loblollymodel1) #31.03 ***fullmodel
+MPV::PRESS(loblollymodel1.5) #31.07
+MPV::PRESS(model1) #31.06
+MPV::PRESS(model1.5) #31.10
 
-loblollymodel2<-lm(residloblollysma~ai_et0_NAD+SOILGRIDS_CN_SCALE, data=(loblolly))
-summary(loblollymodel2)
+#adj_rsquared****model1
 
-loblollymodel3<-lm(residloblollysma~SOILGRIDS_CN_SCALE+aridity_1+aridity2, data=(loblolly))
-loblollymodel3<-lm(residloblollysma~SOILGRIDS_CN_SCALE+aridity2, data=(loblolly))
-plot(loblollymodel3)
-
-car::vif(loblollymodel2)
-
-par(mfrow=c (1,1))
-ggplot(data=na.exclude(loblolly), aes(loblollymodel3$residuals)) +
-  geom_histogram(color = "black", fill = "purple4") +
-  theme(panel.background = element_rect(fill = "white"),
-        axis.line.x=element_line(),
-        axis.line.y=element_line()) +
-  ggtitle("Histogram for Model Residuals")
-
-loblollymodel4<-lm(residloblollysma~aridity_1+SOILGRIDS_CN_SCALE, data=(loblolly))
-loblollymodel3<-lm(residloblollysma~SOILGRIDS_CN_SCALE+aridity_1+aridity2+AVG_TEMP_bioclim, data=(loblolly))
-loblollymodel5<-lm(residloblollysma~SOILGRIDS_CN_SCALE+aridity_1+aridity2, data=(loblolly))
-loblollymodel2<-lm(residloblollysma~aridity_1*SOILGRIDS_CN_SCALE+AVG_TEMP_bioclim, data=(loblolly))
-loblollymodel1<-lm(residloblollysma~aridity_1+AVG_TEMP_bioclim+SOILGRIDS_CN_SCALE, data=(loblolly))
-
-# loblollymodel4<-lm(logDIA~logAGEDIA+aridity_1+SOILGRIDS_CN_SCALE, data=(loblolly))
-
-#WINNER WINNER CHICKEN DINNER
-loblollymodel3<-lm(logDIA~logAGEDIA+SOILGRIDS_CN_SCALE+aridity_1+aridity2, data=(loblolly))
-plot(residloblollysma~aridity_1, data=loblolly)
-
-# loblollymodel2<-lm(logDIA~logAGEDIA+aridity_1*SOILGRIDS_CN_SCALE, data=(loblolly))
-# loblollymodel1<-lm(logDIA~logAGEDIA+aridity_1+AVG_TEMP_bioclim+logSOILGRIDS_CN_SCALE, data=(loblolly))
-
-bbmle::AICctab(loblollymodel1, loblollymodel2, loblollymodel3, loblollymodel4,loblollymodel5, base=T, delta=T, weights=T)
-bbmle::BICtab(loblollymodel1, loblollymodel2, loblollymodel3, loblollymodel4, loblollymodel5, base=T, delta=T, weights=T)
+BIC(loblollymodel1) #7.228564
+BIC(loblollymodel1.5) #3.705593
+BIC(model1) #3.216038****model1
+BIC(model1.5) #3.606744
 
 
-sdDIA<-sd(residloblollysma)
-model3 <- map2stan(
-  alist(
-    residloblollysma ~ dnorm(mu,sigma),
-    mu <- a + c*AVG_TEMP_bioclim + d*SOILGRIDS_CN_SCALE + e*aridity_1,
-    a ~ dnorm(0,10),
-    b ~ dnorm(0,10),
-    c ~ dnorm(0,10),
-    d ~ dnorm(0,10),
-    e ~ dnorm(0,10),
-    sigma ~ dunif(0,100)
-  ),
-  data = loblolly,chains =3,
-  start <- list(a = 0, b= 0, c=0, d=0, e=0, sigma=sdDIA)
-)
+olsrr::ols_mallows_cp(loblollymodel1.5, loblollymodel1) # should be 3, 4.7
+olsrr::ols_mallows_cp(model1, loblollymodel1) # should be 4, .16
+olsrr::ols_mallows_cp(model1.5, loblollymodel1) # should be 4, 5.3
+olsrr::ols_mallows_cp(notemp.model, full.model) # should be 2, 16.1
 
-precis(model3,digits=3)
-plot(model3)
-pairs(model3)
 
-pairs(logDIA~aridity_1+logSOILGRIDS_CN_SCALE+AVG_TEMP_bioclim+logAGEDIA+aridity2, data=(loblolly))
 car::vif(loblollymodel1)
-A<-seq(.4,1.2,.05)
+
+# ai_et0_NAD  loblolly$X30s_NAD SOILGRIDS_CN_SCALE 
+# 2.582804           4.037075           2.552541 
+
+loblollymodel1<-lm(residloblollyma~ai_et0_NAD + loblolly$X30s_NAD + SOILGRIDS_CN_SCALE, data=(loblolly))
+summary(loblollymodel1) #.1528
+
+loblollymodel1.5<-lm(residloblollyma~ai_et0_NAD+SOILGRIDS_CN_SCALE, data=(loblolly))
+summary(loblollymodel1.5) #.15
+
+model1<-lm(residloblollyma~ai_et0_NAD*loblolly$X30s_NAD, data=(loblolly))
+summary(model1) #.1645
+
+# Call:
+#   lm(formula = residloblollyma ~ ai_et0_NAD * loblolly$X30s_NAD, 
+#      data = (loblolly))
+# 
+# Residuals:
+#   Min      1Q  Median      3Q     Max 
+# -0.6891 -0.1689  0.0199  0.1539  0.7863 
+# 
+# Coefficients:
+#   Estimate Std. Error t value Pr(>|t|)    
+# (Intercept)                   15.0739     3.0971   4.867 1.48e-06 ***
+#   ai_et0_NAD                   -18.5794     3.6969  -5.026 6.80e-07 ***
+#   loblolly$X30s_NAD             -0.7341     0.1596  -4.601 5.23e-06 ***
+#   ai_et0_NAD:loblolly$X30s_NAD   0.9113     0.1920   4.748 2.63e-06 ***
+#   ---
+#   Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+# 
+# Residual standard error: 0.2367 on 547 degrees of freedom
+# Multiple R-squared:  0.1691,	Adjusted R-squared:  0.1645 
+# F-statistic: 37.09 on 3 and 547 DF,  p-value: < 2.2e-16
+
+model1.5<-lm(residloblollyma~ai_et0_NAD*loblolly$X30s_NAD + SOILGRIDS_CN_SCALE, data=(loblolly)) #CN not significant
+summary(model1.5) #.1507
+
+
+
 
 loblollygrowth<-(10^(-1.211954 - 0.0011033*CN + 3.2046573*aridity - 1.9681509*aridity2))*(0.7405648*age[i,j]^(-0.2594352))
 loblollyage<-(10^(1.636527 + 0.001489809*CN -4.327315*aridity + 2.657635*aridity2))*(env[i,j]^(1.350321))

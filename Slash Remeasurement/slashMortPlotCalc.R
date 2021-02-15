@@ -1,0 +1,140 @@
+rm(list=ls())
+
+setwd("C:/Users/Alicia/Documents/GitHub/FL_Carbon")
+envdata<-read.csv("SlashRemeasEnvData144.csv", header=T, sep=",") 
+
+setwd("C:/Users/Alicia/Desktop/FL")
+load("slash_remeas_end144.Rdata")
+load("slash_remeas_start144.Rdata")
+
+envdata$SOILGRIDS_C_AVG<-((envdata$SOC0_5_NAD/10)*(1/3))+((envdata$SOC5_15NAD/10)*(2/3))
+
+envdata$SOILGRIDS_N_AVG<-((envdata$N0_5_NAD/100)*(1/3))+((envdata$N5_15_NAD/100)*(2/3))                 
+
+envdata$SOILGRIDS_CN<-envdata$SOILGRIDS_C_AVG/envdata$SOILGRIDS_N_AVG 
+
+envdata$SOILGRIDS_CN_SCALE<-(envdata$SOILGRIDS_CN*6.212)+24.634
+
+diameter.totals<-list()
+age.totals<-list()
+diameter.totals.end<-list()
+age.totals.end<-list()
+plot_data_end<-list()
+plot_data_start<- list()
+
+a<-c(1:18,20:21, 23:32, 34:56)
+
+
+for (s in a){
+  
+
+  temp<-envdata[s, 6]
+  
+  CN_scale<-envdata[s,15]
+  
+  envdata[s,16]<-envdata[s, 7]*0.0001
+  
+  plot_data_start[[s]]<-plots.start[[s]] %>%
+    filter(STATUSCD=="1") %>%
+    # mutate(TPA=ifelse(is.na(TPA_UNADJ), TPAGROW_UNADJ, TPA_UNADJ)) %>%
+    mutate(TPA_total=sum(round(TPA_UNADJ))) %>%
+    mutate(age=round((10^(-1.388893 + 0.9240015*envdata[s,16]))*(DIA^1.728915)))
+  # mutate(age=round((10^(-3.018915 + 1.2741*aridity))*(DIA^2.307065)))  
+  
+  envdata[s,17]<-unique(plot_data_start[[s]]$TPA_total)
+  
+  
+  for (h in 1:length(plot_data_start$DIA)){
+    diameter.totals[[s]]<-rep((plot_data_start[[s]]$DIA), round(plot_data_start[[s]]$TPA_UNADJ))
+    age.totals[[s]]<-rep((plot_data_start[[s]]$age), round(plot_data_start[[s]]$TPA_UNADJ))
+  }
+  
+  # hist(diameter.totals[[s]], main = paste("Start plot", s), xlab = "Diameter (in)")
+  
+  plot_data_end[[s]]<-plots.end[[s]] %>%
+    filter(STATUSCD=="1") %>%
+    # mutate(TPA=ifelse(is.na(TPA_UNADJ), TPAGROW_UNADJ, TPA_UNADJ)) %>%
+    mutate(TPA_total=sum(round(TPA_UNADJ))) %>%
+    mutate(age=round((10^(-1.388893 + 0.9240015*envdata[s,16]))*(DIA^1.728915))) %>%
+    mutate(TASB=(0.041281*((DIA*2.54)^2.722214))*(round(TPA_UNADJ)))
+  # mutate(TASB=(0.041281*((DIA*2.54)^2.722214))*(round(TPA_UNADJ)))
+  
+  envdata[s,18]<-unique(plot_data_end[[s]]$TPA_total)
+  
+  for (h in 1:length(plot_data_end$DIA)){
+    diameter.totals.end[[s]]<-rep((plot_data_end[[s]]$DIA), round(plot_data_end[[s]]$TPA_UNADJ))
+    age.totals.end[[s]]<-rep((plot_data_end[[s]]$age), round(plot_data_end[[s]]$TPA_UNADJ))
+  }
+  
+}
+
+names(envdata)[16]<-"aridity"
+names(envdata)[17]<-"TPA_start"
+names(envdata)[18]<-"TPA_end"
+
+diameters.new<-vector()
+extra<-vector()
+diff<-vector()
+age.new<-vector()
+age.start<-vector()
+
+for (g in a){
+  
+  if ((length(diameter.totals.end[[g]])-length(diameter.totals[[g]]))>0) {
+    diameters.new<-diameter.totals[[g]]
+    diff<-length(diameter.totals.end[[g]])-length(diameter.totals[[g]])
+    extra<-runif(diff, 0, 5)
+    diameter.totals[[g]]<-c(diameters.new, extra)
+    age.start<-age.totals[[g]]
+    age.new<-round((10^(-1.388893 + 0.9240015*envdata[g,16]))*(extra^1.728915))
+    age.totals[[g]]<-c(age.start, age.new)
+  }
+  
+}
+
+save(age.totals, file="C:/Users/Alicia/Documents/GitHub/FL_Carbon/Slash Remeasurement/slashAgeTotals.rdata")
+save(age.totals.end, file="C:/Users/Alicia/Documents/GitHub/FL_Carbon/Slash Remeasurement/slashAgeTotalsEnd.rdata")
+save(diameter.totals.end, file="C:/Users/Alicia/Documents/GitHub/FL_Carbon/Slash Remeasurement/slashDIATotalsEnd.rdata")
+save(diameter.totals, file="C:/Users/Alicia/Documents/GitHub/FL_Carbon/Slash Remeasurement/slashDIATotals.rdata")
+save(plot_data_end, file="C:/Users/Alicia/Documents/GitHub/FL_Carbon/Slash Remeasurement/slashPlotEnd.rdata")
+save(plot_data_start, file="C:/Users/Alicia/Documents/GitHub/FL_Carbon/Slash Remeasurement/slashPlotStart.rdata")
+save(diameter.totals, file="C:/Users/Alicia/Documents/GitHub/FL_Carbon/Slash Remeasurement/slashDIATotals.rdata")
+
+
+write.csv(envdata, file="C:/Users/Alicia/Documents/GitHub/FL_Carbon/Slash Remeasurement/SlashEnvData1.csv")  
+
+# if (Diameter[i,j]<=3.94){ M<- rbinom(1,1,(.4/8))}
+# else if (Diameter[i,j]>3.94 & Diameter[i,j]<=7.97){M<-rbinom(1,1,(.2/8))}
+# else if (Diameter[i,j]>7.97 & Diameter[i,j]<=11.81){M<-rbinom(1,1,(.15/8))}
+# else if (Diameter[i,j]>11.81 & Diameter[i,j]<=15.75){M<-rbinom(1,1,(.1/8))}
+# else if (Diameter[i,j]>15.75){M<-rbinom(1,1,(0.01/8))}
+
+x<-c(5, 15, 25, 35, 45)
+# x2<-x^2
+y<-c((.4), (.2), (.15), (.1), (.01))
+newx<-seq(0,45,0.5)
+# newx2<-newx^2
+newy<-exp(0.7800557-0.08071*newx)
+new.y<-exp(.780557)*exp(-.08071*newx)
+nlsplot(y~x)
+mod<-lm(log(y) ~ x)
+summary(mod)
+
+model<-nls(y~x)
+
+new.y <- predict(mod, list(x = newx,),type="response")
+
+plot(x, y, pch = 16, xlab = "DIA", ylab = "p(mort)")
+lines(newx, newy)
+lines(newx, exp(new.y))
+
+x<-c(1.968504, 5.905512, 9.84252, 13.77953, 17.71654, 21.65354, 25.59055, 29.52756)
+x2<-x^2
+y<-c((.162), (.026), (.006), (.013), (.024), (.047), (.060), (0.129))
+newx<-seq(0,30,0.5)
+newx2<-newx^2
+
+plot(y~x)
+mod<-lm(y ~ x+x2)
+summary(mod)
+
