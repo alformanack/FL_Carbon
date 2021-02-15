@@ -295,8 +295,34 @@ summary(int.model2) #.1073
 plot(int.model2)
 
 int.model3<-lm(resid.LLSMA~ X30s_NAD + ai_et0_NAD * SOILGRIDS_CN_SCALE, data=longleaf)
-summary(int.model3) #.1219
-plot(int.model2)
+summary(int.model3) #0.1219
+plot(int.model3)
+
+# Call:
+#   lm(formula = resid.LLSMA ~ X30s_NAD + ai_et0_NAD * SOILGRIDS_CN_SCALE, 
+#      data = longleaf)
+# 
+# Residuals:
+#   Min       1Q   Median       3Q      Max 
+# -0.81456 -0.14819  0.01339  0.14088  0.47207 
+# 
+# Coefficients:
+#   Estimate Std. Error t value Pr(>|t|)    
+# (Intercept)                    3.384661   0.546979   6.188 1.01e-09 ***
+#   X30s_NAD                      -0.066911   0.017201  -3.890 0.000109 ***
+#   ai_et0_NAD                    -2.380756   0.319335  -7.455 2.51e-13 ***
+#   SOILGRIDS_CN_SCALE            -0.016524   0.004623  -3.574 0.000374 ***
+#   ai_et0_NAD:SOILGRIDS_CN_SCALE  0.019741   0.004910   4.021 6.40e-05 ***
+#   ---
+#   Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+# 
+# Residual standard error: 0.2007 on 739 degrees of freedom
+# (8 observations deleted due to missingness)
+# Multiple R-squared:  0.1266,	Adjusted R-squared:  0.1219 
+# F-statistic: 26.78 on 4 and 739 DF,  p-value: < 2.2e-16
+
+growth<-(10^(4.142479 - 0.016524*CN + 0.019741*CN*aridity - 2.380756*aridity - 0.066911*temp))*(0.4430331*age[i,j]^(-0.5569669))
+age=round((10^(-9.35027 + 0.03729744*CN_scale - 0.04455875*CN_scale*aridity + 5.373766*aridity + 0.1510293*temp))*(DIA^2.257168)))
 
 bbmle::BICtab(full.model, notemp.model, int.model, int.model2, base=T, delta=T, weights=T)
 bbmle::AICctab(full.model, notemp.model, int.model, int.model2, base=T, delta=T, weights=T)
