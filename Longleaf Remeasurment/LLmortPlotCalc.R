@@ -46,7 +46,7 @@ plot_data_start[[s]]<-plots.start[[s]] %>%
   filter(STATUSCD=="1") %>%
   # mutate(TPA=ifelse(is.na(TPA_UNADJ), TPAGROW_UNADJ, TPA_UNADJ)) %>%
   mutate(TPA_total=sum(round(TPA_UNADJ))) %>%
-  mutate(age=round((10^(-9.35027 + 0.03729744*CN_scale - 0.04455875*CN_scale*aridity + 5.373766*aridity + 0.1510293*temp))*(DIA^2.257168)))
+  mutate(age=round((10^(-7.143884 + 0.02970085*CN_scale - 0.03545391*CN_scale*aridity + 4.540362*aridity + 0.137402*temp))*(DIA^1.748652)))
 # mutate(age=round((10^(-3.018915 + 1.2741*aridity))*(DIA^2.307065)))  
 
 envdata[s,17]<-unique(plot_data_start[[s]]$TPA_total)
@@ -63,7 +63,7 @@ plot_data_end[[s]]<-plots.end[[s]] %>%
   filter(STATUSCD=="1") %>%
   # mutate(TPA=ifelse(is.na(TPA_UNADJ), TPAGROW_UNADJ, TPA_UNADJ)) %>%
   mutate(TPA_total=sum(round(TPA_UNADJ))) %>%
-  mutate(age=round((10^(-9.35027 + 0.03729744*CN_scale - 0.04455875*CN_scale*aridity + 5.373766*aridity + 0.1510293*temp))*(DIA^2.257168))) %>%
+  mutate(age=round((10^(-7.143884 + 0.02970085*CN_scale - 0.03545391*CN_scale*aridity + 4.540362*aridity + 0.137402*temp))*(DIA^1.748652))) %>%
   mutate(TASB=((0.0725*((DIA*2.54)^2.5074))+(0.0016*((DIA*2.54)^3.0786))+(0.0214*((DIA*2.54)^2.0051)))*(round(TPA_UNADJ)))
 # mutate(TASB=(0.041281*((DIA*2.54)^2.722214))*(round(TPA_UNADJ)))
 
@@ -92,7 +92,8 @@ if ((length(diameter.totals.end[[g]])-length(diameter.totals[[g]]))>0) {
   extra<-runif(diff, 0, 5)
   diameter.totals[[g]]<-c(diameters.new, extra)
   age.start<-age.totals[[g]]
-  age.new<-round((10^(-9.35027 + 0.03729744*envdata[g,15] - 0.04455875*envdata[g,16]*envdata[s,15] + 5.373766*envdata[g,16] + 0.1510293*envdata[g,11]))*(extra^2.257168))
+  # age.new<-round((10^(-9.35027 + 0.03729744*envdata[g,15] - 0.04455875*envdata[g,16]*envdata[s,15] + 5.373766*envdata[g,16] + 0.1510293*envdata[g,11]))*(extra^2.257168))
+  age.new<-round((10^(-7.143884 + 0.02970085*envdata[g,15] - 0.03545391*envdata[g,16]*envdata[s,15] + 4.540362*envdata[g,16] + 0.137402*envdata[g,11]))*(extra^1.748652))
   age.totals[[g]]<-c(age.start, age.new)
 }
 
