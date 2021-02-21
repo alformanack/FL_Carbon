@@ -55,9 +55,9 @@ Diameter.all<-list()
 #set prior ranges
 pmin <- c()
 pmax <- c()
-#   a1             b1              b2               b3           b4               b5            b6                b7                b8            b9
-pmin[1] <- 2.1;pmin[2] <-  0.00;pmin[3] <-  0.00;pmin[4] <- 0;pmin[5] <-  0.01;pmin[6] <- 0.0;pmin[7] <- -0.9;pmin[8] <- 0.0;pmin[9] <- -0.004;pmin[10] <- 0.0
-pmax[1] <- 6.1;pmax[2] <-  0.04;pmax[3] <-  0.05;pmax[4] <- 5;pmax[5] <-  0.14;pmax[6] <- 1.0;pmax[7] <- -0.1;pmax[8] <- 0.4;pmax[9] <- 0.0;pmax[10] <- 0.00005
+        #   a1             b1              b2               b3           b4               b5            b6                b7                b8            b9
+pmin[1] <- 2.1;pmin[2] <-  -0.04;pmin[3] <-  0.00;pmin[4] <- 0;pmin[5] <-  0.01;pmin[6] <- 0.0;pmin[7] <- -0.9;pmin[8] <- 0.0;pmin[9] <- -0.004;pmin[10] <- 0.0
+pmax[1] <- 8.1;pmax[2] <-  0.04;pmax[3] <-  0.05;pmax[4] <- 5;pmax[5] <-  0.25;pmax[6] <- 1.5;pmax[7] <- -0.1;pmax[8] <- 0.4;pmax[9] <- 0.0;pmax[10] <- 0.00005
 
 
 par.name <- c("a1","b1","b2","b3","b4","b5", "b6", "b7", "b8", "b9")
@@ -127,7 +127,7 @@ for (s in a){
 
 J_old <- mapply(function(x, y){
   # calc <- (sort(x) - sort(y))^2/(2*(0.6*y)^2)
-  calc <- (sort(x) - sort(y))^2/(2*(4)^2) ## try 2 instead of 4 as SD (denominator)
+  calc <- (sort(x) - sort(y))^2/(2*(2)^2) ## try 2 instead of 4 as SD (denominator)
   return(calc)
 }, Diameter.all, diameter.totals.end)
 
@@ -227,7 +227,7 @@ for (d1 in 1:no.simu) {
   
   J_new <- mapply(function(x, y){
     # calc <- (sort(x) - sort(y))^2/(2*(0.6*y)^2)
-    calc <- (sort(x) - sort(y))^2/(2*(4)^2) ## try 2 instead of 4 as SD (denominator)
+    calc <- (sort(x) - sort(y))^2/(2*(2)^2) ## try 2 instead of 4 as SD (denominator)
     return(calc)
   }, Diameter.all, diameter.totals.end)
   
@@ -262,7 +262,7 @@ for (d1 in 1:no.simu) {
   print(paste("simu =", simu, "updated =", updated))
 }
 
-save.image(file ="C:/Users/al117862/Downloads/LLDiaCalibration2.17.21.Rdata")
+save.image(file ="C:/Users/al117862/Downloads/LLDiaCalibration2.20.21.Rdata")
 
 dev.off()
 par(mfrow=c(1,1))
@@ -284,7 +284,8 @@ abline(0,1)
 # sample from posterior parameter distributions to generate site-level samples for average diameter and C stock
 ## discard the first half of accepted parameters (sample from the second half)
 half.a1<-p_upgraded[1,(updated/2):updated]
-sample.a1
+sample.a1<-sample(half.a1, 300)
+hist(sample.a1)
 sample.b1<-p_upgraded[2,(updated/2):updated]
 sample.b2<-p_upgraded[3,(updated/2):updated]
 sample.b4<-p_upgraded[4,(updated/2):updated]
@@ -298,7 +299,7 @@ sample.b10<-p_upgraded[10,(updated/2):updated]
 
 sample.par<-matrix(0, 10, 300)
 for (q in 1:10){
-  sample.par[q,]<-sample(p_upgraded[q,(updated/2):updated], 300)
+  sample.par[q,]<-sample(p_upgraded[1, 1:updated], 300)
 }
 hist(sample.par[1,])
 hist(sample.par[2,])
