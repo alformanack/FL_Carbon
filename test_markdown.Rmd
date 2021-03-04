@@ -1,30 +1,928 @@
 ---
-title: "test"
+title: "Model Selection"
 author: "AMF"
 date: "2/14/2021"
 output: word_document
 ---
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+## Slash pine Model Selection
+SMA regression was used to determine the relationship between log(Age) and log(DBH).
+```{r sma, echo=FALSE, warning=FALSE}
+setwd("C:/Users/Alicia/Documents/GitHub/FL_Carbon")
 
-## R Markdown
+sitetree<-read.csv("sitetree_NAD83_envData.csv", header=T, sep=",", stringsAsFactors = F)
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
-```{r cars}
-summary(cars)
+sitetree$SPCD<-as.factor(sitetree$SPCD)
+
+# Calculate weighted averages and soil C:N for Soilgrids data -------------
+
+
+is.na(sitetree$SOC0_5_NAD) <- sitetree$SOC0_5_NAD==-9999
+is.na(sitetree$SOC5_15_NA) <- sitetree$SOC5_15_NA==-9999
+
+is.na(sitetree$N0_5_NAD) <- sitetree$N0_5_NAD==-9999
+is.na(sitetree$N5_15_NAD) <- sitetree$N5_15_NAD==-9999
+
+is.na(sitetree$X30s_NAD) <- sitetree$X30s_NAD==-9999
+is.na(sitetree$ai_et0_NAD) <- sitetree$ai_et0_NAD==-9999
+
+
+sitetree$SOILGRIDS_C_AVG<-((sitetree$SOC0_5_NAD/10)*(1/3))+((sitetree$SOC5_15_NA/10)*(2/3))
+                 
+
+sitetree$SOILGRIDS_N_AVG<-((sitetree$N0_5_NAD/100)*(1/3))+((sitetree$N5_15_NAD/100)*(2/3))                 
+
+sitetree$SOILGRIDS_CN<-sitetree$SOILGRIDS_C_AVG/sitetree$SOILGRIDS_N_AVG 
+
+
+sitetree[which(is.finite(sitetree$SOILGRIDS_CN)==F),"SOILGRIDS_CN"]<-NA 
+
+#scale CN from FIA data
+sitetree$SOILGRIDS_CN_SCALE<-(sitetree$SOILGRIDS_CN*6.212)+24.634
+
+sitetree$ai_et0_NAD<-sitetree$ai_et0_NAD*.0001
+
+# Subsetting species ------------------------------------------------------
+
+slashpine<-subset(sitetree, sitetree$SPCD=="111")
+longleaf<-subset(sitetree, sitetree$SPCD=="121")
+loblolly<-subset(sitetree, sitetree$SPCD=="131")
+SlashMA <- smatr::sma(data=slashpine, log(slashpine$DIA)~log(slashpine$AGEDIA), method = "SMA")
+slashresidualsma<-residuals(SlashMA)
+summary(SlashMA)
+```
+## SMA regression line and residuals
+```{r sma plot, echo=FALSE}
+plot(SlashMA)
+```
+```{r resid plot, echo=FALSE}
+slashresidualsma<-residuals(SlashMA)
+plot(slashresidualsma)
 ```
 
-## Including Plots
+Int.model3 was selected based upon the following criteria: lowest predicted error sum of squares (PRESS), highest Adjusted R-squared, and lowest BIC score.
+```{r model criteria, echo=FALSE}
 
-You can also embed plots, for example:
+modelnames <- c("full.model", "add.model", "notemp.model", "int.model2", "int.model3", "int.model4")
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+PRESS <- c(117.2473, 121.8596, 122.7548, 121.7957, 116.8553, 117.4792)
+
+Adj.r <- c(0.06016, 0.06254, 0.05519, 0.06339, 0.06364, 0.05821)
+
+BIC <- c(-183.0376, -174.4199, -167.7221, -169.7606, -184.5131, -178.4704)
+
+df<-cbind(modelnames, PRESS, Adj.r, BIC)
+
+df<-data.frame(df)
+
+colnames(df)<-c("Model","PRESS","Adj R-squared", "BIC")
+
+print(df)
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+This is the selected model and its coefficients.
+```{r final model, echo=FALSE}
+int.model3<-lm(slashresidualsma~ ai_et0_NAD*SOILGRIDS_CN_SCALE + slashpine$X30s_NAD, data=slashpine)
+summary(int.model3)
+```
+
+## Model Validation
+Above-ground biomass (ABG) of 1 acre slash pine stands was simulated using individual-based growth and mortality model and compared to FIA remeasurement plots.
+```{r slash simu, echo=FALSE}
+rm(list=ls())
+
+setwd("C:/Users/Alicia/Documents/GitHub/FL_Carbon/Slash Remeasurement")
+envdata<-read.csv("SlashEnvData1.csv", header=T, sep=",") 
+load("SlashAgeTotals.rdata")
+load("SlashAgeTotalsEnd.rdata")
+load("SlashDIATotalsEnd.rdata")
+load("SlashDIATotals.rdata")
+load("SlashPlotStart.rdata")
+load("SlashPlotEnd.rdata")
+
+mylist<-list()
+
+simu.diameters<-list()
+
+a<-c(1:18,20:21, 23:32, 34:56)
+
+for (s in a){
+  
+  # set stand age and density
+  plot_density<-diameter.totals[[s]]
+  observed.a<-envdata[s,6]
+  ages<-age.totals[[s]]
+  temp<-envdata[s,7]
+  CN<-envdata[s,16]
+  aridity<-envdata[s,17]
+  predict.tasb<-matrix(nrow = 10, ncol = 1,0)
+  predict.d<-matrix(nrow = 10, ncol = 1,0)
+  
+  for (o in 1:10){
+    age<-matrix(0, nrow=observed.a, ncol=length(plot_density)) # initialize the age matrix
+    Diameter<-matrix(0, nrow=observed.a, length(plot_density)) # initialize the diameter matrix
+    TASB<-matrix(0, nrow=observed.a, length(plot_density)) # initialize the total above-stump biomass matrix
+    
+    # initialize the diameter for the first year
+    Diameter[1,]<-plot_density
+    age[1,]<-ages
+    
+    for (j in 1:length(plot_density)){ # specify tree per hectare
+      
+      for (i in 2:observed.a){ # specify how long to run the simulation (years)
+        
+        age[i,j]<-age[i-1,j]+1
+        
+        growth<-(10^(2.103102 - 1.374381*aridity - 0.009940*CN  - 0.026373*temp +              0.010618*CN*aridity))*(0.5783973*age[i,j]^(-0.4216027))
+        
+        # define the mortality rate here
+        # initialize as a numeric with only 1 possible value
+        M <- numeric(length = 1)
+        
+        # Mortality based on diameter class
+        if (Diameter[i,j]>=0) { M<- rbinom(1,1,(0.06504789*exp(-0.05577336*Diameter[i,j]*2.54)))}
+        # if (Diameter[i,j]>0) { M<- rbinom(1,1,(exp(0.7800557-0.08071*Diameter[i,j]*2.54)/8))}
+        # if (Diameter[i,j]<=3.94){ M<- rbinom(1,1,(.4/8))}
+        # else if (Diameter[i,j]>3.94 & Diameter[i,j]<=7.97){M<-rbinom(1,1,(.2/8))}
+        # else if (Diameter[i,j]>7.97 & Diameter[i,j]<=11.81){M<-rbinom(1,1,(.15/8))}
+        # else if (Diameter[i,j]>11.81 & Diameter[i,j]<=15.75){M<-rbinom(1,1,(.1/8))}
+        # else if (Diameter[i,j]>15.75){M<-rbinom(1,1,(0.01/8))}
+        
+        # Calculate the diameter for jth tree for the ith observed year
+        Diameter[i,j]<-Diameter[i-1,j] + growth - M*(Diameter[i-1,j]+growth)
+        
+        #use diameter and age to calculate total aboveground biomass of the jth tree in the ith year
+        TASB [i,j]<-(0.041281*((Diameter[i,j]*2.54)^2.722214))
+        
+        # If the tree dies, plant a new tree (age = 0)
+        if (M==1){age[i,j]<-0}
+      }
+    }
+    # save average modeled diameter
+    predict.d[o,1]<-mean(Diameter[observed.a,])
+    predict.tasb[o,1]<-sum(TASB[observed.a, ])*.5*(1/4047)
+  }
+  
+  observed.d<-mean(diameter.totals.end[[s]])
+  observed.tasb<-sum(plot_data_end[[s]]$TASB)*.5*(1/4047)
+  modeled.d<-mean(predict.d)
+  modeled.tasb<-mean(predict.tasb)
+  sd.tasb<-sd(predict.tasb)
+  sd.dbh<-sd(predict.d)
+  # hist(Diameter[observed.a,], main=paste("End simulation", s), xlab = "Diameter (in)")
+  
+  # set up dataframe to store simulated data
+  df<-cbind(observed.d, modeled.d, observed.a, length(plot_density), envdata[s,12], envdata[s,17], observed.tasb, modeled.tasb, 
+            sd.tasb, sd.dbh)
+  
+  df<-data.frame(df)
+  
+  colnames(df)<-c("Observed_Diameter","Modeled_Diameter","Age", "Tree_Density", "Temperature",  "Aridity", "Observed_Biomass", 
+                  "Modeled_Biomass", "sd.tasb", "sd.dbh")
+  
+  # data will be saved as list 1
+  mylist[[s]] <- df
+  simu.diameters[[s]]<-Diameter[observed.a,]
+  
+}
+
+final_list <- do.call(rbind.data.frame, mylist)
+row.names(final_list) <- c(a)
+sdev<-as.vector(final_list$sd.tasb)
+sdev.dbh<-as.vector(final_list$sd.dbh)
+
+plot(data = final_list, Observed_Biomass~Modeled_Biomass, xlim = c(0,15), ylim = c(0,15), col = "#75BFBF", xlab="Modeled", ylab="Observed", main ="AGB (kgC/m^2)",
+     col.axis="#027368", pch=16, type="p") 
+abline(0,1, col="#048ABF")
+# text(Observed_Biomass~Modeled_Biomass, labels=rownames(final_list),data=final_list, cex=0.9, font=2, pos=4)
+arrows(final_list$Modeled_Biomass-sdev, final_list$Observed_Biomass, final_list$Modeled_Biomass+sdev, final_list$Observed_Biomass, length=0.05, angle=90, code=3)
+
+plot(data = final_list, Observed_Diameter~Modeled_Diameter, xlim=c(0,20), ylim=c(0,20), xlab="Modeled DBH (in)", ylab="Observed DBH (in)",
+      col.axis="#027368", col="#75BFBF", pch=16, type="p")
+abline(0,1, col="#048ABF")
+# text(Observed_Diameter~Modeled_Diameter, labels=rownames(final_list),data=final_list, cex=0.9, font=2, pos=4)
+arrows(final_list$Modeled_Diameter-sdev.dbh, final_list$Observed_Diameter, final_list$Modeled_Diameter+sdev.dbh, final_list$Observed_Diameter, length=0.05, angle=90, code=3)
+```
+
+## Longleaf pine Model Selection
+```{r, echo=FALSE}
+setwd("C:/Users/Alicia/Documents/GitHub/FL_Carbon")
+
+sitetree<-read.csv("sitetree_NAD83_envData.csv", header=T, sep=",", stringsAsFactors = F)
+
+
+
+sitetree$SPCD<-as.factor(sitetree$SPCD)
+
+# Calculate weighted averages and soil C:N for Soilgrids data -------------
+
+
+is.na(sitetree$SOC0_5_NAD) <- sitetree$SOC0_5_NAD==-9999
+is.na(sitetree$SOC5_15_NA) <- sitetree$SOC5_15_NA==-9999
+
+is.na(sitetree$N0_5_NAD) <- sitetree$N0_5_NAD==-9999
+is.na(sitetree$N5_15_NAD) <- sitetree$N5_15_NAD==-9999
+
+is.na(sitetree$X30s_NAD) <- sitetree$X30s_NAD==-9999
+is.na(sitetree$ai_et0_NAD) <- sitetree$ai_et0_NAD==-9999
+
+
+sitetree$SOILGRIDS_C_AVG<-((sitetree$SOC0_5_NAD/10)*(1/3))+((sitetree$SOC5_15_NA/10)*(2/3))
+                 
+
+sitetree$SOILGRIDS_N_AVG<-((sitetree$N0_5_NAD/100)*(1/3))+((sitetree$N5_15_NAD/100)*(2/3))                 
+
+sitetree$SOILGRIDS_CN<-sitetree$SOILGRIDS_C_AVG/sitetree$SOILGRIDS_N_AVG 
+
+
+sitetree[which(is.finite(sitetree$SOILGRIDS_CN)==F),"SOILGRIDS_CN"]<-NA 
+
+#scale CN from FIA data
+sitetree$SOILGRIDS_CN_SCALE<-(sitetree$SOILGRIDS_CN*6.212)+24.634
+
+sitetree$ai_et0_NAD<-sitetree$ai_et0_NAD*.0001
+
+# Subsetting species ------------------------------------------------------
+
+slashpine<-subset(sitetree, sitetree$SPCD=="111")
+longleaf<-subset(sitetree, sitetree$SPCD=="121")
+loblolly<-subset(sitetree, sitetree$SPCD=="131")
+
+LongleafSMA <- smatr::sma(data=longleaf, log(DIA) ~ log(AGEDIA), method = "SMA")
+summary(LongleafSMA)
+```
+## SMA Model and Residuals
+```{r, echo=FALSE}
+plot(LongleafSMA)
+```
+```{r, echo=FALSE}
+resid.LLSMA<- residuals(LongleafSMA)
+plot(resid.LLSMA)
+```
+
+Int.model3 was selected based upon the following criteria: lowest predicted error sum of squares (PRESS), highest Adjusted R-squared, and lowest BIC score.
+```{r, echo=FALSE}
+modelnames <- c("full.model", "add.model", "notemp.model", "int.model2", "int.model3", "int.model4", "int.model5")
+
+PRESS <- c(35.60895, 36.59297, 37.60718, 35.76112,34.99162, 35.77264, 36.35493)
+
+Adj.r <- c(0.1145, 0.07421, 0.0997, 0.1213, 0.1306, 0.1106, 0.09551)
+
+BIC <- c(-124.0053, -117.941, -102.5656, -130.626, -132.0229, -120.7723, -113.8396)
+
+df<-cbind(modelnames, PRESS, Adj.r, BIC)
+
+df<-data.frame(df)
+
+colnames(df)<-c("Model","PRESS","Adj R-squared", "BIC")
+
+print(df)
+```
+
+This is the selected model and its coefficients.
+```{r, echo=FALSE}
+int.model3<-lm(resid.LLSMA~ X30s_NAD + ai_et0_NAD * SOILGRIDS_CN_SCALE, data=longleaf)
+summary(int.model3)
+```
+
+## Model Diagnostics
+```{r, echo=FALSE}
+par(mfrow=c(2,2))
+plot(int.model3)
+```
+
+## Model Validation
+Above-ground biomass (ABG) of 1 acre Longleaf pine stands was simulated using individual-based growth and mortality model and compared to FIA remeasurement plots. With probability of mortality by size class.
+```{r, echo=FALSE, warning=FALSE}
+rm(list=ls())
+
+setwd("C:/Users/Alicia/Documents/GitHub/FL_Carbon/Longleaf Remeasurment")
+envdata<-read.csv("LongleafEnvData1.csv", header=T, sep=",") 
+load("longleafAgeTotals.rdata")
+load("longleafAgeTotalsEnd.rdata")
+load("longleafDIATotalsEnd.rdata")
+load("longleafDIATotals.rdata")
+load("longleafPlotStart.rdata")
+load("longleafPlotEnd.rdata")
+# load("initialpar300.Rdata")
+
+par(mfrow=c(2,5))
+
+mylist<-list()
+
+
+# Plot 170 ----------------------------------------------
+
+simu.diameters<-list()
+
+a<-c(1, 3, 4, 6, 8, 9, 11:21, 23)
+calibration<-c(21, 19, 16,  3, 23, 14,  9,  1, 20, 11)
+a<-setdiff(a, calibration)
+
+for (s in a){
+  
+  # set stand age and density
+  plot_density<-diameter.totals[[s]]
+  observed.a<-envdata[s,6]
+  ages<-age.totals[[s]]
+  CN <- envdata[s,16]
+  aridity <- envdata[s,17]
+  temp <- envdata[s,12]
+  predict.tasb<-matrix(nrow = 300, ncol = 1,0)
+  
+  predict.d<-matrix(nrow = 300, ncol = 1,0)
+  
+  
+  for (o in 1:300){
+    age<-matrix(0, nrow=observed.a, ncol=length(plot_density)) # initialize the age matrix
+    Diameter<-matrix(0, nrow=observed.a, length(plot_density)) # initialize the diameter matrix
+    TASB<-matrix(0, nrow=observed.a, length(plot_density)) # initialize the total above-stump biomass matrix
+    
+    # initialize the diameter for the first year
+    Diameter[1,]<-plot_density
+    age[1,]<-ages
+    
+    for (j in 1:length(plot_density)){ # specify tree per hectare
+      
+      for (i in 2:observed.a){ # specify how long to run the simulation (years)
+        
+        age[i,j]<-age[i-1,j]+1
+        
+        growth<-(10^(4.085367 - 0.016985*CN + 0.020275*CN*aridity - 2.596493*aridity - 0.078576*temp))*(0.5718692*age[i,j]^(-0.4281308))
+        
+        # define the mortality rate here
+        # initialize as a numeric with only 1 possible value
+        M <- numeric(length = 1)
+        
+        # # Mortality based on diameter class
+        if (Diameter[i,j]>0) {M<- rbinom(1,1,(2.109e-02 +(-1.048e-03 *Diameter[i,j]*2.54)+ 1.324e-05*((Diameter[i,j]*2.54)^2)))
+        }
+
+        
+        # else {M=0}
+        # if (Diameter[i,j]<=3.94){ M<- rbinom(1,1,(.162/8))}
+        # else if (Diameter[i,j]>3.94 & Diameter[i,j]<=7.97){M<-rbinom(1,1,(.026/8))}
+        # else if (Diameter[i,j]>7.97 & Diameter[i,j]<=11.81){M<-rbinom(1,1,(.006/8))}
+        # else if (Diameter[i,j]>11.81 & Diameter[i,j]<=15.75){M<-rbinom(1,1,(.013/8))}
+        # else if (Diameter[i,j]>15.75 & Diameter[i,j]<=19.69){M<-rbinom(1,1,(.024/8))}
+        # else if (Diameter[i,j]>19.69 & Diameter[i,j]<=23.62){M<-rbinom(1,1,(.047/8))}
+        # else if (Diameter[i,j]>23.62 & Diameter[i,j]<=27.56){M<-rbinom(1,1,(.060/8))}
+        # else if (Diameter[i,j]>27.56){M<-rbinom(1,1,(0.129/8))}
+        
+        
+        # Calculate the diameter for jth tree for the ith observed year
+        Diameter[i,j]<-Diameter[i-1,j] + growth - M*(Diameter[i-1,j]+growth)
+        
+        #use diameter and age to calculate total aboveground biomass of the jth tree in the ith year
+        TASB [i,j]<-(0.0725*((Diameter[i,j]*2.54)^2.5074))+(0.0016*((Diameter[i,j]*2.54)^3.0786))+(0.0214*((Diameter[i,j]*2.54)^2.0051))
+        
+        # If the tree dies, plant a new tree (age = 0)
+        if (M==1){age[i,j]<-0}
+      }
+    }
+    # save average modeled diameter
+    predict.d[o,1]<-mean(Diameter[observed.a,])
+    predict.tasb[o,1]<-sum(TASB[observed.a, ])*.5*(1/4047)
+  
+  }
+  # mod.tasb[[s]]<-predict.tasb
+  observed.d<-mean(diameter.totals.end[[s]])
+  observed.tasb<-sum(plot_data_end[[s]]$TASB)*.5*(1/4047)
+  modeled.d<-mean(predict.d)
+  modeled.tasb<-mean(predict.tasb)
+  # sd.tasb<-mad(predict.tasb, center = median(predict.tasb), constant = 1.4826, na.rm = FALSE,
+      # low = FALSE, high = FALSE)
+  sd.tasb<-sd(predict.tasb)
+  sd.dbh<-sd(predict.d)
+  # hist(Diameter[observed.a,], main=paste("End simulation", s), xlab = "Diameter (in)")
+  
+  # set up dataframe to store simulated data
+  df<-cbind(observed.d, modeled.d, observed.a, length(plot_density), envdata[s,12], envdata[s,17], observed.tasb, modeled.tasb, 
+            sd.tasb, sd.dbh)
+  
+  df<-data.frame(df)
+  
+  colnames(df)<-c("Observed_Diameter","Modeled_Diameter","Age", "Tree_Density", "Temperature",  "Aridity", "Observed_Biomass", 
+                  "Modeled_Biomass", "sd.tasb", "sd.dbh")
+  
+  # data will be saved as list 1
+  mylist[[s]] <- df
+  simu.diameters[[s]]<-Diameter[observed.a,]
+  # mod.tasb[[s]]<-predict.tasb[,1]
+}
+
+# par(mfrow=c(1,3))
+
+# hist(diameter.totals[[5]])
+# hist(diameter.totals.end[[5]])
+# hist(simu.diameters[[5]])
+
+# 
+
+# outliers<-vector()
+# for (m in a){
+# outliers  <-boxplot(mod.tasb[[6]])$out
+# }
+# 
+# which(mod.tasb[[6]] %in% outliers)
+# mad(x, center = median(x), constant = 1.4826, na.rm = FALSE,
+#     low = FALSE, high = FALSE)
+
+final_list <- do.call(rbind.data.frame, mylist)
+row.names(final_list) <- c(a)
+sdev<-as.vector(final_list$sd.tasb)
+sdev.dbh<-as.vector(final_list$sd.dbh)
+
+par(mfrow=c(1,1))
+
+
+plot(data = final_list, Observed_Biomass~Modeled_Biomass,col = "#75BFBF", xlab="Modeled", ylab="Observed", main ="AGB before data assimilation (kgC/m^2)",
+     col.axis="#027368", pch=16, type="p")
+abline(0,1, col="#048ABF")
+text(Observed_Biomass~Modeled_Biomass, labels=rownames(final_list),data=final_list, cex=0.9, font=2, pos=4)
+arrows(final_list$Modeled_Biomass-sdev, final_list$Observed_Biomass, final_list$Modeled_Biomass+sdev, final_list$Observed_Biomass, length=0.05, angle=90, code=3)
+
+plot(data = final_list, Observed_Diameter~Modeled_Diameter, xlim=c(0,20), ylim=c(0,20), xlab="Modeled DBH (in)", ylab="Observed DBH (in)", main ="Before data assimilation",
+      col.axis="#027368", col="#75BFBF", pch=16, type="p")
+abline(0,1, col="#048ABF")
+# text(Observed_Diameter~Modeled_Diameter, labels=rownames(final_list),data=final_list, cex=0.9, font=2, pos=4)
+arrows(final_list$Modeled_Diameter-sdev.dbh, final_list$Observed_Diameter, final_list$Modeled_Diameter+sdev.dbh, final_list$Observed_Diameter, length=0.05, angle=90, code=3)
+```
+## Longleaf after data assimilation
+Running 300 random parameter sets (after discarding burn-in) per site. Reporting site means with site sd
+
+```{r, echo=FALSE}
+rm(list=ls())
+
+setwd("C:/Users/Alicia/Documents/GitHub/FL_Carbon/Longleaf Remeasurment")
+envdata<-read.csv("LongleafEnvData1.csv", header=T, sep=",") 
+load("longleafAgeTotals.rdata")
+load("longleafAgeTotalsEnd.rdata")
+load("longleafDIATotalsEnd.rdata")
+load("longleafDIATotals.rdata")
+load("longleafPlotStart.rdata")
+load("longleafPlotEnd.rdata")
+load("sampleparameters2.20.21.rdata")
+# load("LLMortTest300par.rdata")
+
+par(mfrow=c(2,5))
+
+mylist<-list()
+mod.tasb<-list()
+simu.diameters<-list()
+
+a<-c(1, 3, 4, 6, 8, 9, 11:21, 23)
+calibration<-c(21, 19, 16,  3, 23, 14,  9,  1, 20, 11)
+a<-setdiff(a, calibration)
+
+# a<-c(1, 3:23)
+
+for (s in a){
+  
+  # set stand age and density
+  plot_density<-diameter.totals[[s]]
+  observed.a<-envdata[s,6]
+  ages<-age.totals[[s]]
+  CN <- envdata[s,16]
+  aridity <- envdata[s,17]
+  temp <- envdata[s,12]
+  predict.tasb<-matrix(nrow = 300, ncol = 1,0)
+  
+  predict.d<-matrix(nrow = 300, ncol = 1,0)
+  
+  
+  for (o in 1:300){
+    age<-matrix(0, nrow=observed.a, ncol=length(plot_density)) # initialize the age matrix
+    Diameter<-matrix(0, nrow=observed.a, length(plot_density)) # initialize the diameter matrix
+    TASB<-matrix(0, nrow=observed.a, length(plot_density)) # initialize the total above-stump biomass matrix
+    
+    # initialize the diameter for the first year
+    Diameter[1,]<-plot_density
+    age[1,]<-ages
+    
+    for (j in 1:length(plot_density)){ # specify tree per hectare
+      
+      for (i in 2:observed.a){ # specify how long to run the simulation (years)
+        
+        age[i,j]<-age[i-1,j]+1
+        
+        growth<-(10^(sample.parameters[1,o] - sample.parameters[2,o]*CN + sample.parameters[3,o]*CN*aridity - sample.parameters[4,o]*aridity- sample.parameters[5,o]*temp))*(sample.parameters[6,o]*age[i,j]^(sample.parameters[7,o]))
+        
+        # define the mortality rate here
+        # initialize as a numeric with only 1 possible value
+        M <- numeric(length = 1)
+        
+        # # Mortality based on diameter class
+        if (Diameter[i,j]>0) {
+          M<- rbinom(1,1,(sample.parameters[8,o] +(sample.parameters[9,o] *Diameter[i,j]*2.54)+sample.parameters[10,o]*((Diameter[i,j]*2.54)^2)))
+
+        }
+        # if (Diameter[i,j]<=3.94){ M<- rbinom(1,1,(.162/8))}
+        # else if (Diameter[i,j]>3.94 & Diameter[i,j]<=7.97){M<-rbinom(1,1,(.026/8))}
+        # else if (Diameter[i,j]>7.97 & Diameter[i,j]<=11.81){M<-rbinom(1,1,(.006/8))}
+        # else if (Diameter[i,j]>11.81 & Diameter[i,j]<=15.75){M<-rbinom(1,1,(.013/8))}
+        # else if (Diameter[i,j]>15.75 & Diameter[i,j]<=19.69){M<-rbinom(1,1,(.024/8))}
+        # else if (Diameter[i,j]>19.69 & Diameter[i,j]<=23.62){M<-rbinom(1,1,(.047/8))}
+        # else if (Diameter[i,j]>23.62 & Diameter[i,j]<=27.56){M<-rbinom(1,1,(.060/8))}
+        # else if (Diameter[i,j]>27.56){M<-rbinom(1,1,(0.129/8))}
+        
+        
+        # Calculate the diameter for jth tree for the ith observed year
+        Diameter[i,j]<-Diameter[i-1,j] + growth - M*(Diameter[i-1,j]+growth)
+        
+        #use diameter and age to calculate total aboveground biomass of the jth tree in the ith year
+        TASB [i,j]<-(0.0725*((Diameter[i,j]*2.54)^2.5074))+(0.0016*((Diameter[i,j]*2.54)^3.0786))+(0.0214*((Diameter[i,j]*2.54)^2.0051))
+        
+        # If the tree dies, plant a new tree (age = 0)
+        if (M==1){age[i,j]<-0}
+      }
+    }
+    # save average modeled diameter
+    predict.d[o,1]<-mean(Diameter[observed.a,])
+    predict.tasb[o,1]<-sum(TASB[observed.a, ])*.5*(1/4047)
+  
+  }
+  # mod.tasb[[s]]<-predict.tasb
+  observed.d<-mean(diameter.totals.end[[s]])
+  observed.tasb<-sum(plot_data_end[[s]]$TASB)*.5*(1/4047)
+  modeled.d<-mean(predict.d)
+  modeled.tasb<-mean(predict.tasb)
+  # sd.tasb<-mad(predict.tasb, center = median(predict.tasb), constant = 1.4826, na.rm = FALSE,
+      # low = FALSE, high = FALSE)
+  sd.tasb<-sd(predict.tasb)
+  sd.dbh<-sd(predict.d)
+  # hist(Diameter[observed.a,], main=paste("End simulation", s), xlab = "Diameter (in)")
+  
+  # set up dataframe to store simulated data
+  df<-cbind(observed.d, modeled.d, observed.a, length(plot_density), envdata[s,12], envdata[s,17], observed.tasb, modeled.tasb, 
+            sd.tasb, sd.dbh)
+  
+  df<-data.frame(df)
+  
+  colnames(df)<-c("Observed_Diameter","Modeled_Diameter","Age", "Tree_Density", "Temperature",  "Aridity", "Observed_Biomass", 
+                  "Modeled_Biomass", "sd.tasb", "sd.dbh")
+  
+  # data will be saved as list 1
+  mylist[[s]] <- df
+  simu.diameters[[s]]<-Diameter[observed.a,]
+  # mod.tasb[[s]]<-predict.tasb[,1]
+}
+
+# par(mfrow=c(1,3))
+
+# hist(diameter.totals[[5]])
+# hist(diameter.totals.end[[5]])
+# hist(simu.diameters[[5]])
+
+# 
+
+# outliers<-vector()
+# for (m in a){
+# outliers  <-boxplot(mod.tasb[[6]])$out
+# }
+# 
+# which(mod.tasb[[6]] %in% outliers)
+# mad(x, center = median(x), constant = 1.4826, na.rm = FALSE,
+#     low = FALSE, high = FALSE)
+
+final_list <- do.call(rbind.data.frame, mylist)
+row.names(final_list) <- c(a)
+sdev<-as.vector(final_list$sd.tasb)
+sdev.dbh<-as.vector(final_list$sd.dbh)
+
+par(mfrow=c(1,1))
+
+
+plot(data = final_list, Observed_Biomass~Modeled_Biomass,col = "#75BFBF", xlab="Modeled", ylab="Observed", main ="AGB after data assimilation (kgC/m^2)",
+     col.axis="#027368", pch=16, type="p")
+abline(0,1, col="#048ABF")
+text(Observed_Biomass~Modeled_Biomass, labels=rownames(final_list),data=final_list, cex=0.9, font=2, pos=4)
+arrows(final_list$Modeled_Biomass-sdev, final_list$Observed_Biomass, final_list$Modeled_Biomass+sdev, final_list$Observed_Biomass, length=0.05, angle=90, code=3)
+
+plot(data = final_list, Observed_Diameter~Modeled_Diameter, xlim=c(0,20), ylim=c(0,20), xlab="Modeled DBH (in)", ylab="Observed DBH (in)", main ="After data assimilation",
+      col.axis="#027368", col="#75BFBF", pch=16, type="p")
+abline(0,1, col="#048ABF")
+# text(Observed_Diameter~Modeled_Diameter, labels=rownames(final_list),data=final_list, cex=0.9, font=2, pos=4)
+arrows(final_list$Modeled_Diameter-sdev.dbh, final_list$Observed_Diameter, final_list$Modeled_Diameter+sdev.dbh, final_list$Observed_Diameter, length=0.05, angle=90, code=3)
+
+```
+## Model Validation
+Above-ground biomass (ABG) of 1 acre Longleaf pine stands was simulated using individual-based growth and mortality model and compared to FIA remeasurement plots. With continuous probability of mortality by size class.
+```{r, echo=FALSE}
+rm(list=ls())
+
+setwd("C:/Users/Alicia/Documents/GitHub/FL_Carbon/Longleaf Remeasurment")
+envdata<-read.csv("LongleafEnvData1.csv", header=T, sep=",") 
+load("longleafAgeTotals.rdata")
+load("longleafAgeTotalsEnd.rdata")
+load("longleafDIATotalsEnd.rdata")
+load("longleafDIATotals.rdata")
+load("longleafPlotStart.rdata")
+load("longleafPlotEnd.rdata")
+# load("initialpar300.Rdata")
+
+par(mfrow=c(2,5))
+
+mylist<-list()
+
+
+# Plot 170 ----------------------------------------------
+
+simu.diameters<-list()
+
+a<-c(1, 3, 4, 6, 8, 9, 11:21, 23)
+calibration<-c(21, 19, 16,  3, 23, 14,  9,  1, 20, 11)
+a<-setdiff(a, calibration)
+
+for (s in a){
+  
+  # set stand age and density
+  plot_density<-diameter.totals[[s]]
+  observed.a<-envdata[s,6]
+  ages<-age.totals[[s]]
+  CN <- envdata[s,16]
+  aridity <- envdata[s,17]
+  temp <- envdata[s,12]
+  predict.tasb<-matrix(nrow = 300, ncol = 1,0)
+  
+  predict.d<-matrix(nrow = 300, ncol = 1,0)
+  
+  
+  for (o in 1:300){
+    age<-matrix(0, nrow=observed.a, ncol=length(plot_density)) # initialize the age matrix
+    Diameter<-matrix(0, nrow=observed.a, length(plot_density)) # initialize the diameter matrix
+    TASB<-matrix(0, nrow=observed.a, length(plot_density)) # initialize the total above-stump biomass matrix
+    
+    # initialize the diameter for the first year
+    Diameter[1,]<-plot_density
+    age[1,]<-ages
+    
+    for (j in 1:length(plot_density)){ # specify tree per hectare
+      
+      for (i in 2:observed.a){ # specify how long to run the simulation (years)
+        
+        age[i,j]<-age[i-1,j]+1
+        
+        growth<-(10^(4.085367 - 0.016985*CN + 0.020275*CN*aridity - 2.596493*aridity - 0.078576*temp))*(0.5718692*age[i,j]^(-0.4281308))
+        
+        # define the mortality rate here
+        # initialize as a numeric with only 1 possible value
+        M <- numeric(length = 1)
+        
+        # # Mortality based on diameter class
+        if (Diameter[i,j]>=0) {M<- rbinom(1,1,(2.109e-02 +(-1.048e-03 *Diameter[i,j]*2.54)+ 1.324e-05*((Diameter[i,j]*2.54)^2)))
+        }
+
+        
+        # else {M=0}
+        # if (Diameter[i,j]<=3.94){ M<- rbinom(1,1,(.162/8))}
+        # else if (Diameter[i,j]>3.94 & Diameter[i,j]<=7.97){M<-rbinom(1,1,(.026/8))}
+        # else if (Diameter[i,j]>7.97 & Diameter[i,j]<=11.81){M<-rbinom(1,1,(.006/8))}
+        # else if (Diameter[i,j]>11.81 & Diameter[i,j]<=15.75){M<-rbinom(1,1,(.013/8))}
+        # else if (Diameter[i,j]>15.75 & Diameter[i,j]<=19.69){M<-rbinom(1,1,(.024/8))}
+        # else if (Diameter[i,j]>19.69 & Diameter[i,j]<=23.62){M<-rbinom(1,1,(.047/8))}
+        # else if (Diameter[i,j]>23.62 & Diameter[i,j]<=27.56){M<-rbinom(1,1,(.060/8))}
+        # else if (Diameter[i,j]>27.56){M<-rbinom(1,1,(0.129/8))}
+        
+        
+        # Calculate the diameter for jth tree for the ith observed year
+        Diameter[i,j]<-Diameter[i-1,j] + growth - M*(Diameter[i-1,j]+growth)
+        
+        #use diameter and age to calculate total aboveground biomass of the jth tree in the ith year
+        TASB [i,j]<-(0.0725*((Diameter[i,j]*2.54)^2.5074))+(0.0016*((Diameter[i,j]*2.54)^3.0786))+(0.0214*((Diameter[i,j]*2.54)^2.0051))
+        
+        # If the tree dies, plant a new tree (age = 0)
+        if (M==1){age[i,j]<-0}
+      }
+    }
+    # save average modeled diameter
+    predict.d[o,1]<-mean(Diameter[observed.a,])
+    predict.tasb[o,1]<-sum(TASB[observed.a, ])*.5*(1/4047)
+  
+  }
+  # mod.tasb[[s]]<-predict.tasb
+  observed.d<-mean(diameter.totals.end[[s]])
+  observed.tasb<-sum(plot_data_end[[s]]$TASB)*.5*(1/4047)
+  modeled.d<-mean(predict.d)
+  modeled.tasb<-mean(predict.tasb)
+  # sd.tasb<-mad(predict.tasb, center = median(predict.tasb), constant = 1.4826, na.rm = FALSE,
+      # low = FALSE, high = FALSE)
+  sd.tasb<-sd(predict.tasb)
+  sd.dbh<-sd(predict.d)
+  # hist(Diameter[observed.a,], main=paste("End simulation", s), xlab = "Diameter (in)")
+  
+  # set up dataframe to store simulated data
+  df<-cbind(observed.d, modeled.d, observed.a, length(plot_density), envdata[s,12], envdata[s,17], observed.tasb, modeled.tasb, 
+            sd.tasb, sd.dbh)
+  
+  df<-data.frame(df)
+  
+  colnames(df)<-c("Observed_Diameter","Modeled_Diameter","Age", "Tree_Density", "Temperature",  "Aridity", "Observed_Biomass", 
+                  "Modeled_Biomass", "sd.tasb", "sd.dbh")
+  
+  # data will be saved as list 1
+  mylist[[s]] <- df
+  simu.diameters[[s]]<-Diameter[observed.a,]
+  # mod.tasb[[s]]<-predict.tasb[,1]
+}
+
+# par(mfrow=c(1,3))
+
+# hist(diameter.totals[[5]])
+# hist(diameter.totals.end[[5]])
+# hist(simu.diameters[[5]])
+
+# 
+
+# outliers<-vector()
+# for (m in a){
+# outliers  <-boxplot(mod.tasb[[6]])$out
+# }
+# 
+# which(mod.tasb[[6]] %in% outliers)
+# mad(x, center = median(x), constant = 1.4826, na.rm = FALSE,
+#     low = FALSE, high = FALSE)
+
+final_list <- do.call(rbind.data.frame, mylist)
+row.names(final_list) <- c(a)
+sdev<-as.vector(final_list$sd.tasb)
+sdev.dbh<-as.vector(final_list$sd.dbh)
+
+par(mfrow=c(1,1))
+
+
+plot(data = final_list, Observed_Biomass~Modeled_Biomass,col = "#75BFBF", xlab="Modeled", ylab="Observed", main ="AGB before data assimilation (kgC/m^2)",
+     col.axis="#027368", pch=16, type="p")
+abline(0,1, col="#048ABF")
+text(Observed_Biomass~Modeled_Biomass, labels=rownames(final_list),data=final_list, cex=0.9, font=2, pos=4)
+arrows(final_list$Modeled_Biomass-sdev, final_list$Observed_Biomass, final_list$Modeled_Biomass+sdev, final_list$Observed_Biomass, length=0.05, angle=90, code=3)
+
+plot(data = final_list, Observed_Diameter~Modeled_Diameter, xlim=c(0,20), ylim=c(0,20), xlab="Modeled DBH (in)", ylab="Observed DBH (in)", main ="Before data assimilation",
+      col.axis="#027368", col="#75BFBF", pch=16, type="p")
+abline(0,1, col="#048ABF")
+# text(Observed_Diameter~Modeled_Diameter, labels=rownames(final_list),data=final_list, cex=0.9, font=2, pos=4)
+arrows(final_list$Modeled_Diameter-sdev.dbh, final_list$Observed_Diameter, final_list$Modeled_Diameter+sdev.dbh, final_list$Observed_Diameter, length=0.05, angle=90, code=3)
+```
+
+## Longleaf after data assimilation
+Running 300 random parameter sets (after discarding burn-in) per site using >=mortality function and sd denominator 4. Reporting site means with site sd
+
+```{r, echo=FALSE}
+rm(list=ls())
+
+setwd("C:/Users/Alicia/Documents/GitHub/FL_Carbon/Longleaf Remeasurment")
+envdata<-read.csv("LongleafEnvData1.csv", header=T, sep=",") 
+load("longleafAgeTotals.rdata")
+load("longleafAgeTotalsEnd.rdata")
+load("longleafDIATotalsEnd.rdata")
+load("longleafDIATotals.rdata")
+load("longleafPlotStart.rdata")
+load("longleafPlotEnd.rdata")
+# load("sampleparameters2.20.21.rdata")
+load("LLMortTest300par.rdata")
+
+par(mfrow=c(2,5))
+
+mylist<-list()
+mod.tasb<-list()
+simu.diameters<-list()
+
+a<-c(1, 3, 4, 6, 8, 9, 11:21, 23)
+calibration<-c(21, 19, 16,  3, 23, 14,  9,  1, 20, 11)
+a<-setdiff(a, calibration)
+
+# a<-c(1, 3:23)
+
+for (s in a){
+  
+  # set stand age and density
+  plot_density<-diameter.totals[[s]]
+  observed.a<-envdata[s,6]
+  ages<-age.totals[[s]]
+  CN <- envdata[s,16]
+  aridity <- envdata[s,17]
+  temp <- envdata[s,12]
+  predict.tasb<-matrix(nrow = 300, ncol = 1,0)
+  
+  predict.d<-matrix(nrow = 300, ncol = 1,0)
+  
+  
+  for (o in 1:300){
+    age<-matrix(0, nrow=observed.a, ncol=length(plot_density)) # initialize the age matrix
+    Diameter<-matrix(0, nrow=observed.a, length(plot_density)) # initialize the diameter matrix
+    TASB<-matrix(0, nrow=observed.a, length(plot_density)) # initialize the total above-stump biomass matrix
+    
+    # initialize the diameter for the first year
+    Diameter[1,]<-plot_density
+    age[1,]<-ages
+    
+    for (j in 1:length(plot_density)){ # specify tree per hectare
+      
+      for (i in 2:observed.a){ # specify how long to run the simulation (years)
+        
+        age[i,j]<-age[i-1,j]+1
+        
+        growth<-(10^(sample.parameters[1,o] - sample.parameters[2,o]*CN + sample.parameters[3,o]*CN*aridity - sample.parameters[4,o]*aridity- sample.parameters[5,o]*temp))*(sample.parameters[6,o]*age[i,j]^(sample.parameters[7,o]))
+        
+        # define the mortality rate here
+        # initialize as a numeric with only 1 possible value
+        M <- numeric(length = 1)
+        
+        # # Mortality based on diameter class
+        if (Diameter[i,j]>=0) {
+          M<- rbinom(1,1,(sample.parameters[8,o] +(sample.parameters[9,o] *Diameter[i,j]*2.54)+sample.parameters[10,o]*((Diameter[i,j]*2.54)^2)))
+
+        }
+        # if (Diameter[i,j]<=3.94){ M<- rbinom(1,1,(.162/8))}
+        # else if (Diameter[i,j]>3.94 & Diameter[i,j]<=7.97){M<-rbinom(1,1,(.026/8))}
+        # else if (Diameter[i,j]>7.97 & Diameter[i,j]<=11.81){M<-rbinom(1,1,(.006/8))}
+        # else if (Diameter[i,j]>11.81 & Diameter[i,j]<=15.75){M<-rbinom(1,1,(.013/8))}
+        # else if (Diameter[i,j]>15.75 & Diameter[i,j]<=19.69){M<-rbinom(1,1,(.024/8))}
+        # else if (Diameter[i,j]>19.69 & Diameter[i,j]<=23.62){M<-rbinom(1,1,(.047/8))}
+        # else if (Diameter[i,j]>23.62 & Diameter[i,j]<=27.56){M<-rbinom(1,1,(.060/8))}
+        # else if (Diameter[i,j]>27.56){M<-rbinom(1,1,(0.129/8))}
+        
+        
+        # Calculate the diameter for jth tree for the ith observed year
+        Diameter[i,j]<-Diameter[i-1,j] + growth - M*(Diameter[i-1,j]+growth)
+        
+        #use diameter and age to calculate total aboveground biomass of the jth tree in the ith year
+        TASB [i,j]<-(0.0725*((Diameter[i,j]*2.54)^2.5074))+(0.0016*((Diameter[i,j]*2.54)^3.0786))+(0.0214*((Diameter[i,j]*2.54)^2.0051))
+        
+        # If the tree dies, plant a new tree (age = 0)
+        if (M==1){age[i,j]<-0}
+      }
+    }
+    # save average modeled diameter
+    predict.d[o,1]<-mean(Diameter[observed.a,])
+    predict.tasb[o,1]<-sum(TASB[observed.a, ])*.5*(1/4047)
+  
+  }
+  # mod.tasb[[s]]<-predict.tasb
+  observed.d<-mean(diameter.totals.end[[s]])
+  observed.tasb<-sum(plot_data_end[[s]]$TASB)*.5*(1/4047)
+  modeled.d<-mean(predict.d)
+  modeled.tasb<-mean(predict.tasb)
+  # sd.tasb<-mad(predict.tasb, center = median(predict.tasb), constant = 1.4826, na.rm = FALSE,
+      # low = FALSE, high = FALSE)
+  sd.tasb<-sd(predict.tasb)
+  sd.dbh<-sd(predict.d)
+  # hist(Diameter[observed.a,], main=paste("End simulation", s), xlab = "Diameter (in)")
+  
+  # set up dataframe to store simulated data
+  df<-cbind(observed.d, modeled.d, observed.a, length(plot_density), envdata[s,12], envdata[s,17], observed.tasb, modeled.tasb, 
+            sd.tasb, sd.dbh)
+  
+  df<-data.frame(df)
+  
+  colnames(df)<-c("Observed_Diameter","Modeled_Diameter","Age", "Tree_Density", "Temperature",  "Aridity", "Observed_Biomass", 
+                  "Modeled_Biomass", "sd.tasb", "sd.dbh")
+  
+  # data will be saved as list 1
+  mylist[[s]] <- df
+  simu.diameters[[s]]<-Diameter[observed.a,]
+  # mod.tasb[[s]]<-predict.tasb[,1]
+}
+
+# par(mfrow=c(1,3))
+
+# hist(diameter.totals[[5]])
+# hist(diameter.totals.end[[5]])
+# hist(simu.diameters[[5]])
+
+# 
+
+# outliers<-vector()
+# for (m in a){
+# outliers  <-boxplot(mod.tasb[[6]])$out
+# }
+# 
+# which(mod.tasb[[6]] %in% outliers)
+# mad(x, center = median(x), constant = 1.4826, na.rm = FALSE,
+#     low = FALSE, high = FALSE)
+
+final_list <- do.call(rbind.data.frame, mylist)
+row.names(final_list) <- c(a)
+sdev<-as.vector(final_list$sd.tasb)
+sdev.dbh<-as.vector(final_list$sd.dbh)
+
+par(mfrow=c(1,1))
+
+
+plot(data = final_list, Observed_Biomass~Modeled_Biomass,col = "#75BFBF", xlab="Modeled", ylab="Observed", main ="AGB after data assimilation (kgC/m^2)",
+     col.axis="#027368", pch=16, type="p")
+abline(0,1, col="#048ABF")
+text(Observed_Biomass~Modeled_Biomass, labels=rownames(final_list),data=final_list, cex=0.9, font=2, pos=4)
+arrows(final_list$Modeled_Biomass-sdev, final_list$Observed_Biomass, final_list$Modeled_Biomass+sdev, final_list$Observed_Biomass, length=0.05, angle=90, code=3)
+
+plot(data = final_list, Observed_Diameter~Modeled_Diameter, xlim=c(0,20), ylim=c(0,20), xlab="Modeled DBH (in)", ylab="Observed DBH (in)", main ="After data assimilation",
+      col.axis="#027368", col="#75BFBF", pch=16, type="p")
+abline(0,1, col="#048ABF")
+# text(Observed_Diameter~Modeled_Diameter, labels=rownames(final_list),data=final_list, cex=0.9, font=2, pos=4)
+arrows(final_list$Modeled_Diameter-sdev.dbh, final_list$Observed_Diameter, final_list$Modeled_Diameter+sdev.dbh, final_list$Observed_Diameter, length=0.05, angle=90, code=3)
+
+```

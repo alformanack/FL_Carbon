@@ -263,7 +263,7 @@ for (d1 in 1:no.simu) {
 }
 
 # save.image(file ="C:/Users/al117862/Downloads/LLDiaCalibration2.17.21.Rdata")
-save.image(file ="C:/Users/al117862/Downloads/LLDiaCalibrationmortalitytest2.26.21.Rdata")
+# save.image(file ="C:/Users/al117862/Downloads/LLDiaCalibrationmortalitytest2.26.21.Rdata")
 
 dev.off()
 par(mfrow=c(1,1))
@@ -313,4 +313,4 @@ hist(sample.par[2,])
 cols<-sample((updated/2):updated, 300)
 
 sample.parameters<-p_upgraded[,c(cols)]
-# save(sample.parameters, file="//net.ucf.edu/COS/Profiles/al117862/Documents/GitHub/FL_Carbon/Longleaf Remeasurment/sampleparameters2.20.21.rdata")
+# save(sample.parameters, file="C:/Users/Alicia/Documents/GitHub/FL_Carbon/Longleaf Remeasurment/LLMortTest300par.rdata")

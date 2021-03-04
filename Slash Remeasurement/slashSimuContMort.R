@@ -2,6 +2,7 @@
 
 rm(list=ls())
 
+
 setwd("C:/Users/Alicia/Documents/GitHub/FL_Carbon/Slash Remeasurement")
 envdata<-read.csv("SlashEnvData1.csv", header=T, sep=",") 
 load("SlashAgeTotals.rdata")
@@ -17,14 +18,22 @@ mylist<-list()
 
 simu.diameters<-list()
 
-a<-c(1:18,20:21, 23:32, 34:56)
+# a<-c(1:18,20:21, 23:32, 34:56)
 
-for (s in a){
+# envdata<-subset(envdata, envdata$TPA_start<=envdata$TPA_end)
+# a<- rownames(envdata)
+
+a<-c(1,4,5,8,11,13,14,20,24:26,28,30:32,34,36,38:40,44:46,49,53,56)
+
+for (s in 1){
   
   # set stand age and density
   plot_density<-diameter.totals[[s]]
   observed.a<-envdata[s,6]
   ages<-age.totals[[s]]
+  temp<-envdata[s,7]
+  CN<-envdata[s,16]
+  aridity<-envdata[s,17]
   predict.tasb<-matrix(nrow = 10, ncol = 1,0)
   predict.d<-matrix(nrow = 10, ncol = 1,0)
   
@@ -44,7 +53,8 @@ for (s in a){
         age[i,j]<-age[i-1,j]+1
         
         # growth<-(10^(1.308552 - 0.55226*aridity))*(0.4334511*age[i,j]^(-0.5665489))
-        growth<-(10^(0.8033318 - 0.53444*envdata[s, 17]))*(0.5783973*age[i,j]^(-0.4216027))
+        # growth<-(10^(0.8033318 - 0.53444*envdata[s, 17]))*(0.5783973*age[i,j]^(-0.4216027))
+        growth<-(10^(2.103102 - 1.374381*aridity - 0.009940*CN  - 0.026373*temp + 0.010618*CN*aridity))*(0.5783973*age[i,j]^(-0.4216027))
         # growth<-(10^(2.103289 - 0.015004*CN_scale - 1.435603*aridity + 0.016463*CN_scale*aridity))*(0.4334511*age[i,j]^(-0.5665489))
         # growth<-(10^(-1.431904 + 0.182686*temp - 0.004512*temp2 - 0.301793*aridity))*(0.5784213*age[i,j]^(-0.4215787))
         
@@ -53,13 +63,19 @@ for (s in a){
         M <- numeric(length = 1)
         
         # Mortality based on diameter class
-        if (Diameter[i,j]>0) { M<- rbinom(1,1,(exp(0.7800557-0.08071*Diameter[i,j]*2.54)/8))}
+        if (Diameter[i,j]>=0) { M<- rbinom(1,1,(0.06504789*exp(-0.05577336*Diameter[i,j]*2.54)))}
+        else {M=0}
+        # v<-10*2.54
+        # (0.06504789*exp(-0.05577336*v*2.54))
+        # if (Diameter[i,j]>=0) { M<- rbinom(1,1,(0.0859693*exp(-0.05577336*Diameter[i,j])))}
+        # if (Diameter[i,j]>0) { M<- rbinom(1,1,(1/200))}
+        
         # if (Diameter[i,j]<=3.94){ M<- rbinom(1,1,(.4/8))}
         # else if (Diameter[i,j]>3.94 & Diameter[i,j]<=7.97){M<-rbinom(1,1,(.2/8))}
         # else if (Diameter[i,j]>7.97 & Diameter[i,j]<=11.81){M<-rbinom(1,1,(.15/8))}
         # else if (Diameter[i,j]>11.81 & Diameter[i,j]<=15.75){M<-rbinom(1,1,(.1/8))}
         # else if (Diameter[i,j]>15.75){M<-rbinom(1,1,(0.01/8))}
-        
+        # 
         # Calculate the diameter for jth tree for the ith observed year
         Diameter[i,j]<-Diameter[i-1,j] + growth - M*(Diameter[i-1,j]+growth)
         
@@ -98,7 +114,7 @@ for (s in a){
   
 }
 
-save(simu.diameters, file="C:/Users/Alicia/Documents/GitHub/FL_Carbon/Slash Remeasurement/slashDIATotals.simu2.4.rdata")
+# save(simu.diameters, file="C:/Users/Alicia/Documents/GitHub/FL_Carbon/Slash Remeasurement/slashDIATotals.simu2.4.rdata")
 
 par(mfrow=c(1,1))
 
@@ -124,12 +140,14 @@ model.3<-lm(data = final_list, Modeled_Biomass~Observed_Biomass)
 summary(model.3)
 
 plot(data = final_list, Observed_Diameter~Modeled_Diameter,  xlim = c(1,12), ylim = c(1,12), xlab="Modeled DBH (in)", ylab="Observed DBH (in)",
-     main = "Before parameter correction", col.axis="#027368", col="#75BFBF", pch=16, type="p") + abline(0,1, col="#048ABF")
+     main = "Before parameter correction", col.axis="#027368", col="#75BFBF", pch=16, type="p") 
+abline(0,1, col="#048ABF")
 
 text(Observed_Diameter~Modeled_Diameter, labels=rownames(final_list),data=final_list, cex=0.9, font=2, pos=4)
 arrows(final_list$Modeled_Diameter-sdev.dbh, final_list$Observed_Diameter, final_list$Modeled_Diameter+sdev.dbh, final_list$Observed_Diameter, length=0.05, angle=90, code=3)
 
-plot(data = final_list, Observed_Biomass~Modeled_Biomass, xlim = c(0,14), ylim = c(0,14), col = "#75BFBF", xlab="Modeled", ylab="Observed", main ="AGB (kgC/m^2)",
-     col.axis="#027368", pch=16, type="p") + abline(0,1, col="#048ABF")
+plot(data = final_list, Observed_Biomass~Modeled_Biomass, xlim = c(0,10), ylim = c(0,10), col = "#75BFBF", xlab="Modeled", ylab="Observed", main ="AGB (kgC/m^2)",
+     col.axis="#027368", pch=16, type="p") 
+abline(0,1, col="#048ABF")
 text(Observed_Biomass~Modeled_Biomass, labels=rownames(final_list),data=final_list, cex=0.9, font=2, pos=4)
 arrows(final_list$Modeled_Biomass-sdev, final_list$Observed_Biomass, final_list$Modeled_Biomass+sdev, final_list$Observed_Biomass, length=0.05, angle=90, code=3)
