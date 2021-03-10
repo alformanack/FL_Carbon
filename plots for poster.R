@@ -56,18 +56,29 @@ scale_colour_Publication <- function(...){
 
 # Biomass and DBH plots -------------------------------------------------------------------
 
+setwd("C:/Users/Alicia/Documents/GitHub/FL_Carbon/Longleaf Remeasurment")
+load("final_list_longleaf.rdata")
+setwd("C:/Users/Alicia/Documents/GitHub/FL_Carbon/Slash Remeasurement")
+load("final_list_slash.rdata")
+setwd("C:/Users/Alicia/Documents/GitHub/FL_Carbon/Loblolly Remeasurement")
+load("final_list_loblolly.rdata")
+
+final_list<-rbind(final_list_loblolly,final_list_longleaf,final_list_slash)
+final_list$species<-as.factor(final_list$species)
+
 ggplot(final_list, aes(Modeled_Biomass,Observed_Biomass)) +
-  labs(title = expression(bold(Tree~Carbon~(gC/m^{2}))), x="Modeled", y="Observed")+
+  labs(title = expression(bold(Aboveground~Biomass~(kgC/m^{2}))), x="Modeled", y="Observed")+
   # labs(title = bquote("Tree Carbon gC/m^2"), x="Modeled", y="Observed", face = "bold",
        # size = rel(1.2)) +
-  # xlim(0,30000) +
-  # ylim(0,30000) +
-  geom_errorbarh(aes(xmin=final_list$Modeled_Biomass-(1.96*final_list$sd.tasb), 
-                     xmax=final_list$Modeled_Biomass+(1.96*final_list$sd.tasb), 
-                     height = .9)) +
-  geom_point(aes(size=Tree_Density, color=Species), cex=5, alpha=0.75) +
-  scale_color_manual(values=c("#495F8C", "#F25C05","#F2B705")) +
+  xlim(0,10) +
+  ylim(0,10) +
+  geom_errorbarh(aes(xmin=final_list$Modeled_Biomass-(final_list$sd.tasb), 
+                     xmax=final_list$Modeled_Biomass+(final_list$sd.tasb),  height = 0.25)) +
+  # geom_text(aes(6.3, 5.5, label = "1:1 line")) +                  
+  geom_point(aes(size=Tree_Density, color=species), cex=5, alpha=0.75) +
+  scale_color_manual(values=c("#495F8C", "#F25C05","#F2B705" )) +
   geom_abline(linetype = "dashed", size=1) +
+
   theme_Publication() +
   scale_fill_Publication() 
   # scale_colour_Publication()
@@ -75,42 +86,58 @@ ggplot(final_list, aes(Modeled_Biomass,Observed_Biomass)) +
 
 ggplot(final_list, aes(Modeled_Diameter,Observed_Diameter )) +
   labs(title="Average DBH (inches)", x="Modeled", y="Observed") +
-  xlim(2,16) +
-  ylim(2,16) +
+  xlim(0,12.6) +
+  ylim(0,12.6) +
   #geom_abline(linetype = "dashed") +
-  geom_errorbarh(aes(xmin=final_list$Modeled_Diameter-(1.96*final_list$sd.dbh), 
-                     xmax=final_list$Modeled_Diameter+(1.96*final_list$sd.dbh), height = 0)) +
-  geom_point(aes(size=Tree_Density, color=Species), cex=5, alpha=0.75) +
+  geom_errorbarh(aes(xmin=final_list$Modeled_Diameter-(final_list$sd.dbh), 
+                     xmax=final_list$Modeled_Diameter+(final_list$sd.dbh), height = 0.5)) +
+  geom_point(aes(size=Tree_Density, color=species), cex=5, alpha=0.75) +
   scale_color_manual(values=c("#495F8C", "#F25C05","#F2B705")) +
   geom_abline(linetype = "dashed", size=1) +
   theme_Publication() +
   scale_fill_Publication() 
   # scale_colour_Publication()
 
-dbh<-lm(data=final_list, Observed_Diameter~Modeled_Diameter )
-
+dbh<-lm(data=final_list, Observed_Diameter~Modeled_Diameter -1)
 summary(dbh)
 
 carbon<-lm(data = final_list, Observed_Biomass~Modeled_Biomass)
 summary(carbon)
 
+slash<-subset(final_list, species=="Slash")
+AGB<-lm(data = slash, log10(Observed_Biomass/Modeled_Biomass)~Aridity)
+summary(AGB)
+longleaf<-subset(final_list, species=="Longleaf")
+AGB<-lm(data = longleaf, log10(Observed_Biomass/Modeled_Biomass)~Temperature)
+summary(AGB)
+
+
 # relative effect of coefficient ------------------------------------------
-par(mfrow=c(1,2))
+par(mfrow=c(2,2))
 
 ggplot() +
-  labs( x="MAP/PET", y="Relative effect on growth") +
+  labs( x="MAP/PET", y="Relative effect on DBH") +
   # xlim(2,16) +
   # ylim(2,16) +
   # geom_point(data=loblolly,
   #            aes(loblolly$aridity_1, 10^(3.2046573*loblolly$aridity_1 - 1.9681509*loblolly$aridity2)/10^(3.2046573*min(loblolly$aridity_1)- 1.9681509*min(loblolly$aridity2))),
   #            cex=4, alpha=0.5, color="#495F8C") +
-  geom_point(data=slashpine, 
-             aes(aridity_1, 10^(- 0.301793*slashpine$aridity_1)/10^(- 0.301793*min(slashpine$aridity_1))), 
+  geom_point(data=(slashpine %>% 
+                     filter(!is.na(ai_et0_NAD))), 
+             aes(x=(ai_et0_NAD), y=(10^(-0.597*(ai_et0_NAD))/10^(-0.597*min((ai_et0_NAD))))), 
              cex=4, alpha=0.5, color="#F2B705") +
+  geom_point(data=(longleaf %>% 
+                     filter(!is.na(ai_et0_NAD))), 
+             aes(x=(ai_et0_NAD), y=(10^(-1.128*(ai_et0_NAD))/10^(-1.128*min((ai_et0_NAD))))), 
+             cex=4, alpha=0.5, color="#F25C05") +
+  geom_point(data=(loblolly %>% 
+                     filter(!is.na(ai_et0_NAD))), 
+             aes(x=(ai_et0_NAD), y=(10^(-9.204*(ai_et0_NAD))/10^(-9.204*min((ai_et0_NAD))))), 
+             cex=4, alpha=0.5, color="#495F8C") +
   # geom_point(data=longleaf,
   #            aes(aridity_1, 10^(- 0.977477*longleaf$aridity_1)/10^(- 0.977477*min(longleaf$aridity_1))),
   #            cex=4, alpha=0.5, color="#F25C05") +
-  scale_color_manual(values=c("#495F8C", "#F2B705", "#F25C05")) +
+  # scale_color_manual(values=c("#495F8C", "#F2B705", "#F25C05")) +
   theme_Publication() +
   scale_fill_Publication() +
   scale_colour_Publication()
@@ -118,16 +145,25 @@ ggplot() +
 + 0.182686*temp - 0.004512*temp2
 
 ggplot() +
-  labs( x="MAT", y="Relative effect on growth") +
-  geom_point(data=slashpine, 
-             aes(AVG_TEMP_bioclim, 10^(0.182686*slashpine$AVG_TEMP_bioclim - 0.004512*slashpine$temp2)/10^(0.182686*min(slashpine$AVG_TEMP_bioclim)- 0.004512*min(slashpine$temp2))), 
+  labs( x="MAT", y="Relative effect on DBH") +
+  geom_point(data=(slashpine %>% 
+                     filter(!is.na(X30s_NAD))), 
+             aes(x=(X30s_NAD), y=(10^(-0.011*(X30s_NAD))/10^(-0.011*min((X30s_NAD))))), 
              cex=4, alpha=0.5, color="#F2B705") +
+  geom_point(data=(longleaf %>% 
+                     filter(!is.na(X30s_NAD))), 
+             aes(x=(X30s_NAD), y=(10^(-0.034*(X30s_NAD))/10^(-0.034*min((X30s_NAD))))), 
+             cex=4, alpha=0.5, color="#F25C05") +
+  geom_point(data=(loblolly %>% 
+                     filter(!is.na(X30s_NAD))), 
+             aes(x=(X30s_NAD), y=(10^(-0.372*(X30s_NAD))/10^(-0.372*min((X30s_NAD))))), 
+             cex=4, alpha=0.5, color="#495F8C") +
   theme_Publication() +
   scale_fill_Publication() +
   scale_colour_Publication()
 
 ggplot() +
-  labs( x="Age (years)", y="Relative effect on growth") +
+  labs( x="Age (years)", y="Relative effect on DBH") +
   # xlim(2,16) +
   # ylim(2,16) +
   geom_point(data=loblolly, 
@@ -145,14 +181,16 @@ ggplot() +
   scale_colour_Publication()
 
 ggplot() +
-  labs( x="Soil CN ratio", y="Relative effect on growth") +
+  labs( x="Soil CN ratio", y="Relative effect on DBH") +
   # xlim(2,16) +
   # ylim(2,16) +
-  geom_point(data=na.exclude(loblolly), 
-             aes(na.exclude(loblolly$SOILGRIDS_CN_SCALE), 10^(- 0.0011033*na.exclude(loblolly$SOILGRIDS_CN_SCALE))/10^(- 0.0011033*min(na.exclude(loblolly$SOILGRIDS_CN_SCALE)))), 
-             cex=4, alpha=0.5, color="#495F8C") +
-  geom_point(data=na.exclude(longleaf), 
-             aes(na.exclude(longleaf$SOILGRIDS_CN_SCALE), 10^(- 0.009259*na.exclude(longleaf$SOILGRIDS_CN_SCALE))/10^(- 0.009259*min(na.exclude(longleaf$SOILGRIDS_CN_SCALE)))), 
+  geom_point(data=(slashpine %>% 
+                     filter(!is.na(SOILGRIDS_CN_SCALE))), 
+             aes(x=(SOILGRIDS_CN_SCALE), y=(10^(-0.004*(SOILGRIDS_CN_SCALE))/10^(-0.004*min((SOILGRIDS_CN_SCALE))))), 
+             cex=4, alpha=0.5, color="#F2B705") +
+  geom_point(data=(longleaf %>% 
+                     filter(!is.na(SOILGRIDS_CN_SCALE))), 
+             aes(x=(SOILGRIDS_CN_SCALE), y=(10^(-0.007*(SOILGRIDS_CN_SCALE))/10^(-0.007*min((SOILGRIDS_CN_SCALE))))), 
              cex=4, alpha=0.5, color="#F25C05") +
   #scale_color_manual(values=c("#495F8C", "#F2B705", "#F25C05")) +
   theme_Publication() +

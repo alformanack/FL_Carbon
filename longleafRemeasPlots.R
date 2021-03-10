@@ -118,7 +118,7 @@ startPlotCNs <- startPlotCNs[startPlotCNs %in% treeCNStats$PREV_PLT_CN]
 #   unique()
 
 treeCNStats %>% 
-  select(CN, PLT_CN, PREV_PLT_CN, LAT, LON, MEASYEAR, PREV_TRE_CN, DESIGNCD, SUBP, TREE, STATUSCD, DIA, TPA_UNADJ, TPAGROW_UNADJ) %>% 
+  select(CN, PLT_CN, PREV_PLT_CN, LAT, LON, MEASYEAR, PREV_TRE_CN, DESIGNCD, SUBP, TREE, STATUSCD, DIA, TPA_UNADJ, TPAGROW_UNADJ, AGENTCD) %>% 
   mutate(LATLON = as.character(paste0(LAT, LON))) -> plots.unlisted
 
 plots.list <- list()
@@ -149,7 +149,7 @@ plots.remeasure <-
 #removing empty dataframes in list
 plots.remeasure<-plots.remeasure[sapply(plots.remeasure, function(x) dim(x)[1]) > 0]
 
-view(plots.remeasure[[7]])
+view(plots.remeasure[[22]])
 # remove first line from 6
 
 #creating single dataframe that has all plots remeasured withtime since remeasurement being greater than 10 years

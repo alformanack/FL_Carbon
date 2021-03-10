@@ -115,7 +115,7 @@ age.par<-MASS::mvrnorm(n=300, mu=mu.age, Sigma = cov.age)
 
 slashpine$temp2<-slashpine$X30s_NAD^2
 
-SlashMA <- smatr::sma(data=slashpine, log(slashpine$DIA)~log(slashpine$AGEDIA), method = "SMA")
+SlashMA <- smatr::sma(data=slashpine, log10(slashpine$DIA)~log10(slashpine$AGEDIA), method = "SMA")
 s<-lmodel2::lmodel2(log10(slashpine$DIA)~log10(slashpine$AGEDIA), data=slashpine, nperm=99)
 str(s)
 slashresidualsma<-residuals(SlashMA)
@@ -123,21 +123,22 @@ plot(SlashMA)
 summary(SlashMA)
 plot(slashresidualsma)
 
-# Call: smatr::sma(formula = log(slashpine$DIA) ~ log(slashpine$AGEDIA), 
-#                  data = slashpine, method = "MA") 
+# Call: smatr::sma(formula = log10(slashpine$DIA) ~ log10(slashpine$AGEDIA), 
+#                 data = slashpine, method = "SMA") 
 # 
-# Fit using Major Axis 
+# Fit using Standardized Major Axis 
 # 
 # ------------------------------------------------------------
 #   Coefficients:
 #   elevation     slope
-# estimate    0.8340824 0.4334511
-# lower limit 0.7562790 0.4107720
-# upper limit 0.9118858 0.4565120
+# estimate    0.1494024 0.5783973
+# lower limit 0.1215712 0.5599690
+# upper limit 0.1772336 0.5974321
 # 
 # H0 : variables uncorrelated
 # R-squared : 0.3770741 
 # P-value : < 2.22e-16 
+
 
 cor.test(slashpine$X30s_NAD, slashresidualsma, method = c("pearson")) #0.19
 cor.test(slashpine$ai_et0_NAD, slashresidualsma, method = c("pearson")) #-0.27
@@ -208,28 +209,66 @@ summary(int.model2) # 0.06339, MA 0.07401
 int.model3<-lm(slashresidualsma~ SOILGRIDS_CN_SCALE*ai_et0_NAD + slashpine$X30s_NAD, data=slashpine)
 summary(int.model3) #0.06364, MA 0.07762
 plot(int.model3)
+
+##Creating an interaction plot
+int<-lm(slashresidualsma~ SOILGRIDS_CN_SCALE*ai_et0_NAD, data = slashpine)
+summary(int)
+library(effects)
+Inter.HandPick <- effects::effect('SOILGRIDS_CN_SCALE*ai_et0_NAD', int,
+                         xlevels=list(SOILGRIDS_CN_SCALE = c(40, 80, 120),
+                                      ai_et0_NAD = c(.7, .8, .9)),
+                         se=TRUE, confidence.level=.95, typical=mean)
+
+#Put data in data frame 
+Inter.HandPick <- as.data.frame(Inter.HandPick)
+
+#Check out what the "head" (first 6 rows) of your data looks like
+head(Inter.HandPick)
+#Create a factor of the IQ variable used in the interaction                   
+Inter.HandPick$SOILGRIDS_CN_SCALE <- factor(Inter.HandPick$SOILGRIDS_CN_SCALE,
+                            levels=c(40, 80, 120),
+                            labels=c("High N", "Avg N", "Low N"))
+
+#Create a factor of the Work Ethic variable used in the interaction 
+Inter.HandPick$ai_et0_NAD <- factor(Inter.HandPick$ai_et0_NAD,
+                                    levels=c(.7, .8, .9),
+                                    labels=c("Drier", "Wetter", "Wettest"))
+
+library(ggplot2)                
+Plot.HandPick<-ggplot2::ggplot(data=Inter.HandPick, aes(x=ai_et0_NAD, y=fit, group=SOILGRIDS_CN_SCALE))+
+  geom_line(size=2, aes(color=SOILGRIDS_CN_SCALE))+
+  # ylim(0,4)+
+  ylab("Effect on DBH")+
+  xlab("Aridity")+
+  ggtitle("Slash pine interaction plot") +
+theme_Publication() +
+  scale_fill_Publication() +
+scale_colour_Publication()
+
+Plot.HandPick 
 # Call:
-#   lm(formula = slashresidualsma ~ ai_et0_NAD * SOILGRIDS_CN_SCALE + 
+#   lm(formula = slashresidualsma ~ SOILGRIDS_CN_SCALE * ai_et0_NAD + 
 #        slashpine$X30s_NAD, data = slashpine)
 # 
 # Residuals:
 #   Min       1Q   Median       3Q      Max 
-# -0.71924 -0.14570  0.00909  0.13476  1.07222 
+# -0.35391 -0.06433  0.00175  0.06732  0.46605 
 # 
 # Coefficients:
 #   Estimate Std. Error t value Pr(>|t|)    
-# (Intercept)                    1.572000   0.218994   7.178 9.61e-13 ***
-#   ai_et0_NAD                    -1.496499   0.181476  -8.246 2.78e-16 ***
-#   SOILGRIDS_CN_SCALE            -0.013621   0.002817  -4.835 1.42e-06 ***
-#   slashpine$X30s_NAD            -0.012599   0.006402  -1.968   0.0492 *  
-#   ai_et0_NAD:SOILGRIDS_CN_SCALE  0.015047   0.003156   4.768 1.99e-06 ***
+# (Intercept)                    0.763963   0.105641   7.232 6.55e-13 ***
+#   SOILGRIDS_CN_SCALE            -0.004317   0.001359  -3.176 0.001512 ** 
+#   ai_et0_NAD                    -0.596886   0.087543  -6.818 1.19e-11 ***
+#   slashpine$X30s_NAD            -0.011454   0.003088  -3.709 0.000214 ***
+#   SOILGRIDS_CN_SCALE:ai_et0_NAD  0.004611   0.001523   3.029 0.002485 ** 
 #   ---
 #   Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 # 
-# Residual standard error: 0.207 on 2201 degrees of freedom
+# Residual standard error: 0.09985 on 2201 degrees of freedom
 # (80 observations deleted due to missingness)
-# Multiple R-squared:  0.07929,	Adjusted R-squared:  0.07762 
-# F-statistic: 47.39 on 4 and 2201 DF,  p-value: < 2.2e-16
+# Multiple R-squared:  0.06534,	Adjusted R-squared:  0.06364 
+# F-statistic: 38.46 on 4 and 2201 DF,  p-value: < 2.2e-16
+
 
 int.model4<-lm(slashresidualsma~ ai_et0_NAD*SOILGRIDS_CN_SCALE, data=slashpine)
 summary(int.model4) #0.05821, MA 0.07641
@@ -314,7 +353,7 @@ resid.LLSMA<- residuals(LongleafSMA)
 plot(resid.LLSMA)
 summary(LongleafSMA)
 
-# Call: smatr::sma(formula = log(DIA) ~ log(AGEDIA), data = longleaf, 
+# Call: smatr::sma(formula = log10(DIA) ~ log10(AGEDIA), data = longleaf, 
 #                  method = "SMA") 
 # 
 # Fit using Standardized Major Axis 
@@ -322,9 +361,9 @@ summary(LongleafSMA)
 # ------------------------------------------------------------
 #   Coefficients:
 #   elevation     slope
-# estimate    0.2746847 0.5718692
-# lower limit 0.1565138 0.5415208
-# upper limit 0.3928557 0.6039184
+# estimate    0.11929406 0.5718692
+# lower limit 0.06797308 0.5415208
+# upper limit 0.17061505 0.6039184
 # 
 # H0 : variables uncorrelated
 # R-squared : 0.4207783 
@@ -352,6 +391,29 @@ summary(int.model2) #0.1213
 
 int.model3<-lm(resid.LLSMA~ SOILGRIDS_CN_SCALE*ai_et0_NAD + X30s_NAD, data=longleaf)
 summary(int.model3) #0.1306
+
+# Call:
+#   lm(formula = resid.LLSMA ~ SOILGRIDS_CN_SCALE * ai_et0_NAD + 
+#        X30s_NAD, data = longleaf)
+# 
+# Residuals:
+#   Min       1Q   Median       3Q      Max 
+# -0.37833 -0.06697  0.00078  0.07075  0.22704 
+# 
+# Coefficients:
+#   Estimate Std. Error t value Pr(>|t|)    
+# (Intercept)                    1.654958   0.256073   6.463 1.86e-10 ***
+#   SOILGRIDS_CN_SCALE            -0.007376   0.002164  -3.408 0.000690 ***
+#   ai_et0_NAD                    -1.127642   0.149500  -7.543 1.35e-13 ***
+#   X30s_NAD                      -0.034125   0.008053  -4.238 2.55e-05 ***
+#   SOILGRIDS_CN_SCALE:ai_et0_NAD  0.008805   0.002299   3.831 0.000139 ***
+#   ---
+#   Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+# 
+# Residual standard error: 0.09395 on 739 degrees of freedom
+# (8 observations deleted due to missingness)
+# Multiple R-squared:  0.1352,	Adjusted R-squared:  0.1306 
+# F-statistic: 28.89 on 4 and 739 DF,  p-value: < 2.2e-16
 
 
 mu<-int.model3$coefficients
@@ -425,8 +487,9 @@ bbmle::AICctab(full.model, notemp.model, int.model, int.model2, base=T, delta=T,
 loblolly$aridity2<-loblolly$ai_et0_NAD^2
 
 par(mfrow=c (1,1))
-LoblollySMA <- smatr::sma(data=loblolly, log(DIA) ~ log(AGEDIA), method = "SMA")
+LoblollySMA <- smatr::sma(data=loblolly, log10(DIA) ~ log10(AGEDIA), method = "SMA")
 LoblollyMA <- smatr::sma(data=loblolly, log(DIA) ~ log(AGEDIA), method = "MA")
+#Call: smatr::sma(formula = log10(DIA) ~ log10(AGEDIA), data = loblolly, 
 # method = "SMA") 
 # 
 # Fit using Standardized Major Axis 
@@ -434,13 +497,14 @@ LoblollyMA <- smatr::sma(data=loblolly, log(DIA) ~ log(AGEDIA), method = "MA")
 # ------------------------------------------------------------
 #   Coefficients:
 #   elevation     slope
-# estimate     0.005106407 0.7405648
-# lower limit -0.149203086 0.6945966
-# upper limit  0.159415900 0.7895752
+# estimate     0.002217684 0.7405648
+# lower limit -0.064798077 0.6945966
+# upper limit  0.069233446 0.7895752
 # 
 # H0 : variables uncorrelated
 # R-squared : 0.4149081 
-# P-value : < 2.22e-16
+# P-value : < 2.22e-16 
+
 
 residloblollysma<-residuals(LoblollySMA)
 residloblollyma<-residuals(LoblollyMA)
@@ -452,18 +516,19 @@ cor.test(loblolly$ai_et0_NAD, residloblollyma, method = c("pearson")) #-0.366
 cor.test(loblolly$SOILGRIDS_CN_SCALE, residloblollyma, method = c("pearson")) #-.315
 cor.test(log10(loblolly$DIA), log10(loblolly$AGEDIA), method = c("pearson")) #0.644
 
-MPV::PRESS(loblollymodel1) #31.03 ***fullmodel
-MPV::PRESS(loblollymodel1.5) #31.07
-MPV::PRESS(model1) #31.06
-MPV::PRESS(model1.5) #31.10
+MPV::PRESS(loblollymodel1) #6.793591 ***fullmodel
+MPV::PRESS(loblollymodel1.5) #6.822152
+MPV::PRESS(model1) #6.772319
+MPV::PRESS(model1.5) #6.663459
+MPV::PRESS(loblollymodel1.6) #6.817234
 
 #adj_rsquared****model1
 
-BIC(loblollymodel1) #7.228564
-BIC(loblollymodel1.5) #3.705593
-BIC(model1) #3.216038****model1
-BIC(model1.5) #3.606744
-
+BIC(loblollymodel1) #-822.264
+BIC(loblollymodel1.5) #-824.2888
+BIC(model1) #-836.2988****model1
+BIC(model1.5) #-828.2569
+BIC(loblollymodel1.6) #-816.0232
 
 olsrr::ols_mallows_cp(loblollymodel1.5, loblollymodel1) # should be 3, 4.7
 olsrr::ols_mallows_cp(model1, loblollymodel1) # should be 4, .16
@@ -476,38 +541,41 @@ car::vif(loblollymodel1)
 # ai_et0_NAD  loblolly$X30s_NAD SOILGRIDS_CN_SCALE 
 # 2.582804           4.037075           2.552541 
 
-loblollymodel1<-lm(residloblollyma~ai_et0_NAD + loblolly$X30s_NAD + SOILGRIDS_CN_SCALE, data=(loblolly))
-summary(loblollymodel1) #.1528
+loblollymodel1<-lm(residloblollysma~ai_et0_NAD + SOILGRIDS_CN_SCALE +aridity2, data=(loblolly))
+summary(loblollymodel1) #0.1289 
 
-loblollymodel1.5<-lm(residloblollyma~ai_et0_NAD+SOILGRIDS_CN_SCALE, data=(loblolly))
-summary(loblollymodel1.5) #.15
+loblollymodel1.5<-lm(residloblollysma~ai_et0_NAD+SOILGRIDS_CN_SCALE, data=(loblolly))
+summary(loblollymodel1.5) #0.1237
 
-model1<-lm(residloblollyma~ai_et0_NAD*loblolly$X30s_NAD, data=(loblolly))
-summary(model1) #.1645
+loblollymodel1.6<-lm(residloblollysma~ai_et0_NAD*SOILGRIDS_CN_SCALE + loblolly$X30s_NAD, data=(loblolly))
+summary(loblollymodel1.6) #0.1274
+
+model1<-lm(residloblollysma~ai_et0_NAD*loblolly$X30s_NAD, data=(loblolly))
+summary(model1) #0.1462
 
 # Call:
-#   lm(formula = residloblollyma ~ ai_et0_NAD * loblolly$X30s_NAD, 
+#   lm(formula = residloblollysma ~ ai_et0_NAD * loblolly$X30s_NAD, 
 #      data = (loblolly))
 # 
 # Residuals:
-#   Min      1Q  Median      3Q     Max 
-# -0.6891 -0.1689  0.0199  0.1539  0.7863 
+#   Min       1Q   Median       3Q      Max 
+# -0.31782 -0.07277  0.00520  0.07434  0.35620 
 # 
 # Coefficients:
 #   Estimate Std. Error t value Pr(>|t|)    
-# (Intercept)                   15.0739     3.0971   4.867 1.48e-06 ***
-#   ai_et0_NAD                   -18.5794     3.6969  -5.026 6.80e-07 ***
-#   loblolly$X30s_NAD             -0.7341     0.1596  -4.601 5.23e-06 ***
-#   ai_et0_NAD:loblolly$X30s_NAD   0.9113     0.1920   4.748 2.63e-06 ***
+# (Intercept)                   7.58620    1.44580   5.247 2.21e-07 ***
+#   ai_et0_NAD                   -9.20441    1.72577  -5.334 1.41e-07 ***
+#   loblolly$X30s_NAD            -0.37183    0.07448  -4.992 8.04e-07 ***
+#   ai_et0_NAD:loblolly$X30s_NAD  0.45382    0.08961   5.065 5.60e-07 ***
 #   ---
 #   Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 # 
-# Residual standard error: 0.2367 on 547 degrees of freedom
-# Multiple R-squared:  0.1691,	Adjusted R-squared:  0.1645 
-# F-statistic: 37.09 on 3 and 547 DF,  p-value: < 2.2e-16
+# Residual standard error: 0.1105 on 547 degrees of freedom
+# Multiple R-squared:  0.1509,	Adjusted R-squared:  0.1462 
+# F-statistic:  32.4 on 3 and 547 DF,  p-value: < 2.2e-16
 
-model1.5<-lm(residloblollyma~ai_et0_NAD*loblolly$X30s_NAD + SOILGRIDS_CN_SCALE, data=(loblolly)) #CN not significant
-summary(model1.5) #.1507
+model1.5<-lm(residloblollysma~ai_et0_NAD*loblolly$X30s_NAD + SOILGRIDS_CN_SCALE, data=(loblolly)) #CN not significant
+summary(model1.5) #0.1467
 
 
 

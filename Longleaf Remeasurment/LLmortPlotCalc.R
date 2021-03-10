@@ -30,7 +30,7 @@ names(envdata)[18]<-"TPA_end"
 
 a<-c(1, 3:23)
 
-
+# growth<-(10^(1.774252 -0.007376*CN + 0.008805*CN*aridity -1.127642*aridity -0.034125*temp))*(0.5718692*age[i,j]^(-0.4281308))
 
 for (s in a){
 
@@ -46,7 +46,9 @@ plot_data_start[[s]]<-plots.start[[s]] %>%
   filter(STATUSCD=="1") %>%
   # mutate(TPA=ifelse(is.na(TPA_UNADJ), TPAGROW_UNADJ, TPA_UNADJ)) %>%
   mutate(TPA_total=sum(round(TPA_UNADJ))) %>%
-  mutate(age=round((10^(-7.143884 + 0.02970085*CN_scale - 0.03545391*CN_scale*aridity + 4.540362*aridity + 0.137402*temp))*(DIA^1.748652)))
+  mutate(age=round((10^((1.774252/-0.5718692) + (-0.007376/-0.5718692)*CN_scale + (0.008805/-0.5718692)*CN_scale*aridity + 
+                          (-1.127642/-0.5718692)*aridity + (-0.034125/-0.5718692)*temp))*(DIA^(-1/-0.5718692))))
+  # mutate(age=round((10^(-7.143884 + 0.02970085*CN_scale - 0.03545391*CN_scale*aridity + 4.540362*aridity + 0.137402*temp))*(DIA^1.748652)))
 # mutate(age=round((10^(-3.018915 + 1.2741*aridity))*(DIA^2.307065)))  
 
 envdata[s,17]<-unique(plot_data_start[[s]]$TPA_total)
@@ -63,7 +65,9 @@ plot_data_end[[s]]<-plots.end[[s]] %>%
   filter(STATUSCD=="1") %>%
   # mutate(TPA=ifelse(is.na(TPA_UNADJ), TPAGROW_UNADJ, TPA_UNADJ)) %>%
   mutate(TPA_total=sum(round(TPA_UNADJ))) %>%
-  mutate(age=round((10^(-7.143884 + 0.02970085*CN_scale - 0.03545391*CN_scale*aridity + 4.540362*aridity + 0.137402*temp))*(DIA^1.748652))) %>%
+  mutate(age=round((10^((1.774252/-0.5718692) + (-0.007376/-0.5718692)*CN_scale + (0.008805/-0.5718692)*CN_scale*aridity + 
+                          (-1.127642/-0.5718692)*aridity + (-0.034125/-0.5718692)*temp))*(DIA^(-1/-0.5718692)))) %>%
+  # mutate(age=round((10^(-7.143884 + 0.02970085*CN_scale - 0.03545391*CN_scale*aridity + 4.540362*aridity + 0.137402*temp))*(DIA^1.748652))) %>%
   mutate(TASB=((0.0725*((DIA*2.54)^2.5074))+(0.0016*((DIA*2.54)^3.0786))+(0.0214*((DIA*2.54)^2.0051)))*(round(TPA_UNADJ)))
 # mutate(TASB=(0.041281*((DIA*2.54)^2.722214))*(round(TPA_UNADJ)))
 
@@ -93,22 +97,32 @@ if ((length(diameter.totals.end[[g]])-length(diameter.totals[[g]]))>0) {
   diameter.totals[[g]]<-c(diameters.new, extra)
   age.start<-age.totals[[g]]
   # age.new<-round((10^(-9.35027 + 0.03729744*envdata[g,15] - 0.04455875*envdata[g,16]*envdata[s,15] + 5.373766*envdata[g,16] + 0.1510293*envdata[g,11]))*(extra^2.257168))
-  age.new<-round((10^(-7.143884 + 0.02970085*envdata[g,15] - 0.03545391*envdata[g,16]*envdata[s,15] + 4.540362*envdata[g,16] + 0.137402*envdata[g,11]))*(extra^1.748652))
+  age.new<-round((10^((1.774252/-0.5718692) + (-0.007376/-0.5718692)*envdata[g,15] + (0.008805/-0.5718692)*envdata[g,15]*envdata[g,16] 
+                          +(-1.127642/-0.5718692)*envdata[g,16] + (-0.034125/-0.5718692)*envdata[g,11]))*(extra^(-1/-0.5718692)))
+  # age.new<-round((10^(-7.143884 + 0.02970085*envdata[g,15] - 0.03545391*envdata[g,16]*envdata[g,15] + 4.540362*envdata[g,16] + 0.137402*envdata[g,11]))*(extra^1.748652))
   age.totals[[g]]<-c(age.start, age.new)
 }
 
 }
 
-save(age.totals, file="C:/Users/Alicia/Documents/GitHub/FL_Carbon/Longleaf Remeasurment/longleafAgeTotals.rdata")
-save(age.totals.end, file="C:/Users/Alicia/Documents/GitHub/FL_Carbon/Longleaf Remeasurment/longleafAgeTotalsEnd.rdata")
-save(diameter.totals.end, file="C:/Users/Alicia/Documents/GitHub/FL_Carbon/Longleaf Remeasurment/longleafDIATotalsEnd.rdata")
-save(diameter.totals, file="C:/Users/Alicia/Documents/GitHub/FL_Carbon/Longleaf Remeasurment/longleafDIATotals.rdata")
-save(plot_data_end, file="C:/Users/Alicia/Documents/GitHub/FL_Carbon/Longleaf Remeasurment/longleafPlotEnd.rdata")
-save(plot_data_start, file="C:/Users/Alicia/Documents/GitHub/FL_Carbon/Longleaf Remeasurment/longleafPlotStart.rdata")
-save(diameter.totals, file="C:/Users/Alicia/Documents/GitHub/FL_Carbon/Longleaf Remeasurment/longleafDIATotals.rdata")
+
+save(age.totals, file="C:/Users/Alicia/Documents/GitHub/FL_Carbon/Longleaf Remeasurment/longleafAgeTotals2.rdata")
+save(age.totals.end, file="C:/Users/Alicia/Documents/GitHub/FL_Carbon/Longleaf Remeasurment/longleafAgeTotalsEnd2.rdata")
+save(diameter.totals.end, file="C:/Users/Alicia/Documents/GitHub/FL_Carbon/Longleaf Remeasurment/longleafDIATotalsEnd2.rdata")
+save(diameter.totals, file="C:/Users/Alicia/Documents/GitHub/FL_Carbon/Longleaf Remeasurment/longleafDIATotals2.rdata")
+save(plot_data_end, file="C:/Users/Alicia/Documents/GitHub/FL_Carbon/Longleaf Remeasurment/longleafPlotEnd2.rdata")
+save(plot_data_start, file="C:/Users/Alicia/Documents/GitHub/FL_Carbon/Longleaf Remeasurment/longleafPlotStart2.rdata")
+save(diameter.totals, file="C:/Users/Alicia/Documents/GitHub/FL_Carbon/Longleaf Remeasurment/longleafDIATotals2.rdata")
+# save(age.totals, file="C:/Users/Alicia/Documents/GitHub/FL_Carbon/Longleaf Remeasurment/longleafAgeTotals.rdata")
+# save(age.totals.end, file="C:/Users/Alicia/Documents/GitHub/FL_Carbon/Longleaf Remeasurment/longleafAgeTotalsEnd.rdata")
+# save(diameter.totals.end, file="C:/Users/Alicia/Documents/GitHub/FL_Carbon/Longleaf Remeasurment/longleafDIATotalsEnd.rdata")
+# save(diameter.totals, file="C:/Users/Alicia/Documents/GitHub/FL_Carbon/Longleaf Remeasurment/longleafDIATotals.rdata")
+# save(plot_data_end, file="C:/Users/Alicia/Documents/GitHub/FL_Carbon/Longleaf Remeasurment/longleafPlotEnd.rdata")
+# save(plot_data_start, file="C:/Users/Alicia/Documents/GitHub/FL_Carbon/Longleaf Remeasurment/longleafPlotStart.rdata")
+# save(diameter.totals, file="C:/Users/Alicia/Documents/GitHub/FL_Carbon/Longleaf Remeasurment/longleafDIATotals.rdata")
 
 
-write.csv(envdata, file="C:/Users/Alicia/Documents/GitHub/FL_Carbon/Longleaf Remeasurment/longleafEnvData1.csv")  
+write.csv(envdata, file="C:/Users/Alicia/Documents/GitHub/FL_Carbon/Longleaf Remeasurment/longleafEnvData2.csv")  
 
 # if (Diameter[i,j]<=3.94){ M<- rbinom(1,1,(.162/8))}
 # else if (Diameter[i,j]>3.94 & Diameter[i,j]<=7.97){M<-rbinom(1,1,(.026/8))}
@@ -125,9 +139,9 @@ y<-c((.162/8), (.026/8), (.006/8), (.013/8), (.024/8), (.047/8), (.060/8), (0.12
 newx<-seq(0,80,0.5)
 newx2<-newx^2
 
-plot(y~x)
-mod<-lm(y ~ x+x2)
+mod<-GAM(y ~ x+x2)
 summary(mod)
+plot(mod)
 
 new.y <- predict(mod, list(x = newx, x2=newx2),type="response")
 

@@ -3,13 +3,20 @@
 rm(list=ls())
 
 setwd("C:/Users/Alicia/Documents/GitHub/FL_Carbon/Longleaf Remeasurment")
-envdata<-read.csv("LongleafEnvData1.csv", header=T, sep=",") 
-load("longleafAgeTotals.rdata")
-load("longleafAgeTotalsEnd.rdata")
-load("longleafDIATotalsEnd.rdata")
-load("longleafDIATotals.rdata")
-load("longleafPlotStart.rdata")
-load("longleafPlotEnd.rdata")
+envdata<-read.csv("LongleafEnvData2.csv", header=T, sep=",") 
+load("longleafAgeTotals2.rdata")
+load("longleafAgeTotalsEnd2.rdata")
+load("longleafDIATotalsEnd2.rdata")
+load("longleafDIATotals2.rdata")
+load("longleafPlotStart2.rdata")
+load("longleafPlotEnd2.rdata")
+# envdata<-read.csv("LongleafEnvData1.csv", header=T, sep=",") 
+# load("longleafAgeTotals.rdata")
+# load("longleafAgeTotalsEnd.rdata")
+# load("longleafDIATotalsEnd.rdata")
+# load("longleafDIATotals.rdata")
+# load("longleafPlotStart.rdata")
+# load("longleafPlotEnd.rdata")
 
 
 par(mfrow=c(2,5))
@@ -21,7 +28,9 @@ mylist<-list()
 
 simu.diameters<-list()
 
-a<-c(1, 3, 4, 6, 8, 9, 11:21, 23)
+total_a<-c(1, 3, 4:6, 8, 9,10, 11:21, 23)
+calibration<-c(21, 19, 16,  3, 23, 14,  9,  1, 20, 11)
+a <-setdiff(total_a,calibration)
 
 for (s in a){
   
@@ -53,7 +62,8 @@ for (s in a){
         
         
         # growth<-(10^(4.142479 - 0.016524*CN + 0.019741*CN*aridity - 2.380756*aridity - 0.066911*temp))*(0.4430331*age[i,j]^(-0.5569669))
-        growth<-(10^(4.085367 - 0.016985*CN + 0.020275*CN*aridity - 2.596493*aridity - 0.078576*temp))*(0.5718692*age[i,j]^(-0.4281308))
+        growth<-(10^(1.774252 -0.007376*CN + 0.008805*CN*aridity -1.127642*aridity -0.034125*temp))*(0.5718692*age[i,j]^(-0.4281308))
+        # growth<-(10^(4.085367 - 0.016985*CN + 0.020275*CN*aridity - 2.596493*aridity - 0.078576*temp))*(0.5718692*age[i,j]^(-0.4281308))
         # growth<-(10^(0.9333281 - 0.009259*CN + 0.011340*CN*aridity - 0.977477*aridity))*(0.5718692*age[i,j]^(-0.4281308))
         
         # define the mortality rate here
@@ -121,12 +131,12 @@ for (s in a){
 par(mfrow=c(1,1))
 
 
-final_list <- do.call(rbind.data.frame, mylist)
-row.names(final_list) <- c(a)
+final_list_longleaf <- do.call(rbind.data.frame, mylist)
+row.names(final_list_longleaf) <- c(a)
 # final_list$Plot<- c(1,12,14:18)
 # final_list$Plot<-as.factor(final_list$Plot)
-sdev<-as.vector(final_list$sd.tasb)
-sdev.dbh<-as.vector(final_list$sd.dbh)
+sdev<-as.vector(final_list_longleaf$sd.tasb)
+sdev.dbh<-as.vector(final_list_longleaf$sd.dbh)
 
 model.1<-lm(data = final_list, log10(Observed_Biomass/Modeled_Biomass)~Tree_Density +Temperature + Aridity)
 summary(model.1)
@@ -142,14 +152,17 @@ summary(model.2)
 model.3<-lm(data = final_list, Modeled_Biomass~Observed_Biomass)
 summary(model.3)
 
-plot(data = final_list, Observed_Diameter~Modeled_Diameter,  xlim = c(1,12), ylim = c(1,12), xlab="Modeled DBH (in)", ylab="Observed DBH (in)",
+plot(data = final_list_longleaf, Observed_Diameter~Modeled_Diameter,  xlim = c(1,12), ylim = c(1,12), xlab="Modeled DBH (in)", ylab="Observed DBH (in)",
      main = "Before parameter correction", col.axis="#027368", col="#75BFBF", pch=16, type="p") 
 abline(0,1, col="#048ABF")
 text(Observed_Diameter~Modeled_Diameter, labels=rownames(final_list),data=final_list, cex=0.9, font=2, pos=4)
 arrows(final_list$Modeled_Diameter-sdev.dbh, final_list$Observed_Diameter, final_list$Modeled_Diameter+sdev.dbh, final_list$Observed_Diameter, length=0.05, angle=90, code=3)
 
-plot(data = final_list, Observed_Biomass~Modeled_Biomass, xlim = c(0,6), ylim = c(0,6),col = "#75BFBF", xlab="Modeled", ylab="Observed", main ="AGB (kgC/m^2)",
+plot(data = final_list_longleaf, Observed_Biomass~Modeled_Biomass, xlim = c(0,6), ylim = c(0,6), col = "#75BFBF", xlab="Modeled", ylab="Observed", main ="AGB (kgC/m^2)",
      col.axis="#027368", pch=16, type="p") 
 abline(0,1, col="#048ABF")
-text(Observed_Biomass~Modeled_Biomass, labels=rownames(final_list),data=final_list, cex=0.9, font=2, pos=4)
+text(Observed_Biomass~Modeled_Biomass, labels=rownames(final_list_longleaf),data=final_list_longleaf, cex=0.9, font=2, pos=4)
 arrows(final_list$Modeled_Biomass-sdev, final_list$Observed_Biomass, final_list$Modeled_Biomass+sdev, final_list$Observed_Biomass, length=0.05, angle=90, code=3)
+
+final_list_longleaf[,"species"]<-"Longleaf"
+save(final_list_longleaf, file = "C:/Users/Alicia/Documents/GitHub/FL_Carbon/Longleaf Remeasurment/final_list_longleaf.rdata")
