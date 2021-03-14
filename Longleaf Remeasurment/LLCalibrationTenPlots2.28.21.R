@@ -158,7 +158,7 @@ for (d1 in 1:no.simu) {
     pnew <- generate.pars.cov(p_op, pmin, pmax, covars)
   }
   
-  p_rec[,simu] <- pnew #save pnew
+  p_rec[,simu] <- p_op #save pnew
   
   #assign pars
   for (b in 1:length(par.name)) {
@@ -265,6 +265,7 @@ for (d1 in 1:no.simu) {
 
 # save.image(file ="C:/Users/al117862/Downloads/LLDiaCalibration2.17.21.Rdata")
 # save.image(file ="C:/Users/al117862/Downloads/LLDiaCalibrationmortalitytest2.26.21.Rdata")
+# save.image(file ="C:/Users/al117862/Downloads/LLCalibrationMortalityTenPlots.Rdata")
 
 dev.off()
 par(mfrow=c(1,1))
