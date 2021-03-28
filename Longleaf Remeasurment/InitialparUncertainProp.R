@@ -1,5 +1,3 @@
-# Run longleaf pine simulations ----------------------------------------------
-
 rm(list=ls())
 
 setwd("C:/Users/Alicia/Documents/GitHub/FL_Carbon/Longleaf Remeasurment")
@@ -10,12 +8,10 @@ load("longleafDIATotalsEnd2.rdata")
 load("longleafDIATotals2.rdata")
 load("longleafPlotStart2.rdata")
 load("longleafPlotEnd2.rdata")
+load("initialpar3.22.21.Rdata")
 
-# setwd("C:/Users/Alicia/Downloads/LongleafCalibration3.15.21")
-# load("Longleafparameters3.15.21.rdata")
-load("sampleparameters3.24.21.rdata") #estimating sigma
+load("LongleafInitial.rdata")
 
-load("final_list_longleaf.rdata")
 
 par(mfrow=c(2,5))
 
@@ -24,7 +20,7 @@ mylist<-list()
 
 # Plot 170 ----------------------------------------------
 
-simu.diameters<-list()
+# simu.diameters<-list()
 
 total_a<-c(1, 3, 4:6, 8, 9,10, 11:21, 23)
 calibration<-c(21, 19, 16,  3, 23, 14,  9,  1, 20, 11)
@@ -40,7 +36,6 @@ for (s in a){
   aridity <- envdata[s,17]
   temp <- envdata[s,12]
   predict.tasb<-matrix(nrow = 300, ncol = 1,0)
-  
   predict.d<-matrix(nrow = 300, ncol = 1,0)
   
   
@@ -59,19 +54,18 @@ for (s in a){
         
         age[i,j]<-age[i-1,j]+1
         
-        growth<-(10^(sample.parameters[1,o] - sample.parameters[2,o]*CN + sample.parameters[3,o]*CN*aridity - sample.parameters[4,o]*aridity- sample.parameters[5,o]*temp))*(sample.parameters[6,o]*age[i,j]^(sample.parameters[7,o]))
+        growth<-(10^(initial.par[o,1] + initial.par[o,2]*CN + initial.par[o,5]*CN*aridity 
+                     + initial.par[o,3]*aridity + initial.par[o,4]*temp))*(initial.par[o,6]*age[i,j]^(initial.par[o,6]-1))
         
         # define the mortality rate here
         # initialize as a numeric with only 1 possible value
         M <- numeric(length = 1)
         
         # Mortality based on diameter class
-        if (Diameter[i,j]>=0) {
-          M<- rbinom(1,1,(sample.parameters[8,o] +(sample.parameters[9,o] *Diameter[i,j]*2.54)+sample.parameters[10,o]*((Diameter[i,j]*2.54)^2)))
-
+ 
+        if (Diameter[i,j]>=0) {M<- rbinom(1,1,(initial.par[o,7] +(initial.par[o,8] *Diameter[i,j]*2.54)+ initial.par[o,9]*((Diameter[i,j]*2.54)^2)))
         }
 
-        
         
         # Calculate the diameter for jth tree for the ith observed year
         Diameter[i,j]<-Diameter[i-1,j] + growth - M*(Diameter[i-1,j]+growth)
@@ -86,15 +80,12 @@ for (s in a){
     # save average modeled diameter
     predict.d[o,1]<-mean(Diameter[observed.a,])
     predict.tasb[o,1]<-sum(TASB[observed.a, ])*.5*(1/4047)
-  
   }
-  # mod.tasb[[s]]<-predict.tasb
-  observed.d<-mean(diameter.totals.end[[s]])
+  
+  observed.d<-mean(diameter.totals[[s]])
   observed.tasb<-sum(plot_data_end[[s]]$TASB)*.5*(1/4047)
   modeled.d<-mean(predict.d)
   modeled.tasb<-mean(predict.tasb)
-  # sd.tasb<-mad(predict.tasb, center = median(predict.tasb), constant = 1.4826, na.rm = FALSE,
-      # low = FALSE, high = FALSE)
   sd.tasb<-sd(predict.tasb)
   sd.dbh<-sd(predict.d)
   # hist(Diameter[observed.a,], main=paste("End simulation", s), xlab = "Diameter (in)")
@@ -110,39 +101,39 @@ for (s in a){
   
   # data will be saved as list 1
   mylist[[s]] <- df
-  simu.diameters[[s]]<-Diameter[observed.a,]
-  # mod.tasb[[s]]<-predict.tasb[,1]
+  # simu.diameters[[s]]<-Diameter[observed.a,]
 }
 
-par(mfrow=c(1,1))
-
-
-final_list <- do.call(rbind.data.frame, mylist)
-row.names(final_list) <- c(a)
-sdev<-as.vector(final_list$sd.tasb)
-sdev.dbh<-as.vector(final_list$sd.dbh)
 
 par(mfrow=c(1,1))
-AGB<-lm(data = final_list, Observed_Biomass~Modeled_Biomass)
-summary(AGB)
-DBH<-lm(data = final_list, Observed_Diameter~Modeled_Diameter)
+
+
+final_list_longleaf <- do.call(rbind.data.frame, mylist)
+row.names(final_list_longleaf) <- c(a)
+sdev<-as.vector(final_list_longleaf$sd.tasb)
+sdev.dbh<-as.vector(final_list_longleaf$sd.dbh)
+
+
+plot(data = final_list_longleaf, Observed_Diameter~Modeled_Diameter,  xlim = c(1,12), ylim = c(1,12), xlab="Modeled DBH (in)", ylab="Observed DBH (in)",
+     main = "Before parameter correction", col.axis="#027368", col="#75BFBF", pch=16, type="p") 
+abline(0,1, col="#048ABF")
+text(Observed_Diameter~Modeled_Diameter, labels=rownames(final_list_longleaf),data=final_list_longleaf, cex=0.9, font=2, pos=4)
+arrows(final_list_longleaf$Modeled_Diameter-sdev.dbh, final_list_longleaf$Observed_Diameter, final_list_longleaf$Modeled_Diameter+sdev.dbh, final_list_longleaf$Observed_Diameter, length=0.05, angle=90, code=3)
+
+ABG<-lm(data = final_list_longleaf, Observed_Biomass~Modeled_Biomass)
+summary(ABG)
+DBH<-lm(data = final_list_longleaf, Observed_Diameter~Modeled_Diameter)
 summary(DBH)
 
-RMSE<-sqrt(sum((final_list$Observed_Biomass-final_list$Modeled_Biomass)^2/10))
-RMSE.dbh<-sqrt(sum((final_list$Observed_Diameter-final_list$Modeled_Diameter)^2/10))
+RMSE<-sqrt(sum((final_list_longleaf$Observed_Biomass-final_list_longleaf$Modeled_Biomass)^2/10))
+RMSE.dbh<-sqrt(sum((final_list_longleaf$Observed_Diameter-final_list_longleaf$Modeled_Diameter)^2/10))
 
-plot(data = final_list, Observed_Biomass~Modeled_Biomass,xlim=c(0,5.5), ylim=c(0, 5.5), col = "#75BFBF", xlab="Modeled", ylab="Observed", main ="AGB (kgC/m^2)",
-     col.axis="#027368", pch=16, type="p")
+plot(data = final_list_longleaf, Observed_Biomass~Modeled_Biomass,  xlim = c(0,6), ylim = c(0,6), col = "#75BFBF", xlab="Modeled", ylab="Observed", main ="AGB (kgC/m^2)",
+     col.axis="#027368", pch=16, type="p") 
 abline(0,1, col="#048ABF")
-text(Observed_Biomass~Modeled_Biomass, labels=rownames(final_list),data=final_list, cex=0.9, font=2, pos=4)
-arrows(final_list$Modeled_Biomass-sdev, final_list$Observed_Biomass, final_list$Modeled_Biomass+sdev, final_list$Observed_Biomass, length=0.05, angle=90, code=3)
+text(Observed_Biomass~Modeled_Biomass, labels=rownames(final_list_longleaf),data=final_list_longleaf, cex=0.9, font=2, pos=4)
+arrows(final_list_longleaf$Modeled_Biomass-sdev, final_list_longleaf$Observed_Biomass, final_list_longleaf$Modeled_Biomass+sdev, final_list_longleaf$Observed_Biomass, length=0.05, angle=90, code=3)
 
-plot(data = final_list, Observed_Diameter~Modeled_Diameter, xlim=c(0,20), ylim=c(0,20), xlab="Modeled DBH (in)", ylab="Observed DBH (in)",
-      col.axis="#027368", col="#75BFBF", pch=16, type="p")
-abline(0,1, col="#048ABF")
-text(Observed_Diameter~Modeled_Diameter, labels=rownames(final_list),data=final_list, cex=0.9, font=2, pos=4)
-arrows(final_list$Modeled_Diameter-sdev.dbh, final_list$Observed_Diameter, final_list$Modeled_Diameter+sdev.dbh, final_list$Observed_Diameter, length=0.05, angle=90, code=3)
-
-final_list[,"species"]<-"Longleaf"
-save(final_list, file = "C:/Users/Alicia/Documents/GitHub/FL_Carbon/Longleaf Remeasurment/final_list_longleaf.rdata")
+final_list_longleaf[,"species"]<-"Longleaf"
+save(final_list_longleaf, file = "C:/Users/Alicia/Documents/GitHub/FL_Carbon/Longleaf Remeasurment/LongleafInitial.rdata")
 

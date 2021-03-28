@@ -25,7 +25,6 @@ load("LoblollyPlotEnd.rdata")
 
 
 
-
 ## Load functions
 generate.pars <- function(p_op,pmin,pmax,d) {
   while(TRUE){
@@ -63,7 +62,8 @@ pmax[1] <- 9.0;pmax[2] <-  0.6;pmax[3] <-  0.8;pmax[4] <- 12;pmax[5] <-  0.9;pma
 
 par.name <- c("a1","b1","b2","b3","b4","b5", "b6", "b7", "b8","sigma")
 p_op <- c(7.588418, 0.37183, 0.45382, 9.20441, 0.7405648, -0.2594352,1.329e-01, -1.075e-02,1.401e-04, 4)
-
+p_original <- c(7.588418, 0.37183, 0.45382, 9.20441, 0.7405648, -0.2594352,1.329e-01, -1.075e-02,1.401e-04, 4)
+par.name <- c("Int_growth","MAT","MAT*Aridity","Aridity", "Age_coef", "Age_exp", "Int_mortality", "DBH", "DBH^2", "Sigma")
 names(p_op)<-par.name
 no.simu <- 500000   #10000
 d <- 10
@@ -124,7 +124,7 @@ for (s in a){
   mylist[[s]] <- df
   Diameter.all[[s]]<-Diameter[observed.a,]
 }
-
+Diam_first<-Diameter.all
 J_old <- mapply(function(x, y){
   # calc <- (sort(x) - sort(y))^2/(2*(0.6*y)^2)
   calc <- (sort(x) - sort(y))^2/(2*(st_dev)^2) ## try 2 instead of 4 as SD (denominator)
@@ -152,7 +152,7 @@ sd <- 2.38/sqrt(length(pmin))
 simu <- 0
 
 # system.time({
-for (d1 in 8381:no.simu) {
+for (d1 in 1:no.simu) {
   simu <- simu+1
   if (simu <= 2000) { #two steps; 1-default sampling; 2-sampling from covariances of each pars
     pnew <- generate.pars(p_op, pmin, pmax, d)
@@ -168,7 +168,7 @@ for (d1 in 8381:no.simu) {
   }
   
   names(pnew)<-par.name
-  
+  st_dev<-pnew[10]
   
   for (s in a){
     
@@ -268,7 +268,7 @@ for (d1 in 8381:no.simu) {
   print(paste("simu =", simu, "updated =", updated))
 }
 
-# # save.image(file ="C:/Users/al117862/Downloads/LLDiaCalibration2.17.21.Rdata")
+save.image(file ="LoblollyCalibration3.15.21.Rdata")
 # 
 # dev.off()
 # par(mfrow=c(1,1))
@@ -315,7 +315,7 @@ for (d1 in 8381:no.simu) {
 # ## run the IBM model 300 times, calculate average DBH & C stock 300 times
 # ## calculate site-mean DBH and SD and site-mean C stock and SD. 
 # 
-# cols<-sample((updated/2):updated, 300)
-# 
-# sample.parameters<-p_upgraded[,c(cols)]
-# save(sample.parameters, file="//net.ucf.edu/COS/Profiles/al117862/Documents/GitHub/FL_Carbon/Longleaf Remeasurment/sampleparameters2.20.21.rdata")
+cols<-sample((updated/2):updated, 300)
+
+sample.parameters<-p_upgraded[,c(cols)]
+save(sample.parameters, file="/FL_Carbon/Loblolly Remeasurement/LoblollyCalibrationparameters3.15.21.rdata")

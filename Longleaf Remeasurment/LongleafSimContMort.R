@@ -18,6 +18,11 @@ load("longleafPlotEnd2.rdata")
 # load("longleafPlotStart.rdata")
 # load("longleafPlotEnd.rdata")
 
+env1<-envdata[a,]
+cal<-envdata[calibration,]
+
+plot(env1$LON, env1$LAT)
+plot(cal$LON, cal$LAT)
 
 par(mfrow=c(2,5))
 
@@ -27,6 +32,7 @@ mylist<-list()
 # Plot 170 ----------------------------------------------
 
 simu.diameters<-list()
+
 
 total_a<-c(1, 3, 4:6, 8, 9,10, 11:21, 23)
 calibration<-c(21, 19, 16,  3, 23, 14,  9,  1, 20, 11)
@@ -71,23 +77,11 @@ for (s in a){
         M <- numeric(length = 1)
         
         # Mortality based on diameter class
-        # if (Diameter[i,j]>0) {M<- rbinom(1,1,(1.636e-01 +(-8.008e-03 *Diameter[i,j]*2.54)+(9.980e-05*(Diameter[i,j]*2.54^2)))/4)}
-        # # else {M=0}
-        # # print(M)
+ 
         # if (Diameter[i,j]>=0) { M<- rbinom(1,1,(2.109e-02 +(-2.662e-03 *Diameter[i,j])+(8.540e-05*(Diameter[i,j]^2))))}
         if (Diameter[i,j]>=0) {M<- rbinom(1,1,(2.109e-02 +(-1.048e-03 *Diameter[i,j]*2.54)+ 1.324e-05*((Diameter[i,j]*2.54)^2)))
         }
-        # # else {M=0}
-        # # print(M)
-        # if (Diameter[i,j]<=3.94){ M<- rbinom(1,1,(.162/8))}
-        # else if (Diameter[i,j]>3.94 & Diameter[i,j]<=7.97){M<-rbinom(1,1,(.026/8))}
-        # else if (Diameter[i,j]>7.97 & Diameter[i,j]<=11.81){M<-rbinom(1,1,(.006/8))}
-        # else if (Diameter[i,j]>11.81 & Diameter[i,j]<=15.75){M<-rbinom(1,1,(.013/8))}
-        # else if (Diameter[i,j]>15.75 & Diameter[i,j]<=19.69){M<-rbinom(1,1,(.024/8))}
-        # else if (Diameter[i,j]>19.69 & Diameter[i,j]<=23.62){M<-rbinom(1,1,(.047/8))}
-        # else if (Diameter[i,j]>23.62 & Diameter[i,j]<=27.56){M<-rbinom(1,1,(.060/8))}
-        # else if (Diameter[i,j]>27.56){M<-rbinom(1,1,(0.129/8))}
-        # 
+    
         
         # Calculate the diameter for jth tree for the ith observed year
         Diameter[i,j]<-Diameter[i-1,j] + growth - M*(Diameter[i-1,j]+growth)

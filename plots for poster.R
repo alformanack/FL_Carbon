@@ -62,8 +62,25 @@ setwd("C:/Users/Alicia/Documents/GitHub/FL_Carbon/Slash Remeasurement")
 load("final_list_slash.rdata")
 setwd("C:/Users/Alicia/Documents/GitHub/FL_Carbon/Loblolly Remeasurement")
 load("final_list_loblolly.rdata")
+final_list<-rbind(final_list_loblolly,final_list,final_list_slash)
+
+setwd("C:/Users/Alicia/Documents/GitHub/FL_Carbon/Longleaf Remeasurment")
+load("LongleafInitial.rdata")
+setwd("C:/Users/Alicia/Documents/GitHub/FL_Carbon/Slash Remeasurement")
+load("SlashInitial.rdata")
+setwd("C:/Users/Alicia/Documents/GitHub/FL_Carbon/Loblolly Remeasurement")
+load("LoblollyInitial.rdata")
 
 final_list<-rbind(final_list_loblolly,final_list_longleaf,final_list_slash)
+final_list[,"DBH_dev"]<-(final_list[,"Observed_Diameter"]-final_list[,"Modeled_Diameter"])^2
+final_list[,"AGB_dev"]<-abs(final_list[,"Observed_Biomass"]-final_list[,"Modeled_Biomass"])
+mean(final_list$AGB_dev)
+
+max(final_list$DBH_dev)
+
+f<-final_list[final_list$DBH_dev==max(final_list$DBH_dev),]
+
+
 final_list$species<-as.factor(final_list$species)
 
 ggplot(final_list, aes(Modeled_Biomass,Observed_Biomass)) +
@@ -98,7 +115,7 @@ ggplot(final_list, aes(Modeled_Diameter,Observed_Diameter )) +
   scale_fill_Publication() 
   # scale_colour_Publication()
 
-dbh<-lm(data=final_list, Observed_Diameter~Modeled_Diameter -1)
+dbh<-lm(data=final_list, Observed_Diameter~Modeled_Diameter)
 summary(dbh)
 
 carbon<-lm(data = final_list, Observed_Biomass~Modeled_Biomass)
@@ -201,6 +218,26 @@ setwd("C:/Users/Alicia/Documents/GitHub/FL_Carbon")
 
 biomass<-read.csv("TASB_totals.csv", header=T, sep=",")
 
+
+setwd("C:/Users/Alicia/Documents/GitHub/FL_Carbon/Longleaf Remeasurment")
+load("SimuLongleaf30yrs.rdata")
+final_list$plots<-c(1:5)
+setwd("C:/Users/Alicia/Documents/GitHub/FL_Carbon/Slash Remeasurement")
+load("simuSlash30yr.rdata")
+final_list_slash$plots<-c(1:5)
+setwd("C:/Users/Alicia/Documents/GitHub/FL_Carbon/Loblolly Remeasurement")
+load("SimuLoblolly30yrs.rdata")
+final_list<-rbind(final_list_loblolly,final_list,final_list_slash)
+final_list_loblolly$plots<-c(1:5)
+
+
+biomass<-rbind(final_list_loblolly,final_list,final_list_slash)
+
+biomass$plots<-as.factor(biomass$plots)
+
+biomass<-subset(biomass, biomass$plots!=5)
+
+
 theme_Publication <- function(base_size=14, base_family="helvetica") {
   library(grid)
   library(ggthemes)
@@ -236,15 +273,29 @@ theme_Publication <- function(base_size=14, base_family="helvetica") {
 }
 
 
-ggplot(biomass, aes(x=Location, y=TASB, fill=ï..Species)) + 
-  labs(y = expression(bold(Tree~Carbon~(gC/m^{2}))), title="Potential C storage for 700tph after 80 years") +
+ggplot(biomass, aes(x=plots, y=Modeled_Biomass, fill=species)) + 
+  labs(y = expression(bold(Tree~Carbon~(gC/m^{2}))), title="Potential C storage for 700tph after 30 years") +
   geom_bar(position=position_dodge(), stat="identity") +
-  geom_errorbar(aes(ymin=TASB-SD, ymax=TASB+SD),
+  geom_errorbar(aes(ymin=Modeled_Biomass-sd.tasb, ymax=Modeled_Biomass+sd.tasb),
                 width=.2,                    # Width of the error bars
-                position=position_dodge(.9), colour="white") +
+                position=position_dodge(.9), colour="black") +
   theme_Publication() +
   scale_fill_Publication() +
   scale_colour_Publication()
+
+ggplot(biomass, aes(x=plots, y=Modeled_Biomass, fill=species)) + 
+  labs(y = expression(bold(Tree~Carbon~(gC/m^{2}))), title="Potential C storage for 700tph after 30 years") +
+  geom_boxplot(position=position_dodge(1)) +
+  theme_Publication() +
+  scale_fill_Publication() +
+  scale_colour_Publication()
+
+par(mfrow=c(2,5))
+par(mar=c(2,3,2,2))
+for (par.no in 1:10) {
+  hist(p_upgraded[par.no,(updated/2):updated],xlim = c(pmin[par.no],pmax[par.no]), main = par.name[par.no], xlab =NA, breaks=20)
+  abline(v=p_original[par.no], col="red", lwd=5)
+}
 
 ggplot(fb, aes(x=Location, y=TASB, fill=Species)) + 
   labs(y = expression(bold(Tree~Carbon~(gC/m^{2}))), title="Potential C storage for 700tph after 30 years") +

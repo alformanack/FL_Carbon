@@ -139,7 +139,11 @@ covar<-vcov(add_nls)
 MASS::mvrnorm(n=300, Sigma=covar, mu=nls_coef)
 
 new.y <- predict(mod, list(x = newx,),type="response")
-nls.y <- predict(add_nls, list(x = newx,),type="response")
+nls.y <- predict(add_nls, list(x = x),type="response")
+
+mse<-sum((y-nls.y)^2)
+msee<-sqrt(mse/9)
+
 
 plot(x, y, pch = 16, xlab = "DIA", ylab = "p(mort)")
 lines(newx, new.y)

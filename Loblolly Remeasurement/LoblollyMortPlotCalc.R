@@ -8,8 +8,8 @@ setwd("C:/Users/Alicia/Desktop/FL")
 load("loblolly_remeas_start.Rdata")
 load("loblolly_remeas_end.Rdata")
 
-# envdata1<-subset(envdata, envdata$TPA_start<=envdata$TPA_end)
-# a<- rownames(envdata)
+envdata1<-subset(envdata, envdata$TPA_start<envdata$TPA_end)
+a<- rownames(envdata1)
 
 envdata$SOILGRIDS_C_AVG<-((envdata$SOC0_5_NAD/10)*(1/3))+((envdata$SOC5_15NAD/10)*(2/3))
 
@@ -48,7 +48,7 @@ for (s in a){
     # mutate(TPA=ifelse(is.na(TPA_UNADJ), TPAGROW_UNADJ, TPA_UNADJ)) %>%
     mutate(TPA_total=sum(round(TPA_UNADJ))) %>%
     mutate(age=round(10^((7.588418/-0.7405648)+ (-0.37183/-0.7405648)*temp + (0.45382/-0.7405648)*temp*aridity 
-                         +(-9.20441/0.7405648)*aridity))*(DIA^(-1/-0.7405648)))
+                         +(-9.20441/-0.7405648)*aridity)*(DIA^(-1/-0.7405648))))
   # mutate(age=round((10^(-7.143884 + 0.02970085*CN_scale - 0.03545391*CN_scale*aridity + 4.540362*aridity + 0.137402*temp))*(DIA^1.748652)))
   # mutate(age=round((10^(-3.018915 + 1.2741*aridity))*(DIA^2.307065)))  
   
@@ -67,7 +67,7 @@ for (s in a){
     # mutate(TPA=ifelse(is.na(TPA_UNADJ), TPAGROW_UNADJ, TPA_UNADJ)) %>%
     mutate(TPA_total=sum(round(TPA_UNADJ))) %>%
     mutate(age=round(10^((7.588418/-0.7405648)+ (-0.37183/-0.7405648)*temp + (0.45382/-0.7405648)*temp*aridity 
-                         +(-9.20441/0.7405648)*aridity))*(DIA^(-1/-0.7405648))) %>%
+                         +(-9.20441/-0.7405648)*aridity)*(DIA^(-1/-0.7405648)))) %>%
     # mutate(age=round((10^(-7.143884 + 0.02970085*CN_scale - 0.03545391*CN_scale*aridity + 4.540362*aridity + 0.137402*temp))*(DIA^1.748652))) %>%
     mutate(TASB=(0.037403*((DIA*2.54)^2.676835))*(round(TPA_UNADJ)))
   # mutate(TASB=(0.041281*((DIA*2.54)^2.722214))*(round(TPA_UNADJ)))
@@ -101,7 +101,7 @@ for (g in a){
     age.start<-age.totals[[g]]
     # age.new<-round((10^(-9.35027 + 0.03729744*envdata[g,15] - 0.04455875*envdata[g,16]*envdata[s,15] + 5.373766*envdata[g,16] + 0.1510293*envdata[g,11]))*(extra^2.257168))
     age.new<-round(10^((7.588418/-0.7405648)+ (-0.37183/-0.7405648)*envdata[g,6] + (0.45382/-0.7405648)*envdata[g,6]*envdata[g,16] 
-                       +(-9.20441/0.7405648)*envdata[g,16]))*(extra^(-1/-0.7405648))
+                       +(-9.20441/-0.7405648)*envdata[g,16])*(extra^(-1/-0.7405648)))
     # age.new<-round((10^(-7.143884 + 0.02970085*envdata[g,15] - 0.03545391*envdata[g,16]*envdata[g,15] + 4.540362*envdata[g,16] + 0.137402*envdata[g,11]))*(extra^1.748652))
     age.totals[[g]]<-c(age.start, age.new)
   }
@@ -139,7 +139,7 @@ x<-c(4, 8, 12, 16, 20, 24, 50, 65, 70, 75, 80, 85, 90)
 
 x2<-x^2
 
-y<-c(.02, .05, .028, .017, .009, .0076, .0045, .0098, .018, .04, .089, .22, .44)
+y<-c(.1, 0.05, .028, .017, .009, .0076, .0045, .0098, .018, .04, .089, .22, .44)
 
 mort<-lm(y~x +x2)
 summary(mort)

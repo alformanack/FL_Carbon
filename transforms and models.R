@@ -86,42 +86,59 @@ slashpine<-subset(sitetree, sitetree$SPCD=="111")
 longleaf<-subset(sitetree, sitetree$SPCD=="121")
 loblolly<-subset(sitetree, sitetree$SPCD=="131")
 
-dfrm <- data.frame(y=rnorm(100), replicate(6, rnorm(100)))
-cor(log10(slashpine$AGEDIA),log10(slashpine$DIA))
+save(longleaf, file = "C:/Users/Alicia/Documents/GitHub/FL_Carbon/Longleaf Remeasurment/LongleafData.Rdata")
+save(loblolly, file = "C:/Users/Alicia/Documents/GitHub/FL_Carbon/Loblolly Remeasurement/LoblollyData.Rdata")
+save(slashpine, file = "C:/Users/Alicia/Documents/GitHub/FL_Carbon/Slash Remeasurement/SlashData.Rdata")
+
 SlashMA <- smatr::sma(data=slashpine, log10(slashpine$DIA)~log10(slashpine$AGEDIA), method = "SMA")
-smaSlope <- function(x,y) {
-  sign <- ifelse(cor(x,y) >= 0, 1, -1)
-  b1 <- sign * sd(y)/sd(x)
-  b1
-}
+slashresidualsma<-residuals(SlashMA)
 
-smaSlope(log10(slashpine$AGEDIA),log10(slashpine$DIA))
+int.model3<-lm(slashresidualsma~ SOILGRIDS_CN_SCALE*ai_et0_NAD + slashpine$X30s_NAD, data=slashpine)
 
-smaIntercept <- function(x, y) {
-  b1 <- smaSlope(x, y)
-  b0 <- mean(y) - mean(x)*b1
-  b0
-}
+#Calculating var.cov matrix for age
+cov<-matrix(data=NA, 2,2)
 
-smaIntercept(log10(slashpine$AGEDIA),log10(slashpine$DIA))
+mu.y<-mean(log10(slashpine$DIA))
+mu.x<-mean(log10(slashpine$AGEDIA))
 
-mu.age<-coef(SlashMA)
-cov.age<-vcov(SlashMA)
-age.par<-MASS::mvrnorm(n=300, mu=mu.age, Sigma = cov.age)
+xi<-as.vector(log10(slashpine$AGEDIA))
+sq.xi<-(xi-mu.x)^2
+cov[1,1]<-sum(sq.xi)/2285
+yi<-as.vector(log10(slashpine$DIA))
+sq.yi<-(yi-mu.y)^2
+cov[2,2]<-sum(sq.yi)/2285
+
+covars<-(xi-mu.x)*(yi-mu.x)
+cov[1,2]<-sum(covars)/2285
+cov[2,1]<-sum(covars)/2285
+
+age.par<-MASS::mvrnorm(n=300, mu=mu.age, Sigma = cov)
+
+# smaSlope <- function(x,y) {
+#   sign <- ifelse(cor(x,y) >= 0, 1, -1)
+#   b1 <- sign * sd(y)/sd(x)
+#   b1
+# }
+# 
+# smaSlope(log10(slashpine$AGEDIA),log10(slashpine$DIA))
+# 
+# smaIntercept <- function(x, y) {
+#   b1 <- smaSlope(x, y)
+#   b0 <- mean(y) - mean(x)*b1
+#   b0
+# }
 
 
+
+mu<-int.model3$coefficients
+cov.intmodel<-as.matrix(vcov(int.model3))
+growth.par<-MASS::mvrnorm(n=300, mu=mu, Sigma = cov.intmodel)
 
 
 
 slashpine$temp2<-slashpine$X30s_NAD^2
 
-SlashMA <- smatr::sma(data=slashpine, log10(slashpine$DIA)~log10(slashpine$AGEDIA), method = "SMA")
-s<-lmodel2::lmodel2(log10(slashpine$DIA)~log10(slashpine$AGEDIA), data=slashpine, nperm=99)
-str(s)
-slashresidualsma<-residuals(SlashMA)
-plot(SlashMA)
-summary(SlashMA)
-plot(slashresidualsma)
+
 
 # Call: smatr::sma(formula = log10(slashpine$DIA) ~ log10(slashpine$AGEDIA), 
 #                 data = slashpine, method = "SMA") 
@@ -211,9 +228,9 @@ summary(int.model3) #0.06364, MA 0.07762
 plot(int.model3)
 
 ##Creating an interaction plot
-int<-lm(slashresidualsma~ SOILGRIDS_CN_SCALE*ai_et0_NAD, data = slashpine)
+int<-lm(slashresidualsma~ SOILGRIDS_CN_SCALE*ai_et0_NAD , data = slashpine)
 summary(int)
-library(effects)
+# library(effects)
 Inter.HandPick <- effects::effect('SOILGRIDS_CN_SCALE*ai_et0_NAD', int,
                          xlevels=list(SOILGRIDS_CN_SCALE = c(40, 80, 120),
                                       ai_et0_NAD = c(.7, .8, .9)),
@@ -234,16 +251,29 @@ Inter.HandPick$ai_et0_NAD <- factor(Inter.HandPick$ai_et0_NAD,
                                     levels=c(.7, .8, .9),
                                     labels=c("Drier", "Wetter", "Wettest"))
 
+Inter.HandPick[,"fit"]<-10^(Inter.HandPick[,"fit"])
+Inter.HandPick[,"DBH"]<-dbh
+
+dbh<-10^((0.764+0.149)-(0.011*22)-(0.597*Inter.HandPick$ai_et0_NAD)-
+           (0.004*Inter.HandPick$SOILGRIDS_CN_SCALE)+(0.005*Inter.HandPick$ai_et0_NAD*Inter.HandPick$SOILGRIDS_CN_SCALE))*0.578*(10^0.578-1)
+
+
+
+
 library(ggplot2)                
-Plot.HandPick<-ggplot2::ggplot(data=Inter.HandPick, aes(x=ai_et0_NAD, y=fit, group=SOILGRIDS_CN_SCALE))+
+ggplot2::ggplot(data=Inter.HandPick, aes(x=ai_et0_NAD, y=DBH, group=SOILGRIDS_CN_SCALE))+
   geom_line(size=2, aes(color=SOILGRIDS_CN_SCALE))+
   # ylim(0,4)+
-  ylab("Effect on DBH")+
+  ylab("DBH")+
   xlab("Aridity")+
+  labs(color = "Soil C:N")+
   ggtitle("Slash pine interaction plot") +
 theme_Publication() +
-  scale_fill_Publication() +
-scale_colour_Publication()
+  # scale_color_manual(values=c("#9ACFDD","#668C4A","#B29577"))
+  scale_color_manual(values=c("#9ACFDD","#FFF447","#D90B1C"))
+# scale_colour_Publication()
+#   scale_fill_Publication() +
+
 
 Plot.HandPick 
 # Call:
@@ -391,6 +421,53 @@ summary(int.model2) #0.1213
 
 int.model3<-lm(resid.LLSMA~ SOILGRIDS_CN_SCALE*ai_et0_NAD + X30s_NAD, data=longleaf)
 summary(int.model3) #0.1306
+
+
+int<-lm(resid.LLSMA~ SOILGRIDS_CN_SCALE*ai_et0_NAD , data = slashpine)
+summary(int)
+# library(effects)
+Inter.HandPick <- effects::effect('SOILGRIDS_CN_SCALE*ai_et0_NAD', int,
+                                  xlevels=list(SOILGRIDS_CN_SCALE = c(40, 80, 120),
+                                               ai_et0_NAD = c(.7, .8, .9)),
+                                  se=TRUE, confidence.level=.95, typical=mean)
+
+#Put data in data frame 
+Inter.HandPick <- as.data.frame(Inter.HandPick)
+
+dbh<-10^((1.655+0.119)-(0.034*22)-(1.128*Inter.HandPick$ai_et0_NAD)-
+           (0.007*Inter.HandPick$SOILGRIDS_CN_SCALE)+(0.009*Inter.HandPick$ai_et0_NAD*Inter.HandPick$SOILGRIDS_CN_SCALE))*0.572*(10^0.572-1)
+
+Inter.HandPick[,"DBH"]<-dbh
+#Check out what the "head" (first 6 rows) of your data looks like
+head(Inter.HandPick)
+#Create a factor of the IQ variable used in the interaction                   
+Inter.HandPick$SOILGRIDS_CN_SCALE <- factor(Inter.HandPick$SOILGRIDS_CN_SCALE,
+                                            levels=c(40, 80, 120),
+                                            labels=c("High N", "Avg N", "Low N"))
+
+#Create a factor of the Work Ethic variable used in the interaction 
+Inter.HandPick$ai_et0_NAD <- factor(Inter.HandPick$ai_et0_NAD,
+                                    levels=c(.7, .8, .9),
+                                    labels=c("Drier", "Wetter", "Wettest"))
+
+
+
+# library(ggplot2)                
+ggplot2::ggplot(data=Inter.HandPick, aes(x=ai_et0_NAD, y=DBH, group=SOILGRIDS_CN_SCALE))+
+  geom_line(size=2, aes(color=SOILGRIDS_CN_SCALE))+
+  # ylim(0,4)+
+  ylab("DBH")+
+  xlab("Aridity")+
+  labs(color = "Soil C:N")+
+  ggtitle("Longleaf pine interaction plot") +
+  theme_Publication() +
+  # scale_color_manual(values=c("#9ACFDD","#668C4A","#B29577"))
+  # scale_color_manual(values=c("#9ACFDD","#FFF447","#D90B1C"))
+  scale_color_manual(values=c("#023E73","#067354","#A60303"))
+# scale_colour_Publication()
+#   scale_fill_Publication() +
+
+
 
 # Call:
 #   lm(formula = resid.LLSMA ~ SOILGRIDS_CN_SCALE * ai_et0_NAD + 
@@ -550,8 +627,54 @@ summary(loblollymodel1.5) #0.1237
 loblollymodel1.6<-lm(residloblollysma~ai_et0_NAD*SOILGRIDS_CN_SCALE + loblolly$X30s_NAD, data=(loblolly))
 summary(loblollymodel1.6) #0.1274
 
-model1<-lm(residloblollysma~ai_et0_NAD*loblolly$X30s_NAD, data=(loblolly))
+model1<-lm(residloblollysma~ai_et0_NAD*X30s_NAD, data=loblolly)
 summary(model1) #0.1462
+
+Inter.HandPick <- effects::effect('ai_et0_NAD*X30s_NAD', model1,
+                                  xlevels=list(X30s_NAD = c(20, 22, 24),
+                                               ai_et0_NAD = c(.7, .8, .9)),
+                                  se=TRUE, confidence.level=.95, typical=mean)
+
+#Put data in data frame 
+Inter.HandPick <- as.data.frame(Inter.HandPick)
+
+dbh<-10^((7.586+0.002)-(9.204*Inter.HandPick$ai_et0_NAD)-
+           (0.372*Inter.HandPick$X30s_NAD)+(0.454*Inter.HandPick$ai_et0_NAD*Inter.HandPick$X30s_NAD))*0.741*(10^0.741-1)
+
+Inter.HandPick[,"DBH"]<-dbh
+#Check out what the "head" (first 6 rows) of your data looks like
+head(Inter.HandPick)
+#Create a factor of the IQ variable used in the interaction                   
+Inter.HandPick$X30s_NAD <- factor(Inter.HandPick$X30s_NAD,
+                                            levels=c(20, 22, 24),
+                                            labels=c("20", "22", "24"))
+
+#Create a factor of the Work Ethic variable used in the interaction 
+Inter.HandPick$ai_et0_NAD <- factor(Inter.HandPick$ai_et0_NAD,
+                                    levels=c(.7, .8, .9),
+                                    labels=c("Drier", "Wetter", "Wettest"))
+
+
+
+# library(ggplot2)                
+ggplot2::ggplot(data=Inter.HandPick, aes(x=ai_et0_NAD, y=DBH, group=X30s_NAD))+
+  geom_line(size=2, aes(color=X30s_NAD))+
+  # ylim(0,4)+
+  ylab("DBH")+
+  xlab("Aridity")+
+  labs(color = "MAT")+
+  ggtitle("Loblolly pine interaction plot") +
+  theme_Publication() +
+    scale_color_manual(values=c("#236670","#F2A20C","#F26B5E"))
+
+scale_color_manual(values=c("#9ACFDD","#668C4A","#B29577"))
+
+  scale_color_manual(values=c("#9ACFDD","#FFF447","#D90B1C"))
+# scale_colour_Publication()
+#   scale_fill_Publication() +
+
+
+
 
 # Call:
 #   lm(formula = residloblollysma ~ ai_et0_NAD * loblolly$X30s_NAD, 

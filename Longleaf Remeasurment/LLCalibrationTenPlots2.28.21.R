@@ -1,27 +1,26 @@
 rm(list=ls())
 ## Changing directory 
-
-# Assuming the first lib path is the problematic one:
-path <- "U:\Documents\R"
-# Map to drive letter Z
-system2("net", args=c("use", "Z:", path))
-# Update so that packages are installed to that directory
-.libPaths("Z:/")
-
-# Install packages
-install.packages("ggplot2")
-install.packages("mvnfast")
+# 
+# # Assuming the first lib path is the problematic one:
+# path <- "U:\Documents\R"
+# # Map to drive letter Z
+# system2("net", args=c("use", "Z:", path))
+# # Update so that packages are installed to that directory
+# .libPaths("Z:/")
+# 
+# # Install packages
+# install.packages("ggplot2")
+# install.packages("mvnfast")
 lapply(c("ggplot2","mvnfast"), require, character.only = T)
 
-setwd("~/GitHub/FL_Carbon/Longleaf Remeasurment")
-envdata<-read.csv("LongleafEnvData1.csv", header=T, sep=",") 
-load("longleafAgeTotals.rdata")
-load("longleafAgeTotalsEnd.rdata")
-load("longleafDIATotalsEnd.rdata")
-load("longleafDIATotals.rdata")
-load("longleafPlotStart.rdata")
-load("longleafPlotEnd.rdata")
-
+setwd("C:/Users/Alicia/Documents/GitHub/FL_Carbon/Longleaf Remeasurment")
+envdata<-read.csv("LongleafEnvData2.csv", header=T, sep=",") 
+load("longleafAgeTotals2.rdata")
+load("longleafAgeTotalsEnd2.rdata")
+load("longleafDIATotalsEnd2.rdata")
+load("longleafDIATotals2.rdata")
+load("longleafPlotStart2.rdata")
+load("longleafPlotEnd2.rdata")
 # setwd("C:/Users/Alicia/Documents/GitHub/tree_growth_FL")
 # source("generate_pars.R")
 
@@ -56,17 +55,20 @@ Diameter.all<-list()
 pmin <- c()
 pmax <- c()
 #   a1             b1              b2               b3           b4               b5            b6                b7                b8            b9
-pmin[1] <- 2.1;pmin[2] <-  -0.03;pmin[3] <-  0.00;pmin[4] <- 0;pmin[5] <-  0.01;pmin[6] <- 0.0;pmin[7] <- -0.9;pmin[8] <- 0.0;pmin[9] <- -0.01;pmin[10] <- 0.0
-pmax[1] <- 8.1;pmax[2] <-  0.04;pmax[3] <-  0.05;pmax[4] <- 5;pmax[5] <-  0.5;pmax[6] <- 1.5;pmax[7] <- -0.1;pmax[8] <- 0.4;pmax[9] <- 0.0;pmax[10] <- 0.0001
+pmin[1] <- 0.0;pmin[2] <-  0.00;pmin[3] <-  0.00;pmin[4] <- 0;pmin[5] <-  0.0;pmin[6] <- 0.0;pmin[7] <- -1;pmin[8] <- 0.0;pmin[9] <- -0.01;pmin[10] <- 0.0; pmin[11]<-1
+pmax[1] <- 2.5;pmax[2] <-  0.015;pmax[3] <-  0.016;pmax[4] <- 2.5;pmax[5] <-  0.06;pmax[6] <- 1;pmax[7] <- 0.0;pmax[8] <- 0.04;pmax[9] <- 0.0;pmax[10] <- 0.0001;pmax[11]<-10
 
 
-par.name <- c("a1","b1","b2","b3","b4","b5", "b6", "b7", "b8", "b9")
-p_op <- c(4.085367, 0.016985, 0.020275, 2.596493, 0.078576, 0.5718692,-0.4281308, 2.109e-02,-1.048e-03, 1.324e-05)
+par.name <- c("a1","b1","b2","b3","b4","b5", "b6", "b7", "b8", "b9", "Sigma")
+par.name <- c("Int_growth","CN","CN*Aridity","Aridity","MAT", "Age_coef", "Age_exp", "Int_mortality", "DBH", "DBH^2", "Sigma")
+p_op <- c(1.774252, 0.007376, 0.008805, 1.127642, 0.034125, 0.5718692, -0.4281308, 2.109e-02, -1.048e-03, 1.324e-05, 4)
+
 names(p_op)<-par.name
 no.simu <- 500000   #10000
 d <- 6
 a<-c(21, 19, 16,  3, 23, 14,  9,  1, 20, 11)
 # a<-c(1, 3, 4, 6, 8, 9, 11:21, 23)
+st_dev<-p_op[11]
 
 for (s in a){
   
@@ -128,7 +130,7 @@ for (s in a){
 
 J_old <- mapply(function(x, y){
   # calc <- (sort(x) - sort(y))^2/(2*(0.6*y)^2)
-  calc <- (sort(x) - sort(y))^2/(2*(2)^2) ## try 2 instead of 4 as SD (denominator)
+  calc <- (sort(x) - sort(y))^2/(2*(st_dev)^2) ## try 2 instead of 4 as SD (denominator)
   return(calc)
 }, Diameter.all, diameter.totals.end)
 
@@ -228,7 +230,7 @@ for (d1 in 1:no.simu) {
   
   J_new <- mapply(function(x, y){
     # calc <- (sort(x) - sort(y))^2/(2*(0.6*y)^2)
-    calc <- (sort(x) - sort(y))^2/(2*(2)^2) ## try 2 instead of 4 as SD (denominator)
+    calc <- (sort(x) - sort(y))^2/(2*(st_dev)^2) ## try 2 instead of 4 as SD (denominator)
     return(calc)
   }, Diameter.all, diameter.totals.end)
   
@@ -245,11 +247,12 @@ for (d1 in 1:no.simu) {
     Diam_accepted<- Diameter.all
     # plot(prob_denom.keep)
     if (updated %in% c(100*1:100)) {
-      par(mfrow=c(2,5))
-      par(mar=c(2,3,1,1))
+      par(mfrow=c(3,4))
+      par(mar=c(2,3,2,2))
       for (par.no in 1:10) {
         hist(p_upgraded[par.no,(updated/2):updated],xlim = c(pmin[par.no],pmax[par.no]), main = par.name[par.no], xlab =NA, breaks=20)
-      }
+      abline(v=p_original[par.no], col="red", lwd=5)
+        }
       
     }
   }
@@ -265,54 +268,54 @@ for (d1 in 1:no.simu) {
 
 # save.image(file ="C:/Users/al117862/Downloads/LLDiaCalibration2.17.21.Rdata")
 # save.image(file ="C:/Users/al117862/Downloads/LLDiaCalibrationmortalitytest2.26.21.Rdata")
-# save.image(file ="C:/Users/al117862/Downloads/LLCalibrationMortalityTenPlots.Rdata")
+save.image(file ="C:/Users/al117862/Downloads/LongleafCalibration3.15.21.Rdata")
 
-dev.off()
-par(mfrow=c(1,1))
-
-Diam_acc<-unlist(Diam_accepted)
-
-observed.diam<-list()
-for (z in a){
-observed.diam[[z]]<-diameter.totals.end[[z]]
-}
-
-observed<-unlist(observed.diam)
- 
-plot(Diam_acc, observed, xlab = "Accepted Diameters (in)", ylab = "Observed Diameters (in)")
-abline(0,1)
+# dev.off()
+# par(mfrow=c(1,1))
+# 
+# Diam_acc<-unlist(Diam_accepted)
+# 
+# observed.diam<-list()
+# for (z in a){
+# observed.diam[[z]]<-diameter.totals.end[[z]]
+# }
+# 
+# observed<-unlist(observed.diam)
+#  
+# plot(Diam_acc, observed, xlab = "Accepted Diameters (in)", ylab = "Observed Diameters (in)")
+# abline(0,1)
 
 # generate final fig for parameter distribution (see line 250)
 
 # sample from posterior parameter distributions to generate site-level samples for average diameter and C stock
 ## discard the first half of accepted parameters (sample from the second half)
-half.a1<-p_upgraded[1,(updated/2):updated]
-sample.a1
-sample.b1<-p_upgraded[2,(updated/2):updated]
-sample.b2<-p_upgraded[3,(updated/2):updated]
-sample.b4<-p_upgraded[4,(updated/2):updated]
-sample.b5<-p_upgraded[5,(updated/2):updated]
-sample.b6<-p_upgraded[6,(updated/2):updated]
-sample.b7<-p_upgraded[7,(updated/2):updated]
-sample.b8<-p_upgraded[8,(updated/2):updated]
-sample.b9<-p_upgraded[9,(updated/2):updated]
-sample.b10<-p_upgraded[10,(updated/2):updated]
-
-
-sample.par<-matrix(0, 10, 300)
-for (q in 1:10){
-  sample.par[q,]<-sample(p_upgraded[q,(updated/2):updated], 300)
-}
-hist(sample.par[1,])
-hist(sample.par[2,])
-
-# save(sample.par, file="//net.ucf.edu/COS/Profiles/al117862/Documents/GitHub/FL_Carbon/Longleaf Remeasurment/sample300parameters.rdata")
-
+# half.a1<-p_upgraded[1,(updated/2):updated]
+# sample.a1
+# sample.b1<-p_upgraded[2,(updated/2):updated]
+# sample.b2<-p_upgraded[3,(updated/2):updated]
+# sample.b4<-p_upgraded[4,(updated/2):updated]
+# sample.b5<-p_upgraded[5,(updated/2):updated]
+# sample.b6<-p_upgraded[6,(updated/2):updated]
+# sample.b7<-p_upgraded[7,(updated/2):updated]
+# sample.b8<-p_upgraded[8,(updated/2):updated]
+# sample.b9<-p_upgraded[9,(updated/2):updated]
+# sample.b10<-p_upgraded[10,(updated/2):updated]
+# 
+# 
+# sample.par<-matrix(0, 10, 300)
+# for (q in 1:10){
+#   sample.par[q,]<-sample(p_upgraded[q,(updated/2):updated], 300)
+# }
+# hist(sample.par[1,])
+# hist(sample.par[2,])
+# 
+# # save(sample.par, file="//net.ucf.edu/COS/Profiles/al117862/Documents/GitHub/FL_Carbon/Longleaf Remeasurment/sample300parameters.rdata")
+# 
 ## select 300 parameters (randomly)
 ## run the IBM model 300 times, calculate average DBH & C stock 300 times
-## calculate site-mean DBH and SD and site-mean C stock and SD. 
+## calculate site-mean DBH and SD and site-mean C stock and SD.
 
 cols<-sample((updated/2):updated, 300)
 
 sample.parameters<-p_upgraded[,c(cols)]
-# save(sample.parameters, file="//net.ucf.edu/COS/Profiles/al117862/Documents/GitHub/FL_Carbon/Longleaf Remeasurment/sampleparameters2.20.21.rdata")
+save(sample.parameters, file="//net.ucf.edu/COS/Profiles/al117862/Documents/GitHub/FL_Carbon/Longleaf Remeasurment/sampleparameters3.15.21.rdata")

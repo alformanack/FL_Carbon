@@ -1,6 +1,5 @@
-# Run longleaf pine simulations ----------------------------------------------
-
 rm(list=ls())
+
 
 setwd("C:/Users/Alicia/Documents/GitHub/FL_Carbon/Loblolly Remeasurement")
 envdata<-read.csv("LoblollyEnvData.csv", header=T, sep=",") 
@@ -11,30 +10,19 @@ load("LoblollyDIATotals.rdata")
 load("LoblollyPlotStart.rdata")
 load("LoblollyPlotEnd.rdata")
 
-envdata1<-subset(envdata, envdata$TPA_start<=envdata$TPA_end)
-a<- as.numeric(rownames(envdata1))
+
+load("initialpar3.22.21.rdata")
 
 calibration<-c(8, 10,  2,  6,  7)
-calibration<-c(8, 1, 5, 3, 10)
+# calibration<-c(8, 1,  5,  3,  10) #new nonrandom
 
 total<-c(1:10)
-par(mfrow=c(1,2))
-env_calib<-envdata[calibration,]
-plot(env_calib$LON, env_calib$LAT, col="blue")
-points(env_val$LON, env_val$LAT,col="red", labels=row.names(env_val))
-text(LAT~LON, labels=rownames(envdata),data=envdata, cex=0.9, font=2, pos=4)
+
 a<-setdiff(total, calibration)
 
-env_val<-envdata[a,]
-plot(env_val$LON, env_val$LAT, main="Validation")
-hist(env_val$aridity)
-hist(env_calib$aridity)
-
-hist(env_val$wc2_1_30s_)
-hist(env_calib$wc2_1_30s_)
-
 mylist<-list()
-  
+
+
 for (s in a){
   
   
@@ -45,10 +33,10 @@ for (s in a){
   aridity <- envdata[s,17]
   temp <- envdata[s,7]
   ages<-age.totals[[s]]
-  predict.tasb<-matrix(nrow = 10, ncol = 1,0)
-  predict.d<-matrix(nrow = 10, ncol = 1,0)
+  predict.tasb<-matrix(nrow = 300, ncol = 1,0)
+  predict.d<-matrix(nrow = 300, ncol = 1,0)
   
-  for (o in 1:10){
+  for (o in 1:300){
     age<-matrix(0, nrow=observed.a, ncol=length(plot_density)) # initialize the age matrix
     Diameter<-matrix(0, nrow=observed.a, length(plot_density)) # initialize the diameter matrix
     TASB<-matrix(0, nrow=observed.a, length(plot_density)) # initialize the total above-stump biomass matrix
@@ -64,10 +52,9 @@ for (s in a){
         age[i,j]<-age[i-1,j]+1
         
         
-        #growth<-(10^(17.47301 - 0.8562*temp + 1.0450*temp*aridity - 21.1939*aridity))*(0.7405648*age[i,j]^(-0.2594352))
-        growth<-(10^(7.588418 -0.37183*temp + 0.45382*temp*aridity -9.20441 *aridity))*(0.7405648*age[i,j]^(-0.2594352))
-        # age<-(10^((7.588418/-0.7405648)+ (-0.37183/-0.7405648)*temp + (0.45382/-0.7405648)*temp*aridity 
-                     # +(-9.20441/0.7405648)*aridity))*(DIA^(-1/-0.7405648))
+       
+        growth<-(10^(initial.par[o,1] + initial.par[o,3]*temp + initial.par[o,4]*temp*aridity + 
+                       initial.par[o,2]*aridity))*(initial.par[o,5]*age[i,j]^(initial.par[o,5]-1))
         
         
         # define the mortality rate here
@@ -75,21 +62,12 @@ for (s in a){
         M <- numeric(length = 1)
         
         # Mortality based on diameter class
-        if (Diameter[i,j]>=0) {M<- rbinom(1,1,(1.329e-01  +(-1.075e-02 *Diameter[i,j]*2.54)+ 1.401e-04*((Diameter[i,j]*2.54)^2)))
+        if (Diameter[i,j]>=0) {
+         
+          M<- rbinom(1,1,(initial.par[o,6] + (initial.par[o,7]*Diameter[i,j]*2.54) + 
+                            initial.par[o,8]*((Diameter[i,j]*2.54)^2)))
         }
-        # if (Diameter[i,j]<=1.574803){ M<- rbinom(1,1,.1)}
-        # else if (Diameter[i,j]>1.574803 & Diameter[i,j]<=3.149606){M<-rbinom(1,1,.05)}
-        # else if (Diameter[i,j]>3.149606 & Diameter[i,j]<=4.724409){M<-rbinom(1,1,.028)}
-        # else if (Diameter[i,j]>4.724409 & Diameter[i,j]<=6.299213){M<-rbinom(1,1,.017)}
-        # else if (Diameter[i,j]>6.299213 & Diameter[i,j]<=7.874016){M<-rbinom(1,1,.009)}
-        # else if (Diameter[i,j]>7.874016 & Diameter[i,j]<=9.448819){M<-rbinom(1,1,.0076)}
-        # else if (Diameter[i,j]>9.448819 & Diameter[i,j]<=19.68504){M<-rbinom(1,1,.0045)}
-        # else if (Diameter[i,j]>19.68504 & Diameter[i,j]<=25.59055){M<-rbinom(1,1,.0098)}
-        # else if (Diameter[i,j]>25.59055 & Diameter[i,j]<=27.55906){M<-rbinom(1,1,.018)}
-        # else if (Diameter[i,j]>27.55906 & Diameter[i,j]<=29.52756){M<-rbinom(1,1,.04)}
-        # else if (Diameter[i,j]>29.52756 & Diameter[i,j]<=31.49606){M<-rbinom(1,1,.089)}
-        # else if (Diameter[i,j]>31.49606 & Diameter[i,j]<=33.46457){M<-rbinom(1,1,.22)}
-        # else if (Diameter[i,j]>35.43307){M<-rbinom(1,1,0.44)}
+        
         
         
         # Calculate the diameter for jth tree for the ith observed year
@@ -113,7 +91,7 @@ for (s in a){
   modeled.tasb<-mean(predict.tasb)
   sd.tasb<-sd(predict.tasb)
   sd.dbh<-sd(predict.d)
-  hist(Diameter[observed.a,], main=paste("End simulation", s), xlab = "Diameter (in)")
+  # hist(Diameter[observed.a,], main=paste("End simulation", s), xlab = "Diameter (in)")
   
   # set up dataframe to store simulated data
   df<-cbind(observed.d, modeled.d, observed.a, length(plot_density), temp, aridity, observed.tasb, modeled.tasb, 
@@ -138,7 +116,7 @@ row.names(final_list_loblolly) <- c(a)
 sdev<-as.vector(final_list_loblolly$sd.tasb)
 sdev.dbh<-as.vector(final_list_loblolly$sd.dbh)
 
-model.1<-lm(data = final_list_loblolly, log10(Observed_Biomass/Modeled_Biomass)~Tree_Density +Temperature + Aridity)
+model.1<-lm(data = final_list, log10(Observed_Biomass/Modeled_Biomass)~Tree_Density +Temperature + Aridity)
 summary(model.1)
 # plot(Temperature~Aridity, data= final_list[[1]])
 # 
@@ -149,18 +127,29 @@ summary(model.1)
 model.2<-lm(data = final_list_slash, log10(Observed_Diameter/Modeled_Diameter)~Tree_Density)
 summary(model.2)
 
-model.3<-lm(data = final_list_loblolly, Observed_Biomass~Modeled_Biomass-1)
+model.3<-lm(data = final_list_loblolly, Observed_Biomass~Modeled_Biomass)
 summary(model.3)
 
-plot(data = final_list_loblolly, Observed_Diameter~Modeled_Diameter,  xlim = c(1,12), ylim = c(1,12), xlab="Modeled DBH (in)", ylab="Observed DBH (in)",
-     main = "Before parameter correction", col.axis="#027368", col="#75BFBF", pch=16, type="p") + abline(0,1, col="#048ABF")
-text(Observed_Diameter~Modeled_Diameter, labels=rownames(final_list),data=final_list, cex=0.9, font=2, pos=4)
+ABG<-lm(data = final_list_loblolly, Observed_Biomass~Modeled_Biomass)
+summary(ABG)
+DBH<-lm(data = final_list_loblolly, Observed_Diameter~Modeled_Diameter)
+summary(DBH)
+
+RMSE<-sqrt(sum((final_list_loblolly$Observed_Biomass-final_list_loblolly$Modeled_Biomass)^2/5))
+RMSE.dbh<-sqrt(sum((final_list_loblolly$Observed_Diameter-final_list_loblolly$Modeled_Diameter)^2/5))
+
+plot(data = final_list_loblolly, Observed_Diameter~Modeled_Diameter, xlim = c(0,13), ylim = c(0,13),  xlab="Modeled DBH (in)", ylab="Observed DBH (in)",
+     main = "Before parameter correction", col.axis="#027368", col="#75BFBF", pch=16, type="p") 
+abline(0,1, col="#048ABF")
+text(Observed_Diameter~Modeled_Diameter, labels=rownames(final_list_loblolly),data=final_list_loblolly, cex=0.9, font=2, pos=4)
 arrows(final_list$Modeled_Diameter-sdev.dbh, final_list$Observed_Diameter, final_list$Modeled_Diameter+sdev.dbh, final_list$Observed_Diameter, length=0.05, angle=90, code=3)
 
-plot(data = final_list_loblolly, Observed_Biomass~Modeled_Biomass, xlim=c(0,5), ylim=c(0,5), col = "#75BFBF", xlab="Modeled", ylab="Observed", main ="AGB (kgC/m^2)",
-     col.axis="#027368", pch=16, type="p") + abline(0,1, col="#048ABF")
+plot(data = final_list_loblolly, Observed_Biomass~Modeled_Biomass, xlim = c(0,4.5), ylim = c(0,4.5),col = "#75BFBF", xlab="Modeled", ylab="Observed", main ="AGB (kgC/m^2)",
+     col.axis="#027368", pch=16, type="p") 
+abline(0,1, col="#048ABF")
 text(Observed_Biomass~Modeled_Biomass, labels=rownames(final_list),data=final_list, cex=0.9, font=2, pos=4)
-arrows(final_list$Modeled_Biomass-sdev, final_list$Observed_Biomass, final_list$Modeled_Biomass+sdev, final_list$Observed_Biomass, length=0.05, angle=90, code=3)
+arrows(final_list_loblolly$Modeled_Biomass-sdev, final_list_loblolly$Observed_Biomass, final_list_loblolly$Modeled_Biomass+sdev, final_list_loblolly$Observed_Biomass, length=0.05, angle=90, code=3)
 
 final_list_loblolly[,"species"]<-"Loblolly"
-save(final_list_loblolly, file = "C:/Users/Alicia/Documents/GitHub/FL_Carbon/Loblolly Remeasurement/final_list_loblolly.rdata")
+save(final_list_loblolly, file = "C:/Users/Alicia/Documents/GitHub/FL_Carbon/Loblolly Remeasurement/LoblollyInitial.rdata")
+
