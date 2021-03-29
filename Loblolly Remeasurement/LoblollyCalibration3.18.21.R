@@ -67,7 +67,8 @@ p_op <- c(7.588418, 0.37183, 0.45382, 9.20441, 0.7405648, -0.2594352,1.329e-01, 
 names(p_op)<-par.name
 no.simu <- 500000   #10000
 d <- 10
-a<-c(8, 10,  2,  6,  7)
+# a<-c(8, 10,  2,  6,  7) original random calibration
+a<-c(8, 1, 5, 3, 10)
 st_dev<-p_op[10]
 
 for (s in a){
@@ -268,7 +269,7 @@ for (d1 in 1:no.simu) {
   print(paste("simu =", simu, "updated =", updated))
 }
 
-save.image(file ="//net.ucf.edu/COS/Profiles/al117862/Documents/GitHub/FL_Carbon/Loblolly Remeasurement/LoblollyCalibration3.18.21.Rdata")
+save.image(file ="//net.ucf.edu/COS/Profiles/al117862/Documents/GitHub/FL_Carbon/Loblolly Remeasurement/LoblollyCalibrationNonrandom3.26.21.Rdata")
 # 
 # dev.off()
 # par(mfrow=c(1,1))
@@ -318,5 +319,5 @@ save.image(file ="//net.ucf.edu/COS/Profiles/al117862/Documents/GitHub/FL_Carbon
 cols<-sample((updated/2):updated, 300)
 
 sample.parameters<-p_upgraded[,c(cols)]
-save(sample.parameters, file="//net.ucf.edu/COS/Profiles/al117862/Documents/GitHub/FL_Carbon/Loblolly Remeasurement/LoblollyParameters3.18.21.Rdata")
+save(sample.parameters, file="//net.ucf.edu/COS/Profiles/al117862/Documents/GitHub/FL_Carbon/Loblolly Remeasurement/LoblollyParametersnonrandom3.26.21.Rdata")
 # 
