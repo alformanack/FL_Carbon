@@ -5,8 +5,9 @@ rm(list=ls())
 
 setwd("C:/Users/Alicia/Documents/GitHub/FL_Carbon")
 
+load("scenarios.rdata")
 
-envdata<-read.csv("random_sample_envdata.csv", header=T, sep=",") 
+# envdata<-read.csv("random_sample_envdata.csv", header=T, sep=",") 
 setwd("C:/Users/Alicia/Documents/GitHub/FL_Carbon/Slash Remeasurement")
 load("SlashParameters3.22.21.Rdata")
 
@@ -19,32 +20,23 @@ simu.diameters<-list()
 
 
 
-SOILGRIDS_C_AVG<-((envdata$SOC0_5_NAD/10)*(1/3))+((envdata$SOC5_15_NA/10)*(2/3))
-
-SOILGRIDS_N_AVG<-((envdata$N0_5_NAD83/100)*(1/3))+((envdata$N5_15_NAD8/100)*(2/3))                 
-
-SOILGRIDS_CN<-SOILGRIDS_C_AVG/SOILGRIDS_N_AVG 
-
-envdata$SOILGRIDS_CN_SCALE<-(SOILGRIDS_CN*6.212)+24.634
-
-
-envdata$aridity<-envdata$ai_et0_NAD*.0001
-
-
 par.name <- c("a1","b1","b2","b3","b4","b5", "b6", "b7", "b8","sigma")
 row.names(sample.parameters)<-par.name
 
 modeled.d<-list()
 modeled.tasb<-list()
 
-for (s in 1:5){
+for (s in 1:8){
   
   # set stand age and density
   plot_density<-700
-  observed.a<-80
-  temp<-envdata[s,5]
-  CN<-envdata[s,10]
-  aridity<-envdata[s,11]
+  observed.a<-30
+  # temp<-envdata[s,5]
+  temp<-scenarios[s,3]
+  CN<-scenarios[s,2]
+  # CN<-envdata[s,10]
+  # aridity<-envdata[s,11]
+  aridity<-scenarios[s,1]
   predict.tasb<-matrix(nrow = 300, ncol = 1,0)
   predict.d<-matrix(nrow = 300, ncol = 1,0)
   
@@ -113,23 +105,32 @@ for (s in 1:5){
 }
 
 # save(simu.diameters, file="C:/Users/Alicia/Documents/GitHub/FL_Carbon/Slash Remeasurement/slashDIATotals.simu2.4.rdata")
-AGB<-do.call(rbind.data.frame, modeled.tasb)
-AGB[1:300,"plots"]<-1
-AGB[301:600,2]<-2
-AGB[601:900,2]<-3
-AGB[901:1200,2]<-4
-AGB[1201:1500,2]<-5
-AGB[,"species"]<-"Slash"
-DBH<-do.call(rbind.data.frame, modeled.d)
-DBH[1:300,"plots"]<-1
-DBH[301:600,2]<-2
-DBH[601:900,2]<-3
-DBH[901:1200,2]<-4
-DBH[1201:1500,2]<-5
-DBH[,"species"]<-"Slash"
+AGB_Slash<-do.call(rbind.data.frame, modeled.tasb)
+AGB_Slash[1:300,"plots"]<-"Dry/HighN/Hot"
+AGB_Slash[301:600,2]<-"Dry/LowN/Hot"
+AGB_Slash[601:900,2]<-"Wet/HighN/Hot"
+AGB_Slash[901:1200,2]<-"Wet/LowN/Hot"
+AGB_Slash[1201:1500,2]<-"Dry/HighN/Cool"
+AGB_Slash[1501:1800,2]<-"Dry/LowN/Cool"
+AGB_Slash[1801:2100,2]<-"Wet/HighN/Cool"
+AGB_Slash[2101:2400,2]<-"Wet/LowN/Cool"
+AGB_Slash[,"species"]<-"Slash"
 
-save(AGB, file = "C:/Users/Alicia/Documents/GitHub/FL_Carbon/Slash Remeasurement/simuSlash30yrAGB.rdata")
-save(DBH, file = "C:/Users/Alicia/Documents/GitHub/FL_Carbon/Slash Remeasurement/simuSlash30yrDBH.rdata")
+DBH_Slash<-do.call(rbind.data.frame, modeled.d)
+DBH_Slash[1:300,"plots"]<-"Dry/HighN/Hot"
+DBH_Slash[301:600,2]<-"Dry/LowN/Hot"
+DBH_Slash[601:900,2]<-"Wet/HighN/Hot"
+DBH_Slash[901:1200,2]<-"Wet/LowN/Hot"
+DBH_Slash[1201:1500,2]<-"Dry/HighN/Cool"
+DBH_Slash[1501:1800,2]<-"Dry/LowN/Cool"
+DBH_Slash[1801:2100,2]<-"Wet/HighN/Cool"
+DBH_Slash[2101:2400,2]<-"Wet/LowN/Cool"
+DBH_Slash[,"species"]<-"Slash"
+
+save(AGB_Slash, file = "C:/Users/Alicia/Documents/GitHub/FL_Carbon/Slash Remeasurement/simuSlash30yrAGB3.rdata") #new env var
+save(DBH_Slash, file = "C:/Users/Alicia/Documents/GitHub/FL_Carbon/Slash Remeasurement/simuSlash30yrDBH3.rdata")
+# save(AGB_Slash, file = "C:/Users/Alicia/Documents/GitHub/FL_Carbon/Slash Remeasurement/simuSlash30yrAGB.rdata")
+# save(DBH_Slash, file = "C:/Users/Alicia/Documents/GitHub/FL_Carbon/Slash Remeasurement/simuSlash30yrDBH.rdata")
 par(mfrow=c(1,1))
 
 final_list_slash <- do.call(rbind.data.frame, mylist)

@@ -11,11 +11,14 @@ load("longleafDIATotals2.rdata")
 load("longleafPlotStart2.rdata")
 load("longleafPlotEnd2.rdata")
 
+envdata1<-subset(envdata, envdata$V17<=envdata$V18)
+a1<- as.numeric(rownames(envdata1))
+
 # setwd("C:/Users/Alicia/Downloads/LongleafCalibration3.15.21")
 # load("Longleafparameters3.15.21.rdata")
 load("sampleparameters3.24.21.rdata") #estimating sigma
 
-load("final_list_longleaf.rdata")
+# load("final_list_longleaf.rdata")
 
 par(mfrow=c(2,5))
 
@@ -28,7 +31,9 @@ simu.diameters<-list()
 
 total_a<-c(1, 3, 4:6, 8, 9,10, 11:21, 23)
 calibration<-c(21, 19, 16,  3, 23, 14,  9,  1, 20, 11)
-a <-setdiff(total_a,calibration)
+a <-setdiff(a1,calibration)
+
+calib<-envdata[envdata$X %in% calibration,]
 
 for (s in a){
   

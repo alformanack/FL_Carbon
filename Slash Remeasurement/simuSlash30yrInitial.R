@@ -3,92 +3,70 @@
 rm(list=ls())
 
 
-setwd("C:/Users/Alicia/Documents/GitHub/FL_Carbon/Slash Remeasurement")
-# envdata<-read.csv("SlashEnvData1.csv", header=T, sep=",") 
-# load("SlashAgeTotals.rdata")
-# load("SlashAgeTotalsEnd.rdata")
-# load("SlashDIATotalsEnd.rdata")
-# load("SlashDIATotals.rdata")
-# load("SlashPlotStart.rdata")
-# load("SlashPlotEnd.rdata")
-envdata<-read.csv("SlashEnvData2.csv", header=T, sep=",") 
-load("SlashAgeTotals2.rdata")
+setwd("C:/Users/Alicia/Documents/GitHub/FL_Carbon")
 
-load("SlashAgeTotalsEnd2.rdata")
-load("SlashDIATotalsEnd2.rdata")
-load("SlashDIATotals2.rdata")
-load("SlashPlotStart2.rdata")
-load("SlashPlotEnd2.rdata")
-load("SlashParameters3.22.21.Rdata")
+load("scenarios.rdata")
+
+# envdata<-read.csv("random_sample_envdata.csv", header=T, sep=",") 
+setwd("C:/Users/Alicia/Documents/GitHub/FL_Carbon/Slash Remeasurement")
+# load("SlashParameters3.22.21.Rdata")
+load("initialpar3.22.21.Rdata")
 
 par(mfrow=c(2,5))
 
 mylist<-list()
 
+
 simu.diameters<-list()
 
-# total_a<-c(1:18,20:21, 23:32, 34:56)
-total_a<-c(1:18,20:21, 23:32, 34:56, 58:65, 67:80, 82:125, 127:132, 134:144)
 
-exclude<-c(6,7,15,18,21,29,37,41,52,54,55)
-
-a<-setdiff(total_a,exclude)
-
-envdata1<-subset(envdata, envdata$TPA_start<=envdata$TPA_end)
-a1<- as.numeric(rownames(envdata1))
-# 
-# envdata2<-subset(envdata, envdata$TPA_end/envdata$TPA_start>=.9)
-
-total.calibration<-sample(a1, 40, replace = FALSE)
-
-calibration<-c(44,  45, 142, 101,  24, 141, 119,  77,   1, 110, 115,  20,  92,  90,  68,  14, 130, 111,  30,
-               28,  87,  86, 107,  39, 143, 102,  71, 118,  64,  93, 128,  75,  58,  80, 116,  62,  61,  38,
-               117,  46)
-
-
-a<-setdiff(a1,calibration)
 
 par.name <- c("a1","b1","b2","b3","b4","b5", "b6", "b7", "b8","sigma")
 row.names(sample.parameters)<-par.name
 
+modeled.d<-list()
+modeled.tasb<-list()
 
-for (s in a){
+for (s in 1:8){
   
   # set stand age and density
-  plot_density<-diameter.totals[[s]]
-  observed.a<-envdata[s,6]
-  ages<-age.totals[[s]]
-  temp<-envdata[s,7]
-  CN<-envdata[s,16]
-  aridity<-envdata[s,17]
+  plot_density<-700
+  observed.a<-30
+  # temp<-envdata[s,5]
+  temp<-scenarios[s,3]
+  CN<-scenarios[s,2]
+  # CN<-envdata[s,10]
+  # aridity<-envdata[s,11]
+  aridity<-scenarios[s,1]
   predict.tasb<-matrix(nrow = 300, ncol = 1,0)
   predict.d<-matrix(nrow = 300, ncol = 1,0)
   
   for (o in 1:300){
-    age<-matrix(0, nrow=observed.a, ncol=length(plot_density)) # initialize the age matrix
-    Diameter<-matrix(0, nrow=observed.a, length(plot_density)) # initialize the diameter matrix
-    TASB<-matrix(0, nrow=observed.a, length(plot_density)) # initialize the total above-stump biomass matrix
+    age<-matrix(0, nrow=observed.a, ncol=plot_density) # initialize the age matrix
+    Diameter<-matrix(0, nrow=observed.a, plot_density) # initialize the diameter matrix
+    TASB<-matrix(0, nrow=observed.a, plot_density) # initialize the total above-stump biomass matrix
     
     # initialize the diameter for the first year
-    Diameter[1,]<-plot_density
-    age[1,]<-ages
+    Diameter[1,]<-(10^(initial.par[o,1] + initial.par[o,2]*CN + initial.par[o,5]*CN*aridity  + initial.par[o,3]*aridity 
+                               +  initial.par[o,4]*temp))*(initial.par[o,6]*1^(initial.par[o,6]-1))
+    age[1,]<-1
     
-    for (j in 1:length(plot_density)){ # specify tree per hectare
+    for (j in 1:plot_density){ # specify tree per hectare
       
       for (i in 2:observed.a){ # specify how long to run the simulation (years)
         
         age[i,j]<-age[i-1,j]+1
         
-        growth<-(10^(sample.parameters["a1",o] - sample.parameters["b1",o]*CN + sample.parameters["b2",o]*CN*aridity  - sample.parameters["b3",o]*aridity 
-                     -  sample.parameters["b4",o]*temp))*(sample.parameters["b5",o]*age[i,j]^(sample.parameters["b6",o]))
+        growth<-(10^(initial.par[o,1] + initial.par[o,2]*CN + initial.par[o,5]*CN*aridity  + initial.par[o,3]*aridity 
+                     +  initial.par[o,4]*temp))*(initial.par[o,6]*age[i,j]^(initial.par[o,6]-1))
         
         # define the mortality rate here
         # initialize as a numeric with only 1 possible value
         M <- numeric(length = 1)
         
         # Mortality based on diameter class
-        if (Diameter[i,j]>=0) { M<- rbinom(1,1,(sample.parameters["b7",o]*exp(sample.parameters["b8",o]*Diameter[i,j]*2.54)))}
-
+        if (Diameter[i,j]>=0) { rbinom(1,1,(initial.par[o,7]*exp(initial.par[o,8]*Diameter[i,j]*2.54)))}
+        
         # 
         # Calculate the diameter for jth tree for the ith observed year
         Diameter[i,j]<-Diameter[i-1,j] + growth - M*(Diameter[i-1,j]+growth)
@@ -105,31 +83,53 @@ for (s in a){
     predict.tasb[o,1]<-sum(TASB[observed.a, ])*.5*(1/4047)
   }
   
-  observed.d<-mean(diameter.totals[[s]])
-  observed.tasb<-sum(plot_data_end[[s]]$TASB)*.5*(1/4047)
-  modeled.d<-mean(predict.d)
-  modeled.tasb<-mean(predict.tasb)
+  
+  modeled.d[[s]]<-predict.d
+  modeled.tasb[[s]]<-predict.tasb
   sd.tasb<-sd(predict.tasb)
   sd.dbh<-sd(predict.d)
   hist(Diameter[observed.a,], main=paste("End simulation", s), xlab = "Diameter (in)")
   
   # set up dataframe to store simulated data
-  df<-cbind(observed.d, modeled.d, observed.a, length(plot_density), envdata[s,12], envdata[s,17], observed.tasb, modeled.tasb, 
-            sd.tasb, sd.dbh)
+  df<-cbind( modeled.d, observed.a, plot_density, temp, aridity,  modeled.tasb, 
+             sd.tasb, sd.dbh)
   
   df<-data.frame(df)
   
-  colnames(df)<-c("Observed_Diameter","Modeled_Diameter","Age", "Tree_Density", "Temperature",  "Aridity", "Observed_Biomass", 
+  colnames(df)<-c("Modeled_Diameter","Age", "Tree_Density", "Temperature",  "Aridity",  
                   "Modeled_Biomass", "sd.tasb", "sd.dbh")
   
   # data will be saved as list 1
   mylist[[s]] <- df
-  simu.diameters[[s]]<-Diameter[observed.a,]
+  
   
 }
 
 # save(simu.diameters, file="C:/Users/Alicia/Documents/GitHub/FL_Carbon/Slash Remeasurement/slashDIATotals.simu2.4.rdata")
+AGB_Slash<-do.call(rbind.data.frame, modeled.tasb)
+AGB_Slash[1:300,"plots"]<-"Dry/HighN/Hot"
+AGB_Slash[301:600,2]<-"Dry/LowN/Hot"
+AGB_Slash[601:900,2]<-"Wet/HighN/Hot"
+AGB_Slash[901:1200,2]<-"Wet/LowN/Hot"
+AGB_Slash[1201:1500,2]<-"Dry/HighN/Cool"
+AGB_Slash[1501:1800,2]<-"Dry/LowN/Cool"
+AGB_Slash[1801:2100,2]<-"Wet/HighN/Cool"
+AGB_Slash[2101:2400,2]<-"Wet/LowN/Cool"
+AGB_Slash[,"species"]<-"Slash"
 
+DBH_Slash<-do.call(rbind.data.frame, modeled.d)
+DBH_Slash[1:300,"plots"]<-"Dry/HighN/Hot"
+DBH_Slash[301:600,2]<-"Dry/LowN/Hot"
+DBH_Slash[601:900,2]<-"Wet/HighN/Hot"
+DBH_Slash[901:1200,2]<-"Wet/LowN/Hot"
+DBH_Slash[1201:1500,2]<-"Dry/HighN/Cool"
+DBH_Slash[1501:1800,2]<-"Dry/LowN/Cool"
+DBH_Slash[1801:2100,2]<-"Wet/HighN/Cool"
+DBH_Slash[2101:2400,2]<-"Wet/LowN/Cool"
+DBH_Slash[,"species"]<-"Slash"
+
+save(AGB_Slash, file = "C:/Users/Alicia/Documents/GitHub/FL_Carbon/Slash Remeasurement/simuSlash30yrAGB.rdata")
+save(DBH_Slash, file = "C:/Users/Alicia/Documents/GitHub/FL_Carbon/Slash Remeasurement/simuSlash30yrDBH.rdata")
 par(mfrow=c(1,1))
 
 final_list_slash <- do.call(rbind.data.frame, mylist)
@@ -153,14 +153,6 @@ summary(mod)
 model.2<-lm(data = final_list_slash, log10(Observed_Diameter/Modeled_Diameter)~Tree_Density)
 summary(model.2)
 
-AGB<-lm(data = final_list_slash, Observed_Biomass~Modeled_Biomass)
-summary(AGB)
-DBH<-lm(data = final_list_slash, Observed_Diameter~Modeled_Diameter)
-summary(DBH)
-
-RMSE<-sqrt(sum((final_list_slash$Observed_Biomass-final_list_slash$Modeled_Biomass)^2/37))
-RMSE.dbh<-sqrt(sum((final_list_slash$Observed_Diameter-final_list_slash$Modeled_Diameter)^2/37))
-
 
 plot(data = final_list_slash, Observed_Diameter~Modeled_Diameter,  xlim = c(2,9), ylim = c(2,9), xlab="Modeled DBH (in)", ylab="Observed DBH (in)",
      main = "Before parameter correction", col.axis="#027368", col="#75BFBF", pch=16, type="p") 
@@ -175,5 +167,5 @@ abline(0,1, col="#048ABF")
 text(Observed_Biomass~Modeled_Biomass, labels=rownames(final_list_slash),data=final_list_slash, cex=0.9, font=2, pos=4)
 arrows(final_list_slash$Modeled_Biomass-sdev, final_list_slash$Observed_Biomass, final_list_slash$Modeled_Biomass+sdev, final_list_slash$Observed_Biomass, length=0.05, angle=90, code=3)
 
-# final_list_slash[,"species"]<-"Slash"
-# save(final_list_slash, file = "C:/Users/Alicia/Documents/GitHub/FL_Carbon/Slash Remeasurement/final_list_slash.rdata")
+final_list_slash[,"species"]<-"Slash"
+save(final_list_slash, file = "C:/Users/Alicia/Documents/GitHub/FL_Carbon/Slash Remeasurement/simuSlash30yr.rdata")

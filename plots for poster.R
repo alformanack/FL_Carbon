@@ -37,7 +37,7 @@ theme_Publication <- function(base_size=14, base_family="helvetica") {
 
 scale_fill_Publication <- function(...){
   library(scales)
-  discrete_scale("fill","Publication",manual_pal(values = c("#495F8C","#F25C05","#F2B705", "#ef3b2c","#662506","#a6cee3","#fb9a99","#984ea3","#ffff33")), ...)
+  discrete_scale("fill","Publication",manual_pal(values = c("#495F8C","#F25C05","#F2B705")), ...)
   
 }
 
@@ -48,7 +48,7 @@ scale_fill_Publication <- function(...){
 # }
 scale_colour_Publication <- function(...){
   library(scales)
-  discrete_scale("colour","Publication",manual_pal(values = c("#495F8C","#F25C05","#F2B705","#ef3b2c","#662506","#a6cee3","#fb9a99","#984ea3","#ffff33")), ...)
+  discrete_scale("colour","Publication",manual_pal(values = c("#495F8C","#F25C05","#F2B705")), ...)
   
 }
 
@@ -220,16 +220,44 @@ biomass<-read.csv("TASB_totals.csv", header=T, sep=",")
 
 
 setwd("C:/Users/Alicia/Documents/GitHub/FL_Carbon/Longleaf Remeasurment")
-load("SimuLongleaf30yrs.rdata")
-final_list$plots<-c(1:5)
-setwd("C:/Users/Alicia/Documents/GitHub/FL_Carbon/Slash Remeasurement")
-load("simuSlash30yr.rdata")
-final_list_slash$plots<-c(1:5)
-setwd("C:/Users/Alicia/Documents/GitHub/FL_Carbon/Loblolly Remeasurement")
-load("SimuLoblolly30yrs.rdata")
-final_list<-rbind(final_list_loblolly,final_list,final_list_slash)
-final_list_loblolly$plots<-c(1:5)
+# load("SimuLongleaf30yrs.rdata")
+load("SimuLongleaf30yrsAGB.rdata")
+load("SimuLongleaf30yrsDBH.rdata")
+load("SimuLongleaf30yrsAGB3.rdata") #new env var
+load("SimuLongleaf30yrsDBH3.rdata")
+# load("SimuLongleaf30yrsAGB2.rdata") #fixed sigma
+# load("SimuLongleaf30yrsDBH2.rdata")
 
+
+# final_list$plots<-c(1:5)
+setwd("C:/Users/Alicia/Documents/GitHub/FL_Carbon/Slash Remeasurement")
+# load("simuSlash30yr.rdata")
+load("simuSlash30yrAGB.rdata")
+load("simuSlash30yrDBH.rdata")
+
+load("simuSlash30yrAGB3.rdata") #new env data
+load("simuSlash30yrDBH3.rdata")
+
+
+# final_list_slash$plots<-c(1:5)
+setwd("C:/Users/Alicia/Documents/GitHub/FL_Carbon/Loblolly Remeasurement")
+# load("SimuLoblolly30yrs.rdata")
+load("SimuLoblolly30yrsAGB2.rdata") #fixed ages
+load("SimuLoblolly30yrsDBH2.rdata")
+load("SimuLoblolly30yrsAGB3.rdata") #new env data
+load("SimuLoblolly30yrsDBH3.rdata")
+# load("SimuLoblolly30yrsAGB.rdata")
+# load("SimuLoblolly30yrsDBH.rdata")
+
+
+finalAGB<-rbind(AGB_Loblolly,AGB_Longleaf, AGB_Slash )
+finalDBH<-rbind(DBH_Loblolly, DBH_Longleaf, DBH_Slash)
+finalAGB$plots<-as.factor(finalAGB$plots)
+finalAGB$species<-as.factor(finalAGB$species)
+finalAGB$species <- factor(finalAGB$species, levels = c("Loblolly", "Longleaf", "Slash"))
+
+final_list_loblolly$plots<-c(1:5)
+final_list<-rbind(final_list_loblolly,final_list,final_list_slash)
 
 biomass<-rbind(final_list_loblolly,final_list,final_list_slash)
 
@@ -283,12 +311,23 @@ ggplot(biomass, aes(x=plots, y=Modeled_Biomass, fill=species)) +
   scale_fill_Publication() +
   scale_colour_Publication()
 
-ggplot(biomass, aes(x=plots, y=Modeled_Biomass, fill=species)) + 
-  labs(y = expression(bold(Tree~Carbon~(gC/m^{2}))), title="Potential C storage for 700tph after 30 years") +
-  geom_boxplot(position=position_dodge(1)) +
+ggplot(finalAGB, aes(x=plots, y=V1, fill=species)) + 
+  labs(y = expression(bold(AGB~(kgC/m^{2}))), title="Potential C storage for 700tpa after 30 years") +
+  stat_boxplot(geom ='errorbar')+
+  geom_boxplot(outlier.colour=NA) +
+  coord_cartesian(ylim = c(0, 100))+
   theme_Publication() +
-  scale_fill_Publication() +
-  scale_colour_Publication()
+  scale_fill_manual(values=c("#495F8C","#F25C05","#F2B705"))
+
+ggplot(finalDBH[finalDBH$species!="Loblolly",], aes(x=plots, y=V1, fill=species)) + 
+  labs(y = "DBH (in)", title="Potential C storage for 700tpa after 30 years") +
+  stat_boxplot(geom ='errorbar')+
+  geom_boxplot(outlier.colour=NA) + 
+  coord_cartesian(ylim = c(0, 15))+
+  theme_Publication() +
+  scale_fill_manual(values=c("#495F8C","#F25C05","#F2B705"))
+
+
 
 par(mfrow=c(2,5))
 par(mar=c(2,3,2,2))

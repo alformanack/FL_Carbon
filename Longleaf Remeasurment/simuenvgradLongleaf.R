@@ -136,8 +136,10 @@ DBH_Longleaf[1801:2100,2]<-"Wet/HighN/Cool"
 DBH_Longleaf[2101:2400,2]<-"Wet/LowN/Cool"
 DBH_Longleaf[,"species"]<-"Longleaf"
 
-save(AGB_Longleaf, file = "C:/Users/Alicia/Documents/GitHub/FL_Carbon/Longleaf Remeasurment/SimuLongleaf30yrsAGB.rdata")
-save(DBH_Longleaf, file = "C:/Users/Alicia/Documents/GitHub/FL_Carbon/Longleaf Remeasurment/SimuLongleaf30yrsDBH.rdata")
+# save(AGB_Longleaf, file = "C:/Users/Alicia/Documents/GitHub/FL_Carbon/Longleaf Remeasurment/SimuLongleaf30yrsAGB2.rdata")
+# save(DBH_Longleaf, file = "C:/Users/Alicia/Documents/GitHub/FL_Carbon/Longleaf Remeasurment/SimuLongleaf30yrsDBH2.rdata")
+save(AGB_Longleaf, file = "C:/Users/Alicia/Documents/GitHub/FL_Carbon/Longleaf Remeasurment/SimuLongleaf30yrsAGB3.rdata") #new env par
+save(DBH_Longleaf, file = "C:/Users/Alicia/Documents/GitHub/FL_Carbon/Longleaf Remeasurment/SimuLongleaf30yrsDBH3.rdata")
 
 final_list <- do.call(rbind.data.frame, mylist)
 row.names(final_list) <- c(a)

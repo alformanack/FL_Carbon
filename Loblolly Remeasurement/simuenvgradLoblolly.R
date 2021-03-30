@@ -6,7 +6,8 @@ load("scenarios.rdata")
 
 setwd("C:/Users/Alicia/Documents/GitHub/FL_Carbon/Loblolly Remeasurement")
 # load("LoblollyParameters3.18.21.rdata")
-load("LoblollyParametersnonrandom3.26.21.rdata")
+# load("LoblollyParametersnonrandom3.26.21.rdata")
+load("LoblollyParametersnonrandom3.28.21.rdata") #age corrected
 # load("initialpar3.22.21.rdata")
 
 par(mfrow=c(2,5))
@@ -63,13 +64,8 @@ for (s in 1:8){
         age[i,j]<-age[i-1,j]+1
         
         
-        #growth<-(10^(17.47301 - 0.8562*temp + 1.0450*temp*aridity - 21.1939*aridity))*(0.7405648*age[i,j]^(-0.2594352))
-        #  growth<-(10^(initial.parameters[1,o] - sample.parameters[2,o]*temp + sample.parameters[3,o]*temp*aridity - sample.parameters[4,o]*aridity))*(sample.parameters[5,o]*age[i,j]^(sample.parameters[6,o]))
-        growth<-(10^(sample.parameters["a1",o] - sample.parameters["b1",o]*temp + sample.parameters["b2",o]*temp*aridity - 
-                       sample.parameters["b3",o]*aridity))*(sample.parameters["b4",o]*age[i,j]^(sample.parameters["b5",o]))
-        
-        # age<-(10^((7.588418/-0.7405648)+ (-0.37183/-0.7405648)*temp + (0.45382/-0.7405648)*temp*aridity 
-        # +(-9.20441/0.7405648)*aridity))*(DIA^(-1/-0.7405648))
+        growth<-(10^(sample.parameters["a1",o] - sample.parameters["b1",o]*temp + sample.parameters["b2",o]*temp*aridity  
+                       -sample.parameters["b3",o]*aridity))*(sample.parameters["b4",o]*age[i,j]^(sample.parameters["b5",o]))
         
         
         # define the mortality rate here
@@ -78,7 +74,7 @@ for (s in 1:8){
         
         # Mortality based on diameter class
         if (Diameter[i,j]>=0) {
-          # M<- rbinom(1,1,(sample.parameters[7,o] +(sample.parameters[8,o] *Diameter[i,j]*2.54)+sample.parameters[9,o]*((Diameter[i,j]*2.54)^2)))
+          
           M<- rbinom(1,1,(sample.parameters["b6",o] + (sample.parameters["b7",o]*Diameter[i,j]*2.54) + 
                             sample.parameters["b8",o]*((Diameter[i,j]*2.54)^2)))
         }
@@ -145,8 +141,8 @@ DBH_Loblolly[1801:2100,2]<-"Wet/HighN/Cool"
 DBH_Loblolly[2101:2400,2]<-"Wet/LowN/Cool"
 DBH_Loblolly[,"species"]<-"Loblolly"
 
-save(AGB_Loblolly, file = "C:/Users/Alicia/Documents/GitHub/FL_Carbon/Loblolly Remeasurement/SimuLoblolly30yrsAGB.rdata")
-save(DBH_Loblolly, file = "C:/Users/Alicia/Documents/GitHub/FL_Carbon/Loblolly Remeasurement/SimuLoblolly30yrsDBH.rdata")
+save(AGB_Loblolly, file = "C:/Users/Alicia/Documents/GitHub/FL_Carbon/Loblolly Remeasurement/SimuLoblolly30yrsAGB3.rdata") #new env var
+save(DBH_Loblolly, file = "C:/Users/Alicia/Documents/GitHub/FL_Carbon/Loblolly Remeasurement/SimuLoblolly30yrsDBH3.rdata")
 
 
 

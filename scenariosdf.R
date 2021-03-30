@@ -4,12 +4,12 @@ row.names(scenarios)<-c("Dry/HighN/Hot", "Dry/LowN/Hot", "Wet/HighN/Hot", "Wet/L
                         "Dry/HighN/Cool", "Dry/LowN/Cool", "Wet/HighN/Cool", "Wet/LowN/Cool")
 
 colnames(scenarios)<-c("Aridity", "SoilCN", "MAT")
-scenarios[1:8,1]<-0.75
-scenarios[3:4 ,1]<-1.1
-scenarios[7:8 ,1]<-1.1
+scenarios[1:8,1]<-0.85
+scenarios[3:4 ,1]<-1
+scenarios[7:8 ,1]<-1
 scenarios[c(1,3,5,7),2]<-40
-scenarios[c(2,4,6,8),2]<-120
-scenarios[1:4,3]<-24
-scenarios[5:8,3]<-20
+scenarios[c(2,4,6,8),2]<-90
+scenarios[1:4,3]<-22
+scenarios[5:8,3]<-18
 
 save(scenarios, file = "C:/Users/Alicia/Documents/GitHub/FL_Carbon/scenarios.rdata")

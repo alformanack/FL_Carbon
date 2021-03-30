@@ -3,6 +3,7 @@ rm(list=ls())
 
 setwd("C:/Users/Alicia/Documents/GitHub/FL_Carbon/Loblolly Remeasurement")
 envdata<-read.csv("LoblollyEnvData.csv", header=T, sep=",") 
+
 load("LoblollyAgeTotals.rdata")
 load("LoblollyAgeTotalsEnd.rdata")
 load("LoblollyDIATotalsEnd.rdata")
@@ -13,8 +14,8 @@ load("LoblollyPlotEnd.rdata")
 
 load("initialpar3.22.21.rdata")
 
-calibration<-c(8, 10,  2,  6,  7)
-# calibration<-c(8, 1,  5,  3,  10) #new nonrandom
+# calibration<-c(8, 10,  2,  6,  7)
+calibration<-c(8, 1,  5,  3,  10) #new nonrandom
 
 total<-c(1:10)
 
@@ -91,7 +92,7 @@ for (s in a){
   modeled.tasb<-mean(predict.tasb)
   sd.tasb<-sd(predict.tasb)
   sd.dbh<-sd(predict.d)
-  # hist(Diameter[observed.a,], main=paste("End simulation", s), xlab = "Diameter (in)")
+  hist(Diameter[observed.a,], main=paste("End simulation", s), xlab = "Diameter (in)")
   
   # set up dataframe to store simulated data
   df<-cbind(observed.d, modeled.d, observed.a, length(plot_density), temp, aridity, observed.tasb, modeled.tasb, 
@@ -135,19 +136,19 @@ summary(ABG)
 DBH<-lm(data = final_list_loblolly, Observed_Diameter~Modeled_Diameter)
 summary(DBH)
 
-RMSE<-sqrt(sum((final_list_loblolly$Observed_Biomass-final_list_loblolly$Modeled_Biomass)^2/5))
-RMSE.dbh<-sqrt(sum((final_list_loblolly$Observed_Diameter-final_list_loblolly$Modeled_Diameter)^2/5))
+RMSE<-sqrt(sum((final_list_loblolly$Observed_Biomass-final_list_loblolly$Modeled_Biomass)^2/10))
+RMSE.dbh<-sqrt(sum((final_list_loblolly$Observed_Diameter-final_list_loblolly$Modeled_Diameter)^2/10))
 
 plot(data = final_list_loblolly, Observed_Diameter~Modeled_Diameter, xlim = c(0,13), ylim = c(0,13),  xlab="Modeled DBH (in)", ylab="Observed DBH (in)",
      main = "Before parameter correction", col.axis="#027368", col="#75BFBF", pch=16, type="p") 
 abline(0,1, col="#048ABF")
 text(Observed_Diameter~Modeled_Diameter, labels=rownames(final_list_loblolly),data=final_list_loblolly, cex=0.9, font=2, pos=4)
-arrows(final_list$Modeled_Diameter-sdev.dbh, final_list$Observed_Diameter, final_list$Modeled_Diameter+sdev.dbh, final_list$Observed_Diameter, length=0.05, angle=90, code=3)
+arrows(final_list_loblolly$Modeled_Diameter-sdev.dbh, final_list_loblolly$Observed_Diameter, final_list_loblolly$Modeled_Diameter+sdev.dbh, final_list_loblolly$Observed_Diameter, length=0.05, angle=90, code=3)
 
-plot(data = final_list_loblolly, Observed_Biomass~Modeled_Biomass, xlim = c(0,4.5), ylim = c(0,4.5),col = "#75BFBF", xlab="Modeled", ylab="Observed", main ="AGB (kgC/m^2)",
+plot(data = final_list_loblolly, Observed_Biomass~Modeled_Biomass, xlim = c(0,4), ylim = c(0,4),col = "#75BFBF", xlab="Modeled", ylab="Observed", main ="AGB (kgC/m^2)",
      col.axis="#027368", pch=16, type="p") 
 abline(0,1, col="#048ABF")
-text(Observed_Biomass~Modeled_Biomass, labels=rownames(final_list),data=final_list, cex=0.9, font=2, pos=4)
+text(Observed_Biomass~Modeled_Biomass, labels=rownames(final_list_loblolly),data=final_list_loblolly, cex=0.9, font=2, pos=4)
 arrows(final_list_loblolly$Modeled_Biomass-sdev, final_list_loblolly$Observed_Biomass, final_list_loblolly$Modeled_Biomass+sdev, final_list_loblolly$Observed_Biomass, length=0.05, angle=90, code=3)
 
 final_list_loblolly[,"species"]<-"Loblolly"
