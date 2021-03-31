@@ -6,25 +6,32 @@ rm(list=ls())
 # # Map to drive letter Z
 # system2("net", args=c("use", "Z:", path))
 # Update so that packages are installed to that directory
-.libPaths("Z:/")
+# .libPaths("Z:/")
 
 # Install packages
-install.packages("ggplot2")
-install.packages("mvnfast")
-lapply(c("ggplot2","mvnfast"), require, character.only = T)
+# install.packages("ggplot2")
+# install.packages("mvnfast")
+# lapply(c("ggplot2","mvnfast"), require, character.only = T)
 
-setwd("~/GitHub/FL_Carbon/Loblolly Remeasurement")
-envdata<-read.csv("LoblollyEnvData.csv", header=T, sep=",") 
-load("LoblollyAgeTotals.rdata")
-load("LoblollyAgeTotalsEnd.rdata")
-load("LoblollyDIATotalsEnd.rdata")
-load("LoblollyDIATotals.rdata")
-load("LoblollyPlotStart.rdata")
-load("LoblollyPlotEnd.rdata")
+setwd("~/GitHub/FL_Carbon/Slash Remeasurement")
+#setwd("C:/Users/Oleksandra/OneDrive/Documents/UCF/students/Alicia Formanack/slash")
+# envdata<-read.csv("SlashEnvData1.csv", header=T, sep=",") 
+# load("SlashAgeTotals.rdata")
+# load("SlashAgeTotalsEnd.rdata")
+# load("SlashDIATotalsEnd.rdata")
+# load("SlashDIATotals.rdata")
+# load("SlashPlotStart.rdata")
+# load("SlashPlotEnd.rdata")
+envdata<-read.csv("SlashEnvData2.csv", header=T, sep=",") 
+load("SlashAgeTotals2.rdata")
+load("SlashAgeTotalsEnd2.rdata")
+load("SlashDIATotalsEnd2.rdata")
+load("SlashDIATotals2.rdata")
+load("SlashPlotStart2.rdata")
+load("SlashPlotEnd2.rdata")
 
-
-
-
+# setwd("C:/Users/Alicia/Documents/GitHub/tree_growth_FL")
+# source("generate_pars.R")
 
 ## Load functions
 generate.pars <- function(p_op,pmin,pmax,d) {
@@ -50,26 +57,39 @@ mylist<-list()
 
 Diameter.all<-list()
 
-
+diameter.totals.end[[144]]<-NULL
 
 # Plot 170 ----------------------------------------------
 #set prior ranges
 pmin <- c()
 pmax <- c()
-#   a1             b1              b2               b3           b4               b5            b6                b7                b8          sigma  
-pmin[1] <- 5.0;pmin[2] <-  0.00;pmin[3] <-  0.00;pmin[4] <- 6;pmin[5] <-  0.4;pmin[6] <- -1.0;pmin[7] <- 0.0; pmin[8] <- -.05;pmin[9] <- 0.0; pmin[10]<-1
-pmax[1] <- 9.0;pmax[2] <-  0.6;pmax[3] <-  0.8;pmax[4] <- 12;pmax[5] <-  0.9;pmax[6] <- 0.0;pmax[7] <- 0.5;   pmax[8] <- 0.0; pmax[9] <- 0.0005;pmax[10]<-10
 
 
-par.name <- c("a1","b1","b2","b3","b4","b5", "b6", "b7", "b8","sigma")
-p_op <- c(7.588418, 0.37183, 0.45382, 9.20441, 0.7405648, -0.2594352,1.329e-01, -1.075e-02,1.401e-04, 4)
+pmin[1] <- 0.0;pmax[1] <- 2.0                       
+pmin[2] <-  0.00; pmax[2] <-  0.01
+pmin[3] <-  0.00; pmax[3] <-  0.01
+pmin[4] <- 0;pmax[4] <- 1.5
+pmin[5] <-  0.0;pmax[5] <-  0.03
+pmin[6] <- 0.0;pmax[6] <- 1.0 
+pmin[7] <- -0.9;pmax[7] <- -0.1
+pmin[8] <- 0.0; pmax[8] <- 0.5
+pmin[9] <- -.05;pmax[9] <- 0.0
+pmin[10] <- 0.0;pmax[10] <- 0.0005
+pmin[11]<-1;pmax[11]<-10
 
+
+
+par.name <- c("a1","b1","b2","b3","b4","b5", "b6", "b7", "b8","b9", "sigma")
+p_op <- c(0.9133654, 0.004317, 0.004611, 0.596886, 0.011454, 0.5783973,-0.4216027, 1.329e-01, -1.075e-02, 1.401e-04, 4)
+# p_op <- c(2.103102, 0.009940, 0.010618, 1.374381, 0.026373, 0.5783973,-0.4216027, 0.06504789,-0.05577336)
 names(p_op)<-par.name
 no.simu <- 500000   #10000
 d <- 10
-# a<-c(8, 10,  2,  6,  7) original random calibration
-a<-c(8, 5, 3, 10)
-st_dev<-p_op[10]
+# a<-c(1,4,5,8,11,13,14,20,24:26,28,30:32,34,36,38:40,44:46,49,53,56)
+a<-c(44,  45, 142, 101,  24, 141, 119,  77,   1, 110, 115,  20,  92,  90,  68,  14, 130, 111,  30,
+     28,  87,  86, 107,  39, 143, 102,  71, 118,  64,  93, 128,  75,  58,  80, 116,  62,  61,  38,
+     117,  46)
+st_dev<-p_op[11]
 
 for (s in a){
   
@@ -100,8 +120,9 @@ for (s in a){
       
       
       
-      growth<-(10^(p_op["a1"] - p_op["b1"]*temp + p_op["b2"]*temp*aridity - p_op["b3"]*aridity))*(p_op["b4"]*age[i,j]^(p_op["b5"]))
-      
+      growth<-(10^(p_op["a1"] - p_op["b1"]*CN + p_op["b2"]*CN*aridity - p_op["b3"]*aridity- p_op["b4"]*temp))*(p_op["b5"]*age[i,j]^(p_op["b6"]))
+      # growth<-(10^(2.103102 - 0.009940*CN + 0.010618*CN*aridity - 1.374381*aridity - 0.026373*temp ))*(0.5783973*age[i,j]^(-0.4216027))
+      # growth<-(10^(0.9133654 - 0.004317*CN+  0.004611*CN*aridity- 0.596886*aridity - 0.011454*temp ))*(0.5783973*age[i,j]^(-0.4216027))
       # define the mortality rate here
       # initialize as a numeric with only 1 possible value
       M <- numeric(length = 1)
@@ -109,7 +130,8 @@ for (s in a){
       # Mortality based on diameter class
       if (Diameter[i,j]>=0) {
         # M<- rbinom(1,1,(exp(p_op["b7"] + p_op["b8"]*Diameter[i,j]*2.54)))
-        M<- rbinom(1,1,(p_op["b6"] + (p_op["b7"]*Diameter[i,j]*2.54) + p_op["b8"]*((Diameter[i,j]*2.54)^2)))
+        # M<- rbinom(1,1,(p_op["b7"]*exp(p_op["b8"]*Diameter[i,j]*2.54)))
+        M<- rbinom(1,1,(p_op["b7"] + (p_op["b8"]*Diameter[i,j]*2.54) + p_op["b9"]*((Diameter[i,j]*2.54)^2)))
       }
       
       
@@ -125,13 +147,13 @@ for (s in a){
   mylist[[s]] <- df
   Diameter.all[[s]]<-Diameter[observed.a,]
 }
-Diam_first<-Diameter.all
+
 J_old <- mapply(function(x, y){
   # calc <- (sort(x) - sort(y))^2/(2*(0.6*y)^2)
   calc <- (sort(x) - sort(y))^2/(2*(st_dev)^2) ## try 2 instead of 4 as SD (denominator)
   # error<-(sort(x) - sort(y))^2/(2*(st_dev)^2)
   # calc <- -0.5*length(error)*log(3.14*2)-0.5*log(st_dev^2)-error
-  # calc <- (sort(x) - sort(y))^2
+ # calc <- (sort(x) - sort(y))^2
   return(calc)
 }, Diameter.all, diameter.totals.end)
 
@@ -169,7 +191,7 @@ for (d1 in 1:no.simu) {
   }
   
   names(pnew)<-par.name
-  st_dev<-pnew[10]
+  st_dev<-pnew[11] 
   
   for (s in a){
     
@@ -186,7 +208,7 @@ for (d1 in 1:no.simu) {
     # for (o in 1:10){
     age<-matrix(0, nrow=observed.a, ncol=length(plot_density)) # initialize the age matrix
     Diameter<-matrix(0, nrow=observed.a, length(plot_density)) # initialize the diameter matrix
-    
+  
     
     # initialize the diameter for the first year
     Diameter[1,]<-plot_density
@@ -198,7 +220,7 @@ for (d1 in 1:no.simu) {
         
         age[i,j]<-age[i-1,j]+1
         
-        growth<-(10^(pnew["a1"] - pnew["b1"]*temp + pnew["b2"]*temp*aridity - pnew["b3"]*aridity))*(pnew["b4"]*age[i,j]^(pnew["b5"]))
+        growth<-(10^(pnew["a1"] - pnew["b1"]*CN + pnew["b2"]*CN*aridity - pnew["b3"]*aridity- pnew["b4"]*temp))*(pnew["b5"]*age[i,j]^(pnew["b6"]))
         
         
         # define the mortality rate here
@@ -207,9 +229,11 @@ for (d1 in 1:no.simu) {
         
         # Mortality based on diameter class
         if (Diameter[i,j]>=0) {
-          M<- rbinom(1,1,(pnew["b6"] + (pnew["b7"]*Diameter[i,j]*2.54) + pnew["b8"]*((Diameter[i,j]*2.54)^2)))
-        }
-        
+          # M<- rbinom(1,1,(exp(p_op["b7"] + p_op["b8"]*Diameter[i,j]*2.54)))
+          # M<- rbinom(1,1,(pnew["b7"]*exp(pnew["b8"]*Diameter[i,j]*2.54)))
+          M<- rbinom(1,1,(pnew["b7"] + (pnew["b8"]*Diameter[i,j]*2.54) + pnew["b9"]*((Diameter[i,j]*2.54)^2)))
+          }
+      
         
         # Calculate the diameter for jth tree for the ith observed year
         Diameter[i,j]<-Diameter[i-1,j] + growth - M*(Diameter[i-1,j]+growth)
@@ -232,7 +256,7 @@ for (d1 in 1:no.simu) {
     calc <- (sort(x) - sort(y))^2/(2*(st_dev)^2) ## try 2 instead of 4 as SD (denominator)
     # error<-(sort(x) - sort(y))^2/(2*(st_dev)^2)
     # calc <- -0.5*length(error)*log(3.14*2)-0.5*log(st_dev^2)-error
-    # calc <- (sort(x) - sort(y))^2
+   # calc <- (sort(x) - sort(y))^2
     return(calc)
   }, Diameter.all, diameter.totals.end)
   
@@ -249,9 +273,9 @@ for (d1 in 1:no.simu) {
     Diam_accepted<- Diameter.all
     # plot(prob_denom.keep)
     if (updated %in% c(100*1:100)) {
-      par(mfrow=c(2,5))
+      par(mfrow=c(3,4))
       par(mar=c(2,3,1,1))
-      for (par.no in 1:10) {
+      for (par.no in 1:11) {
         hist(p_upgraded[par.no,(updated/2):updated],xlim = c(pmin[par.no],pmax[par.no]), main = par.name[par.no], xlab =NA, breaks=20)
         # plot(p_upgraded[par.no,1:updated], ylim = c(pmin[par.no],pmax[par.no]),main = par.name[par.no])
       }
@@ -269,7 +293,7 @@ for (d1 in 1:no.simu) {
   print(paste("simu =", simu, "updated =", updated))
 }
 
-save.image(file ="//net.ucf.edu/COS/Profiles/al117862/Documents/GitHub/FL_Carbon/Loblolly Remeasurement/LoblollyCalibrationNonrandom3.26.21.Rdata")
+save.image(file ="//net.ucf.edu/COS/Profiles/al117862/Documents/GitHub/FL_Carbon/Slash Remeasurement/SlashCalibration3.22.21.Rdata")
 # 
 # dev.off()
 # par(mfrow=c(1,1))
@@ -319,5 +343,4 @@ save.image(file ="//net.ucf.edu/COS/Profiles/al117862/Documents/GitHub/FL_Carbon
 cols<-sample((updated/2):updated, 300)
 
 sample.parameters<-p_upgraded[,c(cols)]
-save(sample.parameters, file="//net.ucf.edu/COS/Profiles/al117862/Documents/GitHub/FL_Carbon/Loblolly Remeasurement/Loblolly_4plots_Parametersnonrandom3.30.21.Rdata")
-# 
+save(sample.parameters, file="//net.ucf.edu/COS/Profiles/al117862/Documents/GitHub/FL_Carbon/Slash Remeasurement/SlashParameters3.22.21.Rdata")
