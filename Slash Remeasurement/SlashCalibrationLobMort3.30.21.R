@@ -293,7 +293,7 @@ for (d1 in 1:no.simu) {
   print(paste("simu =", simu, "updated =", updated))
 }
 
-save.image(file ="//net.ucf.edu/COS/Profiles/al117862/Documents/GitHub/FL_Carbon/Slash Remeasurement/SlashCalibration3.22.21.Rdata")
+save.image(file ="//net.ucf.edu/COS/Profiles/al117862/Documents/GitHub/FL_Carbon/Slash Remeasurement/SlashCalibrationLobMort4.3.21.Rdata")
 # 
 # dev.off()
 # par(mfrow=c(1,1))
@@ -343,4 +343,4 @@ save.image(file ="//net.ucf.edu/COS/Profiles/al117862/Documents/GitHub/FL_Carbon
 cols<-sample((updated/2):updated, 300)
 
 sample.parameters<-p_upgraded[,c(cols)]
-save(sample.parameters, file="//net.ucf.edu/COS/Profiles/al117862/Documents/GitHub/FL_Carbon/Slash Remeasurement/SlashParameters3.22.21.Rdata")
+save(sample.parameters, file="//net.ucf.edu/COS/Profiles/al117862/Documents/GitHub/FL_Carbon/Slash Remeasurement/SlashParametersLob Mort4.3.21.Rdata")
