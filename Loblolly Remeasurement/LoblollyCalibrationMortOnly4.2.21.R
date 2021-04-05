@@ -318,5 +318,5 @@ save.image(file ="//net.ucf.edu/COS/Profiles/al117862/Documents/GitHub/FL_Carbon
 cols<-sample((updated/2):updated, 300)
 
 sample.parameters<-p_upgraded[,c(cols)]
-save(sample.parameters, file="//net.ucf.edu/COS/Profiles/al117862/Documents/GitHub/FL_Carbon/Loblolly Remeasurement/Loblolly_4plots_Parametersnonrandom3.30.21.Rdata")
+save(sample.parameters, file="//net.ucf.edu/COS/Profiles/al117862/Documents/GitHub/FL_Carbon/Loblolly Remeasurement/Loblolly_4plots_ParametersMortOnly4.4.21.Rdata")
 # 
